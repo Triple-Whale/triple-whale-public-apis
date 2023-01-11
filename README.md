@@ -31,7 +31,7 @@ To get started with the Triple Whale API, just follow these basic steps:
 2. Receive your OAuth credentials from Triple Whale
 3. Execute the OAuth flow and grant access to your shop
 4. Retrieve the OAuth token and make authenticated requests to the API  
-<br>
+<br>  
 **Examples**  
 <br>
 To help you get started, this repo contains a sample app that demonstrate how to set up the OAuth flow and execute requests. Be sure to it out and feel free to customize it to suit your needs.
