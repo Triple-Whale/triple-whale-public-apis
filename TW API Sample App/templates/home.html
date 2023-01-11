@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <title>My App</title>
+    <style>
+      .collapsible {
+        cursor: pointer;
+      }
+      .collapsed .value {
+        display: none;
+      }
+    </style>
+    <script>
+      function toggleCollapsible(event) {
+        event.target.classList.toggle('collapsed');
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Data</h1>
+    <ul>
+      {% macro render_json(json) %}
+        {% for key, value in json.items() %}
+          <li class="collapsible" onclick="toggleCollapsible(event)">
+            {{ key }}:
+            {% if value is mapping %}
+              <ul>{{ render_json(value) }}</ul>
+            {% else %}
+              <div class="value">{{ value }}</div>
+            {% endif %}
+          </li>
+        {% endfor %}
+      {% endmacro %}
+      {{ render_json(data) }}
+    </ul>
+  </body>
+</html>
