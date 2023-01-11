@@ -4,7 +4,7 @@ Documentation and examples for using the Triple Whale APIs
 ## Available Endpoints
 The Triple Whale API currently offers two public endpoints for interacting with Triple Whale Data:
 
-- **Metrics Endpoint** [https://api.triplewhale.com/api/v2/tw--metrics/metrics]: You can use our Metrics end to push custom metrics into the Triple Whale summary page/dashboard, or extract summary page data.
+- **Metrics Endpoint** [https://api.triplewhale.com/api/v2/tw-metrics/metrics]: You can use our Metrics end to push custom metrics into the Triple Whale summary page/dashboard, or extract summary page data.
   - Supported Methods:
     - POST
     - GET
