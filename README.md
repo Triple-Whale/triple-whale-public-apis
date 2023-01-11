@@ -4,9 +4,14 @@ Documentation and examples for using the Triple Whale APIs
 ## Available Endpoints
 The Triple Whale API currently offers two public endpoints for interacting with Triple Whale Data:
 
-- **Metrics Endpoint**: You can use our Metrics end to push custom metrics into the Triple Whale summary page/dashboard, or extract summary page data.
+- **Metrics Endpoint** [https://api.triplewhale.com/api/v2/tw--metrics/metrics]: You can use our Metrics end to push custom metrics into the Triple Whale summary page/dashboard, or extract summary page data.
+-- Supported Methods:
+--- POST
+--- GET
 
-- **Attribution Endpoint**: With our Attribution endpoint you can export full customer journey data for all customers who placed an order
+- **Attribution Endpoint** [https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys]: With our Attribution endpoint you can export full customer journey data for all customers who placed an order
+-- Supported Methods:
+--- POST
 
 ## Swagger Docs 
 https://developers.triplewhale.com/swagger/index.html
