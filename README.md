@@ -6,10 +6,10 @@ With the Triple Whale API, you can easily integrate our powerful analytics and a
 
 ## Available Endpoints
 
-- **Metrics Endpoint**: [[`/tw-metrics/metrics`](https://developers.triplewhale.com/swagger/index.html#/summary/summary-add-metrics)] - This endpoint allows you to push custom metrics into the Triple Whale summary page/dashboard and extract summary page data.
+- **Metrics Endpoint**: [[`/tw-metrics`](https://developers.triplewhale.com/swagger/index.html#/summary/summary-add-metrics)] - This endpoint allows you to push custom metrics into the Triple Whale summary page/dashboard and extract summary page data.
   - Supported Methods: 
-    - POST
-    - GET
+    - POST [[`/tw-metrics/metrics`](https://developers.triplewhale.com/swagger/index.html#/summary/summary-get-metrics)]
+    - GET [[`/tw-metrics/metrics-data`](https://developers.triplewhale.com/swagger/index.html#/summary/summary-add-metrics)]
 
 - **Attribution Endpoint**: [[`/attribution/get-orders-with-journeys`](https://developers.triplewhale.com/swagger/index.html#/attribution/attribution-get-orders-with-journeys-post)] - With this endpoint, you can export full customer journey data for all customers who placed an order.
   - Supported Methods: 
