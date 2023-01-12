@@ -1,0 +1,14 @@
+# Dependency directories
+node_modules/
+
+# ENV
+.env
+
+# LOCAL STORAGE
+scratch/
+
+# DSStore
+.DS_Store
+
+# lockfile
+yarn.lock
