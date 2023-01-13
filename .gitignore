@@ -12,3 +12,6 @@ scratch/
 
 # lockfile
 yarn.lock
+
+# ignore dist
+dist/
