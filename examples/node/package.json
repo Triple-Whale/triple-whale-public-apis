@@ -1,12 +1,12 @@
 {
-  "name": "vite-project",
+  "name": "tw-api",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "node server.js",
     "build": "vite build",
-    "preview": "NODE_ENV=production node server.ts"
+    "preview": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@shopify/polaris": "^10.19.0",

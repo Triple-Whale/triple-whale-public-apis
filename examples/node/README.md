@@ -15,7 +15,7 @@ For documentation on available endpoints and request structure, visit https://de
 
 ## "Production" server
 
-`npm start` or `yarn`
+`yarn build && yarn preview` or `npm run build && npm run preview`
 
 ## Caveats
 
