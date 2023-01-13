@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       }).then(res => res.json())
 
       // jwt expired
-      if(options.message) {
-        journeysTotal.innerHTML = options.message
+      if(orderJourneys.message) {
+        journeysTotal.innerHTML = orderJourneys.message
         return
       }
 
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       `
 
       const journeysTBody = journeys.querySelector('tbody')
-      orderJourneys.ordersWithJourneys.forEach((order) => {
+      orderJourneys.ordersWithJourneys?.forEach((order) => {
         const j = document.createElement('tr');
         j.classList.add('Polaris-DataTable__TableRow', 'Polaris-DataTable--hoverable')
         j.innerHTML = `
