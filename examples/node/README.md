@@ -1,6 +1,6 @@
 # Triple Whale API Node App
 
-For documentation on available endpoints and request structure, visit https://developers.triplewhale.com
+For documentation on available endpoints and request structure, visit https://developers.triplewhale.com/swagger/index.html
 
 ## Prerequesites
 
