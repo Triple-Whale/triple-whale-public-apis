@@ -10,12 +10,3 @@ code {
   background: black;
   color: white;
 }
-
-.code-block {
-  margin-top: 1em;
-  display: block;
-}
-
-.journeys-wrapper, #journeys {
-  margin-top: 2em;
-}
