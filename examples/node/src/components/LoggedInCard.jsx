@@ -101,7 +101,7 @@ export const LoggedInCard = () => {
             Below will make a POST request to the API endpoint <code>https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys</code>
           </Text>
           <Text variant="bodyMd" as="p">
-            For documentation on available endpoints and request structure, visit <a href="https://developers.triplewhale.com" target="_blank">https://developers.triplewhale.com</a>
+            For documentation on available endpoints and request structure, visit <a href="https://developers.triplewhale.com/swagger/index.html" target="_blank">https://developers.triplewhale.com/swagger/index.html</a>
           </Text>
           <Stack distribution="fillEvenly" alignment="trailing">
             <Select
