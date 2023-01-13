@@ -1,14 +1,25 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { 
   Button, 
   Card, 
   DataTable, 
   Layout,
+  Pagination,
   Text, 
   Select, 
   Spinner, 
   Stack
 } from '@shopify/polaris';
+
+const formatOrders = (orders) => {
+  return orders.map((order => ([
+    order.orderId, 
+    order.journey?.length || 0, 
+    order.attribution?.firstClick?.source ?? '',
+    order.attribution?.lastClick?.source ?? '',
+    order.attribution?.lastPlatformClick?.map((click) => click.source ?? '').flat().toString().replace(/,/g, ', ')
+  ])))
+}
 
 export const LoggedInCard = () => {
   const [selected, setSelected] = useState('');
@@ -17,6 +28,8 @@ export const LoggedInCard = () => {
   const [loading, setLoading] = useState(false)
   const [ordersWithJourney, setOrdersWithJourney] = useState([])
   const [expired, setExpired] = useState(false)
+  const [sortedOrders, setSortedOrders] = useState([])
+  const [currentPage, setCurrentPage] = useState(0)
 
   useEffect(() => {
     if(options.length <= 0) fetch('/date-ranges')
@@ -31,12 +44,27 @@ export const LoggedInCard = () => {
       })
   })
 
+  const sortOrders = (orders, index, direction) => {
+    return [...orders].sort((rowA, rowB) => {
+      const amountA = parseFloat(rowA[index])
+      const amountB = parseFloat(rowB[index])
+
+      return direction === 'descending' ? amountB - amountA : amountA - amountB;
+    })
+  }
+
+  const handleSort = useCallback(
+    (index, direction) => setSortedOrders(sortOrders(sortedOrders, index, direction)),
+    [sortedOrders]
+  )
+
   const handleSelectChange = (val) => {
     setSelected(val)
     setOrdersWithJourney([])
+    setCurrentPage(0)
   }
 
-  const fetchOrdersWithJourney = async () => {
+  const fetchOrdersWithJourney = async (sentPage) => {
     setLoading(true)
     const selectedRange = dateRanges.find(range => range.value.id == selected)
     if(selectedRange) {
@@ -47,14 +75,17 @@ export const LoggedInCard = () => {
         },
         body: JSON.stringify({
           startDate: selectedRange.value.start,
-          endDate: selectedRange.value.end
+          endDate: selectedRange.value.end,
+          page: sentPage || 0
         })
       }).then(res => res.json())
 
       if(orderJourneys.message || orderJourneys.code == 401) {
         setExpired(true)
       } else {
+        setCurrentPage(orderJourneys.page)
         setOrdersWithJourney(orderJourneys)
+        setSortedOrders(formatOrders(orderJourneys.ordersWithJourneys))
       }
 
     }
@@ -81,7 +112,7 @@ export const LoggedInCard = () => {
             />
             <Button 
               fullWidth 
-              onClick={fetchOrdersWithJourney}
+              onClick={() => fetchOrdersWithJourney()}
               loading={loading}
             >Fetch Orders with Journey</Button>
            </Stack>
@@ -90,12 +121,15 @@ export const LoggedInCard = () => {
            )}
 
            {ordersWithJourney.totalForRange > 0 && (
-            <Stack vertical>
-              <Text variant="bodyMd" as="p">{ordersWithJourney.totalForRange} total orders</Text>
+            <div id="table-wrapper" style={{ opacity: loading ? '0.5' : '1' }}>
+              <Stack distribution="fill">
+                <Text variant="headingSm" as="p">{ordersWithJourney.totalForRange} total orders</Text>
+                <Text alignment="end" variant="headingSm" as="p">Page {ordersWithJourney.page + 1}</Text>
+              </Stack>
               <DataTable 
                 columnContentTypes={[
-                  'numeric',
-                  'numeric',
+                  'text',
+                  'text',
                   'text',
                   'text',
                   'text',
@@ -107,15 +141,28 @@ export const LoggedInCard = () => {
                   'Last Click',
                   'Last Platform Click',
                 ]}
-                rows={ordersWithJourney.ordersWithJourneys.map((order => ([
-                  order.orderId, 
-                  order.journey?.length || 0, 
-                  order.attribution?.firstClick?.source ?? '',
-                  order.attribution?.lastClick?.source ?? '',
-                  order.attribution?.lastPlatformClick?.map((click) => click.source ?? '').flat().toString().replace(/,/g, ', ')
-                ])))}
+                rows={sortedOrders}
+                onSort={handleSort}
+                hasZebraStripingOnData
+                sortable={[false, true, false, false, false]}
               />
-            </Stack>
+              <Stack distribution="center">
+                <Pagination
+                  hasPrevious={!loading && currentPage > 0}
+                  previousTooltip={`Page ${currentPage}`}
+                  onPrevious={async() => {
+                    await fetchOrdersWithJourney(currentPage - 1)
+                    window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
+                  }}
+                  hasNext={!loading && ordersWithJourney?.nextPage}
+                  nextTooltip={`Page ${currentPage + 2}`}
+                  onNext={async() => {
+                    await fetchOrdersWithJourney(currentPage + 1)
+                    window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
+                  }}
+                />
+              </Stack>
+            </div>
            )}
         </Stack>
       </Card>

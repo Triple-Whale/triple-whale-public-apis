@@ -113,7 +113,8 @@ app.post("/get-orders-with-journeys", (req, res) => {
     shop: SHOP_URL,
     state: LOCAL_SECRET,
     startDate: req.body?.startDate || "2022-12-01",
-    endDate: req.body?.endDate || "2022-12-02"
+    endDate: req.body?.endDate || "2022-12-02",
+    page: req.body?.page || 0
   }
   
   const options = {

@@ -7,6 +7,6 @@
 code {
   max-width: 100%;
   overflow: hidden;
-  background: black;
-  color: white;
+  background: var(--p-background);
+  color: var(--p-text);
 }
