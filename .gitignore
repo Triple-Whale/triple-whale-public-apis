@@ -10,8 +10,9 @@ scratch/
 # DSStore
 .DS_Store
 
-# lockfile
+# lockfiles
 yarn.lock
+package-lock.json
 
 # ignore dist
 dist/
