@@ -1,11 +1,12 @@
-const path = require('path')
-const crypto = require('crypto')
-const querystring = require("querystring")
-const express = require('express')
-const chalk = require('chalk')
-const fetch = require('cross-fetch')
-const { LocalStorage } = require('node-localstorage')
-const moment = require('moment')
+import express from "express";
+import ViteExpress from "vite-express";
+import * as dotenv from 'dotenv';
+import crypto from 'crypto'
+import querystring from 'querystring'
+import chalk from 'chalk'
+import fetch from 'cross-fetch'
+import { LocalStorage } from 'node-localstorage'
+import moment from 'moment'
 
 // -----------------------
 // express app
@@ -18,7 +19,7 @@ app.use(express.json())
 // -----------------------
 // data
 // -----------------------
-require('dotenv').config()
+dotenv.config()
 const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SHOP_URL, SCOPE } = process.env
 
 const localStorage = new LocalStorage('./scratch')
@@ -29,21 +30,6 @@ if(!LOCAL_SECRET) {
   localStorage.setItem('LOCAL_SECRET', LOCAL_SECRET)
 }
 
-// -----------------------
-// live reload on dev
-// -----------------------
-if (process.env.NODE_ENV !== 'production') {
-  const livereload = require("livereload")
-  const connectLiveReload = require("connect-livereload")
-  
-  const liveReloadServer = livereload.createServer()
-  liveReloadServer.watch(__dirname + "/src")
-  liveReloadServer.server.on('connection', () => {
-    console.log(chalk.cyan('[livereload] Browser reloaded'))
-  })
-  
-  app.use(connectLiveReload())
-}
 
 // -----------------------
 // Login -- first step of oauth flow
@@ -233,22 +219,7 @@ app.get("/date-ranges", (req, res) => {
   ])
 })
 
-// -----------------------
-// serve HTML 
-// -----------------------
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '/src/index.html'));
-});
-
-// -----------------------
-// serve assets
-// -----------------------
-app.use(express.static('src'))
-
-// -----------------------
-// app listen
-// -----------------------
-app.listen(port, () => {
+ViteExpress.listen(app, port, () => {
   console.log(chalk.magenta(`${appName} App listening on port ${port}`))
   console.log(chalk.magenta(`${appName} App URL: http://localhost:${port}`))
   console.log(
@@ -258,4 +229,4 @@ app.listen(port, () => {
     && SCOPE 
     ? chalk.magenta(`${appName} Required data is present!`) 
     : chalk.red(`${appName} Please provide required data`))
-})
+});

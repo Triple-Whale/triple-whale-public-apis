@@ -1,8 +1,5 @@
-body { 
-  padding: 2.5em 1.25em 1.25em; 
-}
-
-.container {
+#root {
+  padding: 2em;
   max-width: 800px;
   margin: 0 auto;
 }
