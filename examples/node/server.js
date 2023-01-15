@@ -13,7 +13,7 @@ import moment from 'moment'
 // -----------------------
 const app = express()
 const port = 8888
-const appName = '[express]'
+const appName = chalk.hex('#1877f2')('[triple-whale] ')
 app.use(express.json())
 
 // -----------------------
@@ -132,7 +132,7 @@ app.post("/get-orders-with-journeys", (req, res) => {
       if(response.code == 401) {
         localStorage.removeItem('TOKEN')
         localStorage.removeItem('LOCAL_SECRET')
-        chalk.red(`${appName} token expired! type rs in console to restart`)
+        console.log(appName + chalk.red(`token expired! please restart your app`))
       }
 
       res.json(response)
@@ -221,13 +221,15 @@ app.get("/date-ranges", (req, res) => {
 })
 
 ViteExpress.listen(app, port, () => {
-  console.log(chalk.magenta(`${appName} App listening on port ${port}`))
-  console.log(chalk.magenta(`${appName} App URL: http://localhost:${port}`))
+  console.log(appName + chalk.green(`🐳🐳🐳 listening http://localhost:${port}`))
   console.log(
-    !!CLIENT_ID 
-    && !!CLIENT_SECRET 
-    && REDIRECT_URI 
-    && SCOPE 
-    ? chalk.magenta(`${appName} Required data is present!`) 
-    : chalk.red(`${appName} Please provide required data`))
+    appName + (
+      !!CLIENT_ID 
+      && !!CLIENT_SECRET 
+      && REDIRECT_URI 
+      && SCOPE 
+      ? chalk.green(`required data is present 🎉`) 
+      : chalk.red(`🛑 please provide required .env data`)
+    )
+  )
 });
