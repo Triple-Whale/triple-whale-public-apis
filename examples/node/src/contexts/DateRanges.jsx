@@ -49,3 +49,29 @@ const DateRanges = createContext(dateRanges);
 export function useDateRanges() {
   return useContext(DateRanges);
 }
+
+// METRICS DATES
+const metricsDateRanges = [
+  {
+    value: {
+      start: moment().subtract(365, 'day'),
+      end: moment().endOf('day'),
+      id: 'today'
+    },
+    label: 'Last Year'
+  },
+  {
+    value: {
+      start: moment().subtract(999, 'day'),
+      end: moment().endOf('day'),
+      id: 'alltime'
+    },
+    label: 'All Time'
+  }
+]
+
+const MetricsDateRanges = createContext(metricsDateRanges);
+
+export function useMetricsDateRanges() {
+  return useContext(MetricsDateRanges);
+}

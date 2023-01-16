@@ -181,17 +181,17 @@ app.post("/get-orders-with-journeys-v2", (req, res) => {
 });
 
 app.get("/get-metrics", (req, res) => {
-  const start = req.query?.start && moment(req.query?.start).format('YYYY-MM-DD') || moment().subtract(7, 'day').startOf('day').format('YYYY-MM-DD')
-  const end = req.query?.end && moment(req.query?.end).format('YYYY-MM-DD') || moment().endOf('day').format('YYYY-MM-DD')
-  const url = `https://api.triplewhale.com/api/v2/tw-metrics/metrics-data?service_id=attribution&account_id=${SHOP_URL}&start=${start}&end=${end}`
-  
+  const start = req.query?.start || moment().subtract(7, 'day').startOf('day').format('YYYY-MM-DD')
+  const end = req.query?.end || moment().endOf('day').format('YYYY-MM-DD')
+  const url = `https://api.triplewhale.com/api/v2/tw-metrics/metrics-data?service_id=${CLIENT_ID}&account_id=${SHOP_URL}&start=${start}&end=${end}`
+
   fetch(url, {
      headers: { 
       "content-type": "application/json",
       Authorization: `Bearer ${TOKEN}`
     }
   })
-    .then(response => response.text())
+    .then(response => response.json())
     .then((response) => {
       res.json(response)
     })
@@ -214,8 +214,8 @@ ViteExpress.listen(app, port, () => {
     appName + (
       !!CLIENT_ID 
       && !!CLIENT_SECRET 
-      && REDIRECT_URI 
-      && SCOPE 
+      && !!REDIRECT_URI 
+      && !!SCOPE 
       ? chalk.green(`required data is present 🎉`) 
       : chalk.red(`🛑 please provide required .env data`)
     )

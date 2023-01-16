@@ -1,4 +1,4 @@
-import {useState } from 'react'
+import { useState } from 'react'
 import { 
   Button, 
   Text, 
@@ -7,13 +7,14 @@ import {
   Stack
 } from '@shopify/polaris';
 import { useAuthDispatch } from '../contexts/Auth';
-import { useDateRanges } from '../contexts/DateRanges';
+import { useMetricsDateRanges } from '../contexts/DateRanges';
+import moment from 'moment'
 
 export const FetchMetrics = () => {
   const [loading, setLoading] = useState(false)
   const [metrics, setMetrics] = useState([])
   const authDispatch = useAuthDispatch()
-  const rawDateRanges = useDateRanges()
+  const rawDateRanges = useMetricsDateRanges()
   const dateRanges = rawDateRanges.map(option => ({
     label: option.label,
     value: option.value.id
@@ -31,7 +32,7 @@ export const FetchMetrics = () => {
     const selectedRange = rawDateRanges.find(range => range.value.id == selected)
     if(selectedRange) {
       const fetchGetMetrics = await fetch(
-        `/get-metrics?start=${selectedRange.value.start}&end=${selectedRange.value.end}`, 
+        `/get-metrics?start=${moment(selectedRange.value.start).format('YYYY-MM-DD')}&end=${moment(selectedRange.value.end).format('YYYY-MM-DD')}`, 
         {
           method: 'GET',
           headers: {
