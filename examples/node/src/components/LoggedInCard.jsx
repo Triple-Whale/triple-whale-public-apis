@@ -28,6 +28,7 @@ export const LoggedInCard = () => {
   const [loading, setLoading] = useState(false)
   const [ordersWithJourney, setOrdersWithJourney] = useState([])
   const [expired, setExpired] = useState(false)
+  const [expiredMessage, setExpiredMessage] = useState('')
   const [sortedOrders, setSortedOrders] = useState([])
   const [currentPage, setCurrentPage] = useState(0)
 
@@ -80,8 +81,9 @@ export const LoggedInCard = () => {
         })
       }).then(res => res.json())
 
-      if(orderJourneys.message || orderJourneys.code == 401) {
+      if(orderJourneys.message || orderJourneys.code) {
         setExpired(true)
+        if(orderJourneys.message) setExpiredMessage(orderJourneys.message)
       } else {
         setCurrentPage(orderJourneys.page)
         setOrdersWithJourney(orderJourneys)
@@ -171,8 +173,17 @@ export const LoggedInCard = () => {
     <Layout.Section>
       <Card sectioned>
         <Stack vertical>
-          <Text variant="headingLg" as="h2">Your JWT Expired</Text>
-          <Text variant="bodyMd" as="p">Please restart your server!</Text>
+          {expiredMessage ? (
+            <>
+              <Text variant="headingLg" as="h2">{expiredMessage}</Text>
+              <Text variant="bodyMd" as="p">Please restart your server, or try again later!</Text>
+            </>
+          ) : (
+            <>
+              <Text variant="headingLg" as="h2">Your JWT Expired</Text>
+              <Text variant="bodyMd" as="p">Please restart your server!</Text>
+            </>
+          )}
         </Stack>
       </Card>
     </Layout.Section>
