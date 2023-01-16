@@ -143,11 +143,46 @@ app.post("/get-orders-with-journeys", (req, res) => {
     })
 });
 
-app.get("/get-metrics", (req, res) => {
-  const url = `https://api.triplewhale.com/api/v2/tw-metrics/metrics-data?service_id=attribution&account_id=${SHOP_URL}&start=${moment().subtract(7, 'day').startOf('day').format('YYYY-MM-DD')}&end=${moment().endOf('day').format('YYYY-MM-DD')}`
+app.post("/get-orders-with-journeys-v2", (req, res) => {
+  const url = "https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys-v2"
 
-  // @TODO why isn't this returning any data?
-  console.log(url)
+  const data = {
+    shop: SHOP_URL,
+    state: LOCAL_SECRET,
+    startDate: req.body?.startDate || "2022-12-01",
+    endDate: req.body?.endDate || "2022-12-02"
+  }
+  
+  const options = {
+    method: "POST",
+    headers: { 
+      "content-type": "application/json",
+      Authorization: `Bearer ${TOKEN}`
+    },
+    body: JSON.stringify(data)
+  };
+
+  fetch(url, options)
+    .then(response => response.json())
+    .then((response) => {
+      if(response.code == 401) {
+        localStorage.removeItem('TOKEN')
+        localStorage.removeItem('LOCAL_SECRET')
+        console.log(appName + chalk.red(`token expired! please restart your app`))
+      }
+
+      res.json(response)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.json(err)
+    })
+});
+
+app.get("/get-metrics", (req, res) => {
+  const start = req.query?.start ?? moment().subtract(7, 'day').startOf('day').format('YYYY-MM-DD')
+  const end = req.query?.end ?? moment().endOf('day').format('YYYY-MM-DD')
+  const url = `https://api.triplewhale.com/api/v2/tw-metrics/metrics-data?service_id=attribution&account_id=${SHOP_URL}&start=${start}&end=${end}`
   
   fetch(url, {
      headers: { 

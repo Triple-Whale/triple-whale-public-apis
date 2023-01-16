@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Card, Layout, Page, Text, Spinner } from '@shopify/polaris';
+import { Card, Layout, Page, Stack, Text, Spinner } from '@shopify/polaris';
+import { TabbedRequests } from './components/TabbedRequests'
 import { LoginCard } from './components/LoginCard'
 import { LoggedInCard } from './components/LoggedInCard'
+import { AuthProvider } from './contexts/Auth'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -32,9 +34,16 @@ function App() {
           </Layout.Section>
         )}
 
-        {!loading && (
-          loggedIn ? (<LoggedInCard />) : (<LoginCard />)
-        )}
+        <AuthProvider>
+          {!loading && (
+            loggedIn ? (
+              <Stack vertical>
+                <LoggedInCard />
+                <TabbedRequests />
+              </Stack>
+            ) : (<LoginCard />)
+          )}
+        </AuthProvider>
       </Layout>
     </Page>
   )
