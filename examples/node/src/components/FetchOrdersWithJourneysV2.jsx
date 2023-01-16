@@ -21,11 +21,10 @@ const formatOrders = (orders) => {
   ])))
 }
 
-export const FetchOrdersWithJourneys = () => {
+export const FetchOrdersWithJourneysV2 = () => {
   const [loading, setLoading] = useState(false)
   const [ordersWithJourney, setOrdersWithJourney] = useState([])
   const [sortedOrders, setSortedOrders] = useState([])
-  const [currentPage, setCurrentPage] = useState(0)
   const authDispatch = useAuthDispatch()
   const rawDateRanges = useDateRanges()
   const dateRanges = rawDateRanges.map(option => ({
@@ -52,22 +51,20 @@ export const FetchOrdersWithJourneys = () => {
   const handleSelectChange = (val) => {
     setSelected(val)
     setOrdersWithJourney([])
-    setCurrentPage(0)
   }
 
-  const fetchOrdersWithJourney = async (sentPage) => {
+  const fetchOrdersWithJourney = async () => {
     setLoading(true)
     const selectedRange = rawDateRanges.find(range => range.value.id == selected)
     if(selectedRange) {
-      const orderJourneys = await fetch('/get-orders-with-journeys', {
+      const orderJourneys = await fetch('/get-orders-with-journeys-v2', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           startDate: selectedRange.value.start,
-          endDate: selectedRange.value.end,
-          page: sentPage || 0
+          endDate: selectedRange.value.end
         })
       }).then(res => res.json())
 
@@ -77,9 +74,7 @@ export const FetchOrdersWithJourneys = () => {
           message: orderJourneys.message
         })
       } else {
-        setCurrentPage(orderJourneys.page)
         setOrdersWithJourney(orderJourneys)
-        setSortedOrders(formatOrders(orderJourneys.ordersWithJourneys))
       }
 
     }
@@ -112,44 +107,12 @@ export const FetchOrdersWithJourneys = () => {
         <div id="table-wrapper" style={{ opacity: loading ? '0.5' : '1' }}>
           <Stack distribution="fill">
             <Text variant="headingSm" as="p">{ordersWithJourney.totalForRange} total orders</Text>
-            <Text alignment="end" variant="headingSm" as="p">Page {ordersWithJourney.page + 1}</Text>
           </Stack>
-          <DataTable 
-            columnContentTypes={[
-              'text',
-              'text',
-              'text',
-              'text',
-              'text',
-            ]}
-            headings={[
-              'Order ID',
-              'Journey Length',
-              'First Click',
-              'Last Click',
-              'Last Platform Click',
-            ]}
-            rows={sortedOrders}
-            onSort={handleSort}
-            hasZebraStripingOnData
-            sortable={[false, true, false, false, false]}
-          />
-          <Stack distribution="center">
-            <Pagination
-              hasPrevious={!loading && currentPage > 0}
-              previousTooltip={`Page ${currentPage}`}
-              onPrevious={async() => {
-                await fetchOrdersWithJourney(currentPage - 1)
-                window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
-              }}
-              hasNext={!loading && ordersWithJourney?.nextPage}
-              nextTooltip={`Page ${currentPage + 2}`}
-              onNext={async() => {
-                await fetchOrdersWithJourney(currentPage + 1)
-                window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
-              }}
-            />
+
+          <Stack>
+            <Text>@TODO Format + Paginate</Text>
           </Stack>
+          
         </div>
       )}
     </Stack>

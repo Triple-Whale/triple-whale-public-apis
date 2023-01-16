@@ -56,7 +56,7 @@ export const FetchMetrics = () => {
   return (
     <Stack vertical>
       <Text variant="bodyMd" as="p">
-        Below will make a POST request to the API endpoint <code>https://api.triplewhale.com/api/v2/tw-metrics/metrics-data</code>
+        Below will make a <code>GET</code> request to the API endpoint <code>https://api.triplewhale.com/api/v2/tw-metrics/metrics-data</code>
       </Text>
       <Stack distribution="fillEvenly" alignment="trailing">
         <Select
