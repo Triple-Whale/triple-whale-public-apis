@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "nodemon server.js",
     "build": "vite build",
     "preview": "NODE_ENV=production node server.js"
   },
@@ -20,8 +20,7 @@
     "querystring": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vite-express": "^0.1.2",
-    "vite-plugin-live-reload": "^3.0.1"
+    "vite-express": "^0.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

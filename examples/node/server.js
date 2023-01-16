@@ -85,7 +85,6 @@ app.get("/callback", (req, res) => {
     .then((response) => {
       // THIS IS YOUR TOKEN FOR AUTHENTICATING API REQUESTS
       const token = response.access_token;
-      console.log(response) //@TODO need to pull serviceId
 
       // Your token has an expiry date. 
       // In order to get a new token, you will need to store the refresh token in your database.
