@@ -9,6 +9,10 @@ For documentation on available endpoints and request structure, visit https://de
 1. Install the `package.json` dependencies: `npm i` or `yarn`
 2. Ensure you have a properly formatted `.env` file; an `.env.example` file has been provided
 
+## One-Liner To Get Started
+
+`nvm use && yarn && yarn dev`
+
 ## Dev server
 
 `npm run dev` or `yarn dev`
