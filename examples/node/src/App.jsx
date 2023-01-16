@@ -8,11 +8,12 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
+    if(loading)
       fetch('/logged-in')
         .then(res => res.json())
         .then(data => setLoggedIn(!!data?.token))
         .finally(() => setLoading(false))
-    })
+  }, [])
 
   return (
     <Page fullWidth>

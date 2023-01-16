@@ -42,7 +42,7 @@ export const LoggedInCard = () => {
         })))
         setSelected(res[0].value.id)
       })
-  })
+  }, [])
 
   const sortOrders = (orders, index, direction) => {
     return [...orders].sort((rowA, rowB) => {
