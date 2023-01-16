@@ -85,6 +85,7 @@ app.get("/callback", (req, res) => {
     .then((response) => {
       // THIS IS YOUR TOKEN FOR AUTHENTICATING API REQUESTS
       const token = response.access_token;
+      console.log(response) //@TODO need to pull serviceId
 
       // Your token has an expiry date. 
       // In order to get a new token, you will need to store the refresh token in your database.
@@ -180,8 +181,8 @@ app.post("/get-orders-with-journeys-v2", (req, res) => {
 });
 
 app.get("/get-metrics", (req, res) => {
-  const start = req.query?.start ?? moment().subtract(7, 'day').startOf('day').format('YYYY-MM-DD')
-  const end = req.query?.end ?? moment().endOf('day').format('YYYY-MM-DD')
+  const start = req.query?.start && moment(req.query?.start).format('YYYY-MM-DD') || moment().subtract(7, 'day').startOf('day').format('YYYY-MM-DD')
+  const end = req.query?.end && moment(req.query?.end).format('YYYY-MM-DD') || moment().endOf('day').format('YYYY-MM-DD')
   const url = `https://api.triplewhale.com/api/v2/tw-metrics/metrics-data?service_id=attribution&account_id=${SHOP_URL}&start=${start}&end=${end}`
   
   fetch(url, {
@@ -205,54 +206,6 @@ app.get("/get-metrics", (req, res) => {
 // -----------------------
 app.get("/logged-in", (req, res) => {
   res.json({ token: TOKEN })
-})
-
-// -----------------------
-// date ranges
-// -----------------------
-app.get("/date-ranges", (req, res) => {
-  res.json([
-    {
-      value: {
-        start: moment().startOf('day'),
-        end: moment().endOf('day'),
-        id: 'today'
-      },
-      label: 'Today'
-    },
-    {
-      value: {
-        start: moment().subtract(1, 'day').startOf('day'),
-        end: moment().subtract(1, 'day').startOf('day'), //.endOf('day') // bug with endOf day
-        id: 'yesterday'
-      },
-      label: 'Yesterday'
-    },
-    {
-      value: {
-        start: moment().subtract(7, 'days').startOf('day'),
-        end: moment().subtract(1, 'day').endOf('day'),
-        id: 'last7Days'
-      },
-      label: 'Last 7 days'
-    },
-    {
-      value: {
-        start: moment().subtract(30, 'days').startOf('day'),
-        end: moment().subtract(1, 'day').endOf('day'),
-        id: 'last30Days'
-      },
-      label: 'Last 30 days'
-    },
-    {
-      value: {
-        start: moment().subtract(90, 'days').startOf('day'),
-        end: moment().subtract(1, 'day').endOf('day'),
-        id: 'last90Days'
-      },
-      label: 'Last 90 days'
-    }
-  ])
 })
 
 ViteExpress.listen(app, port, () => {

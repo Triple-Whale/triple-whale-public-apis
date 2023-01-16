@@ -1,45 +1,34 @@
-import { useCallback, useEffect, useState } from 'react'
+import {useState } from 'react'
 import { 
   Button, 
-  DataTable, 
-  Pagination,
   Text, 
   Select, 
   Spinner, 
   Stack
 } from '@shopify/polaris';
 import { useAuthDispatch } from '../contexts/Auth';
+import { useDateRanges } from '../contexts/DateRanges';
 
 export const FetchMetrics = () => {
-  const [selected, setSelected] = useState('');
-  const [options, setOptions] = useState([])
-  const [dateRanges, setDateRanges] = useState([])
   const [loading, setLoading] = useState(false)
   const [metrics, setMetrics] = useState([])
-  const authDispatch = useAuthDispatch();
-
-  useEffect(() => {
-    if(options.length <= 0) fetch('/date-ranges')
-      .then((res) => res.json())
-      .then(res => { 
-        setDateRanges(res)
-        setOptions(res.map(option => ({
-          label: option.label,
-          value: option.value.id
-        })))
-        setSelected(res[0].value.id)
-      })
-  }, [])
+  const authDispatch = useAuthDispatch()
+  const rawDateRanges = useDateRanges()
+  const dateRanges = rawDateRanges.map(option => ({
+    label: option.label,
+    value: option.value.id
+  }))
+  const [selected, setSelected] = useState(dateRanges[0].value);
+  const [options] = useState(dateRanges)
 
   const handleSelectChange = (val) => {
     setSelected(val)
-    setOrdersWithJourney([])
-    setCurrentPage(0)
+    setMetrics([])
   }
 
-  const fetchMetrics = async (sentPage) => {
+  const fetchMetrics = async () => {
     setLoading(true)
-    const selectedRange = dateRanges.find(range => range.value.id == selected)
+    const selectedRange = rawDateRanges.find(range => range.value.id == selected)
     if(selectedRange) {
       const fetchGetMetrics = await fetch(
         `/get-metrics?start=${selectedRange.value.start}&end=${selectedRange.value.end}`, 

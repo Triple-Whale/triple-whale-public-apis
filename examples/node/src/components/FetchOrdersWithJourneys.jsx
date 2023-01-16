@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { 
   Button, 
   DataTable, 
@@ -9,6 +9,7 @@ import {
   Stack
 } from '@shopify/polaris';
 import { useAuth, useAuthDispatch } from '../contexts/Auth';
+import { useDateRanges } from '../contexts/DateRanges'
 
 const formatOrders = (orders) => {
   return orders.map((order => ([
@@ -21,27 +22,18 @@ const formatOrders = (orders) => {
 }
 
 export const FetchOrdersWithJourneys = () => {
-  const [selected, setSelected] = useState('');
-  const [dateRanges, setDateRanges] = useState([])
-  const [options, setOptions] = useState([])
   const [loading, setLoading] = useState(false)
   const [ordersWithJourney, setOrdersWithJourney] = useState([])
   const [sortedOrders, setSortedOrders] = useState([])
   const [currentPage, setCurrentPage] = useState(0)
-  const authDispatch = useAuthDispatch();
-
-  useEffect(() => {
-    if(options.length <= 0) fetch('/date-ranges')
-      .then((res) => res.json())
-      .then(res => { 
-        setDateRanges(res)
-        setOptions(res.map(option => ({
-          label: option.label,
-          value: option.value.id
-        })))
-        setSelected(res[0].value.id)
-      })
-  }, [])
+  const authDispatch = useAuthDispatch()
+  const rawDateRanges = useDateRanges()
+  const dateRanges = rawDateRanges.map(option => ({
+    label: option.label,
+    value: option.value.id
+  }))
+  const [selected, setSelected] = useState(dateRanges[0].value);
+  const [options] = useState(dateRanges)
 
   const sortOrders = (orders, index, direction) => {
     return [...orders].sort((rowA, rowB) => {
@@ -65,7 +57,7 @@ export const FetchOrdersWithJourneys = () => {
 
   const fetchOrdersWithJourney = async (sentPage) => {
     setLoading(true)
-    const selectedRange = dateRanges.find(range => range.value.id == selected)
+    const selectedRange = rawDateRanges.find(range => range.value.id == selected)
     if(selectedRange) {
       const orderJourneys = await fetch('/get-orders-with-journeys', {
         method: 'POST',

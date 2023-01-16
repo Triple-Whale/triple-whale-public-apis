@@ -3,7 +3,7 @@ import { Card, Layout, Page, Stack, Text, Spinner } from '@shopify/polaris';
 import { TabbedRequests } from './components/TabbedRequests'
 import { LoginCard } from './components/LoginCard'
 import { LoggedInCard } from './components/LoggedInCard'
-import { AuthProvider } from './contexts/Auth'
+import { AuthProvider, useAuth } from './contexts/Auth'
 
 function App() {
   const [loading, setLoading] = useState(true)
