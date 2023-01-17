@@ -9,6 +9,7 @@ import {
   Stack
 } from '@shopify/polaris';
 import { useAuthDispatch } from '../contexts/Auth';
+import { useToastDispatch } from '../contexts/Toast';
 import { useDateRanges } from '../contexts/DateRanges'
 
 const formatOrders = (orders) => {
@@ -26,7 +27,10 @@ export const FetchOrdersWithJourneys = () => {
   const [ordersWithJourney, setOrdersWithJourney] = useState([])
   const [sortedOrders, setSortedOrders] = useState([])
   const [currentPage, setCurrentPage] = useState(0)
+  
   const authDispatch = useAuthDispatch()
+  const toastDispatch = useToastDispatch()
+  
   const rawDateRanges = useDateRanges()
   const dateRanges = rawDateRanges.map(option => ({
     label: option.label,
@@ -75,18 +79,14 @@ export const FetchOrdersWithJourneys = () => {
         orderJourneys.message?.length > 0
         && orderJourneys.code !== 401
       ) {
-        authDispatch({
-          type: 'error',
-          message: orderJourneys.message
-        })
+        authDispatch({ type: 'error', message: orderJourneys.message })
+        toastDispatch({ type: 'error', message: orderJourneys.message })
       } else if(
         orderJourneys.code
         && orderJourneys.code !== 200
       ) {
-        authDispatch({
-          type: 'expired',
-          message: orderJourneys.message
-        })
+        authDispatch({ type: 'expired', message: orderJourneys.message })
+        toastDispatch({ type: 'error', message: orderJourneys.message })
       } else {
         authDispatch({ type: 'success' })
         setCurrentPage(orderJourneys.page)

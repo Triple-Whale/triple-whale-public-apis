@@ -7,13 +7,17 @@ import {
   Stack
 } from '@shopify/polaris';
 import { useAuthDispatch } from '../contexts/Auth';
+import { useToastDispatch } from '../contexts/Toast';
 import { useMetricsDateRanges } from '../contexts/DateRanges';
 import moment from 'moment'
 
 export const FetchMetrics = () => {
   const [loading, setLoading] = useState(false)
   const [metrics, setMetrics] = useState({})
+
   const authDispatch = useAuthDispatch()
+  const toastDispatch = useToastDispatch()
+
   const rawDateRanges = useMetricsDateRanges()
   const dateRanges = rawDateRanges.map(option => ({
     label: option.label,
@@ -44,18 +48,14 @@ export const FetchMetrics = () => {
         fetchGetMetrics.message?.length > 0 
         && fetchGetMetrics.code !== 401
       ) {
-        authDispatch({
-          type: 'error',
-          message: fetchGetMetrics.message
-        })
+        authDispatch({ type: 'error', message: fetchGetMetrics.message })
+        toastDispatch({ type: 'error', message: fetchGetMetrics.message })
       } else if(
         fetchGetMetrics.code
         && fetchGetMetrics.code !== 200
       ) {
-        authDispatch({
-          type: 'expired',
-          message: fetchGetMetrics.message
-        })
+        authDispatch({ type: 'expired', message: fetchGetMetrics.message })
+        toastDispatch({ type: 'error', message: fetchGetMetrics.message })
       } else {
         authDispatch({ type: 'success' })
         setMetrics(fetchGetMetrics)

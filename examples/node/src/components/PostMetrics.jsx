@@ -6,12 +6,12 @@ import {
   Stack
 } from '@shopify/polaris';
 import { useAuthDispatch } from '../contexts/Auth';
+import { useToastDispatch } from '../contexts/Toast';
 import moment from 'moment'
 
 export const PostMetrics = () => {
   const [loading, setLoading] = useState(false)
   const [metricsData, setMetricsData] = useState([])
-  const [showToast, setShowToast] = useState(false)
 
   const [metricName, setMetricName] = useState('')
   const handleName = useCallback((v) => setMetricName(v), []);
@@ -21,11 +21,7 @@ export const PostMetrics = () => {
   const handleDescription = useCallback((v) => setMetricDescription(v), []);
 
   const authDispatch = useAuthDispatch()
-
-  const handleShowToast = () => {
-    setShowToast(true)
-    setTimeout(() => setShowToast(false), 2000)
-  }
+  const toastDispatch = useToastDispatch()
 
   const submitValid = () => metricName == '' || metricDescription == ''
 
@@ -56,22 +52,19 @@ export const PostMetrics = () => {
       postMetrics.message?.length > 0 
       && postMetrics.code !== 401
     ) {
-      authDispatch({
-        type: 'error',
-        message: postMetrics.message
-      })
+      authDispatch({ type: 'error', message: postMetrics.message })
+      toastDispatch({ type: 'error', message: postMetrics.message })
     } else if(
       postMetrics.code
       && postMetrics.code !== 200
     ) {
-      authDispatch({
-        type: 'expired',
-        message: postMetrics.message
-      })
+      authDispatch({ type: 'expired', message: postMetrics.message })
+      toastDispatch({ type: 'error', message: postMetrics.message })
+
     } else {
-      authDispatch({ type: 'success' })
       setMetricsData(postMetrics)
-      handleShowToast()
+      authDispatch({ type: 'success' })
+      toastDispatch({ type: 'success', message: 'Metric successfully pushed' })
 
       setMetricName('')
       setMetricValue('')
@@ -102,19 +95,12 @@ export const PostMetrics = () => {
         value={metricDescription}
         onChange={handleDescription}
       />
-      {showToast ? (
-         <Button 
-          fullWidth 
-          primary
-        >Metric Successfully Pushed</Button> 
-      ) : (
-         <Button 
-          fullWidth 
-          onClick={() => postMetrics()}
-          disabled={submitValid()}
-          loading={loading}
-        >Post Metrics</Button>
-      )}
+      <Button 
+        fullWidth 
+        onClick={() => postMetrics()}
+        disabled={submitValid()}
+        loading={loading}
+      >Post Metrics</Button>
     </Stack>
   )
 }
