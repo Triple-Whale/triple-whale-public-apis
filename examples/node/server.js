@@ -206,21 +206,17 @@ app.post('/post-metrics', (req, res) => {
     account_id: CLIENT_ID,
     data: [
       {
-        "date": "2022-10-02",
-        "metrics": {
-          "spend": {
-            "metricId": "spend",
-            "metricName": "Spend",
-            "type": "currency",
-            "value": 98.5
-          },
-          "clicks": {
-            "metricId": "clicks",
-            "metricName": "Clicks",
-            "type": "decimal",
-            "value": 77
+        date: "2022-10-01",
+        hour: "00:00:00",
+        metrics: [
+          {
+            id: "1",
+            name: "Test",
+            value: "11.00",
+            type: "decimal",
+            description: "A test metric"
           }
-        }
+        ]
       }
     ]
   }

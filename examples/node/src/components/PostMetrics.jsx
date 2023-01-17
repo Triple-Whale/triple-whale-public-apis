@@ -21,7 +21,7 @@ export const PostMetrics = () => {
       }
     }).then(res => res.json())
 
-    if(postMetrics.message && !postMetrics.code) {
+    if(postMetrics.message && postMetrics.code  !== 401) {
       authDispatch({
         type: 'error',
         message: postMetrics.message

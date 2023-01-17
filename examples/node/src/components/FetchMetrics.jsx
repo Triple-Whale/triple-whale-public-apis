@@ -40,7 +40,7 @@ export const FetchMetrics = () => {
         }
       }).then(res => res.json())
 
-      if(fetchGetMetrics.message && !fetchGetMetrics.code) {
+      if(fetchGetMetrics.message && fetchGetMetrics.code !== 401) {
         authDispatch({
           type: 'error',
           message: fetchGetMetrics.message

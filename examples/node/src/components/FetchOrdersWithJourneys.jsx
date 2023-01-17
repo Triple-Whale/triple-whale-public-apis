@@ -71,7 +71,7 @@ export const FetchOrdersWithJourneys = () => {
         })
       }).then(res => res.json())
 
-      if(orderJourneys.message && !orderJourneys.code) {
+      if(orderJourneys.message && orderJourneys.code !== 401) {
         authDispatch({
           type: 'error',
           message: orderJourneys.message
