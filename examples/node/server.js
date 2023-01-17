@@ -201,22 +201,20 @@ app.get("/get-metrics", (req, res) => {
 
 app.post('/post-metrics', (req, res) => {
   const url = "https://api.triplewhale.com/api/v2/tw-metrics/metrics"
+  const metrics = req.body?.metrics || false
+  if(!metrics) res.json({
+    code: 403,
+    message: 'Please provide metrics',
+    error: true
+  })
 
   const data = {
-    account_id: CLIENT_ID,
+    account_id: SHOP_URL,
     data: [
       {
-        date: "2022-10-01",
-        hour: "00:00:00",
-        metrics: [
-          {
-            id: "1",
-            name: "Test",
-            value: "11.00",
-            type: "decimal",
-            description: "A test metric"
-          }
-        ]
+        date: moment().startOf('day').format('YYYY-MM-DD'),
+        hour: moment().startOf('day').format('HH'),
+        metrics
       }
     ]
   }

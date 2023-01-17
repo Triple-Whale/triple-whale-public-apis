@@ -67,12 +67,18 @@ export const FetchOrdersWithJourneysV2 = () => {
         })
       }).then(res => res.json())
 
-      if(orderJourneys.message && orderJourneys.code !== 401) {
+      if(
+        orderJourneys.message?.length > 0
+        && orderJourneys.code !== 401
+      ) {
         authDispatch({
           type: 'error',
           message: orderJourneys.message
         })
-      } else if(orderJourneys.code) {
+      } else if(
+        orderJourneys.code
+        && orderJourneys.code !== 200
+      ) {
         authDispatch({
           type: 'expired',
           message: orderJourneys.message
@@ -89,7 +95,7 @@ export const FetchOrdersWithJourneysV2 = () => {
   return (
     <Stack vertical>
       <Text variant="bodyMd" as="p">
-        Below will make a <code>POST</code> request to the API endpoint <code>https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys</code>
+        Below will make a <code>POST</code> request to the API endpoint <code>https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys-v2</code>
       </Text>
       <Stack distribution="fillEvenly" alignment="trailing">
         <Select

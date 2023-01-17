@@ -1,5 +1,5 @@
 import { Card, Layout, Tabs } from '@shopify/polaris';
-import { useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { FetchMetrics } from './FetchMetrics'
 import { FetchOrdersWithJourneys } from './FetchOrdersWithJourneys'
 import { FetchOrdersWithJourneysV2 } from './FetchOrdersWithJourneysV2'
@@ -13,7 +13,14 @@ export const TabbedRequests = () => {
   const handleTabChange = useCallback((selectedTabIndex) => {
     setSelected(selectedTabIndex)
     authDispatch({ type: 'success' })
+    window.location.hash = selectedTabIndex
   }, []);
+
+  // quasi-router
+  useEffect(() => {
+    const windowHash = parseInt(window.location.hash.replace('#', ''), 10) || false
+    if(windowHash) setSelected(windowHash)
+  }, [])
 
   const tabs = [
     {

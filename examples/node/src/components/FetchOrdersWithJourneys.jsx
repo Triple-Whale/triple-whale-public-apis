@@ -71,12 +71,18 @@ export const FetchOrdersWithJourneys = () => {
         })
       }).then(res => res.json())
 
-      if(orderJourneys.message && orderJourneys.code !== 401) {
+      if(
+        orderJourneys.message?.length > 0
+        && orderJourneys.code !== 401
+      ) {
         authDispatch({
           type: 'error',
           message: orderJourneys.message
         })
-      } else if(orderJourneys.code) {
+      } else if(
+        orderJourneys.code
+        && orderJourneys.code !== 200
+      ) {
         authDispatch({
           type: 'expired',
           message: orderJourneys.message

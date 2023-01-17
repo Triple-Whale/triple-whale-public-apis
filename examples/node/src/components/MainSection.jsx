@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Card, Layout, Spinner, Stack } from '@shopify/polaris';
+import { Banner, Layout, Spinner, Stack } from '@shopify/polaris';
 import { TabbedRequests } from './TabbedRequests'
 import { LoginCard } from './LoginCard'
 import { LoggedInCard } from './LoggedInCard'
@@ -21,9 +21,9 @@ export const MainSection = () => {
   return (
     loading ? (
       <Layout.Section>
-        <Card sectioned>
+       <Banner sectioned>
           <Spinner />
-        </Card>
+        </Banner>
       </Layout.Section>
     ) : (
       loggedIn && authenticated ? (

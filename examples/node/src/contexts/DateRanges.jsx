@@ -101,15 +101,23 @@ export function useDateRangesV2() {
 const metricsDateRanges = [
   {
     value: {
+      start: moment().startOf('year'),
+      end: moment().endOf('day'),
+      id: 'thisyear'
+    },
+    label: 'This Year'
+  },
+  {
+    value: {
       start: moment().subtract(365, 'day'),
       end: moment().endOf('day'),
-      id: 'today'
+      id: 'lastyear'
     },
     label: 'Last Year'
   },
   {
     value: {
-      start: moment().subtract(999, 'day'),
+      start: moment().subtract(9999, 'day'),
       end: moment().endOf('day'),
       id: 'alltime'
     },

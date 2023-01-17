@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { 
-  Card, 
+  Banner,
   Layout,
   Text, 
   Stack
@@ -12,7 +12,7 @@ export const LoggedInCard = () => {
 
   return (
     <Layout.Section>
-      <Card sectioned>
+      <Banner status={authenticated ? 'success' : 'critical'} sectioned>
         {authenticated ? (
           <Stack vertical>
             <Text variant="headingLg" as="h2">You are authenticated!</Text>
@@ -26,14 +26,14 @@ export const LoggedInCard = () => {
             <Text variant="bodyMd" as="p">Please login, restart your server, or try again later!</Text>
           </Stack>
         )}
-      </Card>
+      </Banner>
       {authenticated && error && (
-        <Card sectioned>
+        <Banner status="critical" sectioned>
           <Stack vertical>
             <Text variant="headingLg" as="h2">API Error: {message}</Text>
             <Text>View your network tab for more information</Text>
           </Stack>
-        </Card>
+        </Banner>
       )}
     </Layout.Section>
   )
