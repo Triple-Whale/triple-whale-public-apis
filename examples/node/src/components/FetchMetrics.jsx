@@ -40,12 +40,18 @@ export const FetchMetrics = () => {
         }
       }).then(res => res.json())
 
-      if(fetchGetMetrics.message || fetchGetMetrics.code) {
+      if(fetchGetMetrics.message && !fetchGetMetrics.code) {
+        authDispatch({
+          type: 'error',
+          message: fetchGetMetrics.message
+        })
+      } else if(fetchGetMetrics.code) {
         authDispatch({
           type: 'expired',
           message: fetchGetMetrics.message
         })
       } else {
+        authDispatch({ type: 'success' })
         setMetrics(fetchGetMetrics)
       }
 

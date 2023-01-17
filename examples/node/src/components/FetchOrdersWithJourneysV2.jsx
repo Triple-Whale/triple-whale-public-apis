@@ -8,7 +8,7 @@ import {
   Spinner, 
   Stack
 } from '@shopify/polaris';
-import { useAuth, useAuthDispatch } from '../contexts/Auth';
+import { useAuthDispatch } from '../contexts/Auth';
 import { useDateRanges } from '../contexts/DateRanges'
 
 const formatOrders = (orders) => {
@@ -68,12 +68,18 @@ export const FetchOrdersWithJourneysV2 = () => {
         })
       }).then(res => res.json())
 
-      if(orderJourneys.message || orderJourneys.code) {
+      if(orderJourneys.message && !orderJourneys.code) {
+        authDispatch({
+          type: 'error',
+          message: orderJourneys.message
+        })
+      } else if(orderJourneys.code) {
         authDispatch({
           type: 'expired',
           message: orderJourneys.message
         })
       } else {
+        authDispatch({ type: 'success' })
         setOrdersWithJourney(orderJourneys)
       }
 

@@ -10,6 +10,16 @@ const unauthenticated = {
   message: 'Unauthenticated'
 }
 
+const error = {
+  authenticated: true,
+  message: 'Error'
+}
+
+const success = {
+  authenticated: true,
+  message: ''
+}
+
 export const AuthContext = createContext(authenticated);
 export const AuthDispatchContext = createContext(null);
 
@@ -38,6 +48,15 @@ function authReducer(info, action) {
         ...unauthenticated,
         message: action.message ?? unauthenticated.message
       }
+    }
+    case 'error': {
+      return {
+        ...error,
+        message: action.message ?? error.message
+      }
+    }
+    case 'success': {
+      return success
     }
     default: {
       throw Error('Unknown action: ' + action.type);

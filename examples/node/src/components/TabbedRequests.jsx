@@ -4,13 +4,16 @@ import { FetchMetrics } from './FetchMetrics'
 import { FetchOrdersWithJourneys } from './FetchOrdersWithJourneys'
 import { FetchOrdersWithJourneysV2 } from './FetchOrdersWithJourneysV2'
 import { PostMetrics } from './PostMetrics'
+import { useAuthDispatch } from '../contexts/Auth';
 
 export const TabbedRequests = () => {
   const [selected, setSelected] = useState(0);
+  const authDispatch = useAuthDispatch();
 
-  const handleTabChange = useCallback(
-    (selectedTabIndex) => setSelected(selectedTabIndex),
-  []);
+  const handleTabChange = useCallback((selectedTabIndex) => {
+    setSelected(selectedTabIndex)
+    authDispatch({ type: 'success' })
+  }, []);
 
   const tabs = [
     {

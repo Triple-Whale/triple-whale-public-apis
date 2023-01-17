@@ -200,21 +200,27 @@ app.get("/get-metrics", (req, res) => {
 });
 
 app.post('/post-metrics', (req, res) => {
+  const url = "https://api.triplewhale.com/api/v2/tw-metrics/metrics"
+
   const data = {
     account_id: CLIENT_ID,
     data: [
       {
-        date: "string",
-        hour: "string",
-        metrics: [
-          {
-            id: "string",
-            name: "string",
-            value: "string",
-            type: "decimal",
-            description: "string"
+        "date": "2022-10-02",
+        "metrics": {
+          "spend": {
+            "metricId": "spend",
+            "metricName": "Spend",
+            "type": "currency",
+            "value": 98.5
+          },
+          "clicks": {
+            "metricId": "clicks",
+            "metricName": "Clicks",
+            "type": "decimal",
+            "value": 77
           }
-        ]
+        }
       }
     ]
   }

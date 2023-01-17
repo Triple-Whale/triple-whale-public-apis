@@ -21,19 +21,20 @@ export const LoggedInCard = () => {
             </Text>
           </Stack>
         ) : (
-          message ? (
-            <Stack vertical>
-              <Text variant="headingLg" as="h2">{message}</Text>
-              <Text variant="bodyMd" as="p">Please restart your server, or try again later!</Text>
-            </Stack>
-          ) : (
-            <Stack vertical>
-              <Text variant="headingLg" as="h2">Your JWT Expired</Text>
-              <Text variant="bodyMd" as="p">Please restart your server!</Text>
-            </Stack>
-          )
+          <Stack vertical>
+            <Text variant="headingLg" as="h2">{message || 'Your JWT Expired'}</Text>
+            <Text variant="bodyMd" as="p">Please login, restart your server, or try again later!</Text>
+          </Stack>
         )}
       </Card>
+      {authenticated && message && (
+        <Card sectioned>
+          <Stack vertical>
+            <Text variant="headingLg" as="h2">API Error: {message}</Text>
+            <Text>View your network tab for more information</Text>
+          </Stack>
+        </Card>
+      )}
     </Layout.Section>
   )
 }
