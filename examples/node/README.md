@@ -65,4 +65,4 @@ This repository's purpose is to demonstrate the process of authorizing your app 
 
 ### "I don't like how you did ___ in this example"
 
-We're always looking to improve; submit a pull request and we'll gladly review it!
+- We're always looking to improve; submit a pull request and we'll gladly review it!
