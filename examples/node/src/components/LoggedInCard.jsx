@@ -8,7 +8,7 @@ import {
 import { useAuth } from '../contexts/Auth'
 
 export const LoggedInCard = () => {
-  const { authenticated, message } = useAuth()
+  const { authenticated, error, message } = useAuth()
 
   return (
     <Layout.Section>
@@ -27,7 +27,7 @@ export const LoggedInCard = () => {
           </Stack>
         )}
       </Card>
-      {authenticated && message && (
+      {authenticated && error && (
         <Card sectioned>
           <Stack vertical>
             <Text variant="headingLg" as="h2">API Error: {message}</Text>

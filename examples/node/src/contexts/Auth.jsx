@@ -2,22 +2,26 @@ import { createContext, useContext, useReducer } from 'react';
 
 const authenticated = {
   authenticated: true,
+  error: false,
   message: 'Authenticated'
 }
 
 const unauthenticated = {
   authenticated: false,
+  error: true,
   message: 'Unauthenticated'
 }
 
 const error = {
   authenticated: true,
+  error: true,
   message: 'Error'
 }
 
 const success = {
   authenticated: true,
-  message: ''
+  error: false,
+  message: 'Success'
 }
 
 export const AuthContext = createContext(authenticated);
