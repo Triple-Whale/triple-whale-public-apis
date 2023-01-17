@@ -30,6 +30,16 @@ if(!LOCAL_SECRET) {
   localStorage.setItem('LOCAL_SECRET', LOCAL_SECRET)
 }
 
+// -----------------------
+// Helpers
+// -----------------------
+const responseChecker = (response) => {
+  if(response.code == 401) {
+    localStorage.removeItem('TOKEN')
+    localStorage.removeItem('LOCAL_SECRET')
+    console.log(appName + chalk.red(`token expired! please restart your app`))
+  }
+}
 
 // -----------------------
 // Login -- first step of oauth flow
@@ -105,7 +115,6 @@ app.get("/callback", (req, res) => {
 // -----------------------
 // Test API Requests - third step in flow
 // -----------------------
-
 app.post("/get-orders-with-journeys", (req, res) => {
   const url = "https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys"
 
@@ -129,12 +138,7 @@ app.post("/get-orders-with-journeys", (req, res) => {
   fetch(url, options)
     .then(response => response.json())
     .then((response) => {
-      if(response.code == 401) {
-        localStorage.removeItem('TOKEN')
-        localStorage.removeItem('LOCAL_SECRET')
-        console.log(appName + chalk.red(`token expired! please restart your app`))
-      }
-
+      responseChecker(response)
       res.json(response)
     })
     .catch((err) => {
@@ -165,12 +169,7 @@ app.post("/get-orders-with-journeys-v2", (req, res) => {
   fetch(url, options)
     .then(response => response.json())
     .then((response) => {
-      if(response.code == 401) {
-        localStorage.removeItem('TOKEN')
-        localStorage.removeItem('LOCAL_SECRET')
-        console.log(appName + chalk.red(`token expired! please restart your app`))
-      }
-
+      responseChecker(response)
       res.json(response)
     })
     .catch((err) => {
@@ -199,6 +198,47 @@ app.get("/get-metrics", (req, res) => {
       res.json(err)
     })
 });
+
+app.post('/post-metrics', (req, res) => {
+  const data = {
+    account_id: CLIENT_ID,
+    data: [
+      {
+        date: "string",
+        hour: "string",
+        metrics: [
+          {
+            id: "string",
+            name: "string",
+            value: "string",
+            type: "decimal",
+            description: "string"
+          }
+        ]
+      }
+    ]
+  }
+
+  const options = {
+    method: "POST",
+    headers: { 
+      "content-type": "application/json",
+      Authorization: `Bearer ${TOKEN}`
+    },
+    body: JSON.stringify(data)
+  };
+
+  fetch(url, options)
+    .then(response => response.json())
+    .then((response) => {
+      responseChecker(response)
+      res.json(response)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.json(err)
+    })
+})
 
 // -----------------------
 // are we logged in? -- for frontend

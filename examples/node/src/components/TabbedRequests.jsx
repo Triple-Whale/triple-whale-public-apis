@@ -15,17 +15,17 @@ export const TabbedRequests = () => {
   const tabs = [
     {
       id: 'fetch-orders-with-journeys',
-      content: 'Fetch Orders With Journeys',
+      content: 'Get Orders',
       tabContent: <FetchOrdersWithJourneys />
     },
     {
       id: 'fetch-orders-with-journeys-v2',
-      content: 'Fetch Orders With Journeys V2',
+      content: 'Get Orders V2',
       tabContent: <FetchOrdersWithJourneysV2 />
     },
     {
       id: 'fetch-metrics',
-      content: 'Fetch Metrics',
+      content: 'Get Metrics',
       tabContent: <FetchMetrics />
     },
     {
