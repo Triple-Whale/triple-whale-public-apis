@@ -12,7 +12,7 @@ import moment from 'moment'
 
 export const FetchMetrics = () => {
   const [loading, setLoading] = useState(false)
-  const [metrics, setMetrics] = useState([])
+  const [metrics, setMetrics] = useState({})
   const authDispatch = useAuthDispatch()
   const rawDateRanges = useMetricsDateRanges()
   const dateRanges = rawDateRanges.map(option => ({
@@ -86,7 +86,7 @@ export const FetchMetrics = () => {
         {loading ?? (
           <Spinner accessibilityLabel="Loading metrics" size="large" />
         )}
-        <pre>{JSON.stringify(metrics)}</pre>
+        {Object.keys(metrics).length > 0 && (<pre>{JSON.stringify(metrics)}</pre>)}
     </Stack>
   )
 }

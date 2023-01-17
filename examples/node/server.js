@@ -212,8 +212,8 @@ app.post('/post-metrics', (req, res) => {
     account_id: SHOP_URL,
     data: [
       {
-        date: moment().startOf('day').format('YYYY-MM-DD'),
-        hour: moment().startOf('day').format('HH'),
+        date: req.body?.date || moment().startOf('day').format('YYYY-MM-DD'),
+        hour: req.body?.hour || moment().startOf('day').format('HH'),
         metrics
       }
     ]

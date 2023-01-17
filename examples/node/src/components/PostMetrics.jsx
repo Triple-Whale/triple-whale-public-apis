@@ -11,15 +11,23 @@ import moment from 'moment'
 export const PostMetrics = () => {
   const [loading, setLoading] = useState(false)
   const [metricsData, setMetricsData] = useState([])
+  const [showToast, setShowToast] = useState(false)
 
   const [metricName, setMetricName] = useState('')
   const handleName = useCallback((v) => setMetricName(v), []);
-  const [metricValue, setMetricValue] = useState('')
+  const [metricValue, setMetricValue] = useState(0)
   const handleValue = useCallback((v) => setMetricValue(v), []);
   const [metricDescription, setMetricDescription] = useState('')
   const handleDescription = useCallback((v) => setMetricDescription(v), []);
 
   const authDispatch = useAuthDispatch()
+
+  const handleShowToast = () => {
+    setShowToast(true)
+    setTimeout(() => setShowToast(false), 2000)
+  }
+
+  const submitValid = () => metricName == '' || metricDescription == ''
 
   const postMetrics = async () => {
     setLoading(true)
@@ -36,7 +44,7 @@ export const PostMetrics = () => {
           {
             id: Math.floor(Math.random() * 999).toString(),
             name: metricName,
-            value: metricValue,
+            value: parseFloat(metricValue),
             type: "decimal",
             description: metricDescription
           }
@@ -63,7 +71,8 @@ export const PostMetrics = () => {
     } else {
       authDispatch({ type: 'success' })
       setMetricsData(postMetrics)
-      
+      handleShowToast()
+
       setMetricName('')
       setMetricValue('')
       setMetricDescription('')
@@ -86,18 +95,26 @@ export const PostMetrics = () => {
         label="Metric Value"
         value={metricValue}
         onChange={handleValue}
+        type="number"
       />
       <TextField 
         label="Metric Description"
         value={metricDescription}
         onChange={handleDescription}
       />
-      <Button 
-        fullWidth 
-        onClick={() => postMetrics()}
-        loading={loading}
-      >Post Metrics</Button>
-      {metricsData.length > 0 && (<pre>{JSON.stringify(metricsData)}</pre>)}
+      {showToast ? (
+         <Button 
+          fullWidth 
+          primary
+        >Metric Successfully Pushed</Button> 
+      ) : (
+         <Button 
+          fullWidth 
+          onClick={() => postMetrics()}
+          disabled={submitValid()}
+          loading={loading}
+        >Post Metrics</Button>
+      )}
     </Stack>
   )
 }
