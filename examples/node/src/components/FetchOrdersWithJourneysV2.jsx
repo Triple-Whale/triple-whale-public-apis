@@ -1,22 +1,21 @@
-import { useCallback, useContext, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { 
   Button, 
   DataTable, 
-  Pagination,
   Text, 
   Select, 
   Spinner, 
   Stack
 } from '@shopify/polaris';
 import { useAuthDispatch } from '../contexts/Auth';
-import { useDateRanges } from '../contexts/DateRanges'
+import { useDateRangesV2 } from '../contexts/DateRanges'
 
 const formatOrders = (orders) => {
   return orders.map((order => ([
-    order.orderId, 
+    order.order_id, 
     order.journey?.length || 0, 
-    order.attribution?.firstClick?.source ?? '',
-    order.attribution?.lastClick?.source ?? '',
+    order.attribution?.firstClick?.map((click) => click.source ?? '').flat().toString().replace(/,/g, ', '),
+    order.attribution?.lastClick?.map((click) => click.source ?? '').flat().toString().replace(/,/g, ', '),
     order.attribution?.lastPlatformClick?.map((click) => click.source ?? '').flat().toString().replace(/,/g, ', ')
   ])))
 }
@@ -26,7 +25,7 @@ export const FetchOrdersWithJourneysV2 = () => {
   const [ordersWithJourney, setOrdersWithJourney] = useState([])
   const [sortedOrders, setSortedOrders] = useState([])
   const authDispatch = useAuthDispatch()
-  const rawDateRanges = useDateRanges()
+  const rawDateRanges = useDateRangesV2()
   const dateRanges = rawDateRanges.map(option => ({
     label: option.label,
     value: option.value.id
@@ -81,8 +80,8 @@ export const FetchOrdersWithJourneysV2 = () => {
       } else {
         authDispatch({ type: 'success' })
         setOrdersWithJourney(orderJourneys)
+        setSortedOrders(formatOrders(orderJourneys.ordersWithJourneys))
       }
-
     }
     setLoading(false)
   }
@@ -112,13 +111,31 @@ export const FetchOrdersWithJourneysV2 = () => {
         {ordersWithJourney.totalForRange > 0 && (
         <div id="table-wrapper" style={{ opacity: loading ? '0.5' : '1' }}>
           <Stack distribution="fill">
-            <Text variant="headingSm" as="p">{ordersWithJourney.totalForRange} total orders</Text>
+            <Text variant="headingSm" as="p">Showing {ordersWithJourney.count} of {ordersWithJourney.totalForRange} total orders</Text>
           </Stack>
 
           <Stack>
-            <Text>@TODO Format + Paginate</Text>
+            <DataTable 
+              columnContentTypes={[
+                'text',
+                'text',
+                'text',
+                'text',
+                'text',
+              ]}
+              headings={[
+                'Order ID',
+                'Journey Length',
+                'First Click',
+                'Last Click',
+                'Last Platform Click',
+              ]}
+              rows={sortedOrders}
+              onSort={handleSort}
+              hasZebraStripingOnData
+              sortable={[false, true, false, false, false]}
+            />
           </Stack>
-          
         </div>
       )}
     </Stack>
