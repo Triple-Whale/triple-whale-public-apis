@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button, Card, Layout, Text, Stack } from '@shopify/polaris';
 
-export const LoginCard = () => {
+export const LoginCard: React.FC = () => {
   const [loggingIn, setLoggingIn] = useState(false)
 
   const logIn = async () => {

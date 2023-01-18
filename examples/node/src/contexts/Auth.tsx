@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from 'react';
+import { childrenProps, reducerAction } from '../Types'
 
 const authenticated = {
   authenticated: true,
@@ -25,9 +26,9 @@ const success = {
 }
 
 export const AuthContext = createContext(authenticated);
-export const AuthDispatchContext = createContext(null);
+export const AuthDispatchContext = createContext({});
 
-export function AuthProvider({ children }) {
+export function AuthProvider({ children }: childrenProps) {
   const [auth, dispatch] = useReducer(
     authReducer,
     authenticated
@@ -42,7 +43,7 @@ export function AuthProvider({ children }) {
   );
 }
 
-function authReducer(info, action) {
+function authReducer(_info: any, action: reducerAction) {
   switch (action.type) {
     case 'authenticated': {
       return authenticated

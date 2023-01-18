@@ -11,25 +11,26 @@ import {
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import { useDateRanges } from '../contexts/DateRanges'
+import { ordersWithJourneyOld } from '../Types'
 
-const formatOrders = (orders) => {
-  return orders.map((order => ([
+const formatOrders: React.FC = (orders: any) => {
+  return orders.map((order: any) => ([
     order.orderId, 
     order.journey?.length || 0, 
     order.attribution?.firstClick?.source ?? '',
     order.attribution?.lastClick?.source ?? '',
-    order.attribution?.lastPlatformClick?.map((click) => click.source ?? '').flat().toString().replace(/,/g, ', ')
-  ])))
+    order.attribution?.lastPlatformClick?.map((click: any) => click.source ?? '').flat().toString().replace(/,/g, ', ')
+  ]))
 }
 
 export const FetchOrdersWithJourneys = () => {
   const [loading, setLoading] = useState(false)
-  const [ordersWithJourney, setOrdersWithJourney] = useState([])
+  const [ordersWithJourney, setOrdersWithJourney] = useState({} as ordersWithJourneyOld | any)
   const [sortedOrders, setSortedOrders] = useState([])
   const [currentPage, setCurrentPage] = useState(0)
   
-  const authDispatch = useAuthDispatch()
-  const toastDispatch = useToastDispatch()
+  const authDispatch = useAuthDispatch() as any
+  const toastDispatch = useToastDispatch() as any
   
   const rawDateRanges = useDateRanges()
   const dateRanges = rawDateRanges.map(option => ({
@@ -39,7 +40,7 @@ export const FetchOrdersWithJourneys = () => {
   const [selected, setSelected] = useState(dateRanges[0].value);
   const [options] = useState(dateRanges)
 
-  const sortOrders = (orders, index, direction) => {
+  const sortOrders = (orders: any, index: any, direction: any) => {
     return [...orders].sort((rowA, rowB) => {
       const amountA = parseFloat(rowA[index])
       const amountB = parseFloat(rowB[index])
@@ -49,17 +50,17 @@ export const FetchOrdersWithJourneys = () => {
   }
 
   const handleSort = useCallback(
-    (index, direction) => setSortedOrders(sortOrders(sortedOrders, index, direction)),
+    (index: number, direction: string) => setSortedOrders(sortOrders(sortedOrders, index, direction) as any),
     [sortedOrders]
   )
 
-  const handleSelectChange = (val) => {
+  const handleSelectChange = (val: string) => {
     setSelected(val)
-    setOrdersWithJourney([])
+    setOrdersWithJourney({})
     setCurrentPage(0)
   }
 
-  const fetchOrdersWithJourney = async (sentPage) => {
+  const fetchOrdersWithJourney = async (sentPage: number | string = 0) => {
     setLoading(true)
     const selectedRange = rawDateRanges.find(range => range.value.id == selected)
     if(selectedRange) {
@@ -71,7 +72,7 @@ export const FetchOrdersWithJourneys = () => {
         body: JSON.stringify({
           startDate: selectedRange.value.start,
           endDate: selectedRange.value.end,
-          page: sentPage || 0
+          page: sentPage
         })
       }).then(res => res.json())
 
@@ -91,7 +92,7 @@ export const FetchOrdersWithJourneys = () => {
         authDispatch({ type: 'success' })
         setCurrentPage(orderJourneys.page)
         setOrdersWithJourney(orderJourneys)
-        setSortedOrders(formatOrders(orderJourneys.ordersWithJourneys))
+        setSortedOrders(formatOrders(orderJourneys.ordersWithJourneys) as any)
       }
 
     }
@@ -148,13 +149,13 @@ export const FetchOrdersWithJourneys = () => {
           />
           <Stack distribution="center">
             <Pagination
-              hasPrevious={!loading && currentPage > 0}
+              hasPrevious={!!(!loading && currentPage > 0)}
               previousTooltip={`Page ${currentPage}`}
               onPrevious={async() => {
                 await fetchOrdersWithJourney(currentPage - 1)
                 window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
               }}
-              hasNext={!loading && ordersWithJourney?.nextPage}
+              hasNext={!!(!loading && ordersWithJourney?.nextPage)}
               nextTooltip={`Page ${currentPage + 2}`}
               onNext={async() => {
                 await fetchOrdersWithJourney(currentPage + 1)

@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import { 
   Banner,
   Layout,
@@ -7,12 +6,12 @@ import {
 } from '@shopify/polaris';
 import { useAuth } from '../contexts/Auth'
 
-export const LoggedInCard = () => {
+export const LoggedInCard: React.FC = () => {
   const { authenticated, error, message } = useAuth()
 
   return (
     <Layout.Section>
-      <Banner status={authenticated ? 'success' : 'critical'} sectioned>
+      <Banner status={authenticated ? 'success' : 'critical'}>
         {authenticated ? (
           <Stack vertical>
             <Text variant="headingLg" as="h2">You are authenticated!</Text>
@@ -28,10 +27,10 @@ export const LoggedInCard = () => {
         )}
       </Banner>
       {authenticated && error && (
-        <Banner status="critical" sectioned>
+        <Banner status="critical">
           <Stack vertical>
             <Text variant="headingLg" as="h2">API Error: {message}</Text>
-            <Text>View your network tab for more information</Text>
+            <Text variant="bodyMd" as="p">View your network tab for more information</Text>
           </Stack>
         </Banner>
       )}

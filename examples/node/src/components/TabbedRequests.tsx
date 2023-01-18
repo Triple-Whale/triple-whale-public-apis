@@ -6,14 +6,14 @@ import { FetchOrdersWithJourneysV2 } from './FetchOrdersWithJourneysV2'
 import { PostMetrics } from './PostMetrics'
 import { useAuthDispatch } from '../contexts/Auth';
 
-export const TabbedRequests = () => {
+export const TabbedRequests: React.FC = () => {
   const [selected, setSelected] = useState(0);
-  const authDispatch = useAuthDispatch();
+  const authDispatch = useAuthDispatch() as any;
 
-  const handleTabChange = useCallback((selectedTabIndex) => {
+  const handleTabChange = useCallback((selectedTabIndex: number) => {
     setSelected(selectedTabIndex)
     authDispatch({ type: 'success' })
-    window.location.hash = selectedTabIndex
+    window.location.hash = selectedTabIndex.toString()
   }, []);
 
   // quasi-router
@@ -22,7 +22,15 @@ export const TabbedRequests = () => {
     if(windowHash) setSelected(windowHash)
   }, [])
 
-  const tabs = [
+  type Tab = {
+    id: string,
+    content: string,
+    tabContent: JSX.Element
+  }
+
+  type Tabs = Array<Tab>
+
+  const tabs: Tabs = [
     {
       id: 'fetch-orders-with-journeys',
       content: 'Get Orders',
@@ -49,7 +57,7 @@ export const TabbedRequests = () => {
     <Layout.Section>
       <Card>
         <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange}>
-          <Card.Section title={tabs[selected].accessibilityLabel}>
+          <Card.Section title={tabs[selected].content}>
             {tabs[selected].tabContent}
           </Card.Section>
         </Tabs>

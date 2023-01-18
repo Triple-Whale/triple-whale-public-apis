@@ -10,24 +10,25 @@ import {
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import { useDateRangesV2 } from '../contexts/DateRanges';
+import { ordersWithJourneyNew } from '../Types';
 
-const formatOrders = (orders) => {
-  return orders.map((order => ([
+const formatOrders: React.FC = (orders: any) => {
+  return orders.map((order: any) => ([
     order.order_id, 
     order.journey?.length || 0, 
-    order.attribution?.firstClick?.map((click) => click.source ?? '').flat().toString().replace(/,/g, ', '),
-    order.attribution?.lastClick?.map((click) => click.source ?? '').flat().toString().replace(/,/g, ', '),
-    order.attribution?.lastPlatformClick?.map((click) => click.source ?? '').flat().toString().replace(/,/g, ', ')
-  ])))
+    order.attribution?.firstClick?.map((click: any) => click.source ?? '').flat().toString().replace(/,/g, ', '),
+    order.attribution?.lastClick?.map((click: any) => click.source ?? '').flat().toString().replace(/,/g, ', '),
+    order.attribution?.lastPlatformClick?.map((click: any) => click.source ?? '').flat().toString().replace(/,/g, ', ')
+  ]))
 }
 
 export const FetchOrdersWithJourneysV2 = () => {
   const [loading, setLoading] = useState(false)
-  const [ordersWithJourney, setOrdersWithJourney] = useState([])
+  const [ordersWithJourney, setOrdersWithJourney] = useState({} as ordersWithJourneyNew | any)
   const [sortedOrders, setSortedOrders] = useState([])
 
-  const toastDispatch = useToastDispatch()
-  const authDispatch = useAuthDispatch()
+  const authDispatch = useAuthDispatch() as any
+  const toastDispatch = useToastDispatch() as any
 
   const rawDateRanges = useDateRangesV2()
   const dateRanges = rawDateRanges.map(option => ({
@@ -37,7 +38,7 @@ export const FetchOrdersWithJourneysV2 = () => {
   const [selected, setSelected] = useState(dateRanges[0].value);
   const [options] = useState(dateRanges)
 
-  const sortOrders = (orders, index, direction) => {
+  const sortOrders = (orders: any, index: any, direction: any) => {
     return [...orders].sort((rowA, rowB) => {
       const amountA = parseFloat(rowA[index])
       const amountB = parseFloat(rowB[index])
@@ -47,13 +48,13 @@ export const FetchOrdersWithJourneysV2 = () => {
   }
 
   const handleSort = useCallback(
-    (index, direction) => setSortedOrders(sortOrders(sortedOrders, index, direction)),
+    (index: number, direction: string) => setSortedOrders(sortOrders(sortedOrders, index, direction) as any),
     [sortedOrders]
   )
 
-  const handleSelectChange = (val) => {
+  const handleSelectChange = (val: string) => {
     setSelected(val)
-    setOrdersWithJourney([])
+    setOrdersWithJourney({})
   }
 
   const fetchOrdersWithJourney = async () => {
@@ -86,7 +87,7 @@ export const FetchOrdersWithJourneysV2 = () => {
       } else {
         authDispatch({ type: 'success' })
         setOrdersWithJourney(orderJourneys)
-        setSortedOrders(formatOrders(orderJourneys.ordersWithJourneys))
+        setSortedOrders(formatOrders(orderJourneys.ordersWithJourneys) as any)
       }
     }
     setLoading(false)

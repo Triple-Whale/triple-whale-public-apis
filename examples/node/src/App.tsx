@@ -1,4 +1,4 @@
-import { Card, Frame, Layout, Page, Text, Spinner } from '@shopify/polaris';
+import { Frame, Layout, Page, Text } from '@shopify/polaris';
 import { AuthProvider } from './contexts/Auth'
 import { ToastProvider } from './contexts/Toast'
 import { MainSection } from './components/MainSection'

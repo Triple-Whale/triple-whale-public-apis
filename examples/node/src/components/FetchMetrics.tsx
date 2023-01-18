@@ -11,12 +11,12 @@ import { useToastDispatch } from '../contexts/Toast';
 import { useMetricsDateRanges } from '../contexts/DateRanges';
 import moment from 'moment'
 
-export const FetchMetrics = () => {
+export const FetchMetrics: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [metrics, setMetrics] = useState({})
 
-  const authDispatch = useAuthDispatch()
-  const toastDispatch = useToastDispatch()
+  const authDispatch = useAuthDispatch() as any
+  const toastDispatch = useToastDispatch() as any
 
   const rawDateRanges = useMetricsDateRanges()
   const dateRanges = rawDateRanges.map(option => ({
@@ -26,7 +26,7 @@ export const FetchMetrics = () => {
   const [selected, setSelected] = useState(dateRanges[0].value);
   const [options] = useState(dateRanges)
 
-  const handleSelectChange = (val) => {
+  const handleSelectChange = (val: string) => {
     setSelected(val)
     setMetrics([])
   }

@@ -9,19 +9,18 @@ import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import moment from 'moment'
 
-export const PostMetrics = () => {
+export const PostMetrics: React.FC = () => {
   const [loading, setLoading] = useState(false)
-  const [metricsData, setMetricsData] = useState([])
 
   const [metricName, setMetricName] = useState('')
-  const handleName = useCallback((v) => setMetricName(v), []);
-  const [metricValue, setMetricValue] = useState(0)
-  const handleValue = useCallback((v) => setMetricValue(v), []);
+  const handleName = useCallback((v: string) => setMetricName(v), []);
+  const [metricValue, setMetricValue] = useState('')
+  const handleValue = useCallback((v: string) => setMetricValue(v), []);
   const [metricDescription, setMetricDescription] = useState('')
-  const handleDescription = useCallback((v) => setMetricDescription(v), []);
+  const handleDescription = useCallback((v: string) => setMetricDescription(v), []);
 
-  const authDispatch = useAuthDispatch()
-  const toastDispatch = useToastDispatch()
+  const authDispatch = useAuthDispatch() as any
+  const toastDispatch = useToastDispatch() as any
 
   const submitValid = () => metricName == '' || metricDescription == ''
 
@@ -62,7 +61,6 @@ export const PostMetrics = () => {
       toastDispatch({ type: 'error', message: postMetrics.message })
 
     } else {
-      setMetricsData(postMetrics)
       authDispatch({ type: 'success' })
       toastDispatch({ type: 'success', message: 'Metric successfully pushed' })
 
@@ -83,17 +81,20 @@ export const PostMetrics = () => {
         label="Metric Name"
         value={metricName}
         onChange={handleName}
+        autoComplete="false"
       />
       <TextField 
         label="Metric Value"
         value={metricValue}
         onChange={handleValue}
+        autoComplete="false"
         type="number"
       />
       <TextField 
         label="Metric Description"
         value={metricDescription}
         onChange={handleDescription}
+        autoComplete="false"
       />
       <Button 
         fullWidth 

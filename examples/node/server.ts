@@ -1,5 +1,5 @@
-import express from "express";
-import ViteExpress from "vite-express";
+import express, { Request, Response } from 'express';
+import ViteExpress from 'vite-express';
 import * as dotenv from 'dotenv';
 import crypto from 'crypto'
 import querystring from 'querystring'
@@ -7,6 +7,9 @@ import chalk from 'chalk'
 import fetch from 'cross-fetch'
 import { LocalStorage } from 'node-localstorage'
 import moment from 'moment'
+
+// Types
+import { ParsedQs } from 'qs';
 
 // -----------------------
 // express app
@@ -33,7 +36,7 @@ if(!LOCAL_SECRET) {
 // -----------------------
 // Helpers
 // -----------------------
-const responseChecker = (response) => {
+const responseChecker = (response: any) => {
   if(response.code == 401) {
     localStorage.removeItem('TOKEN')
     localStorage.removeItem('LOCAL_SECRET')
@@ -44,7 +47,7 @@ const responseChecker = (response) => {
 // -----------------------
 // Login -- first step of oauth flow
 // -----------------------
-app.get("/login", (req, res) => {
+app.get("/login", (req, res: any) => {
   // Authorization URL
   const authUrl = "https://api.triplewhale.com/api/v2/auth/oauth2/auth"
 
@@ -69,9 +72,9 @@ app.get("/login", (req, res) => {
 // -----------------------
 // Callback - second step with oauth flow
 // -----------------------
-app.get("/callback", (req, res) => {
+app.get("/callback", (req: Request, res: Response) => {
   // Get the authorization code from the query parameters
-  const code = req.query.code;
+  const code : string | ParsedQs | string[] | ParsedQs[] | undefined = req.query.code?.toString();
 
   // Exchange the authorization code for an access token
   const url = "https://api.triplewhale.com/api/v2/auth/oauth2/token";
@@ -115,7 +118,7 @@ app.get("/callback", (req, res) => {
 // -----------------------
 // Test API Requests - third step in flow
 // -----------------------
-app.post("/get-orders-with-journeys", (req, res) => {
+app.post("/get-orders-with-journeys", (req: Request, res: Response) => {
   const url = "https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys"
 
   const data = {
@@ -147,7 +150,7 @@ app.post("/get-orders-with-journeys", (req, res) => {
     })
 });
 
-app.post("/get-orders-with-journeys-v2", (req, res) => {
+app.post("/get-orders-with-journeys-v2", (req: Request, res: Response) => {
   const url = "https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys-v2"
 
   const data = {
@@ -178,7 +181,7 @@ app.post("/get-orders-with-journeys-v2", (req, res) => {
     })
 });
 
-app.get("/get-metrics", (req, res) => {
+app.get("/get-metrics", (req: Request, res: Response) => {
   const start = req.query?.start || moment().subtract(7, 'day').startOf('day').format('YYYY-MM-DD')
   const end = req.query?.end || moment().endOf('day').format('YYYY-MM-DD')
   const url = `https://api.triplewhale.com/api/v2/tw-metrics/metrics-data?service_id=${CLIENT_ID}&account_id=${SHOP_URL}&start=${start}&end=${end}`
@@ -199,7 +202,7 @@ app.get("/get-metrics", (req, res) => {
     })
 });
 
-app.post('/post-metrics', (req, res) => {
+app.post('/post-metrics', (req: Request, res: Response) => {
   const url = "https://api.triplewhale.com/api/v2/tw-metrics/metrics"
   const metrics = req.body?.metrics || false
   if(!metrics) res.json({
@@ -243,7 +246,7 @@ app.post('/post-metrics', (req, res) => {
 // -----------------------
 // are we logged in? -- for frontend
 // -----------------------
-app.get("/logged-in", (req, res) => {
+app.get("/logged-in", (req: Request, res: Response) => {
   res.json({ token: TOKEN })
 })
 

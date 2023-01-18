@@ -1,8 +1,9 @@
-import  {Toast, Button } from '@shopify/polaris';
-import { createContext, useCallback, useContext, useState, useReducer } from 'react';
+import  { Toast } from '@shopify/polaris';
+import { createContext, useCallback, useContext, useReducer } from 'react';
+import { childrenProps, reducerAction } from '../Types'
 
 export const ToastContext = createContext({});
-export const ToastDispatchContext = createContext(null);
+export const ToastDispatchContext = createContext({});
 
 const defaultMessage = {
   active: false,
@@ -10,13 +11,19 @@ const defaultMessage = {
   message: 'Something happened!'
 }
 
-export function ToastProvider({ children }) {
+const emptyMessage = {
+  active: false,
+  type: '',
+  message: ''
+}
+
+export function ToastProvider({ children }: childrenProps) {
   const [message, dispatch] = useReducer(
     toastReducer,
     defaultMessage
   );
 
-  const toggleActive = useCallback(() => dispatch());
+  const toggleActive = useCallback(() => dispatch(emptyMessage), []);
 
   const toastMarkup = message.active ? (
     <Toast content={message.message} onDismiss={toggleActive} duration={4500} />
@@ -32,7 +39,7 @@ export function ToastProvider({ children }) {
   );
 }
 
-function toastReducer(info, action) {
+function toastReducer(_info: any, action: reducerAction) {
   switch (action?.type) {
     case 'success': {
       return {

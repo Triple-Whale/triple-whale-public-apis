@@ -1,4 +1,4 @@
 {   
-    "ignore": ["src/*", "vite.config.js"],
-    "watch": ["server.js"]
+    "ignore": ["src/*", "vite.config.ts"],
+    "watch": ["server.ts"]
 }

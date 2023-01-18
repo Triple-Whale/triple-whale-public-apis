@@ -5,7 +5,7 @@ import { LoginCard } from './LoginCard'
 import { LoggedInCard } from './LoggedInCard'
 import { useAuth } from '../contexts/Auth'
 
-export const MainSection = () => {
+export const MainSection: React.FC = () => {
   const [loading, setLoading] = useState(true)
   const [loggedIn, setLoggedIn] = useState(false)
   const { authenticated } = useAuth()
@@ -21,7 +21,7 @@ export const MainSection = () => {
   return (
     loading ? (
       <Layout.Section>
-       <Banner sectioned>
+       <Banner>
           <Spinner />
         </Banner>
       </Layout.Section>
