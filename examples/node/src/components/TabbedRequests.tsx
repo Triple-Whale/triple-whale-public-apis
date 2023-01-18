@@ -9,11 +9,11 @@ import { TabsType } from '../Types'
 
 export const TabbedRequests: React.FC = () => {
   const [selected, setSelected] = useState(0);
-  const authDispatch = useAuthDispatch() as any;
+  const authDispatch = useAuthDispatch();
 
   const handleTabChange = useCallback((selectedTabIndex: number) => {
     setSelected(selectedTabIndex)
-    authDispatch({ type: 'success' })
+    authDispatch!({ type: 'success' })
     const activeTabId = tabs[selectedTabIndex]?.id
     if(activeTabId) window.location.hash = activeTabId.toString()
   }, []);

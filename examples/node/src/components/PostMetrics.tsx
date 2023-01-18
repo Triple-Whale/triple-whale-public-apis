@@ -19,8 +19,8 @@ export const PostMetrics: React.FC = () => {
   const [metricDescription, setMetricDescription] = useState('')
   const handleDescription = useCallback((v: string) => setMetricDescription(v), []);
 
-  const authDispatch = useAuthDispatch() as any
-  const toastDispatch = useToastDispatch() as any
+  const authDispatch = useAuthDispatch()
+  const toastDispatch = useToastDispatch()
 
   const submitValid = () => metricName == '' || metricDescription == ''
 
@@ -51,18 +51,18 @@ export const PostMetrics: React.FC = () => {
       postMetrics.message?.length > 0 
       && postMetrics.code !== 401
     ) {
-      authDispatch({ type: 'error', message: postMetrics.message })
-      toastDispatch({ type: 'error', message: postMetrics.message })
+      authDispatch!({ type: 'error', message: postMetrics.message })
+      toastDispatch!({ type: 'error', message: postMetrics.message })
     } else if(
       postMetrics.code
       && postMetrics.code !== 200
     ) {
-      authDispatch({ type: 'expired', message: postMetrics.message })
-      toastDispatch({ type: 'error', message: postMetrics.message })
+      authDispatch!({ type: 'expired', message: postMetrics.message })
+      toastDispatch!({ type: 'error', message: postMetrics.message })
 
     } else {
-      authDispatch({ type: 'success' })
-      toastDispatch({ type: 'success', message: 'Metric successfully pushed' })
+      authDispatch!({ type: 'success' })
+      toastDispatch!({ type: 'success', message: 'Metric successfully pushed' })
 
       setMetricName('')
       setMetricValue('')

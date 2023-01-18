@@ -25,7 +25,7 @@ export function ToastProvider({ children }: childrenProps) {
 
   const toggleActive = useCallback(() => dispatch(emptyMessage), []);
 
-  const toastMarkup = message.active ? (
+  const toastMarkup = message.active && message.message ? (
     <Toast content={message.message} onDismiss={toggleActive} duration={4500} />
   ) : null;
 

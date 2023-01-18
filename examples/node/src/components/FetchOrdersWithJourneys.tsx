@@ -11,22 +11,28 @@ import {
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import { useDateRanges } from '../contexts/DateRanges'
-import { ordersWithJourneyOld } from '../Types'
+import { 
+  formattedOldOrders, 
+  oldOrder, 
+  oldOrders, 
+  ordersWithJourneyOld, 
+  platformClick 
+} from '../Types'
 
-const formatOrders = (orders: any) => {
-  return orders.map((order: any) => ([
+const formatOrders = (orders: oldOrders) => {
+  return orders.map((order: oldOrder) => ([
     order.orderId, 
     order.journey?.length || 0, 
     order.attribution?.firstClick?.source ?? '',
     order.attribution?.lastClick?.source ?? '',
-    order.attribution?.lastPlatformClick?.map((click: any) => click.source ?? '').flat().toString().replace(/,/g, ', ')
-  ]))
+    order.attribution?.lastPlatformClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ', ')
+  ])) 
 }
 
 export const FetchOrdersWithJourneys: React.FC = () => {
   const [loading, setLoading] = useState(false)
-  const [ordersWithJourney, setOrdersWithJourney] = useState({} as ordersWithJourneyOld | any)
-  const [sortedOrders, setSortedOrders] = useState([])
+  const [ordersWithJourney, setOrdersWithJourney] = useState({} as ordersWithJourneyOld)
+  const [sortedOrders, setSortedOrders] = useState([] as formattedOldOrders)
   const [currentPage, setCurrentPage] = useState(0)
   
   const authDispatch = useAuthDispatch()
@@ -50,13 +56,13 @@ export const FetchOrdersWithJourneys: React.FC = () => {
   }
 
   const handleSort = useCallback(
-    (index: number, direction: string) => setSortedOrders(sortOrders(sortedOrders, index, direction) as any),
+    (index: number, direction: string) => setSortedOrders(sortOrders(sortedOrders, index, direction)),
     [sortedOrders]
   )
 
   const handleSelectChange = (val: string) => {
     setSelected(val)
-    setOrdersWithJourney({})
+    setOrdersWithJourney({} as ordersWithJourneyOld)
     setCurrentPage(0)
   }
 
@@ -92,7 +98,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
         authDispatch!({ type: 'success' })
         setCurrentPage(orderJourneys.page)
         setOrdersWithJourney(orderJourneys)
-        setSortedOrders(formatOrders(orderJourneys.ordersWithJourneys) as any)
+        setSortedOrders(formatOrders(orderJourneys?.ordersWithJourneys)) 
       }
 
     }

@@ -10,22 +10,28 @@ import {
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import { useDateRangesV2 } from '../contexts/DateRanges';
-import { ordersWithJourneyNew } from '../Types';
+import { 
+  formattedNewOrders, 
+  newOrder, 
+  newOrders, 
+  ordersWithJourneyNew, 
+  platformClick 
+} from '../Types'
 
-const formatOrders = (orders: any) => {
-  return orders.map((order: any) => ([
+const formatOrders = (orders: newOrders) => {
+  return orders.map((order: newOrder) => ([
     order.order_id, 
     order.journey?.length || 0, 
     order.attribution?.firstClick?.map((click: any) => click.source ?? '').flat().toString().replace(/,/g, ', '),
     order.attribution?.lastClick?.map((click: any) => click.source ?? '').flat().toString().replace(/,/g, ', '),
-    order.attribution?.lastPlatformClick?.map((click: any) => click.source ?? '').flat().toString().replace(/,/g, ', ')
+    order.attribution?.lastPlatformClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ', ')
   ]))
 }
 
 export const FetchOrdersWithJourneysV2: React.FC = () => {
   const [loading, setLoading] = useState(false)
-  const [ordersWithJourney, setOrdersWithJourney] = useState({} as ordersWithJourneyNew | any)
-  const [sortedOrders, setSortedOrders] = useState([])
+  const [ordersWithJourney, setOrdersWithJourney] = useState({} as ordersWithJourneyNew)
+  const [sortedOrders, setSortedOrders] = useState([] as formattedNewOrders)
 
   const authDispatch = useAuthDispatch()
   const toastDispatch = useToastDispatch()
@@ -48,13 +54,13 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
   }
 
   const handleSort = useCallback(
-    (index: number, direction: string) => setSortedOrders(sortOrders(sortedOrders, index, direction) as any),
+    (index: number, direction: string) => setSortedOrders(sortOrders(sortedOrders, index, direction)),
     [sortedOrders]
   )
 
   const handleSelectChange = (val: string) => {
     setSelected(val)
-    setOrdersWithJourney({})
+    setOrdersWithJourney({} as ordersWithJourneyNew)
   }
 
   const fetchOrdersWithJourney = async () => {
@@ -87,7 +93,7 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
       } else {
         authDispatch!({ type: 'success' })
         setOrdersWithJourney(orderJourneys)
-        setSortedOrders(formatOrders(orderJourneys.ordersWithJourneys) as any)
+        setSortedOrders(formatOrders(orderJourneys.ordersWithJourneys))
       }
     }
     setLoading(false)
