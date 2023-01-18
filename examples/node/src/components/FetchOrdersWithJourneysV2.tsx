@@ -12,7 +12,7 @@ import { useToastDispatch } from '../contexts/Toast';
 import { useDateRangesV2 } from '../contexts/DateRanges';
 import { ordersWithJourneyNew } from '../Types';
 
-const formatOrders: React.FC = (orders: any) => {
+const formatOrders = (orders: any) => {
   return orders.map((order: any) => ([
     order.order_id, 
     order.journey?.length || 0, 
@@ -22,7 +22,7 @@ const formatOrders: React.FC = (orders: any) => {
   ]))
 }
 
-export const FetchOrdersWithJourneysV2 = () => {
+export const FetchOrdersWithJourneysV2: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [ordersWithJourney, setOrdersWithJourney] = useState({} as ordersWithJourneyNew | any)
   const [sortedOrders, setSortedOrders] = useState([])
