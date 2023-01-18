@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon server.ts",
     "build": "vite build",
-    "preview": "NODE_ENV=production node server.ts"
+    "preview": "NODE_ENV=production ts-node server.ts"
   },
   "dependencies": {
     "@shopify/polaris": "^10.19.0",
