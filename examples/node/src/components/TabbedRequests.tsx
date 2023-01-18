@@ -5,6 +5,7 @@ import { FetchOrdersWithJourneys } from './FetchOrdersWithJourneys'
 import { FetchOrdersWithJourneysV2 } from './FetchOrdersWithJourneysV2'
 import { PostMetrics } from './PostMetrics'
 import { useAuthDispatch } from '../contexts/Auth';
+import { TabsType } from '../Types'
 
 export const TabbedRequests: React.FC = () => {
   const [selected, setSelected] = useState(0);
@@ -26,15 +27,7 @@ export const TabbedRequests: React.FC = () => {
     }
   }, []);
 
-  type Tab = {
-    id: string,
-    content: string,
-    tabContent: JSX.Element
-  }
-
-  type Tabs = Array<Tab>
-
-  const tabs: Tabs = [
+  const tabs : TabsType = [
     {
       id: 'fetch-orders-with-journeys',
       content: 'Get Orders',

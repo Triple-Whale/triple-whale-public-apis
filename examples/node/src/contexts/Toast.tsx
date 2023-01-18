@@ -1,19 +1,19 @@
 import  { Toast } from '@shopify/polaris';
 import { createContext, useCallback, useContext, useReducer } from 'react';
-import { childrenProps, reducerAction } from '../Types'
+import { childrenProps, reducerAction, toastState } from '../Types'
 
-export const ToastContext = createContext({});
-export const ToastDispatchContext = createContext({});
+export const ToastContext = createContext<toastState>({} as toastState);
+export const ToastDispatchContext = createContext<((action: reducerAction) => void) | null>(null);
 
-const defaultMessage = {
-  active: false,
+const defaultMessage: toastState = {
   type: 'success',
+  active: false,
   message: 'Something happened!'
 }
 
-const emptyMessage = {
-  active: false,
+const emptyMessage: toastState = {
   type: '',
+  active: false,
   message: ''
 }
 
@@ -50,7 +50,6 @@ function toastReducer(_info: any, action: reducerAction) {
     }
     case 'error': {
       return {
-        ...defaultMessage,
         message: action.message ?? 'Something went wrong..',
         type: 'error',
         active: true

@@ -27,8 +27,8 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
   const [ordersWithJourney, setOrdersWithJourney] = useState({} as ordersWithJourneyNew | any)
   const [sortedOrders, setSortedOrders] = useState([])
 
-  const authDispatch = useAuthDispatch() as any
-  const toastDispatch = useToastDispatch() as any
+  const authDispatch = useAuthDispatch()
+  const toastDispatch = useToastDispatch()
 
   const rawDateRanges = useDateRangesV2()
   const dateRanges = rawDateRanges.map(option => ({
@@ -76,16 +76,16 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
         orderJourneys.message?.length > 0
         && orderJourneys.code !== 401
       ) {
-        authDispatch({ type: 'error', message: orderJourneys.message })
-        toastDispatch({ type: 'error', message: orderJourneys.message })
+        authDispatch!({ type: 'error', message: orderJourneys.message })
+        toastDispatch!({ type: 'error', message: orderJourneys.message })
       } else if(
         orderJourneys.code
         && orderJourneys.code !== 200
       ) {
-        authDispatch({ type: 'expired',message: orderJourneys.message})
-        toastDispatch({ type: 'error',message: orderJourneys.message})
+        authDispatch!({ type: 'expired',message: orderJourneys.message})
+        toastDispatch!({ type: 'error',message: orderJourneys.message})
       } else {
-        authDispatch({ type: 'success' })
+        authDispatch!({ type: 'success' })
         setOrdersWithJourney(orderJourneys)
         setSortedOrders(formatOrders(orderJourneys.ordersWithJourneys) as any)
       }

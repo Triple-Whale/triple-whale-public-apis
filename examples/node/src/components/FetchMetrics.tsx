@@ -15,8 +15,8 @@ export const FetchMetrics: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [metrics, setMetrics] = useState({})
 
-  const authDispatch = useAuthDispatch() as any
-  const toastDispatch = useToastDispatch() as any
+  const authDispatch = useAuthDispatch()
+  const toastDispatch = useToastDispatch()
 
   const rawDateRanges = useMetricsDateRanges()
   const dateRanges = rawDateRanges.map(option => ({
@@ -48,16 +48,16 @@ export const FetchMetrics: React.FC = () => {
         fetchGetMetrics.message?.length > 0 
         && fetchGetMetrics.code !== 401
       ) {
-        authDispatch({ type: 'error', message: fetchGetMetrics.message })
-        toastDispatch({ type: 'error', message: fetchGetMetrics.message })
+        authDispatch!({ type: 'error', message: fetchGetMetrics.message })
+        toastDispatch!({ type: 'error', message: fetchGetMetrics.message })
       } else if(
         fetchGetMetrics.code
         && fetchGetMetrics.code !== 200
       ) {
-        authDispatch({ type: 'expired', message: fetchGetMetrics.message })
-        toastDispatch({ type: 'error', message: fetchGetMetrics.message })
+        authDispatch!({ type: 'expired', message: fetchGetMetrics.message })
+        toastDispatch!({ type: 'error', message: fetchGetMetrics.message })
       } else {
-        authDispatch({ type: 'success' })
+        authDispatch!({ type: 'success' })
         setMetrics(fetchGetMetrics)
       }
 

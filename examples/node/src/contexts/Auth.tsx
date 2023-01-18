@@ -1,32 +1,32 @@
 import { createContext, useContext, useReducer } from 'react';
-import { childrenProps, reducerAction } from '../Types'
+import { authState, childrenProps, reducerAction } from '../Types'
 
-const authenticated = {
+const authenticated: authState = {
   authenticated: true,
   error: false,
   message: 'Authenticated'
 }
 
-const unauthenticated = {
+const unauthenticated: authState = {
   authenticated: false,
   error: true,
   message: 'Unauthenticated'
 }
 
-const error = {
+const error: authState = {
   authenticated: true,
   error: true,
   message: 'Error'
 }
 
-const success = {
+const success: authState = {
   authenticated: true,
   error: false,
   message: 'Success'
 }
 
-export const AuthContext = createContext(authenticated);
-export const AuthDispatchContext = createContext({});
+export const AuthContext = createContext<authState>(authenticated);
+const AuthDispatchContext = createContext<((action: reducerAction) => void) | null>(null);
 
 export function AuthProvider({ children }: childrenProps) {
   const [auth, dispatch] = useReducer(
