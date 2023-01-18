@@ -9,13 +9,13 @@ For documentation on available endpoints and request structure, visit https://de
 1. Ensure you have [node](https://nodejs.org/en/download/), [nvm](https://github.com/nvm-sh/nvm), and optionally [yarn](https://yarnpkg.com/getting-started/install) installed on your machine
 1. Ensure you are using Node 18: `nvm use`
 1. Install the `package.json` dependencies: `npm i` or `yarn`
-2. Ensure you have a properly formatted `.env` file; an `.env.example` file has been provided
+1. Ensure you have a properly formatted `.env` file; an `.env.example` file has been provided
 
 ## Dev server
 
 You can use npm or yarn to get started, simply
 
-`npm run dev` 
+`npm run dev`
 
 or
 
@@ -23,9 +23,9 @@ or
 
 ## Production server
 
-`yarn build && yarn preview` 
+`yarn build && yarn preview`
 
-or 
+or
 
 `npm run build && npm run preview`
 
