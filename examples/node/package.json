@@ -17,7 +17,6 @@
     "moment": "^2.29.4",
     "node-localstorage": "^2.2.1",
     "nodemon": "^2.0.20",
-    "querystring": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "vite-express": "^0.1.2"

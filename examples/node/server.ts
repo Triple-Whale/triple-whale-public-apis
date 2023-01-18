@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import ViteExpress from 'vite-express';
 import * as dotenv from 'dotenv';
 import crypto from 'crypto'
-import querystring from 'querystring'
+import querystring from 'node:querystring'
 import chalk from 'chalk'
 import fetch from 'cross-fetch'
 import { LocalStorage } from 'node-localstorage'
