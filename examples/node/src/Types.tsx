@@ -63,7 +63,9 @@ export interface ordersWithJourneyOld {
   orders: oldOrder[];
 }
 
-export type formattedOldOrders = (string|number)[][];
+export type formattedOrder = (string|number)[];
+
+export type formattedOldOrders = formattedOrder[];
 
 // new orders
 interface attributionNew {
@@ -88,4 +90,10 @@ export interface ordersWithJourneyNew {
   nextPage: number;
 }
 
-export type formattedNewOrders = (string|number)[][];
+export type formattedNewOrders = formattedOrder[];
+
+// express 
+export interface twResponse {
+  code: number;
+  data: object;
+}

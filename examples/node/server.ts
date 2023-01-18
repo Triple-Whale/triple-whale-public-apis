@@ -9,7 +9,8 @@ import { LocalStorage } from 'node-localstorage'
 import moment from 'moment'
 
 // Types
-import { ParsedQs } from 'qs';
+import { ParsedQs } from 'qs'
+import { twResponse } from './src/Types'
 
 // -----------------------
 // express app
@@ -36,7 +37,7 @@ if(!LOCAL_SECRET) {
 // -----------------------
 // Helpers
 // -----------------------
-const responseChecker = (response: any) => {
+const responseChecker = (response: twResponse) => {
   if(response.code == 401) {
     localStorage.removeItem('TOKEN')
     localStorage.removeItem('LOCAL_SECRET')
@@ -47,7 +48,7 @@ const responseChecker = (response: any) => {
 // -----------------------
 // Login -- first step of oauth flow
 // -----------------------
-app.get("/login", (req, res: any) => {
+app.get("/login", (_req: Request, res: Response) => {
   // Authorization URL
   const authUrl = "https://api.triplewhale.com/api/v2/auth/oauth2/auth"
 

@@ -43,7 +43,7 @@ export function AuthProvider({ children }: childrenProps) {
   );
 }
 
-function authReducer(_info: any, action: reducerAction) {
+function authReducer<S>(_state: S, action: reducerAction) {
   switch (action.type) {
     case 'authenticated': {
       return authenticated

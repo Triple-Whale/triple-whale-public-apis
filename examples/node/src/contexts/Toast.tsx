@@ -39,7 +39,7 @@ export function ToastProvider({ children }: childrenProps) {
   );
 }
 
-function toastReducer(_info: any, action: reducerAction) {
+function toastReducer<S>(_state: S, action: reducerAction) {
   switch (action?.type) {
     case 'success': {
       return {

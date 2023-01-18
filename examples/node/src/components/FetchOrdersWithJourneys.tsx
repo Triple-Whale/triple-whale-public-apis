@@ -12,6 +12,7 @@ import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import { useDateRanges } from '../contexts/DateRanges'
 import { 
+  formattedOrder,
   formattedOldOrders, 
   oldOrder, 
   oldOrders, 
@@ -46,10 +47,10 @@ export const FetchOrdersWithJourneys: React.FC = () => {
   const [selected, setSelected] = useState(dateRanges[0].value);
   const [options] = useState(dateRanges)
 
-  const sortOrders = (orders: any, index: any, direction: any) => {
-    return [...orders].sort((rowA, rowB) => {
-      const amountA = parseFloat(rowA[index])
-      const amountB = parseFloat(rowB[index])
+  const sortOrders = (orders: formattedOldOrders, index: number, direction: string) => {
+    return [...orders].sort((rowA: formattedOrder, rowB: formattedOrder) => {
+      const amountA = parseFloat(rowA[index].toString())
+      const amountB = parseFloat(rowB[index].toString())
 
       return direction === 'descending' ? amountB - amountA : amountA - amountB;
     })

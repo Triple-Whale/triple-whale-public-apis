@@ -11,6 +11,7 @@ import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import { useDateRangesV2 } from '../contexts/DateRanges';
 import { 
+  formattedOrder,
   formattedNewOrders, 
   newOrder, 
   newOrders, 
@@ -22,8 +23,8 @@ const formatOrders = (orders: newOrders) => {
   return orders.map((order: newOrder) => ([
     order.order_id, 
     order.journey?.length || 0, 
-    order.attribution?.firstClick?.map((click: any) => click.source ?? '').flat().toString().replace(/,/g, ', '),
-    order.attribution?.lastClick?.map((click: any) => click.source ?? '').flat().toString().replace(/,/g, ', '),
+    order.attribution?.firstClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ', '),
+    order.attribution?.lastClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ', '),
     order.attribution?.lastPlatformClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ', ')
   ]))
 }
@@ -44,10 +45,10 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
   const [selected, setSelected] = useState(dateRanges[0].value);
   const [options] = useState(dateRanges)
 
-  const sortOrders = (orders: any, index: any, direction: any) => {
-    return [...orders].sort((rowA, rowB) => {
-      const amountA = parseFloat(rowA[index])
-      const amountB = parseFloat(rowB[index])
+  const sortOrders = (orders: formattedNewOrders, index: number, direction: string) => {
+    return [...orders].sort((rowA: formattedOrder, rowB: formattedOrder) => {
+      const amountA = parseFloat(rowA[index].toString())
+      const amountB = parseFloat(rowB[index].toString())
 
       return direction === 'descending' ? amountB - amountA : amountA - amountB;
     })
