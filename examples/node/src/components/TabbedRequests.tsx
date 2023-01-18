@@ -13,14 +13,18 @@ export const TabbedRequests: React.FC = () => {
   const handleTabChange = useCallback((selectedTabIndex: number) => {
     setSelected(selectedTabIndex)
     authDispatch({ type: 'success' })
-    window.location.hash = selectedTabIndex.toString()
+    const activeTabId = tabs[selectedTabIndex]?.id
+    if(activeTabId) window.location.hash = activeTabId.toString()
   }, []);
 
   // quasi-router
   useEffect(() => {
-    const windowHash = parseInt(window.location.hash.replace('#', ''), 10) || false
-    if(windowHash) setSelected(windowHash)
-  }, [])
+    const windowHash = window.location.hash.replace('#', '')
+    if(windowHash) {
+      const activeTab = tabs?.findIndex(tab => tab.id === windowHash)
+      if(activeTab) setSelected(activeTab)
+    }
+  }, []);
 
   type Tab = {
     id: string,
@@ -58,7 +62,7 @@ export const TabbedRequests: React.FC = () => {
       <Card>
         <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange}>
           <Card.Section title={tabs[selected].content}>
-            {tabs[selected].tabContent}
+            {tabs[selected]?.tabContent}
           </Card.Section>
         </Tabs>
       </Card>
