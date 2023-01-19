@@ -111,7 +111,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
       <Text variant="bodyMd" as="p">
         Below will make a <code>POST</code> request to the API endpoint <code>https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys</code>
       </Text>
-      <Stack distribution="fillEvenly" alignment="trailing">
+      <Stack wrap={true} distribution="fillEvenly" alignment="trailing">
         <Select
           label="Date range"
           options={options}
@@ -123,12 +123,12 @@ export const FetchOrdersWithJourneys: React.FC = () => {
           onClick={() => fetchOrdersWithJourney()}
           loading={loading}
         >Fetch Orders with Journey</Button>
-        </Stack>
-        {loading ?? (
-          <Spinner accessibilityLabel="Loading orders" size="large" />
-        )}
+      </Stack>
+      {loading ?? (
+        <Spinner accessibilityLabel="Loading orders" size="large" />
+      )}
 
-        {ordersWithJourney.totalForRange > 0 && (
+      {ordersWithJourney.totalForRange > 0 && (
         <div id="table-wrapper" style={{ opacity: loading ? '0.5' : '1' }}>
           <Stack distribution="fill">
             <Text variant="headingSm" as="p">{ordersWithJourney.totalForRange} total orders</Text>

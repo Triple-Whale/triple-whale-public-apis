@@ -70,7 +70,7 @@ export const FetchMetrics: React.FC = () => {
       <Text variant="bodyMd" as="p">
         Below will make a <code>GET</code> request to the API endpoint <code>https://api.triplewhale.com/api/v2/tw-metrics/metrics-data</code>
       </Text>
-      <Stack distribution="fillEvenly" alignment="trailing">
+      <Stack wrap={true} distribution="fillEvenly" alignment="trailing">
         <Select
           label="Date range"
           options={options}

@@ -7,7 +7,7 @@ interface Tab {
 
 export type TabsType = Tab[]
 
-// shared action w/ auth & toast
+// shared reducer action
 export interface reducerAction {
   type: string;
   message?: string;
@@ -91,6 +91,16 @@ export interface ordersWithJourneyNew {
 }
 
 export type formattedNewOrders = formattedOrder[];
+
+// metrics
+export interface metricsDynamicData {
+  spendName: string;
+  spendValue: string;
+  spendDescription: string;
+  clicksName: string;
+  clicksValue: string;
+  clicksDescription: string;
+}
 
 // express 
 export interface twResponse {

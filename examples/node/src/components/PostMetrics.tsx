@@ -7,22 +7,39 @@ import {
 } from '@shopify/polaris';
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
+import { metricsDynamicData } from '../Types'
 import moment from 'moment'
+
+const baseMetrics: metricsDynamicData = {
+  spendName: 'Spend',
+  spendValue: '200',
+  spendDescription: '',
+  clicksName: 'Clicks',
+  clicksValue: '1234',
+  clicksDescription: '',
+}
 
 export const PostMetrics: React.FC = () => {
   const [loading, setLoading] = useState(false)
-
-  const [metricName, setMetricName] = useState('')
-  const handleName = useCallback((v: string) => setMetricName(v), []);
-  const [metricValue, setMetricValue] = useState('')
-  const handleValue = useCallback((v: string) => setMetricValue(v), []);
-  const [metricDescription, setMetricDescription] = useState('')
-  const handleDescription = useCallback((v: string) => setMetricDescription(v), []);
+  const [metrics, setMetrics] = useState(baseMetrics)
+  
+  // nice with it
+  const handleChange = (key: string, value: string) => {
+    setMetrics({ 
+      ...metrics, 
+      // @ts-ignore
+      [key]: value
+    });
+  }
 
   const authDispatch = useAuthDispatch()
   const toastDispatch = useToastDispatch()
 
-  const submitValid = () => metricName == '' || metricDescription == ''
+  const submitValid = () => {
+    // @ts-ignore
+    var valid = Object.keys(metrics).filter((metric: string) => metrics[metric] === '')
+    return valid?.length > 0
+  }
 
   const postMetrics = async () => {
     setLoading(true)
@@ -37,11 +54,18 @@ export const PostMetrics: React.FC = () => {
         hour: moment().format('HH'),
         metrics: [
           {
-            id: Math.floor(Math.random() * 999).toString(),
-            name: metricName,
-            value: parseFloat(metricValue),
-            type: "decimal",
-            description: metricDescription
+            "id": "spend",
+            "name": metrics.spendName,
+            "value": parseFloat(metrics.spendValue),
+            "type": "currency",
+            "description": metrics.spendDescription
+          },
+          {
+            "id": "clicks",
+            "name": metrics.clicksName,
+            "value": parseFloat(metrics.clicksValue),
+            "type": "decimal",
+            "description": metrics.clicksDescription
           }
         ]
       })
@@ -64,9 +88,7 @@ export const PostMetrics: React.FC = () => {
       authDispatch!({ type: 'success' })
       toastDispatch!({ type: 'success', message: 'Metric successfully pushed' })
 
-      setMetricName('')
-      setMetricValue('')
-      setMetricDescription('')
+      setMetrics(baseMetrics)
     }
 
     setLoading(false)
@@ -77,25 +99,52 @@ export const PostMetrics: React.FC = () => {
       <Text variant="bodyMd" as="p">
         Below will make a <code>POST</code> request to the API endpoint <code>https://api.triplewhale.com/api/v2/tw-metrics/metrics</code>
       </Text>
-      <TextField 
-        label="Metric Name"
-        value={metricName}
-        onChange={handleName}
-        autoComplete="false"
-      />
-      <TextField 
-        label="Metric Value"
-        value={metricValue}
-        onChange={handleValue}
-        autoComplete="false"
-        type="number"
-      />
-      <TextField 
-        label="Metric Description"
-        value={metricDescription}
-        onChange={handleDescription}
-        autoComplete="false"
-      />
+
+      <Stack distribution="fillEvenly" spacing="loose">
+        <Stack vertical>
+          <TextField 
+            label={"Currency metric name"}
+            value={metrics.spendName}
+            onChange={(v) => handleChange('spendName', v)}
+            autoComplete="false"
+          />
+          <TextField 
+            label={"Currency value"}
+            value={metrics.spendValue}
+            onChange={(v) => handleChange('spendValue', v)}
+            autoComplete="false"
+            type="currency"
+          />
+          <TextField 
+            label={"Currency description"}
+            value={metrics.spendDescription}
+            onChange={(v) => handleChange('spendDescription', v)}
+            autoComplete="false"
+          />
+        </Stack>
+        <Stack vertical>
+          <TextField 
+            label={"Clicks name"}
+            value={metrics.clicksName}
+            onChange={(v) => handleChange('clicksName', v)}
+            autoComplete="false"
+          />
+          <TextField 
+            label={"Clicks value"}
+            value={metrics.clicksValue}
+            onChange={(v) => handleChange('clicksValue', v)}
+            autoComplete="false"
+            type="number"
+          />
+          <TextField 
+            label={"Clicks description"}
+            value={metrics.clicksDescription}
+            onChange={(v) => handleChange('clicksDescription', v)}
+            autoComplete="false"
+          />
+        </Stack>
+      </Stack>
+      
       <Button 
         fullWidth 
         onClick={() => postMetrics()}
