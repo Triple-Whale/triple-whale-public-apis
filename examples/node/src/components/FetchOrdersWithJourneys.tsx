@@ -28,7 +28,7 @@ const formatOrders = (orders: oldOrders) => {
     order.journey?.length || 0, 
     order.attribution?.firstClick?.source ?? '',
     order.attribution?.lastClick?.source ?? '',
-    order.attribution?.lastPlatformClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ',\n')
+    order.attribution?.lastPlatformClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, '\n')
   ])) 
 }
 

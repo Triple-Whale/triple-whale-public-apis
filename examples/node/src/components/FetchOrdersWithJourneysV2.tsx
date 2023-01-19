@@ -25,9 +25,9 @@ const formatOrders = (orders: newOrders) => {
   return orders.map((order: newOrder) => ([
     order.order_id, 
     order.journey?.length || 0, 
-    order.attribution?.firstClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ',\n'),
-    order.attribution?.lastClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ',\n'),
-    order.attribution?.lastPlatformClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ',\n')
+    order.attribution?.firstClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, '\n'),
+    order.attribution?.lastClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, '\n'),
+    order.attribution?.lastPlatformClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, '\n')
   ]))
 }
 
