@@ -107,3 +107,15 @@ export interface twResponse {
   code: number;
   data: object;
 }
+
+// charts
+export interface sparkChartDataLineItem {
+ key: number;
+ value: number;
+}
+
+export interface sparkChartObject {
+  data: sparkChartDataLineItem[]
+}
+
+export type sparkChartData = sparkChartObject[]

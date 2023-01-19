@@ -11,13 +11,15 @@ import {
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import { useDateRanges } from '../contexts/DateRanges'
+import { SparkChart } from './SparkChart'
 import { 
   formattedOrder,
   formattedOldOrders, 
   oldOrder, 
   oldOrders, 
   ordersWithJourneyOld, 
-  platformClick 
+  platformClick,
+  sparkChartData
 } from '../Types'
 
 const formatOrders = (orders: oldOrders) => {
@@ -26,14 +28,26 @@ const formatOrders = (orders: oldOrders) => {
     order.journey?.length || 0, 
     order.attribution?.firstClick?.source ?? '',
     order.attribution?.lastClick?.source ?? '',
-    order.attribution?.lastPlatformClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ', ')
+    order.attribution?.lastPlatformClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ',\n')
   ])) 
+}
+
+const formatChartData = (orders: oldOrders) => {
+  return [
+    {
+      data: orders.map(((order: oldOrder, i: number) => ({
+        key: i,
+        value: order.journey?.length
+      })))
+    }
+  ]
 }
 
 export const FetchOrdersWithJourneys: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [ordersWithJourney, setOrdersWithJourney] = useState({} as ordersWithJourneyOld)
   const [sortedOrders, setSortedOrders] = useState([] as formattedOldOrders)
+  const [chartData, setChartData] = useState([] as sparkChartData)
   const [currentPage, setCurrentPage] = useState(0)
   
   const authDispatch = useAuthDispatch()
@@ -64,6 +78,8 @@ export const FetchOrdersWithJourneys: React.FC = () => {
   const handleSelectChange = (val: string) => {
     setSelected(val)
     setOrdersWithJourney({} as ordersWithJourneyOld)
+    setSortedOrders([] as formattedOldOrders)
+    setChartData([] as sparkChartData)
     setCurrentPage(0)
   }
 
@@ -100,6 +116,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
         setCurrentPage(orderJourneys.page)
         setOrdersWithJourney(orderJourneys)
         setSortedOrders(formatOrders(orderJourneys?.ordersWithJourneys)) 
+        setChartData(formatChartData(orderJourneys?.ordersWithJourneys))
       }
 
     }
@@ -130,17 +147,22 @@ export const FetchOrdersWithJourneys: React.FC = () => {
 
       {ordersWithJourney.totalForRange > 0 && (
         <div id="table-wrapper" style={{ opacity: loading ? '0.5' : '1' }}>
+          <SparkChart 
+            data={chartData}
+            accessibilityLabel="Orders Journey"
+          />
           <Stack distribution="fill">
             <Text variant="headingSm" as="p">{ordersWithJourney.totalForRange} total orders</Text>
             <Text alignment="end" variant="headingSm" as="p">Page {ordersWithJourney.page + 1}</Text>
           </Stack>
           <DataTable 
+            stickyHeader={true}
             columnContentTypes={[
               'text',
-              'text',
-              'text',
-              'text',
-              'text',
+              'numeric',
+              'numeric',
+              'numeric',
+              'numeric',
             ]}
             headings={[
               'Order ID',

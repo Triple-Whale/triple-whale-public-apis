@@ -10,29 +10,43 @@ import {
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import { useDateRangesV2 } from '../contexts/DateRanges';
+import { SparkChart } from './SparkChart'
 import { 
   formattedOrder,
   formattedNewOrders, 
   newOrder, 
   newOrders, 
   ordersWithJourneyNew, 
-  platformClick 
+  platformClick,
+  sparkChartData
 } from '../Types'
 
 const formatOrders = (orders: newOrders) => {
   return orders.map((order: newOrder) => ([
     order.order_id, 
     order.journey?.length || 0, 
-    order.attribution?.firstClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ', '),
-    order.attribution?.lastClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ', '),
-    order.attribution?.lastPlatformClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ', ')
+    order.attribution?.firstClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ',\n'),
+    order.attribution?.lastClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ',\n'),
+    order.attribution?.lastPlatformClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, ',\n')
   ]))
+}
+
+const formatChartData = (orders: newOrders) => {
+  return [
+    {
+      data: orders.map(((order: newOrder, i: number) => ({
+        key: i,
+        value: order.journey?.length
+      })))
+    }
+  ]
 }
 
 export const FetchOrdersWithJourneysV2: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [ordersWithJourney, setOrdersWithJourney] = useState({} as ordersWithJourneyNew)
   const [sortedOrders, setSortedOrders] = useState([] as formattedNewOrders)
+  const [chartData, setChartData] = useState([] as sparkChartData)
 
   const authDispatch = useAuthDispatch()
   const toastDispatch = useToastDispatch()
@@ -62,6 +76,8 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
   const handleSelectChange = (val: string) => {
     setSelected(val)
     setOrdersWithJourney({} as ordersWithJourneyNew)
+    setSortedOrders([] as formattedNewOrders)
+    setChartData([] as sparkChartData)
   }
 
   const fetchOrdersWithJourney = async (): Promise<void> => {
@@ -95,6 +111,7 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
         authDispatch!({ type: 'success' })
         setOrdersWithJourney(orderJourneys)
         setSortedOrders(formatOrders(orderJourneys.ordersWithJourneys))
+        setChartData(formatChartData(orderJourneys?.ordersWithJourneys))
       }
     }
     setLoading(false)
@@ -124,12 +141,17 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
 
       {ordersWithJourney.totalForRange > 0 && (
         <div id="table-wrapper" style={{ opacity: loading ? '0.5' : '1' }}>
+          <SparkChart 
+            data={chartData}
+            accessibilityLabel="Orders Journey"
+          />
           <Stack distribution="fill">
             <Text variant="headingSm" as="p">Showing {ordersWithJourney.count} of {ordersWithJourney.totalForRange} total orders</Text>
           </Stack>
 
           <Stack>
             <DataTable 
+              stickyHeader={true}
               columnContentTypes={[
                 'text',
                 'text',

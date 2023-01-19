@@ -10,3 +10,15 @@ code {
   background: var(--p-background);
   color: var(--p-text);
 }
+
+.spark-wrapper {
+  padding: 10px 0;
+}
+
+#table-wrapper {
+  max-width: 800px;
+} 
+
+#table-wrapper .Polaris-DataTable__Cell {
+  white-space: pre;
+}
