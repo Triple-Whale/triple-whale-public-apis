@@ -113,7 +113,7 @@ export const PostMetrics: React.FC = () => {
             value={metrics.spendValue}
             onChange={(v) => handleChange('spendValue', v)}
             autoComplete="false"
-            type="currency"
+            type="number"
           />
           <TextField 
             label={"Currency description"}
