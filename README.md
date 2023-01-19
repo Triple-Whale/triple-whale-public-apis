@@ -6,7 +6,7 @@ With the Triple Whale API, you can easily integrate our powerful analytics and a
 
 ## Available Endpoints
 
-- **Metrics Endpoint**: [[`/tw-metrics`](https://developers.triplewhale.com/swagger/index.html#/summary/summary-add-metrics)] - This endpoint allows you to push custom metrics into the Triple Whale summary page/dashboard and extract summary page data.
+- **Metrics Endpoint**: [[`/tw-metrics`](https://developers.triplewhale.com/swagger/index.html#/summary/summary-add-metrics)] - This endpoint allows you to push custom metrics into the Triple Whale summary page/dashboard and extract any data pushed in to the summary page by your external service.
   - Supported Methods: 
     - POST [[`/tw-metrics/metrics`](https://developers.triplewhale.com/swagger/index.html#/summary/summary-get-metrics)]
     - GET [[`/tw-metrics/metrics-data`](https://developers.triplewhale.com/swagger/index.html#/summary/summary-add-metrics)]
