@@ -4,7 +4,7 @@ import { Button, Card, Layout, Text, Stack } from '@shopify/polaris';
 export const LoginCard: React.FC = () => {
   const [loggingIn, setLoggingIn] = useState(false)
 
-  const logIn = async () => {
+  const logIn = async (): Promise<void> => {
     setLoggingIn(true)
   
     const loginFetch = await fetch('/login', {

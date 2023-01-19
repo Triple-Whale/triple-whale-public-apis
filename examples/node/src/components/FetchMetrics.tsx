@@ -31,7 +31,7 @@ export const FetchMetrics: React.FC = () => {
     setMetrics([])
   }
 
-  const fetchMetrics = async () => {
+  const fetchMetrics = async (): Promise<void> => {
     setLoading(true)
     const selectedRange = rawDateRanges.find(range => range.value.id == selected)
     if(selectedRange) {

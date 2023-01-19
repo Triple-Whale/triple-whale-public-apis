@@ -67,7 +67,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
     setCurrentPage(0)
   }
 
-  const fetchOrdersWithJourney = async (sentPage: number | string = 0) => {
+  const fetchOrdersWithJourney = async (sentPage: number | string = 0): Promise<void> => {
     setLoading(true)
     const selectedRange = rawDateRanges.find(range => range.value.id == selected)
     if(selectedRange) {

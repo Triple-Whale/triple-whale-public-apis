@@ -64,7 +64,7 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
     setOrdersWithJourney({} as ordersWithJourneyNew)
   }
 
-  const fetchOrdersWithJourney = async () => {
+  const fetchOrdersWithJourney = async (): Promise<void> => {
     setLoading(true)
     const selectedRange = rawDateRanges.find(range => range.value.id == selected)
     if(selectedRange) {
@@ -89,8 +89,8 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
         orderJourneys.code
         && orderJourneys.code !== 200
       ) {
-        authDispatch!({ type: 'expired',message: orderJourneys.message})
-        toastDispatch!({ type: 'error',message: orderJourneys.message})
+        authDispatch!({ type: 'expired', message: orderJourneys.message})
+        toastDispatch!({ type: 'error', message: orderJourneys.message})
       } else {
         authDispatch!({ type: 'success' })
         setOrdersWithJourney(orderJourneys)

@@ -41,7 +41,7 @@ export const PostMetrics: React.FC = () => {
     return valid?.length > 0
   }
 
-  const postMetrics = async () => {
+  const postMetrics = async (): Promise<void> => {
     setLoading(true)
 
     const postMetrics = await fetch('/post-metrics', {
