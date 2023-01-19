@@ -101,6 +101,14 @@ export function useDateRangesV2() {
 const metricsDateRanges = [
   {
     value: {
+      start: moment().subtract(7, 'days').startOf('day'),
+      end: moment().endOf('day'),
+      id: 'thisweek'
+    },
+    label: 'This Week'
+  },
+  {
+    value: {
       start: moment().startOf('year'),
       end: moment().endOf('day'),
       id: 'thisyear'

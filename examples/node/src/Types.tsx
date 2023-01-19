@@ -1,3 +1,9 @@
+// express 
+export interface twResponse {
+  code: number;
+  data: object;
+}
+
 // tabs
 interface Tab {
   id: string;
@@ -92,7 +98,38 @@ export interface ordersWithJourneyNew {
 
 export type formattedNewOrders = formattedOrder[];
 
-// metrics
+// metrics from api
+export interface metricData {
+  metricId: string;
+  metricName: string;
+  type: string;
+  value: string | number;
+}
+
+export enum metricEnum {
+  'clicks',
+  'spend',
+}
+
+export type metricKeys = keyof typeof metricEnum;
+
+export type EnumMetricKeys = {
+  [key in metricKeys]: metricData;
+}
+
+export interface metricsBreakdown {
+  date: string;
+  metrics: EnumMetricKeys
+}
+
+export interface formattedMetric {
+  id: string;
+  metricsBreakdown: metricsBreakdown[]
+}
+
+export type metricsData = formattedMetric[]
+
+// metrics in component
 export interface metricsDynamicData {
   spendName: string;
   spendValue: string;
@@ -102,16 +139,10 @@ export interface metricsDynamicData {
   clicksDescription: string;
 }
 
-// express 
-export interface twResponse {
-  code: number;
-  data: object;
-}
-
 // charts
 export interface sparkChartDataLineItem {
- key: number;
- value: number;
+  key: number;
+  value: number;
 }
 
 export interface sparkChartObject {

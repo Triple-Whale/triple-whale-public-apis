@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { 
   Button, 
+  Card,
   Text, 
   Select, 
   Spinner, 
@@ -9,11 +10,21 @@ import {
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import { useMetricsDateRanges } from '../contexts/DateRanges';
+import { SparkChart } from './SparkChart'
+import { 
+  formattedMetric,
+  metricsData, 
+  metricEnum, 
+  metricKeys, 
+  metricsBreakdown, 
+  sparkChartObject,
+  sparkChartData 
+} from '../Types'
 import moment from 'moment'
 
 export const FetchMetrics: React.FC = () => {
   const [loading, setLoading] = useState(false)
-  const [metrics, setMetrics] = useState({})
+  const [metrics, setMetrics] = useState({} as metricsData)
 
   const authDispatch = useAuthDispatch()
   const toastDispatch = useToastDispatch()
@@ -26,9 +37,30 @@ export const FetchMetrics: React.FC = () => {
   const [selected, setSelected] = useState(dateRanges[0].value);
   const [options] = useState(dateRanges)
 
+  const [chartsData, setChartsData] = useState({} as any)
+  const formatChartsData = (data: formattedMetric) => {
+    const cachedMetrics = { 
+      clicks: { name: 'Clicks', value: 0, chart: [{ data: [] as sparkChartData }] }, 
+      spend: { name: 'Spend', value: 0, chart: [{ data: [] as sparkChartData }] } 
+    }
+    
+    data.metricsBreakdown.forEach((record: metricsBreakdown) => {
+      Object.values(metricEnum).forEach((key: string | metricEnum) => {
+        if(record?.metrics[key as metricKeys]) {
+          cachedMetrics[key as metricKeys].value += parseFloat(record?.metrics[key as metricKeys].value.toString())
+          cachedMetrics[key as metricKeys].chart[0].data.push(record?.metrics[key as metricKeys] as sparkChartData | any) //@TODO types
+        }
+      })
+    })
+
+    console.log(cachedMetrics)
+    return cachedMetrics
+  }
+
   const handleSelectChange = (val: string) => {
     setSelected(val)
     setMetrics([])
+    setChartsData([])
   }
 
   const fetchMetrics = async (): Promise<void> => {
@@ -59,6 +91,7 @@ export const FetchMetrics: React.FC = () => {
       } else {
         authDispatch!({ type: 'success' })
         setMetrics(fetchGetMetrics)
+        setChartsData(formatChartsData(fetchGetMetrics.data[0]))
       }
 
     }
@@ -86,7 +119,20 @@ export const FetchMetrics: React.FC = () => {
         {loading ?? (
           <Spinner accessibilityLabel="Loading metrics" size="large" />
         )}
-        {Object.keys(metrics).length > 0 && (<pre>{JSON.stringify(metrics)}</pre>)}
+        {Object.keys(metrics).length > 0 && (
+          <Stack wrap={true} distribution="fillEvenly">
+            {Object.keys(chartsData).map((key) => (
+              <Card sectioned key={key}>
+                <Text variant="headingMd" as='h1'>{chartsData[key].name}</Text>
+                <Text variant="bodyMd" as="p">{chartsData[key].value}</Text>
+                <SparkChart
+                  data={chartsData[key].chart}
+                  accessibilityLabel={chartsData[key].name}
+                />
+              </Card>
+            ))}
+          </Stack>
+        )}
     </Stack>
   )
 }

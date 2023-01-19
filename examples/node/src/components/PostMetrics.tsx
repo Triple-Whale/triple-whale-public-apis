@@ -105,7 +105,7 @@ export const PostMetrics: React.FC = () => {
           <TextField 
             label={"Currency metric name"}
             value={metrics.spendName}
-            onChange={(v) => handleChange('spendName', v)}
+            disabled={true}
             autoComplete="false"
           />
           <TextField 
@@ -126,7 +126,7 @@ export const PostMetrics: React.FC = () => {
           <TextField 
             label={"Clicks name"}
             value={metrics.clicksName}
-            onChange={(v) => handleChange('clicksName', v)}
+            disabled={true}
             autoComplete="false"
           />
           <TextField 
