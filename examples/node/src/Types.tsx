@@ -174,3 +174,10 @@ export interface sparkChartObject {
 }
 
 export type sparkChartData = sparkChartObject[]
+
+// data export
+export interface dataExportProps { 
+  data: any[], 
+  title: string, 
+  disabled: boolean 
+}

@@ -2,10 +2,11 @@ import { useRef, useState } from 'react'
 import { 
   Button, 
   Card,
-  Text, 
   Select, 
   Spinner, 
-  Stack
+  Stack,
+  Text, 
+  Tooltip
 } from '@shopify/polaris';
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
@@ -20,6 +21,7 @@ import {
   sparkChartDataLineItem
 } from '../Types'
 import moment from 'moment'
+import { DataExport } from '../DataExport';
 
 export const FetchMetrics: React.FC = () => {
   const [loading, setLoading] = useState(false)
@@ -112,18 +114,35 @@ export const FetchMetrics: React.FC = () => {
       <Text variant="bodyMd" as="p">
         Below will make a <code>GET</code> request to the API endpoint <code>https://api.triplewhale.com/api/v2/tw-metrics/metrics-data</code>
       </Text>
-      <Stack wrap={true} distribution="fillEvenly" alignment="trailing">
-        <Select
-          label="Date range"
-          options={options}
-          onChange={handleSelectChange}
-          value={selected}
-        />
-        <Button 
-          fullWidth 
-          onClick={() => fetchMetrics()}
-          loading={loading}
-        >Fetch Metrics</Button>
+      <Stack wrap={true} alignment="trailing">
+        <Stack.Item fill>
+          <Select
+            label="Date range"
+            options={options}
+            onChange={handleSelectChange}
+            value={selected}
+          />
+        </Stack.Item>
+        <Stack.Item fill>
+          <Button 
+            fullWidth 
+            onClick={() => fetchMetrics()}
+            loading={loading}
+          >Fetch Metrics</Button>
+        </Stack.Item>
+        <Stack.Item>
+          <Tooltip 
+            content="Download Metrics"
+            preferredPosition="above"
+          >
+            <DataExport
+              data={metrics}
+              title="metrics"
+              loading={loading}
+              disabled={Object.keys(metrics).length <= 0}
+            />
+          </Tooltip>
+        </Stack.Item>
       </Stack>
       {loading ?? (<Spinner accessibilityLabel="Loading metrics" size="large" />)}
       {Object.keys(metrics).length > 0 && (

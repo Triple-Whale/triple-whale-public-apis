@@ -3,10 +3,11 @@ import {
   Button, 
   DataTable, 
   Pagination,
-  Text, 
   Select, 
   Spinner, 
-  Stack
+  Stack,
+  Text, 
+  Tooltip
 } from '@shopify/polaris';
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
@@ -21,6 +22,7 @@ import {
   platformClick,
   sparkChartData
 } from '../Types'
+import { DataExport } from '../DataExport';
 
 const formatOrders = (orders: oldOrders) => {
   return orders.map((order: oldOrder) => ([
@@ -134,18 +136,35 @@ export const FetchOrdersWithJourneys: React.FC = () => {
       <Text variant="bodyMd" as="p">
         Below will make a <code>POST</code> request to the API endpoint <code>https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys</code>
       </Text>
-      <Stack wrap={true} distribution="fillEvenly" alignment="trailing">
-        <Select
-          label="Date range"
-          options={options}
-          onChange={handleSelectChange}
-          value={selected}
-        />
-        <Button 
-          fullWidth 
-          onClick={() => fetchOrdersWithJourney()}
-          loading={loading}
-        >Fetch Orders with Journey</Button>
+      <Stack wrap={true} alignment="trailing">
+        <Stack.Item fill>
+          <Select
+            label="Date range"
+            options={options}
+            onChange={handleSelectChange}
+            value={selected}
+          />
+        </Stack.Item>
+        <Stack.Item fill>
+          <Button 
+            fullWidth 
+            onClick={() => fetchOrdersWithJourney()}
+            loading={loading}
+          >Fetch Orders with Journey</Button>
+        </Stack.Item>
+        <Stack.Item>
+          <Tooltip 
+            content="Download Orders wih Journeys"
+            preferredPosition="above"
+          >
+            <DataExport
+              data={chartData}
+              title="Orders with Journeys"
+              loading={loading}
+              disabled={Object.keys(chartData).length <= 0}
+            />
+          </Tooltip>
+        </Stack.Item>
       </Stack>
       {loading ?? (
         <Spinner accessibilityLabel="Loading orders" size="large" />
