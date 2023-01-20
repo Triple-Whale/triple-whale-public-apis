@@ -73,7 +73,11 @@ const refresh = async(res?: Response) => {
           console.log(chalk.magenta(`[refresh] error refreshing token`, response.error))
         }
 
-        if(res) res.json(response)
+        if(res && response.error) {
+          res.json(response)
+        } else {
+          res?.redirect('/')
+        }
     })
     .catch((err) => {
       console.log(chalk.red('[refresh] error refreshing token', err))
