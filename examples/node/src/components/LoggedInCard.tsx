@@ -15,7 +15,8 @@ export const LoggedInCard: React.FC = () => {
   const refreshToken = async () => {
     setRefreshing(true)
     await fetch('/refresh')
-    setRefreshing(false)
+    location.reload()
+    // setRefreshing(false)
   }
 
   return (
