@@ -20,5 +20,5 @@ code {
 } 
 
 #table-wrapper .Polaris-DataTable__Cell {
-  white-space: pre;
+  white-space: pre-wrap;
 }
