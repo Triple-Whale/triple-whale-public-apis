@@ -23,11 +23,11 @@ or
 
 ## Production server
 
-`yarn build && yarn preview`
+`yarn preview`
 
 or
 
-`npm run build && npm run preview`
+`npm run preview`
 
 ## Caveats
 
