@@ -57,8 +57,6 @@ export const FetchMetrics: React.FC = () => {
       })
     })
 
-    console.log(cachedMetrics)
-
     return cachedMetrics
   }
 
