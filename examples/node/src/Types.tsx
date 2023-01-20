@@ -1,5 +1,6 @@
 // express 
-export interface twResponse {
+import { Response } from 'express';
+export interface twResponse extends Response {
   code: number;
   data: object;
 }
@@ -14,19 +15,41 @@ interface Tab {
 export type TabsType = Tab[]
 
 // shared reducer action
-export interface reducerAction {
+export enum enumAuthTypes {
+  'authenticated',
+  'expired',
+  'error',
+  'success',
+  'loading'
+}
+
+export interface authAction {
+  type: string;
+  message?: string;
+  active?: boolean;
+}
+// auth
+export interface authState {
+  authenticated: boolean;
+  error: boolean;
+  message: string;
+  loading: boolean;
+}
+
+// toast
+export enum enumToastTypes {
+  'success',
+  'error'
+}
+
+export type toastAction = {
   type: string;
   message?: string;
   active?: boolean;
 }
 
-export type toastState = reducerAction
+export type toastState = toastAction
 
-export interface authState {
-  authenticated: boolean;
-  error: boolean;
-  message: string;
-}
 
 export interface childrenProps {
   children: JSX.Element;
@@ -141,7 +164,7 @@ export interface metricsDynamicData {
 
 // charts
 export interface sparkChartDataLineItem {
-  key: number;
+  key: number | string;
   value: number;
 }
 

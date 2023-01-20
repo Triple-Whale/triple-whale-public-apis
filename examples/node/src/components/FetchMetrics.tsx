@@ -17,8 +17,7 @@ import {
   metricEnum, 
   metricKeys, 
   metricsBreakdown, 
-  sparkChartObject,
-  sparkChartData 
+  sparkChartDataLineItem
 } from '../Types'
 import moment from 'moment'
 
@@ -40,20 +39,26 @@ export const FetchMetrics: React.FC = () => {
   const [chartsData, setChartsData] = useState({} as any)
   const formatChartsData = (data: formattedMetric) => {
     const cachedMetrics = { 
-      clicks: { name: 'Clicks', value: 0, chart: [{ data: [] as sparkChartData }] }, 
-      spend: { name: 'Spend', value: 0, chart: [{ data: [] as sparkChartData }] } 
+      clicks: { name: 'Clicks', value: 0, chart: [{ data: [] as sparkChartDataLineItem[] }] }, 
+      spend: { name: 'Spend', value: 0, chart: [{ data: [] as sparkChartDataLineItem[] }] } 
     }
     
     data.metricsBreakdown.forEach((record: metricsBreakdown) => {
       Object.values(metricEnum).forEach((key: string | metricEnum) => {
-        if(record?.metrics[key as metricKeys]) {
-          cachedMetrics[key as metricKeys].value += parseFloat(record?.metrics[key as metricKeys].value.toString())
-          cachedMetrics[key as metricKeys].chart[0].data.push(record?.metrics[key as metricKeys] as sparkChartData | any) //@TODO types
+        const recordMetric = record?.metrics[key as metricKeys] ?? false
+        if(recordMetric) {
+          const recordVal = parseFloat(recordMetric.value.toString())
+          cachedMetrics[key as metricKeys].value += recordVal
+          cachedMetrics[key as metricKeys].chart[0].data.push({
+            key: recordMetric.metricName.toString(),
+            value: recordVal
+          })
         }
       })
     })
 
     console.log(cachedMetrics)
+
     return cachedMetrics
   }
 
@@ -123,8 +128,8 @@ export const FetchMetrics: React.FC = () => {
           <Stack wrap={true} distribution="fillEvenly">
             {Object.keys(chartsData).map((key) => (
               <Card sectioned key={key}>
-                <Text variant="headingMd" as='h1'>{chartsData[key].name}</Text>
-                <Text variant="bodyMd" as="p">{chartsData[key].value}</Text>
+                <Text variant="bodySm" as="p">{chartsData[key].name}</Text>
+                <Text variant="headingLg" as='h1'>{chartsData[key].value}</Text>
                 <SparkChart
                   data={chartsData[key].chart}
                   accessibilityLabel={chartsData[key].name}

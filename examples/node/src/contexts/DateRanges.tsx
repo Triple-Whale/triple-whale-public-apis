@@ -125,7 +125,7 @@ const metricsDateRanges = [
   },
   {
     value: {
-      start: moment().subtract(9999, 'day'),
+      start: moment("2020-01-01").endOf('day'),
       end: moment().endOf('day'),
       id: 'alltime'
     },

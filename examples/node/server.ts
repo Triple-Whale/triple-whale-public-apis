@@ -28,6 +28,7 @@ const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SHOP_URL, SCOPE } = process.env
 
 const localStorage = new LocalStorage('./scratch')
 let TOKEN = localStorage.getItem('TOKEN') || false
+let REFRESH_TOKEN = localStorage.getItem('REFRESH_TOKEN') || false
 let LOCAL_SECRET = localStorage.getItem('LOCAL_SECRET') || false
 if(!LOCAL_SECRET) {
   LOCAL_SECRET = crypto.randomBytes(20).toString('hex');
@@ -37,11 +38,54 @@ if(!LOCAL_SECRET) {
 // -----------------------
 // Helpers
 // -----------------------
-const responseChecker = (response: twResponse) => {
+const refresh = async(res?: Response) => {
+  console.log(chalk.magenta(`[refresh] token re-requested`))
+
+  // Exchange the refresh token for a fresh token
+  const url = "https://api.triplewhale.com/api/v2/auth/oauth2/token";
+
+  const options = {
+    method: "POST",
+    headers: { "content-type": "application/x-www-form-urlencoded" },
+    body: querystring.stringify({
+      client_id: CLIENT_ID,
+      client_secret: CLIENT_SECRET,
+      grant_type: "refresh_token",
+      refresh_token: REFRESH_TOKEN
+    })
+  };
+
+  fetch(url, options)
+    .then(response => response.json())
+    .then((response) => {
+        const token = response.access_token;
+        const refresh = response.refresh_token;
+
+        if(token && refresh) {
+          localStorage.setItem('TOKEN', token)
+          localStorage.setItem('REFRESH_TOKEN', refresh)
+
+          TOKEN = token
+          REFRESH_TOKEN = refresh
+          console.log(chalk.magenta(`[refresh] new token acquired`))
+
+        } else {
+          console.log(chalk.magenta(`[refresh] error refreshing token`, response.error))
+        }
+
+        if(res) res.json(response)
+    })
+    .catch((err) => {
+      console.log(chalk.red('[refresh] error refreshing token', err))
+      if(res) res.json(err)
+    })
+}
+
+const responseChecker = async (response: twResponse) => {
   if(response.code == 401) {
     localStorage.removeItem('TOKEN')
     localStorage.removeItem('LOCAL_SECRET')
-    console.log(appName + chalk.red(`token expired! please restart your app`))
+    await refresh()
   }
 }
 
@@ -97,16 +141,18 @@ app.get("/callback", (req: Request, res: Response) => {
   fetch(url, options)
     .then(response => response.json())
     .then((response) => {
-      // THIS IS YOUR TOKEN FOR AUTHENTICATING API REQUESTS
+      // This is your token
       const token = response.access_token;
 
-      // Your token has an expiry date. 
-      // In order to get a new token, you will need to store the refresh token in your database.
-      // const refreshToken = JSON.parse(body).refresh_token;
+      // This is used to refresh this token when it expires
+      const refresh = response.refresh_token;
 
       // For local dev, cache token in localStorage
       localStorage.setItem('TOKEN', token)
+      localStorage.setItem('REFRESH_TOKEN', refresh)
+
       TOKEN = token
+      REFRESH_TOKEN = refresh
       console.log(chalk.magenta(`[callback] token acquired`))
 
       res.redirect("/");
@@ -117,7 +163,14 @@ app.get("/callback", (req: Request, res: Response) => {
 });
 
 // -----------------------
-// Test API Requests - third step in flow
+// Refresh token
+// -----------------------
+app.get('/refresh', async (_req: Request, res: Response) => {
+  await refresh(res)
+})
+
+// -----------------------
+// Test API requests
 // -----------------------
 app.post("/get-orders-with-journeys", (req: Request, res: Response) => {
   const url = "https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys"
@@ -195,6 +248,7 @@ app.get("/get-metrics", (req: Request, res: Response) => {
   })
     .then(response => response.json())
     .then((response) => {
+      responseChecker(response)
       res.json(response)
     })
     .catch((err) => {

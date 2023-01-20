@@ -1,9 +1,9 @@
 import  { Toast } from '@shopify/polaris';
 import { createContext, useCallback, useContext, useReducer } from 'react';
-import { childrenProps, reducerAction, toastState } from '../Types'
+import { childrenProps, toastAction, toastState } from '../Types'
 
 export const ToastContext = createContext<toastState>({} as toastState);
-export const ToastDispatchContext = createContext<((action: reducerAction) => void) | null>(null);
+export const ToastDispatchContext = createContext<((action: toastAction) => void) | null>(null);
 
 const defaultMessage: toastState = {
   type: 'success',
@@ -39,7 +39,7 @@ export function ToastProvider({ children }: childrenProps) {
   );
 }
 
-function toastReducer<S>(_state: S, action: reducerAction) {
+function toastReducer<S>(_state: S, action: toastAction):toastState {
   switch (action?.type) {
     case 'success': {
       return {
