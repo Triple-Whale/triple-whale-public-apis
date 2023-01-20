@@ -30,22 +30,26 @@ export const TabbedRequests: React.FC = () => {
   const tabs : TabsType = [
     {
       id: 'fetch-orders-with-journeys',
-      content: 'Get Orders',
+      content: 'Journeys',
+      info: 'Fetch Orders with Journeys',
       tabContent: <FetchOrdersWithJourneys />
     },
     {
       id: 'fetch-orders-with-journeys-v2',
-      content: 'Get Orders V2',
+      content: 'Journeys V2',
+      info: 'Fetch Orders with Journeys V2',
       tabContent: <FetchOrdersWithJourneysV2 />
     },
     {
       id: 'fetch-metrics',
-      content: 'Get Metrics',
+      content: 'Metrics',
+      info: 'Fetch Sent Metrics',
       tabContent: <FetchMetrics />
     },
     {
       id: 'post-metrics',
-      content: 'Post Metrics',
+      content: 'Send Metrics',
+      info: 'Send Custom Metrics to Triple Whale',
       tabContent: <PostMetrics />
     }
   ];
@@ -54,7 +58,7 @@ export const TabbedRequests: React.FC = () => {
     <Layout.Section>
       <Card>
         <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange}>
-          <Card.Section title={tabs[selected].content}>
+          <Card.Section title={tabs[selected].info}>
             {tabs[selected]?.tabContent}
           </Card.Section>
         </Tabs>

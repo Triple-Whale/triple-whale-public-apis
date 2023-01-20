@@ -83,8 +83,6 @@ const refresh = async(res?: Response) => {
 
 const responseChecker = async (response: twResponse) => {
   if(response.code == 401) {
-    localStorage.removeItem('TOKEN')
-    localStorage.removeItem('LOCAL_SECRET')
     await refresh()
   }
 }

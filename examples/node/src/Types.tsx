@@ -9,6 +9,7 @@ export interface twResponse extends Response {
 interface Tab {
   id: string;
   content: string;
+  info?: string;
   tabContent: JSX.Element;
 }
 
