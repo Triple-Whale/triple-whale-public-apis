@@ -36,7 +36,7 @@ export const FetchMetrics: React.FC = () => {
   const [selected, setSelected] = useState(dateRanges[0].value);
   const [options] = useState(dateRanges)
 
-  const [chartsData, setChartsData] = useState({} as any)
+  const [chartsData, setChartsData] = useState({} as object)
   const formatChartsData = (data: formattedMetric) => {
     const cachedMetrics = { 
       clicks: { name: 'Clicks', value: 0, chart: [{ data: [] as sparkChartDataLineItem[] }] }, 
