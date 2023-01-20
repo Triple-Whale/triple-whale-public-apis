@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { 
   Button, 
   Card,
@@ -99,6 +99,12 @@ export const FetchMetrics: React.FC = () => {
 
     }
     setLoading(false)
+  }
+
+  const initialized = useRef(false);
+  if (!initialized.current) {
+    fetchMetrics()
+    initialized.current = true;
   }
 
   return (

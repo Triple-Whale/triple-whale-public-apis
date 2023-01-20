@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { 
   Button, 
   DataTable, 
@@ -115,6 +115,12 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
       }
     }
     setLoading(false)
+  }
+
+  const initialized = useRef(false);
+  if (!initialized.current) {
+    fetchOrdersWithJourney()
+    initialized.current = true;
   }
 
   return (
