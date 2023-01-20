@@ -36,7 +36,7 @@ export const FetchMetrics: React.FC = () => {
   const [selected, setSelected] = useState(dateRanges[0].value);
   const [options] = useState(dateRanges)
 
-  const [chartsData, setChartsData] = useState({} as object)
+  const [chartsData, setChartsData] = useState([] as any)
   const formatChartsData = (data: formattedMetric) => {
     const cachedMetrics = { 
       clicks: { name: 'Clicks', value: 0, chart: [{ data: [] as sparkChartDataLineItem[] }] }, 
@@ -118,24 +118,22 @@ export const FetchMetrics: React.FC = () => {
           onClick={() => fetchMetrics()}
           loading={loading}
         >Fetch Metrics</Button>
+      </Stack>
+      {loading ?? (<Spinner accessibilityLabel="Loading metrics" size="large" />)}
+      {Object.keys(metrics).length > 0 && (
+        <Stack wrap={true} distribution="fillEvenly">
+          {Object.keys(chartsData).map((key) => (
+            <Card sectioned key={key}>
+              <Text variant="bodySm" as="p">{chartsData[key].name}</Text>
+              <Text variant="headingLg" as='h1'>{chartsData[key].value}</Text>
+              <SparkChart
+                data={chartsData[key].chart}
+                accessibilityLabel={chartsData[key].name}
+              />
+            </Card>
+          ))}
         </Stack>
-        {loading ?? (
-          <Spinner accessibilityLabel="Loading metrics" size="large" />
-        )}
-        {Object.keys(metrics).length > 0 && (
-          <Stack wrap={true} distribution="fillEvenly">
-            {Object.keys(chartsData).map((key) => (
-              <Card sectioned key={key}>
-                <Text variant="bodySm" as="p">{chartsData[key].name}</Text>
-                <Text variant="headingLg" as='h1'>{chartsData[key].value}</Text>
-                <SparkChart
-                  data={chartsData[key].chart}
-                  accessibilityLabel={chartsData[key].name}
-                />
-              </Card>
-            ))}
-          </Stack>
-        )}
+      )}
     </Stack>
   )
 }
