@@ -32,7 +32,8 @@ export const LoggedInCard: React.FC = () => {
         ) : (
           <Stack vertical>
             <Text variant="headingLg" as="h2">{message || 'Your JWT Expired'}</Text>
-            <Text variant="bodyMd" as="p">We're going to try and refresh your token.. but if it doesn't work, please restart your server, or try again!</Text>
+            <Text variant="bodyMd" as="p">We're going to try and refresh your token. If it doesn't work, please try to refresh it yourself using the button below.</Text>
+            <Text variant="bodyMd" as="p"> If that doesn't work, restart your server, or try again later! 😅</Text>
             {!loading && (<Button loading={refreshing} onClick={refreshToken}>Refresh Token</Button>)}
           </Stack>
         )}
