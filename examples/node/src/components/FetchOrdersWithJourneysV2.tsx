@@ -101,6 +101,13 @@ const formatDonutData = (orders: newOrders) => {
     })
   })
 
+   // sort
+   Object.keys(rawData).map((key: string) => {
+    rawData[key as donutDataKeys]?.data.sort((a, b) => {
+      return b.data[0].value - a.data[0].value
+    })
+  })
+
   return rawData
 }
 
