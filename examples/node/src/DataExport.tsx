@@ -1,7 +1,10 @@
 import { useCallback, useState } from 'react'
-import { Button, Popover, ActionList } from '@shopify/polaris';
-import { ArrowDownMinor } from '@shopify/polaris-icons';
+import { Button, Popover, ActionList } from '@shopify/polaris'
+import { ArrowDownMinor } from '@shopify/polaris-icons'
 import { dataExportProps } from './Types'
+
+// @ts-ignore
+import { Parser } from '@json2csv/plainjs'
 
 export const DataExport: React.FC<any> = (props: dataExportProps) => {
   const { data, title, disabled } = props
@@ -10,27 +13,9 @@ export const DataExport: React.FC<any> = (props: dataExportProps) => {
   const [popoverActive, setPopoverActive] = useState(false);
   const togglePopoverActive = useCallback(() => setPopoverActive((popoverActive) => !popoverActive), []);
 
-  const convertToCSV = (jsonObj: any) => {
-    let array = typeof jsonObj != 'object' ? JSON.parse(jsonObj) : jsonObj;
-    let str = '';
-
-    for (let i = 0; i < array.length; i++) {
-      let line = '';
-      for (let index in array[i]) {
-        if (line != '') line += ','
-        line += array[i][index];
-      }
-
-      str += line + '\r\n';
-    }
-
-    return str;
-  }
-
   const exportCSVFile = (items: any, title: any) => {
-    // Convert Object to JSON
-    const jsonObject = JSON.stringify(items)
-    const csv = convertToCSV(jsonObject)
+    const parser = new Parser()
+    const csv = parser.parse(items)
     const exportedFilename = title.toLowerCase().replace(/ /g, '_') + '.csv' || 'export.csv'
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
     let link = document.createElement("a")

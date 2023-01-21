@@ -9,6 +9,7 @@
     "preview": "NODE_ENV=production ts-node server.ts"
   },
   "dependencies": {
+    "@json2csv/plainjs": "^6.1.2",
     "@shopify/polaris": "^10.19.0",
     "@shopify/polaris-icons": "^6.8.0",
     "@shopify/polaris-viz": "^7.13.1",
