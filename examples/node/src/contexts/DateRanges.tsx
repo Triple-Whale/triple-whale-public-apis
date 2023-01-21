@@ -117,8 +117,8 @@ const metricsDateRanges = [
   },
   {
     value: {
-      start: moment().subtract(365, 'day'),
-      end: moment().endOf('day'),
+      start: moment().subtract(730, 'day'),
+      end: moment().subtract(365, 'day'),
       id: 'lastyear'
     },
     label: 'Last Year'

@@ -1,8 +1,7 @@
-import { DonutChart, SparkLineChart } from '@shopify/polaris-viz';
+import { DonutChart, SparkLineChart, LineChart } from '@shopify/polaris-viz';
 
 const numberStyles = {
   fontWeight: 600,
-  fontFamily: "ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace",
 }
 
 const renderInnerValueContent = ({activeValue, totalValue}: any, getAnimatedTotalValue: any) => {
@@ -32,7 +31,7 @@ const renderInnerValueContent = ({activeValue, totalValue}: any, getAnimatedTota
         margin: '8px 0',
       }}>
         {activeValue ? (
-          <span  style={{
+          <span style={{
             fontSize: 15,
             margin: 0,
             ...numberStyles,
@@ -73,5 +72,16 @@ export const SparkChart: React.FC<any> = (props: { data: any, accessibilityLabel
         data={data}
       />
     </div>
+  )
+}
+
+export const ALineChart: React.FC<any> = (props: { data: any, annotations: any }) => {
+  const { data, annotations } = props
+  return (
+    <LineChart
+      theme="Light"
+      annotations={annotations}
+      data={data}
+    />
   )
 }

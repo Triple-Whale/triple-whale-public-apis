@@ -59,7 +59,7 @@ export interface childrenProps {
 // old orders
 export interface platformClick {
   campaignId: string;
-  clickDate: string;
+  clickDate: moment.Moment;
   source: string;
 }
 
@@ -142,8 +142,8 @@ export type EnumMetricKeys = {
 }
 
 export interface metricsBreakdown {
-  date: string;
-  metrics: EnumMetricKeys
+  date: moment.Moment;
+  metrics: EnumMetricKeys;
 }
 
 export interface formattedMetric {
@@ -171,6 +171,8 @@ export interface sparkChartDataLineItem {
 
 export interface sparkChartObject {
   data: sparkChartDataLineItem[]
+  name?: string;
+  isComparison?: boolean;
 }
 
 export type sparkChartData = sparkChartObject[]

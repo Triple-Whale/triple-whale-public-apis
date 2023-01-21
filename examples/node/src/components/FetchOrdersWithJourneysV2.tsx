@@ -12,7 +12,7 @@ import {
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import { useDateRangesV2 } from '../contexts/DateRanges';
-import { DonutPieChart, SparkChart } from './Charts'
+import { DonutPieChart, ALineChart } from './Charts'
 import { 
   formattedOrder,
   formattedNewOrders, 
@@ -38,11 +38,18 @@ const formatChartData = (orders: newOrders) => {
   return [
     {
       data: orders.map(((order: newOrder, i: number) => ({
-        key: i,
+        key: order.order_id,
         value: order.journey?.length
-      })))
-    }
+      }))),
+      name: "Journey Length"
+    },
   ]
+}
+
+const formatAverageJourney = (orders: newOrders) => {
+  return Math.round(orders.reduce((a, c) => {
+    return a + c?.journey?.length
+  }, 0) / orders.length)
 }
 
 const formatDonutData = (orders: newOrders) => {
@@ -62,8 +69,6 @@ const formatDonutData = (orders: newOrders) => {
         if(source && Array.isArray(source)) source = source.flat().toString().replace(/,/g, '\n')
         return o.name === source
       })
-
-      console.log(source)
 
       // @ts-ignore
       if(source) {
@@ -96,6 +101,7 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
   const [sortedOrders, setSortedOrders] = useState([] as formattedNewOrders)
   const [chartData, setChartData] = useState([] as sparkChartData)
   const [donutData, setDonutData] = useState({} as any)
+  const [averageJourney, setAverageJourney] = useState(0)
 
   const authDispatch = useAuthDispatch()
   const toastDispatch = useToastDispatch()
@@ -128,6 +134,7 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
     setSortedOrders([] as formattedNewOrders)
     setChartData([] as sparkChartData)
     setDonutData([] as any)
+    setAverageJourney(0)
   }
 
   const fetchOrdersWithJourney = async (): Promise<void> => {
@@ -161,6 +168,7 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
         authDispatch!({ type: 'success' })
         setOrdersWithJourney(orderJourneys)
         setSortedOrders(formatOrders(orderJourneys?.ordersWithJourneys))
+        setAverageJourney(formatAverageJourney(orderJourneys?.ordersWithJourneys))
         setChartData(formatChartData(orderJourneys?.ordersWithJourneys))
         setDonutData(formatDonutData(orderJourneys?.ordersWithJourneys))
       }
@@ -228,10 +236,16 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
 
           <Stack>
             <Stack.Item fill>
-              <Card title="Orders Journey" sectioned>
-                <SparkChart 
-                  data={chartData}
-                  accessibilityLabel="Orders Journey"
+              <Card title="Journey Length" sectioned>
+                <ALineChart 
+                  data={chartData} 
+                  annotations={[
+                    {
+                      axis: 'y',
+                      label: `Average - ${averageJourney}`,
+                      startKey: averageJourney
+                    }
+                  ]}
                 />
               </Card>
             </Stack.Item>
