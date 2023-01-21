@@ -11,7 +11,7 @@ import {
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import { useMetricsDateRanges } from '../contexts/DateRanges';
-import { SparkChart } from './SparkChart'
+import { SparkChart } from './Charts'
 import { 
   formattedMetric,
   metricsData, 

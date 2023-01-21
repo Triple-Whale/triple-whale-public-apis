@@ -19,6 +19,10 @@ code {
   max-width: 800px;
 } 
 
+#table-wrapper .Polaris-Card {
+  overflow-y: auto;
+}
+
 #table-wrapper .Polaris-DataTable__Cell {
   white-space: pre-wrap;
 }

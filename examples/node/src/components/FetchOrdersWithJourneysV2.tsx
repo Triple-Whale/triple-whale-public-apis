@@ -1,8 +1,8 @@
 import { useCallback, useRef, useState } from 'react'
 import { 
   Button, 
+  Card,
   DataTable, 
-  Pagination,
   Select, 
   Spinner, 
   Stack,
@@ -12,7 +12,7 @@ import {
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import { useDateRangesV2 } from '../contexts/DateRanges';
-import { SparkChart } from './SparkChart'
+import { DonutPieChart, SparkChart } from './Charts'
 import { 
   formattedOrder,
   formattedNewOrders, 
@@ -45,11 +45,57 @@ const formatChartData = (orders: newOrders) => {
   ]
 }
 
+const formatDonutData = (orders: newOrders) => {
+  const rawData = {
+    firstClick: { name: "First Click", data: [] as any },
+    lastClick: { name: "Last Click", data: [] as any },
+    // lastPlatformClick: { name: "Last Platform Click", data: [] as any }
+  }
+
+  orders.map((order: newOrder) => {
+    return Object.keys(rawData).map((key: string) => {
+      // @ts-ignore
+      let source = order?.attribution[key][0] && order?.attribution[key][0].source || false
+      // @ts-ignore
+      const currentVal = rawData[key].data.find((o: any) => {
+        // @ts-ignore
+        if(source && Array.isArray(source)) source = source.flat().toString().replace(/,/g, '\n')
+        return o.name === source
+      })
+
+      console.log(source)
+
+      // @ts-ignore
+      if(source) {
+        if(!currentVal) {
+          // @ts-ignore
+          rawData[key].data.push({
+            data: [
+              {
+                 // @ts-ignore
+                key: rawData[key].name,
+                value: 1
+              }
+            ],
+            // @ts-ignore
+            name: source
+          })
+        } else {
+          currentVal.data[0].value += 1
+        }
+      }
+    })
+  })
+
+  return rawData
+}
+
 export const FetchOrdersWithJourneysV2: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [ordersWithJourney, setOrdersWithJourney] = useState({} as ordersWithJourneyNew)
   const [sortedOrders, setSortedOrders] = useState([] as formattedNewOrders)
   const [chartData, setChartData] = useState([] as sparkChartData)
+  const [donutData, setDonutData] = useState({} as any)
 
   const authDispatch = useAuthDispatch()
   const toastDispatch = useToastDispatch()
@@ -81,6 +127,7 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
     setOrdersWithJourney({} as ordersWithJourneyNew)
     setSortedOrders([] as formattedNewOrders)
     setChartData([] as sparkChartData)
+    setDonutData([] as any)
   }
 
   const fetchOrdersWithJourney = async (): Promise<void> => {
@@ -113,8 +160,9 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
       } else {
         authDispatch!({ type: 'success' })
         setOrdersWithJourney(orderJourneys)
-        setSortedOrders(formatOrders(orderJourneys.ordersWithJourneys))
+        setSortedOrders(formatOrders(orderJourneys?.ordersWithJourneys))
         setChartData(formatChartData(orderJourneys?.ordersWithJourneys))
+        setDonutData(formatDonutData(orderJourneys?.ordersWithJourneys))
       }
     }
     setLoading(false)
@@ -153,7 +201,7 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
             preferredPosition="above"
           >
             <DataExport
-              data={chartData}
+              data={ordersWithJourney}
               title="Orders with Journeys"
               loading={loading}
               disabled={Object.keys(chartData).length <= 0}
@@ -167,10 +215,29 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
 
       {ordersWithJourney.totalForRange > 0 && (
         <div id="table-wrapper" style={{ opacity: loading ? '0.5' : '1' }}>
-          <SparkChart 
-            data={chartData}
-            accessibilityLabel="Orders Journey"
-          />
+         <Stack wrap={true} alignment="trailing">
+            {donutData && Object.keys(donutData).map((key) => (
+              <Stack.Item fill key={key}>
+                <Card title={donutData[key].name}>
+                  <DonutPieChart data={donutData[key].data} />
+                </Card>
+              </Stack.Item>
+            ))}
+          </Stack>
+          <br />
+
+          <Stack>
+            <Stack.Item fill>
+              <Card title="Orders Journey" sectioned>
+                <SparkChart 
+                  data={chartData}
+                  accessibilityLabel="Orders Journey"
+                />
+              </Card>
+            </Stack.Item>
+          </Stack>
+          <br />
+
           <Stack distribution="fill">
             <Text variant="headingSm" as="p">Showing {ordersWithJourney.count} of {ordersWithJourney.totalForRange} total orders</Text>
           </Stack>

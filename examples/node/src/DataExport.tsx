@@ -10,16 +10,17 @@ export const DataExport: React.FC<any> = (props: dataExportProps) => {
   const [popoverActive, setPopoverActive] = useState(false);
   const togglePopoverActive = useCallback(() => setPopoverActive((popoverActive) => !popoverActive), []);
 
-  const convertToCSV = (objArray: any) => {
-    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-    var str = '';
+  const convertToCSV = (jsonObj: any) => {
+    let array = typeof jsonObj != 'object' ? JSON.parse(jsonObj) : jsonObj;
+    let str = '';
 
-    for (var i = 0; i < array.length; i++) {
-      var line = '';
-      for (var index in array[i]) {
+    for (let i = 0; i < array.length; i++) {
+      let line = '';
+      for (let index in array[i]) {
         if (line != '') line += ','
         line += array[i][index];
       }
+
       str += line + '\r\n';
     }
 
@@ -30,13 +31,13 @@ export const DataExport: React.FC<any> = (props: dataExportProps) => {
     // Convert Object to JSON
     const jsonObject = JSON.stringify(items)
     const csv = convertToCSV(jsonObject)
-    const exportedFilenmae = title.toLowerCase().replace(/ /g, '_') + '.json' || 'export.json'
+    const exportedFilename = title.toLowerCase().replace(/ /g, '_') + '.csv' || 'export.csv'
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
-    const link = document.createElement("a")
+    let link = document.createElement("a")
     const url = URL.createObjectURL(blob)
 
     link.setAttribute("href", url)
-    link.setAttribute("download", exportedFilenmae)
+    link.setAttribute("download", exportedFilename)
     link.style.visibility = 'hidden'
     document.body.appendChild(link)
     link.click()
@@ -52,13 +53,13 @@ export const DataExport: React.FC<any> = (props: dataExportProps) => {
   const exportJSONFile = (items: any, title: any) => {
     // Convert Object to JSON
     const jsonObject = JSON.stringify(items)
-    const exportedFilenmae = title.toLowerCase().replace(/ /g, '_') + '.json' || 'export.json'
+    const exportedFilename = title.toLowerCase().replace(/ /g, '_') + '.json' || 'export.json'
     const blob = new Blob([jsonObject], { type: 'application/json;charset=utf-8;' })
-    const link = document.createElement("a")
+    let link = document.createElement("a")
     const url = URL.createObjectURL(blob)
 
     link.setAttribute("href", url)
-    link.setAttribute("download", exportedFilenmae)
+    link.setAttribute("download", exportedFilename)
     link.style.visibility = 'hidden'
     document.body.appendChild(link)
     link.click()
