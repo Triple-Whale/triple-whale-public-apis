@@ -1,4 +1,8 @@
 import { DonutChart, SparkLineChart, LineChart } from '@shopify/polaris-viz';
+import { 
+  annotationsData,
+  sparkChartData,
+} from '../Types';
 
 const numberStyles = {
   fontWeight: 600,
@@ -50,7 +54,7 @@ const renderInnerValueContent = ({activeValue, totalValue}: any, getAnimatedTota
   )
 }
 
-export const DonutPieChart: React.FC<any> = (props: { data: any }) => {
+export const DonutPieChart: React.FC<{data:sparkChartData}> = (props: { data: sparkChartData }) => {
   const { data } = props
   return (
     <DonutChart
@@ -62,7 +66,7 @@ export const DonutPieChart: React.FC<any> = (props: { data: any }) => {
   )
 }
 
-export const SparkChart: React.FC<any> = (props: { data: any, accessibilityLabel: any }) => {
+export const SparkChart: React.FC<{data:sparkChartData,accessibilityLabel:string}> = (props: { data: sparkChartData, accessibilityLabel: string }) => {
   const { data, accessibilityLabel } = props
   return (
     <div className="spark-wrapper">      
@@ -75,7 +79,7 @@ export const SparkChart: React.FC<any> = (props: { data: any, accessibilityLabel
   )
 }
 
-export const ALineChart: React.FC<any> = (props: { data: any, annotations: any }) => {
+export const ALineChart: React.FC<{data:sparkChartData,annotations:annotationsData}> = (props: { data: sparkChartData, annotations: annotationsData }) => {
   const { data, annotations } = props
   return (
     <LineChart

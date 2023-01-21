@@ -13,6 +13,7 @@ import { useToastDispatch } from '../contexts/Toast';
 import { useMetricsDateRanges } from '../contexts/DateRanges';
 import { SparkChart } from './Charts'
 import { 
+  sparkChartData,
   formattedMetric,
   metricsData, 
   metricEnum, 
@@ -96,7 +97,7 @@ export const FetchMetrics: React.FC = () => {
       } else {
         authDispatch!({ type: 'success' })
         setMetrics(fetchGetMetrics)
-        setChartsData(formatChartsData(fetchGetMetrics.data[0]))
+        setChartsData(formatChartsData(fetchGetMetrics.data[0]) as any)
       }
 
     }
@@ -138,7 +139,6 @@ export const FetchMetrics: React.FC = () => {
             <DataExport
               data={metrics}
               title="metrics"
-              loading={loading}
               disabled={Object.keys(metrics).length <= 0}
             />
           </Tooltip>

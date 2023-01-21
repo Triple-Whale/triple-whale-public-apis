@@ -14,17 +14,20 @@ import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import { useDateRanges } from '../contexts/DateRanges'
 import { DonutPieChart, ALineChart } from './Charts'
-
+import { DataExport } from '../DataExport';
 import { 
+  attributionOld,
   formattedOrder,
   formattedOldOrders, 
   oldOrder, 
   oldOrders, 
   ordersWithJourneyOld, 
   platformClick,
-  sparkChartData
+  sparkChartData,
+  donutDataKeys,
+  donutDataObject,
+  donutDataLineItemData
 } from '../Types'
-import { DataExport } from '../DataExport';
 
 const formatOrders = (orders: oldOrders) => {
   return orders.map((order: oldOrder) => ([
@@ -55,39 +58,40 @@ const formatAverageJourney = (orders: oldOrders) => {
 }
 
 const formatDonutData = (orders: oldOrders) => {
-  const rawData = {
-    firstClick: { name: "First Click", data: [] as any },
-    lastClick: { name: "Last Click", data: [] as any },
-    // lastPlatformClick: { name: "Last Platform Click", data: [] as any }
+  const rawData: donutDataObject = {
+    firstClick: { name: "First Click", data: [] },
+    lastClick: { name: "Last Click", data: [] },
+    // lastPlatformClick: { name: "Last Platform Click", data: [] }
   }
 
   orders.map((order: oldOrder) => {
     return Object.keys(rawData).map((key: string) => {
-      // @ts-ignore
-      let source = order?.attribution[key]?.source ?? false
-      // @ts-ignore
-      const currentVal = rawData[key].data.find((o: any) => {
-        // @ts-ignore
-        if(source && Array.isArray(source)) source = source.flat().toString().replace(/,/g, '\n')
-        return o.name === source
+      let source = order?.attribution[key as keyof attributionOld]
+      let sourceString = ''
+
+      if(source && Array.isArray(source)) {
+        sourceString = source[0].source?.replace(/,/g, '\n') ?? ''
+      }  else if(source) sourceString = source.source?.toString() ?? ''
+
+      const currentVal = rawData[key as donutDataKeys]?.data.find((o: donutDataLineItemData) => {
+        return o.name === sourceString
       })
 
-      // @ts-ignore
-      if(source) {
-        if(!currentVal) {
-          // @ts-ignore
-          rawData[key].data.push({
+      if(sourceString !== '') {
+        let k = rawData[key as donutDataKeys]?.name
+
+        if(!currentVal && k) {
+          rawData[key as donutDataKeys]?.data.push({
             data: [
               {
-                 // @ts-ignore
-                key: rawData[key].name,
+                key: k,
                 value: 1
               }
             ],
-            // @ts-ignore
-            name: source
+            name: sourceString
           })
-        } else {
+
+        } else if(currentVal) {
           currentVal.data[0].value += 1
         }
       }
@@ -136,7 +140,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
     setOrdersWithJourney({} as ordersWithJourneyOld)
     setSortedOrders([] as formattedOldOrders)
     setChartData([] as sparkChartData)
-    setDonutData([] as any)
+    setDonutData({} as donutDataObject)
     setAverageJourney(0)
     setCurrentPage(0)
   }
@@ -173,7 +177,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
         authDispatch!({ type: 'success' })
         setCurrentPage(orderJourneys.page)
         setOrdersWithJourney(orderJourneys)
-        setSortedOrders(formatOrders(orderJourneys?.ordersWithJourneys)) 
+        setSortedOrders(formatOrders(orderJourneys?.ordersWithJourneys) as any) 
         setAverageJourney(formatAverageJourney(orderJourneys?.ordersWithJourneys))
         setChartData(formatChartData(orderJourneys?.ordersWithJourneys))
         setDonutData(formatDonutData(orderJourneys?.ordersWithJourneys))
@@ -218,7 +222,6 @@ export const FetchOrdersWithJourneys: React.FC = () => {
             <DataExport
               data={ordersWithJourney}
               title="Orders with Journeys"
-              loading={loading}
               disabled={Object.keys(chartData).length <= 0}
             />
           </Tooltip>

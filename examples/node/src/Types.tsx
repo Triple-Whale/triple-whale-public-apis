@@ -69,11 +69,11 @@ interface journey {
   path: string;
 }
 
-interface attributionOld {
+export interface attributionOld {
   firstClick: platformClick;
   lastClick: platformClick;
-  lastPlatformClick: platformClick[]
-  linearAll: platformClick[]
+  lastPlatformClick?: platformClick[]
+  linearAll?: platformClick[]
 }
 
 export interface oldOrder {
@@ -98,7 +98,7 @@ export type formattedOrder = (string|number)[];
 export type formattedOldOrders = formattedOrder[];
 
 // new orders
-interface attributionNew {
+export interface attributionNew {
   firstClick: platformClick[];
   lastClick: platformClick[];
   lastPlatformClick: platformClick[]
@@ -163,7 +163,7 @@ export interface metricsDynamicData {
   clicksDescription: string;
 }
 
-// charts
+// spark chart
 export interface sparkChartDataLineItem {
   key: number | string;
   value: number;
@@ -177,9 +177,41 @@ export interface sparkChartObject {
 
 export type sparkChartData = sparkChartObject[]
 
+// annotations
+export interface annotationsObject {
+  axis: "x" | "y";
+  label: string;
+  startKey: number;
+}
+
+export type annotationsData = annotationsObject[]
+
+// donut chart
+export interface donutDataLineItemData {
+  name: string;
+  data: sparkChartDataLineItem[];
+}
+
+export interface donutDataLineItemObject { 
+  name: string;
+  data: donutDataLineItemData[]
+}
+
+export enum donutDataEnum {
+  'firstClick',
+  'lastClick',
+  'lastPlatformClick',
+}
+
+export type donutDataKeys = keyof typeof donutDataEnum;
+
+export type donutDataObject = {
+  [key in donutDataKeys]?: donutDataLineItemObject;
+}
+
 // data export
 export interface dataExportProps { 
-  data: any[], 
+  data: any, 
   title: string, 
   disabled: boolean 
 }

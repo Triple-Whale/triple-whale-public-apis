@@ -6,14 +6,14 @@ import { dataExportProps } from './Types'
 // @ts-ignore
 import { Parser } from '@json2csv/plainjs'
 
-export const DataExport: React.FC<any> = (props: dataExportProps) => {
+export const DataExport: React.FC<dataExportProps> = (props: dataExportProps) => {
   const { data, title, disabled } = props
   const [loading, setLoading] = useState(false)
 
   const [popoverActive, setPopoverActive] = useState(false);
   const togglePopoverActive = useCallback(() => setPopoverActive((popoverActive) => !popoverActive), []);
 
-  const exportCSVFile = (items: any, title: any) => {
+  const exportCSVFile = (items: any, title: string) => {
     const parser = new Parser()
     const csv = parser.parse(items)
     const exportedFilename = title.toLowerCase().replace(/ /g, '_') + '.csv' || 'export.csv'
@@ -35,7 +35,7 @@ export const DataExport: React.FC<any> = (props: dataExportProps) => {
     exportCSVFile(data, title)
   }
 
-  const exportJSONFile = (items: any, title: any) => {
+  const exportJSONFile = (items: any, title: string) => {
     // Convert Object to JSON
     const jsonObject = JSON.stringify(items)
     const exportedFilename = title.toLowerCase().replace(/ /g, '_') + '.json' || 'export.json'
