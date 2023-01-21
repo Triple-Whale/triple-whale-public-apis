@@ -109,7 +109,7 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
   const [ordersWithJourney, setOrdersWithJourney] = useState({} as ordersWithJourneyNew)
   const [sortedOrders, setSortedOrders] = useState([] as formattedNewOrders)
   const [chartData, setChartData] = useState([] as sparkChartData)
-  const [donutData, setDonutData] = useState({} as any)
+  const [donutData, setDonutData] = useState({} as donutDataObject)
   const [averageJourney, setAverageJourney] = useState(0)
 
   const authDispatch = useAuthDispatch()
@@ -231,11 +231,11 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
 
       {ordersWithJourney.totalForRange > 0 && (
         <div id="table-wrapper" style={{ opacity: loading ? '0.5' : '1' }}>
-         <Stack wrap={true} alignment="trailing">
+          <Stack wrap={true} alignment="trailing">
             {donutData && Object.keys(donutData).map((key) => (
               <Stack.Item fill key={key}>
-                <Card title={donutData[key].name}>
-                  <DonutPieChart data={donutData[key].data} />
+                <Card title={donutData[key as donutDataKeys]?.name}>
+                  <DonutPieChart data={donutData[key as donutDataKeys]?.data ?? []} />
                 </Card>
               </Stack.Item>
             ))}
@@ -250,7 +250,7 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
                   annotations={[
                     {
                       axis: 'y',
-                      label: `Average - ${averageJourney}`,
+                      label: `Average: ${averageJourney}`,
                       startKey: averageJourney
                     }
                   ]}

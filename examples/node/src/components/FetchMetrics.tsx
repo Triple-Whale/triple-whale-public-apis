@@ -13,13 +13,12 @@ import { useToastDispatch } from '../contexts/Toast';
 import { useMetricsDateRanges } from '../contexts/DateRanges';
 import { SparkChart } from './Charts'
 import { 
-  sparkChartData,
   formattedMetric,
+  formattedSparkChartsData,
   metricsData, 
   metricEnum, 
   metricKeys, 
-  metricsBreakdown, 
-  sparkChartDataLineItem
+  metricsBreakdown
 } from '../Types'
 import moment from 'moment'
 import { DataExport } from '../DataExport';
@@ -39,11 +38,11 @@ export const FetchMetrics: React.FC = () => {
   const [selected, setSelected] = useState(dateRanges[0].value);
   const [options] = useState(dateRanges)
 
-  const [chartsData, setChartsData] = useState([] as any)
+  const [chartsData, setChartsData] = useState({} as formattedSparkChartsData)
   const formatChartsData = (data: formattedMetric) => {
-    const cachedMetrics = { 
-      clicks: { name: 'Clicks', value: 0, chart: [{ data: [] as sparkChartDataLineItem[] }] }, 
-      spend: { name: 'Spend', value: 0, chart: [{ data: [] as sparkChartDataLineItem[] }] } 
+    const cachedMetrics: formattedSparkChartsData = { 
+      clicks: { name: 'Clicks', value: 0, chart: [{ data: [] }] }, 
+      spend: { name: 'Spend', value: 0, chart: [{ data: [] }] } 
     }
     
     data.metricsBreakdown.forEach((record: metricsBreakdown) => {
@@ -66,7 +65,7 @@ export const FetchMetrics: React.FC = () => {
   const handleSelectChange = (val: string) => {
     setSelected(val)
     setMetrics([])
-    setChartsData([])
+    setChartsData({} as formattedSparkChartsData)
   }
 
   const fetchMetrics = async (): Promise<void> => {
@@ -97,7 +96,7 @@ export const FetchMetrics: React.FC = () => {
       } else {
         authDispatch!({ type: 'success' })
         setMetrics(fetchGetMetrics)
-        setChartsData(formatChartsData(fetchGetMetrics.data[0]) as any)
+        setChartsData(formatChartsData(fetchGetMetrics.data[0]))
       }
 
     }
@@ -149,11 +148,11 @@ export const FetchMetrics: React.FC = () => {
         <Stack wrap={true} distribution="fillEvenly">
           {Object.keys(chartsData).map((key) => (
             <Card sectioned key={key}>
-              <Text variant="bodySm" as="p">{chartsData[key].name}</Text>
-              <Text variant="headingLg" as='h1'>{chartsData[key].value}</Text>
+              <Text variant="bodySm" as="p">{chartsData[key as metricKeys].name}</Text>
+              <Text variant="headingLg" as='h1'>{chartsData[key as metricKeys].value}</Text>
               <SparkChart
-                data={chartsData[key].chart}
-                accessibilityLabel={chartsData[key].name}
+                data={chartsData[key as metricKeys].chart}
+                accessibilityLabel={chartsData[key as metricKeys].name}
               />
             </Card>
           ))}

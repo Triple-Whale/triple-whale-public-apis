@@ -177,6 +177,16 @@ export interface sparkChartObject {
 
 export type sparkChartData = sparkChartObject[]
 
+export interface formattedSparkChartInfo {
+  value: number;
+  name: string;
+  chart: [sparkChartObject]
+}
+
+export type formattedSparkChartsData = {
+  [key in metricKeys]: formattedSparkChartInfo;
+}
+
 // annotations
 export interface annotationsObject {
   axis: "x" | "y";

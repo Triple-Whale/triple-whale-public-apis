@@ -107,7 +107,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
   const [sortedOrders, setSortedOrders] = useState([] as formattedOldOrders)
   const [chartData, setChartData] = useState([] as sparkChartData)
   const [currentPage, setCurrentPage] = useState(0)
-  const [donutData, setDonutData] = useState({} as any)
+  const [donutData, setDonutData] = useState({} as donutDataObject)
   const [averageJourney, setAverageJourney] = useState(0)
   
   const authDispatch = useAuthDispatch()
@@ -177,7 +177,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
         authDispatch!({ type: 'success' })
         setCurrentPage(orderJourneys.page)
         setOrdersWithJourney(orderJourneys)
-        setSortedOrders(formatOrders(orderJourneys?.ordersWithJourneys) as any) 
+        setSortedOrders(formatOrders(orderJourneys?.ordersWithJourneys) as formattedOldOrders) 
         setAverageJourney(formatAverageJourney(orderJourneys?.ordersWithJourneys))
         setChartData(formatChartData(orderJourneys?.ordersWithJourneys))
         setDonutData(formatDonutData(orderJourneys?.ordersWithJourneys))
@@ -236,8 +236,8 @@ export const FetchOrdersWithJourneys: React.FC = () => {
           <Stack wrap={true} alignment="trailing">
             {donutData && Object.keys(donutData).map((key) => (
               <Stack.Item fill key={key}>
-                <Card title={donutData[key].name}>
-                  <DonutPieChart data={donutData[key].data} />
+                <Card title={donutData[key as donutDataKeys]?.name}>
+                  <DonutPieChart data={donutData[key as donutDataKeys]?.data ?? []} />
                 </Card>
               </Stack.Item>
             ))}
@@ -252,7 +252,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
                   annotations={[
                     {
                       axis: 'y',
-                      label: `Average - ${averageJourney}`,
+                      label: `Average: ${averageJourney}`,
                       startKey: averageJourney
                     }
                   ]}
