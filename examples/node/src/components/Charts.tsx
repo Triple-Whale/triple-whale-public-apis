@@ -57,12 +57,14 @@ const renderInnerValueContent = ({activeValue, totalValue}: any, getAnimatedTota
 export const DonutPieChart: React.FC<{data:sparkChartData}> = (props: { data: sparkChartData }) => {
   const { data } = props
   return (
-    <DonutChart
-      data={data}
-      legendPosition="left"
-      theme="Light"
-      renderInnerValueContent={renderInnerValueContent}
-    />
+    <div className="donut-wrapper">
+      <DonutChart
+        data={data}
+        legendPosition="left"
+        theme="Light"
+        renderInnerValueContent={renderInnerValueContent}
+      />
+    </div>
   )
 }
 

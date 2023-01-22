@@ -26,3 +26,7 @@ code {
 #table-wrapper .Polaris-DataTable__Cell {
   white-space: pre-wrap;
 }
+
+.donut-wrapper button span {
+  text-transform: capitalize;
+}

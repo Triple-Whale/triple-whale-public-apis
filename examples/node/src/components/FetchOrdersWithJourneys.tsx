@@ -88,7 +88,7 @@ const formatDonutData = (orders: oldOrders) => {
                 value: 1
               }
             ],
-            name: sourceString
+            name: sourceString.replace(/_/g, '')
           })
 
         } else if(currentVal) {
