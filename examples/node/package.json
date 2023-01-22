@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon server.ts",
     "build": "vite build",
-    "preview": "NODE_ENV=production ts-node server.ts"
+    "docker:build": "docker build -t node . ",
+    "docker:compose": "docker compose up"
   },
   "dependencies": {
     "@json2csv/plainjs": "^6.1.2",

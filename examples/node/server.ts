@@ -24,7 +24,7 @@ app.use(express.json())
 // data
 // -----------------------
 dotenv.config()
-const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SHOP_URL, SCOPE } = process.env
+const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SHOP_URL, SCOPE, NODE_ENV } = process.env
 
 const localStorage = new LocalStorage('./scratch')
 let TOKEN = localStorage.getItem('TOKEN') || false
@@ -308,7 +308,7 @@ app.get("/logged-in", (req: Request, res: Response) => {
 })
 
 ViteExpress.listen(app, port, () => {
-  console.log(appName + chalk.green(`🐳🐳🐳 listening http://localhost:${port}`))
+  console.log(appName + chalk.green(`🐳🐳🐳 listening http://localhost:${NODE_ENV === 'production' ? '80' : port}`))
   console.log(
     appName + (
       !!CLIENT_ID 
