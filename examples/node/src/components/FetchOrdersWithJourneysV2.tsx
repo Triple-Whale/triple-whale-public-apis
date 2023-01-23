@@ -73,7 +73,7 @@ const formatDonutData = (orders: newOrders) => {
         && Array.isArray(source)
         && source[0]?.source
       ) {
-        sourceString = source[0].source.toString().replace(/,/g, '\n')
+        sourceString = source[0].source.toString().replace(/,/g, '\n').replace(/-/g, ' ')
       }
 
       const currentVal = rawData[key as donutDataKeys]?.data.find((o: donutDataLineItemData) => {
