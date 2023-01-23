@@ -1,0 +1,45 @@
+#root {
+  padding: 2em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+code {
+  max-width: 100%;
+  overflow: hidden;
+  background: var(--p-background);
+  color: var(--p-text);
+}
+
+.spark-wrapper {
+  padding: 10px 0;
+}
+
+#table-wrapper {
+  max-width: 800px;
+
+  .Polaris-Card {
+    overflow: hidden;
+
+    .donut-wrapper {
+      div[class*="_DonutWrapper_"] {
+        height: 100%;
+
+        div[class*="_Container_"] {
+          overflow-y: auto !important;
+          height: 100%;
+          flex-wrap: nowrap;
+          padding: 1em 0 1.25em 0;
+        }
+      }
+      
+      button span {
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .Polaris-DataTable__Cell {
+    white-space: pre-wrap;
+  } 
+}

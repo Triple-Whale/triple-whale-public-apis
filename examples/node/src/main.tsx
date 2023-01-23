@@ -6,7 +6,7 @@ import { AppProvider } from '@shopify/polaris';
 import '@shopify/polaris/build/esm/styles.css';
 
 import App from './App'
-import './index.css'
+import './index.scss'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <AppProvider i18n={enTranslations}>
