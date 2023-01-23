@@ -122,9 +122,18 @@ export const FetchOrdersWithJourneys: React.FC = () => {
   const [ordersWithJourney, setOrdersWithJourney] = useState([] as oldOrders)
   const [sortedOrders, setSortedOrders] = useState([] as formattedOldOrders)
   const [chartData, setChartData] = useState([] as sparkChartData)
-  const [currentPage, setCurrentPage] = useState(0)
   const [donutData, setDonutData] = useState({} as donutDataObject)
   const [averageJourney, setAverageJourney] = useState(0)
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const recordsPerPage = 100
+  const indexOfLastRecord = currentPage * recordsPerPage
+  const indexOfFirstRecord = Math.abs(indexOfLastRecord - recordsPerPage)
+  const nPages = Math.ceil(sortedOrders.length / recordsPerPage)
+  const currentRecords = sortedOrders 
+    && sortedOrders.length > 100 
+    && sortedOrders.slice(indexOfFirstRecord, indexOfLastRecord) 
+    || sortedOrders
   
   const authDispatch = useAuthDispatch()
   const toastDispatch = useToastDispatch()
@@ -158,7 +167,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
     setChartData([] as sparkChartData)
     setDonutData({} as donutDataObject)
     setAverageJourney(0)
-    setCurrentPage(0)
+    setCurrentPage(1)
   }
 
   const fetchOrdersWithJourney = async (sentPage: number | string = 0): Promise<void> => {
@@ -191,7 +200,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
         toastDispatch!({ type: 'error', message: orderJourneys.message })
       } else {
         authDispatch!({ type: 'success' })
-        setCurrentPage(0)
+        setCurrentPage(1)
         setOrdersWithJourney(orderJourneys)
         setSortedOrders(formatOrders(orderJourneys) as formattedOldOrders) 
         setAverageJourney(formatAverageJourney(orderJourneys))
@@ -280,7 +289,9 @@ export const FetchOrdersWithJourneys: React.FC = () => {
           
           <Stack distribution="fill">
             <Text variant="headingSm" as="p">{ordersWithJourney.length} total orders</Text>
-            {/* <Text alignment="end" variant="headingSm" as="p">Page {currentPage + 1}</Text> */}
+            <Text alignment="end" variant="headingSm" as="p">
+              Page {currentPage}{nPages > 1 && (<span> of {nPages}</span>)}
+            </Text>
           </Stack>
           <DataTable 
             stickyHeader={true}
@@ -298,27 +309,29 @@ export const FetchOrdersWithJourneys: React.FC = () => {
               'Last Click',
               'Last Platform Click',
             ]}
-            rows={sortedOrders}
+            rows={currentRecords}
             onSort={handleSort}
             hasZebraStripingOnData
             sortable={[false, true, false, false, false]}
           />
-          <Stack distribution="center">
-            {/* <Pagination
-              hasPrevious={!!(!loading && currentPage > 0)}
-              previousTooltip={`Page ${currentPage}`}
-              onPrevious={async() => {
-                // @todo set page 
-                window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
-              }}
-              hasNext={!!(!loading && ordersWithJourney.length > 0)}
-              nextTooltip={`Page ${currentPage + 2}`}
-              onNext={async() => {
-                // @TODO set page
-                window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
-              }}
-            /> */}
-          </Stack>
+          {nPages > 1 && (
+            <Stack distribution="center">
+              <Pagination
+                hasPrevious={!!(!loading && currentPage > 1)}
+                previousTooltip={`Page ${currentPage}`}
+                onPrevious={() => {
+                  setCurrentPage(currentPage - 1 || 0)
+                  window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
+                }}
+                hasNext={!loading && currentRecords.length >= 100}
+                nextTooltip={`Page ${currentPage + 1}`}
+                onNext={() => {
+                  setCurrentPage(currentPage + 1)
+                  window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
+                }}
+              />
+            </Stack>
+          )}
         </div>
       )}
     </Stack>
