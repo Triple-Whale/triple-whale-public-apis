@@ -21,7 +21,6 @@ import {
   formattedOldOrders, 
   oldOrder, 
   oldOrders, 
-  ordersWithJourneyOld, 
   platformClick,
   sparkChartData,
   donutDataKeys,
@@ -57,6 +56,16 @@ const formatAverageJourney = (orders: oldOrders) => {
   }, 0) / orders.length)
 }
 
+const formatSourceString = (string: string) => {
+  return string
+    .replace(/,/g, '\n')
+    .replace(/-/g, ' ')
+    .replace(/_/g, ' ')
+    .replace('fb', 'FB')
+    .replace('tw', 'TW')
+    .trim()
+}
+
 const formatDonutData = (orders: oldOrders) => {
   const rawData: donutDataObject = {
     firstClick: { name: "First Click", data: [] },
@@ -70,11 +79,11 @@ const formatDonutData = (orders: oldOrders) => {
       let sourceString = ''
 
       if(source && Array.isArray(source)) {
-        sourceString = source[0].source?.replace(/,/g, '\n').replace(/-/g, ' ') ?? ''
+        sourceString = source[0].source ?? ''
       }  else if(source) sourceString = source.source?.toString() ?? ''
 
       const currentVal = rawData[key as donutDataKeys]?.data.find((o: donutDataLineItemData) => {
-        return o.name === sourceString
+        return o.name === sourceString || o.name === formatSourceString(sourceString)
       })
 
       if(sourceString !== '') {
@@ -88,7 +97,7 @@ const formatDonutData = (orders: oldOrders) => {
                 value: 1
               }
             ],
-            name: sourceString
+            name: formatSourceString(sourceString)
           })
 
         } else if(currentVal) {
@@ -110,7 +119,7 @@ const formatDonutData = (orders: oldOrders) => {
 
 export const FetchOrdersWithJourneys: React.FC = () => {
   const [loading, setLoading] = useState(false)
-  const [ordersWithJourney, setOrdersWithJourney] = useState({} as ordersWithJourneyOld)
+  const [ordersWithJourney, setOrdersWithJourney] = useState([] as oldOrders)
   const [sortedOrders, setSortedOrders] = useState([] as formattedOldOrders)
   const [chartData, setChartData] = useState([] as sparkChartData)
   const [currentPage, setCurrentPage] = useState(0)
@@ -144,7 +153,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
 
   const handleSelectChange = (val: string) => {
     setSelected(val)
-    setOrdersWithJourney({} as ordersWithJourneyOld)
+    setOrdersWithJourney([] as oldOrders)
     setSortedOrders([] as formattedOldOrders)
     setChartData([] as sparkChartData)
     setDonutData({} as donutDataObject)
@@ -182,12 +191,12 @@ export const FetchOrdersWithJourneys: React.FC = () => {
         toastDispatch!({ type: 'error', message: orderJourneys.message })
       } else {
         authDispatch!({ type: 'success' })
-        setCurrentPage(orderJourneys.page)
+        setCurrentPage(0)
         setOrdersWithJourney(orderJourneys)
-        setSortedOrders(formatOrders(orderJourneys?.ordersWithJourneys) as formattedOldOrders) 
-        setAverageJourney(formatAverageJourney(orderJourneys?.ordersWithJourneys))
-        setChartData(formatChartData(orderJourneys?.ordersWithJourneys))
-        setDonutData(formatDonutData(orderJourneys?.ordersWithJourneys))
+        setSortedOrders(formatOrders(orderJourneys) as formattedOldOrders) 
+        setAverageJourney(formatAverageJourney(orderJourneys))
+        setChartData(formatChartData(orderJourneys))
+        setDonutData(formatDonutData(orderJourneys))
       }
 
     }
@@ -238,7 +247,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
         <Spinner accessibilityLabel="Loading orders" size="large" />
       )}
 
-      {ordersWithJourney.totalForRange > 0 && (
+      {ordersWithJourney.length > 0 && (
         <div id="table-wrapper" style={{ opacity: loading ? '0.5' : '1' }}>
           <Stack wrap={true} alignment="trailing">
             {donutData && Object.keys(donutData).map((key) => (
@@ -270,8 +279,8 @@ export const FetchOrdersWithJourneys: React.FC = () => {
           <br />
           
           <Stack distribution="fill">
-            <Text variant="headingSm" as="p">{ordersWithJourney.totalForRange} total orders</Text>
-            <Text alignment="end" variant="headingSm" as="p">Page {ordersWithJourney.page + 1}</Text>
+            <Text variant="headingSm" as="p">{ordersWithJourney.length} total orders</Text>
+            {/* <Text alignment="end" variant="headingSm" as="p">Page {currentPage + 1}</Text> */}
           </Stack>
           <DataTable 
             stickyHeader={true}
@@ -295,20 +304,20 @@ export const FetchOrdersWithJourneys: React.FC = () => {
             sortable={[false, true, false, false, false]}
           />
           <Stack distribution="center">
-            <Pagination
+            {/* <Pagination
               hasPrevious={!!(!loading && currentPage > 0)}
               previousTooltip={`Page ${currentPage}`}
               onPrevious={async() => {
-                await fetchOrdersWithJourney(currentPage - 1)
+                // @todo set page 
                 window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
               }}
-              hasNext={!!(!loading && ordersWithJourney?.nextPage)}
+              hasNext={!!(!loading && ordersWithJourney.length > 0)}
               nextTooltip={`Page ${currentPage + 2}`}
               onNext={async() => {
-                await fetchOrdersWithJourney(currentPage + 1)
+                // @TODO set page
                 window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
               }}
-            />
+            /> */}
           </Stack>
         </div>
       )}

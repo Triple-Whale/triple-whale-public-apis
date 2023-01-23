@@ -10,7 +10,11 @@ import moment from 'moment'
 
 // Types
 import { ParsedQs } from 'qs'
-import { twResponse } from './src/Types'
+import { 
+  twResponse,
+  oldOrder,
+  oldOrders,
+} from './src/Types'
 
 // -----------------------
 // express app
@@ -177,33 +181,48 @@ app.get('/refresh', async (_req: Request, res: Response) => {
 app.post("/get-orders-with-journeys", (req: Request, res: Response) => {
   const url = "https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys"
 
-  const data = {
+  let data = {
     shop: SHOP_URL,
     state: LOCAL_SECRET,
     startDate: req.body?.startDate || "2022-12-01",
     endDate: req.body?.endDate || "2022-12-02",
     page: req.body?.page || 0
   }
-  
-  const options = {
-    method: "POST",
-    headers: { 
-      "content-type": "application/json",
-      Authorization: `Bearer ${TOKEN}`
-    },
-    body: JSON.stringify(data)
-  };
 
-  fetch(url, options)
-    .then(response => response.json())
-    .then((response) => {
-      responseChecker(response)
-      res.json(response)
-    })
-    .catch((err) => {
-      console.log(err)
+  // Pull all pages from API
+  let ordersWithJourneys: oldOrders[] = []
+  async function fetchOrdersWithJourneys() {
+    const options = {
+      method: "POST",
+      headers: { 
+        "content-type": "application/json",
+        Authorization: `Bearer ${TOKEN}`
+      },
+      body: JSON.stringify(data)
+    };
+
+    try {
+      await fetch(url, options)
+        .then(response => response.json())
+        .then(async (response) => {
+          responseChecker(response)
+          ordersWithJourneys = ordersWithJourneys.concat(response.ordersWithJourneys.filter((order: oldOrder) => order) as oldOrders)
+          
+          if(response.nextPage) {
+            data.page += 1
+            return await fetchOrdersWithJourneys()
+          } else {
+            res.json(ordersWithJourneys)
+          }
+        })
+
+    } catch (err) {
+      console.error(err)
       res.json(err)
-    })
+    }
+  }
+
+  fetchOrdersWithJourneys()
 });
 
 app.post("/get-orders-with-journeys-v2", (req: Request, res: Response) => {
