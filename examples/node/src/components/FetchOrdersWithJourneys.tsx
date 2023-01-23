@@ -126,13 +126,13 @@ export const FetchOrdersWithJourneys: React.FC = () => {
   const [averageJourney, setAverageJourney] = useState(0)
 
   const [currentPage, setCurrentPage] = useState(1)
-  const recordsPerPage = 100
-  const indexOfLastRecord = currentPage * recordsPerPage
-  const indexOfFirstRecord = Math.abs(indexOfLastRecord - recordsPerPage)
-  const nPages = Math.ceil(sortedOrders.length / recordsPerPage)
-  const currentRecords = sortedOrders 
+  const ordersPerPage = 100
+  const indexOfLastOrder = currentPage * ordersPerPage
+  const indexOfFirstOrder = Math.abs(indexOfLastOrder - ordersPerPage)
+  const nPages = Math.ceil(sortedOrders.length / ordersPerPage)
+  const currentOrders = sortedOrders 
     && sortedOrders.length > 100 
-    && sortedOrders.slice(indexOfFirstRecord, indexOfLastRecord) 
+    && sortedOrders.slice(indexOfFirstOrder, indexOfLastOrder) 
     || sortedOrders
   
   const authDispatch = useAuthDispatch()
@@ -200,12 +200,12 @@ export const FetchOrdersWithJourneys: React.FC = () => {
         toastDispatch!({ type: 'error', message: orderJourneys.message })
       } else {
         authDispatch!({ type: 'success' })
-        setCurrentPage(1)
         setOrdersWithJourney(orderJourneys)
         setSortedOrders(formatOrders(orderJourneys) as formattedOldOrders) 
         setAverageJourney(formatAverageJourney(orderJourneys))
         setChartData(formatChartData(orderJourneys))
         setDonutData(formatDonutData(orderJourneys))
+        setCurrentPage(1)
       }
 
     }
@@ -309,7 +309,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
               'Last Click',
               'Last Platform Click',
             ]}
-            rows={currentRecords}
+            rows={currentOrders}
             onSort={handleSort}
             hasZebraStripingOnData
             sortable={[false, true, false, false, false]}
@@ -323,7 +323,7 @@ export const FetchOrdersWithJourneys: React.FC = () => {
                   setCurrentPage(currentPage - 1 || 0)
                   window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
                 }}
-                hasNext={!loading && currentRecords.length >= 100}
+                hasNext={!loading && currentOrders.length >= 100}
                 nextTooltip={`Page ${currentPage + 1}`}
                 onNext={() => {
                   setCurrentPage(currentPage + 1)

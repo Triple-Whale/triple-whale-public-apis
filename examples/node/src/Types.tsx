@@ -90,7 +90,7 @@ export interface ordersWithJourneyOld {
   totalForRange: number;
   page: number;
   nextPage: number;
-  orders: oldOrder[];
+  ordersWithJourneys: oldOrder[];
 }
 
 export type formattedOrder = (string|number)[];
@@ -117,7 +117,8 @@ export type newOrders = newOrder[]
 export interface ordersWithJourneyNew {
   totalForRange: number;
   count: number;
-  nextPage: number;
+  earliestDate?: string;
+  ordersWithJourneys: newOrder[]
 }
 
 export type formattedNewOrders = formattedOrder[];

@@ -14,6 +14,10 @@ import {
   twResponse,
   oldOrder,
   oldOrders,
+  ordersWithJourneyOld,
+  newOrder,
+  newOrders,
+  ordersWithJourneyNew
 } from './src/Types'
 
 // -----------------------
@@ -89,7 +93,7 @@ const refresh = async(res?: Response) => {
     })
 }
 
-const responseChecker = async (response: twResponse) => {
+const responseChecker = async (response: any) => {
   if(response.code == 401) {
     await refresh()
   }
@@ -189,7 +193,6 @@ app.post("/get-orders-with-journeys", (req: Request, res: Response) => {
     page: req.body?.page || 0
   }
 
-  // Pull all pages from API
   let ordersWithJourneys: oldOrders[] = []
   async function fetchOrdersWithJourneys() {
     const options = {
@@ -199,12 +202,12 @@ app.post("/get-orders-with-journeys", (req: Request, res: Response) => {
         Authorization: `Bearer ${TOKEN}`
       },
       body: JSON.stringify(data)
-    };
-
+    }
+    
     try {
       await fetch(url, options)
         .then(response => response.json())
-        .then(async (response) => {
+        .then(async (response: ordersWithJourneyOld) => {
           responseChecker(response)
           ordersWithJourneys = ordersWithJourneys.concat(response.ordersWithJourneys.filter((order: oldOrder) => order) as oldOrders)
           
@@ -228,32 +231,46 @@ app.post("/get-orders-with-journeys", (req: Request, res: Response) => {
 app.post("/get-orders-with-journeys-v2", (req: Request, res: Response) => {
   const url = "https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys-v2"
 
-  const data = {
+  let data = {
     shop: SHOP_URL,
     state: LOCAL_SECRET,
     startDate: req.body?.startDate || "2022-12-01",
     endDate: req.body?.endDate || "2022-12-02"
   }
-  
-  const options = {
-    method: "POST",
-    headers: { 
-      "content-type": "application/json",
-      Authorization: `Bearer ${TOKEN}`
-    },
-    body: JSON.stringify(data)
-  };
 
-  fetch(url, options)
-    .then(response => response.json())
-    .then((response) => {
-      responseChecker(response)
-      res.json(response)
-    })
-    .catch((err) => {
-      console.log(err)
+  let ordersWithJourneys: newOrders[] = []
+  async function fetchOrdersWithJourneys() {
+    const options = {
+      method: "POST",
+      headers: { 
+        "content-type": "application/json",
+        Authorization: `Bearer ${TOKEN}`
+      },
+      body: JSON.stringify(data)
+    }
+    
+    try {
+      await fetch(url, options)
+        .then(response => response.json())
+        .then(async (response: ordersWithJourneyNew) => {
+          responseChecker(response)
+          ordersWithJourneys = ordersWithJourneys.concat(response.ordersWithJourneys.filter((order: newOrder) => order) as newOrders)
+
+          if(response.earliestDate) {
+            data.endDate = response.earliestDate
+            return await fetchOrdersWithJourneys()
+          } else {
+            res.json(ordersWithJourneys)
+          }
+        })
+
+    } catch (err) {
+      console.error(err)
       res.json(err)
-    })
+    }
+  }
+
+  fetchOrdersWithJourneys()
 });
 
 app.get("/get-metrics", (req: Request, res: Response) => {

@@ -3,6 +3,7 @@ import {
   Button, 
   Card,
   DataTable, 
+  Pagination,
   Select, 
   Spinner, 
   Stack,
@@ -19,7 +20,6 @@ import {
   formattedNewOrders, 
   newOrder, 
   newOrders, 
-  ordersWithJourneyNew, 
   platformClick,
   sparkChartData,
   donutDataKeys,
@@ -56,6 +56,16 @@ const formatAverageJourney = (orders: newOrders) => {
   }, 0) / orders.length)
 }
 
+const formatSourceString = (string: string) => {
+  return string
+    .replace(/,/g, '\n')
+    .replace(/-/g, ' ')
+    .replace(/_/g, ' ')
+    .replace('fb', 'FB')
+    .replace('tw', 'TW')
+    .trim()
+}
+
 const formatDonutData = (orders: newOrders) => {
   const rawData: donutDataObject = {
     firstClick: { name: "First Click", data: [] },
@@ -73,7 +83,7 @@ const formatDonutData = (orders: newOrders) => {
         && Array.isArray(source)
         && source[0]?.source
       ) {
-        sourceString = source[0].source.toString().replace(/,/g, '\n').replace(/-/g, ' ')
+        sourceString = formatSourceString(source[0].source)
       }
 
       const currentVal = rawData[key as donutDataKeys]?.data.find((o: donutDataLineItemData) => {
@@ -113,11 +123,21 @@ const formatDonutData = (orders: newOrders) => {
 
 export const FetchOrdersWithJourneysV2: React.FC = () => {
   const [loading, setLoading] = useState(false)
-  const [ordersWithJourney, setOrdersWithJourney] = useState({} as ordersWithJourneyNew)
+  const [ordersWithJourney, setOrdersWithJourney] = useState({} as newOrders)
   const [sortedOrders, setSortedOrders] = useState([] as formattedNewOrders)
   const [chartData, setChartData] = useState([] as sparkChartData)
   const [donutData, setDonutData] = useState({} as donutDataObject)
   const [averageJourney, setAverageJourney] = useState(0)
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const ordersPerPage = 100
+  const indexOfLastOrder = currentPage * ordersPerPage
+  const indexOfFirstOrder = Math.abs(indexOfLastOrder - ordersPerPage)
+  const nPages = Math.ceil(sortedOrders.length / ordersPerPage)
+  const currentOrders = sortedOrders 
+    && sortedOrders.length > 100 
+    && sortedOrders.slice(indexOfFirstOrder, indexOfLastOrder) 
+    || sortedOrders
 
   const authDispatch = useAuthDispatch()
   const toastDispatch = useToastDispatch()
@@ -146,11 +166,12 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
 
   const handleSelectChange = (val: string) => {
     setSelected(val)
-    setOrdersWithJourney({} as ordersWithJourneyNew)
+    setOrdersWithJourney({} as newOrders)
     setSortedOrders([] as formattedNewOrders)
     setChartData([] as sparkChartData)
     setDonutData({} as donutDataObject)
     setAverageJourney(0)
+    setCurrentPage(1)
   }
 
   const fetchOrdersWithJourney = async (): Promise<void> => {
@@ -183,10 +204,11 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
       } else {
         authDispatch!({ type: 'success' })
         setOrdersWithJourney(orderJourneys)
-        setSortedOrders(formatOrders(orderJourneys?.ordersWithJourneys))
-        setAverageJourney(formatAverageJourney(orderJourneys?.ordersWithJourneys))
-        setChartData(formatChartData(orderJourneys?.ordersWithJourneys))
-        setDonutData(formatDonutData(orderJourneys?.ordersWithJourneys))
+        setSortedOrders(formatOrders(orderJourneys))
+        setAverageJourney(formatAverageJourney(orderJourneys))
+        setChartData(formatChartData(orderJourneys))
+        setDonutData(formatDonutData(orderJourneys))
+        setCurrentPage(1)
       }
     }
     setLoading(false)
@@ -236,7 +258,7 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
         <Spinner accessibilityLabel="Loading orders" size="large" />
       )}
 
-      {ordersWithJourney.totalForRange > 0 && (
+      {ordersWithJourney.length > 0 && (
         <div id="table-wrapper" style={{ opacity: loading ? '0.5' : '1' }}>
           <Stack wrap={true} alignment="trailing">
             {donutData && Object.keys(donutData).map((key) => (
@@ -268,9 +290,11 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
           <br />
 
           <Stack distribution="fill">
-            <Text variant="headingSm" as="p">Showing {ordersWithJourney.count} of {ordersWithJourney.totalForRange} total orders</Text>
+            <Text variant="headingSm" as="p">{ordersWithJourney.length} total orders</Text>
+            <Text alignment="end" variant="headingSm" as="p">
+              Page {currentPage}{nPages > 1 && (<span> of {nPages}</span>)}
+            </Text>
           </Stack>
-
           <Stack>
             <DataTable 
               stickyHeader={true}
@@ -288,11 +312,29 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
                 'Last Click',
                 'Last Platform Click',
               ]}
-              rows={sortedOrders}
+              rows={currentOrders}
               onSort={handleSort}
               hasZebraStripingOnData
               sortable={[false, true, false, false, false]}
             />
+            {nPages > 1 && (
+              <Stack distribution="center">
+                <Pagination
+                  hasPrevious={!!(!loading && currentPage > 1)}
+                  previousTooltip={`Page ${currentPage}`}
+                  onPrevious={() => {
+                    setCurrentPage(currentPage - 1 || 0)
+                    window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
+                  }}
+                  hasNext={!loading && currentOrders.length >= 100}
+                  nextTooltip={`Page ${currentPage + 1}`}
+                  onNext={() => {
+                    setCurrentPage(currentPage + 1)
+                    window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
+                  }}
+                />
+              </Stack>
+            )}
           </Stack>
         </div>
       )}
