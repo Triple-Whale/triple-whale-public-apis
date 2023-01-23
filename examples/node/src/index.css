@@ -20,13 +20,20 @@ code {
 } 
 
 #table-wrapper .Polaris-Card {
-  overflow-y: auto;
+  overflow: hidden;
+}
+
+#table-wrapper .Polaris-Card .donut-wrapper div[class*="_Container_"] {
+  overflow-y: auto !important;
+  height: 100%;
+  flex-wrap: nowrap;
+  padding: 1em 0 1.25em 0;
 }
 
 #table-wrapper .Polaris-DataTable__Cell {
   white-space: pre-wrap;
 }
 
-.donut-wrapper button span {
+#table-wrapper .Polaris-Card .donut-wrapper button span {
   text-transform: capitalize;
 }
