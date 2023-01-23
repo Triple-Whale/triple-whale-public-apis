@@ -96,6 +96,7 @@ const refresh = async(res?: Response) => {
 const responseChecker = async (response: any) => {
   if(response.code == 401) {
     await refresh()
+    throw response
   }
 }
 
@@ -208,7 +209,7 @@ app.post("/get-orders-with-journeys", (req: Request, res: Response) => {
       await fetch(url, options)
         .then(response => response.json())
         .then(async (response: ordersWithJourneyOld) => {
-          responseChecker(response)
+          await responseChecker(response)
           ordersWithJourneys = ordersWithJourneys.concat(response.ordersWithJourneys.filter((order: oldOrder) => order) as oldOrders)
           
           if(response.nextPage) {
@@ -253,8 +254,8 @@ app.post("/get-orders-with-journeys-v2", (req: Request, res: Response) => {
       await fetch(url, options)
         .then(response => response.json())
         .then(async (response: ordersWithJourneyNew) => {
-          responseChecker(response)
-          ordersWithJourneys = ordersWithJourneys.concat(response.ordersWithJourneys.filter((order: newOrder) => order) as newOrders)
+          await responseChecker(response)
+          ordersWithJourneys = ordersWithJourneys.concat(response.ordersWithJourneys?.filter((order: newOrder) => order) as newOrders)
 
           if(response.earliestDate) {
             data.endDate = response.earliestDate
@@ -285,8 +286,8 @@ app.get("/get-metrics", (req: Request, res: Response) => {
     }
   })
     .then(response => response.json())
-    .then((response) => {
-      responseChecker(response)
+    .then(async (response) => {
+      await responseChecker(response)
       res.json(response)
     })
     .catch((err) => {
@@ -326,8 +327,8 @@ app.post('/post-metrics', (req: Request, res: Response) => {
 
   fetch(url, options)
     .then(response => response.json())
-    .then((response) => {
-      responseChecker(response)
+    .then(async (response) => {
+      await responseChecker(response)
       res.json(response)
     })
     .catch((err) => {
