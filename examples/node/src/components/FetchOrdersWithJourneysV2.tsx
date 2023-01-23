@@ -317,25 +317,25 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
               hasZebraStripingOnData
               sortable={[false, true, false, false, false]}
             />
-            {nPages > 1 && (
-              <Stack distribution="center">
-                <Pagination
-                  hasPrevious={!!(!loading && currentPage > 1)}
-                  previousTooltip={`Page ${currentPage}`}
-                  onPrevious={() => {
-                    setCurrentPage(currentPage - 1 || 0)
-                    window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
-                  }}
-                  hasNext={!loading && currentOrders.length >= 100}
-                  nextTooltip={`Page ${currentPage + 1}`}
-                  onNext={() => {
-                    setCurrentPage(currentPage + 1)
-                    window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
-                  }}
-                />
-              </Stack>
-            )}
           </Stack>
+          {nPages > 1 && (
+            <Stack distribution="center">
+              <Pagination
+                hasPrevious={!!(!loading && currentPage > 1)}
+                previousTooltip={`Page ${currentPage}`}
+                onPrevious={() => {
+                  setCurrentPage(currentPage - 1 || 0)
+                  window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
+                }}
+                hasNext={!loading && currentOrders.length >= 100}
+                nextTooltip={`Page ${currentPage + 1}`}
+                onNext={() => {
+                  setCurrentPage(currentPage + 1)
+                  window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
+                }}
+              />
+            </Stack>
+          )}
         </div>
       )}
     </Stack>
