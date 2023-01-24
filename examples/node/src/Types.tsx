@@ -1,10 +1,3 @@
-// express 
-import { Response } from 'express';
-export interface twResponse extends Response {
-  code: number;
-  data: object;
-}
-
 // tabs
 interface Tab {
   id: string;
