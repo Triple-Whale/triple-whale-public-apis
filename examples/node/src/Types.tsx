@@ -161,6 +161,7 @@ export interface metricsDynamicData {
 export interface sparkChartDataLineItem {
   key: number | string;
   value: number;
+  date?: moment.Moment;
 }
 
 export interface sparkChartObject {

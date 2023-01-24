@@ -81,7 +81,7 @@ export const SparkChart: React.FC<{data:sparkChartData,accessibilityLabel:string
   )
 }
 
-export const ALineChart: React.FC<{data:sparkChartData,annotations:annotationsData}> = (props: { data: sparkChartData, annotations: annotationsData }) => {
+export const ALineChart: React.FC<{data:sparkChartData,annotations?:annotationsData}> = (props: { data: sparkChartData, annotations?: annotationsData }) => {
   const { data, annotations } = props
   return (
     <LineChart

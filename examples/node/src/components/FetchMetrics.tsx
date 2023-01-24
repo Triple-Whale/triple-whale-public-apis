@@ -11,14 +11,15 @@ import {
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
 import { useMetricsDateRanges } from '../contexts/DateRanges';
-import { SparkChart } from './Charts'
+import { SparkChart, ALineChart } from './Charts'
 import { 
   formattedMetric,
   formattedSparkChartsData,
   metricsData, 
   metricEnum, 
   metricKeys, 
-  metricsBreakdown
+  metricsBreakdown,
+  sparkChartData
 } from '../Types'
 import moment from 'moment'
 import { DataExport } from '../DataExport';
@@ -53,7 +54,8 @@ export const FetchMetrics: React.FC = () => {
           cachedMetrics[key as metricKeys].value += recordVal
           cachedMetrics[key as metricKeys].chart[0].data.push({
             key: recordMetric.metricName.toString(),
-            value: recordVal
+            value: recordVal,
+            date: record.date
           })
         }
       })
@@ -145,18 +147,37 @@ export const FetchMetrics: React.FC = () => {
       </Stack>
       {loading ?? (<Spinner accessibilityLabel="Loading metrics" size="large" />)}
       {Object.keys(metrics).length > 0 && (
-        <Stack wrap={true} distribution="fillEvenly">
-          {Object.keys(chartsData).map((key) => (
-            <Card sectioned key={key}>
-              <Text variant="bodySm" as="p">{chartsData[key as metricKeys].name}</Text>
-              <Text variant="headingLg" as='h1'>{chartsData[key as metricKeys].value}</Text>
-              <SparkChart
-                data={chartsData[key as metricKeys].chart}
-                accessibilityLabel={chartsData[key as metricKeys].name}
-              />
-            </Card>
-          ))}
-        </Stack>
+        <>
+          <Stack wrap={true} distribution="fillEvenly">
+            {Object.keys(chartsData).map((key) => (
+              <Stack.Item fill key={key}>
+                <Card sectioned>
+                  <Text variant="bodySm" as="p">{chartsData[key as metricKeys].name}</Text>
+                  <Text variant="headingLg" as='h1'>{chartsData[key as metricKeys].value}</Text>
+                  <SparkChart
+                    data={chartsData[key as metricKeys].chart}
+                    accessibilityLabel={chartsData[key as metricKeys].name}
+                  />
+                </Card>
+              </Stack.Item>
+            ))}
+          </Stack>
+          <br />
+          
+          <Card sectioned>
+            <ALineChart 
+              data={
+                Object.keys(chartsData).map((key) => ({
+                  data: chartsData[key as metricKeys].chart[0].data.map(data => ({
+                    key: data.date || data.key,
+                    value: data.value
+                  })),
+                  name: chartsData[key as metricKeys].name
+                })) as sparkChartData
+              }
+            />
+          </Card>
+        </>
       )}
     </Stack>
   )
