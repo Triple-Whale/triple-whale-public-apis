@@ -11,6 +11,10 @@ code {
   color: var(--p-text);
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 .spark-wrapper {
   padding: 10px 0;
 }

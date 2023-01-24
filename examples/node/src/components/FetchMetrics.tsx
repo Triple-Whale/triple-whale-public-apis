@@ -64,6 +64,13 @@ export const FetchMetrics: React.FC = () => {
     return cachedMetrics
   }
 
+  const formatChartNumber = (value: number, name: string) => {
+    return name.toLowerCase() === 'spend' ? value.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).replace('.00', '') : value
+  }
+
   const handleSelectChange = (val: string) => {
     setSelected(val)
     setMetrics([])
@@ -153,7 +160,7 @@ export const FetchMetrics: React.FC = () => {
               <Stack.Item fill key={key}>
                 <Card sectioned>
                   <Text variant="bodySm" as="p">{chartsData[key as metricKeys].name}</Text>
-                  <Text variant="headingLg" as='h1'>{chartsData[key as metricKeys].value}</Text>
+                  <Text variant="headingLg" as='h1'>{formatChartNumber(chartsData[key as metricKeys].value, chartsData[key as metricKeys].name)}</Text>
                   <SparkChart
                     data={chartsData[key as metricKeys].chart}
                     accessibilityLabel={chartsData[key as metricKeys].name}
@@ -165,6 +172,10 @@ export const FetchMetrics: React.FC = () => {
           <br />
           
           <Card sectioned>
+            <Text variant="bodySm" as="p">Combined</Text>
+            <div className="capitalize">
+              <Text variant="headingLg" as='h1'>{Object.keys(chartsData).map((key) => (key)).toString().replace(',', ' + ')}</Text>
+            </div>
             <ALineChart 
               data={
                 Object.keys(chartsData).map((key) => ({
