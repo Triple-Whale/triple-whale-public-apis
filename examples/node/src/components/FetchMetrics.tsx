@@ -175,6 +175,7 @@ export const FetchMetrics: React.FC = () => {
             <Text variant="bodySm" as="p">Combined</Text>
             <div className="capitalize">
               <Text variant="headingLg" as='h1'>{Object.keys(chartsData).map((key) => (key)).toString().replace(',', ' + ')}</Text>
+              <br />
             </div>
             <ALineChart 
               data={
