@@ -8,7 +8,8 @@
     "dev": "nodemon server.ts",
     "build": "vite build",
     "docker:build": "docker build -t node . ",
-    "docker:compose": "docker compose up"
+    "docker:compose": "docker compose up",
+    "start": "ts-node server.ts"
   },
   "dependencies": {
     "@json2csv/plainjs": "^6.1.2",
