@@ -1,0 +1,18 @@
+# Dependency directories
+node_modules/
+
+# ENV
+.env
+
+# LOCAL STORAGE
+scratch/
+
+# DSStore
+.DS_Store
+
+# lockfiles
+yarn.lock
+package-lock.json
+
+# ignore dist
+dist/
