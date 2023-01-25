@@ -344,7 +344,7 @@ app.get("/logged-in", (req: Request, res: Response) => {
 })
 
 ViteExpress.listen(app, port, () => {
-  console.log(appName + chalk.green(`🐳🐳🐳 listening http://localhost:${port}}`))
+  console.log(appName + chalk.green(`🐳🐳🐳 listening http://localhost:${port}`))
   console.log(
     appName + (
       !!CLIENT_ID 
