@@ -74,7 +74,7 @@ const refresh = async(res?: Response) => {
 
           TOKEN = token
           REFRESH_TOKEN = refresh
-          console.log(chalk.magenta(`[refresh] new token acquired`))
+          console.log(chalk.magenta(`[refresh] new token acquired, ${TOKEN}`))
 
         } else {
           console.log(chalk.magenta(`[refresh] error refreshing token`, response.error))
@@ -151,19 +151,23 @@ app.get("/callback", (req: Request, res: Response) => {
   fetch(url, options)
     .then(response => response.json())
     .then((response) => {
-      // This is your token
-      const token = response.access_token;
-
-      // This is used to refresh this token when it expires
-      const refresh = response.refresh_token;
-
-      // For local dev, cache token in localStorage
-      localStorage.setItem('TOKEN', token)
-      localStorage.setItem('REFRESH_TOKEN', refresh)
-
-      TOKEN = token
-      REFRESH_TOKEN = refresh
-      console.log(chalk.magenta(`[callback] token acquired`))
+      if(response.access_token) {
+        // This is your token
+        const token = response.access_token;
+  
+        // This is used to refresh this token when it expires
+        const refresh = response.refresh_token;
+  
+        // For local dev, cache token in localStorage
+        localStorage.setItem('TOKEN', token)
+        localStorage.setItem('REFRESH_TOKEN', refresh)
+  
+        TOKEN = token
+        REFRESH_TOKEN = refresh
+        console.log(chalk.magenta(`[callback] token acquired, ${TOKEN}`))
+      } else {
+        console.log(chalk.red(`[callback] error acquiring token, ${response.error}`))
+      }
 
       res.redirect("/");
     })
