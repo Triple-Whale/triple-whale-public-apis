@@ -9,7 +9,7 @@
     "build": "vite build",
     "docker:build": "docker build -t node . ",
     "docker:compose": "docker compose up",
-    "start": "yarn -i && yarn build && ts-node server.ts"
+    "start": "NODE_ENV=production ts-node server.ts"
   },
   "dependencies": {
     "@json2csv/plainjs": "^6.1.2",
