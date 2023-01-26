@@ -220,3 +220,49 @@ export interface dataExportProps {
   title: string, 
   disabled: boolean 
 }
+
+// summary page data
+export type DatePickerOption = {
+  value: {
+    start: moment.Moment;
+    end: moment.Moment;
+    id: string;
+    specialPeriod?: 'week' | 'month' | 'quarter' | 'year';
+  };
+  label: string | JSX.Element;
+  active: boolean;
+};
+
+interface period {
+ start: moment.Moment;
+ end: moment.Moment;
+}
+
+export enum ShopifySegmentType {
+  SOURCES = 'sources',
+  PAYMENT_GATEWAY_COSTS = 'payment_gateway_costs',
+  CUSTOMER_TAGS = 'customer_tags',
+  ORDER_TAGS = 'order_tags',
+}
+
+interface orderSegment {
+  id: string;
+  type: ShopifySegmentType;
+}
+
+export interface compareStats {
+  shopDomain: string;
+  periods: period[];
+  todayHour: number;
+  key: moment.Moment | string;
+  includeCalculatedStats: boolean;
+  includeRawStats: boolean;
+  activeOrderSegment: orderSegment[];
+}
+
+export type CompareStatsResponse = {
+  key: string;
+  comparisons: any[];
+  calculatedStats?: any;
+  previousPeriodRawStats?: any;
+};

@@ -340,6 +340,22 @@ app.post('/post-metrics', (req: Request, res: Response) => {
     })
 })
 
+app.post("/get-summary-page-data", (req: Request, res: Response) => {
+  const url = "https://api.triplewhale.com/api/v2/summary-page/get-summary-page-data"
+
+  let data = {
+    shop: SHOP_URL,
+    state: LOCAL_SECRET,
+
+    // periods,
+    // todayHour,
+    // key: getStatsSamePeriodComparisonKey,
+    // includeCalculatedStats: true,
+    // includeRawStats: true,
+    // activeOrderSegment,
+  }
+});
+
 // -----------------------
 // are we logged in? -- for frontend
 // -----------------------
