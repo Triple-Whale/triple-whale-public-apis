@@ -250,6 +250,22 @@ interface orderSegment {
   type: ShopifySegmentType;
 }
 
+export interface SummaryPageRequest {
+  shopDomain: string;
+  periods: {
+    start: string;
+    end: string;
+  }[];
+  todayHour: number;
+  key: moment.Moment | string;
+  includeCalculatedStats?: boolean;
+  includeRawStats?: boolean;
+  activeOrderSegment: {
+    id: string;
+    type: string;
+  }[];
+}
+
 export interface compareStats {
   shopDomain: string;
   periods: period[];
@@ -260,7 +276,7 @@ export interface compareStats {
   activeOrderSegment: orderSegment[];
 }
 
-export type CompareStatsResponse = {
+export type SummaryPageResponse = {
   key: string;
   comparisons: any[];
   calculatedStats?: any;

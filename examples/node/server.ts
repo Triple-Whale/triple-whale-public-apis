@@ -94,6 +94,10 @@ const refresh = async(res?: Response) => {
     })
 }
 
+// -----------------------
+// Refresh every 10 min
+// -----------------------
+setInterval(() => CLIENT_ID && CLIENT_SECRET && REFRESH_TOKEN && refresh(), 600000)
 
 const responseChecker = async (response: any) => {
   const currentTime = (new Date().getTime()) / 1000;
@@ -195,7 +199,7 @@ app.get('/refresh', async (_req: Request, res: Response) => {
 })
 
 // -----------------------
-// Test API requests
+// API endpoints
 // -----------------------
 app.post("/get-orders-with-journeys", (req: Request, res: Response) => {
   const url = "https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys"
@@ -357,14 +361,33 @@ app.post("/get-summary-page-data", (req: Request, res: Response) => {
   let data = {
     shop: SHOP_URL,
     state: LOCAL_SECRET,
-
-    // periods,
-    // todayHour,
-    // key: getStatsSamePeriodComparisonKey,
-    // includeCalculatedStats: true,
-    // includeRawStats: true,
-    // activeOrderSegment,
+    periods: [],
+    todayHour: 0,
+    key: "",
+    includeCalculatedStats: true,
+    includeRawStats: true,
+    activeOrderSegment: [],
   }
+
+  const options = {
+    method: "POST",
+    headers: { 
+      "content-type": "application/json",
+      Authorization: `Bearer ${TOKEN}`
+    },
+    body: JSON.stringify(data)
+  };
+
+  fetch(url, options)
+    .then(response => response.json())
+    .then(async (response) => {
+      await responseChecker(response)
+      res.json(response)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.json(err)
+    })
 });
 
 // -----------------------
