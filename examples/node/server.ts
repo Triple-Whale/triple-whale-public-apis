@@ -33,6 +33,8 @@ app.use(express.json())
 dotenv.config()
 const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SHOP_URL, SCOPE, NODE_ENV } = process.env
 
+let LOCAL_TIME = (new Date().getTime()) / 1000;
+
 const localStorage = new LocalStorage('./scratch')
 let TOKEN = localStorage.getItem('TOKEN') || false
 let REFRESH_TOKEN = localStorage.getItem('REFRESH_TOKEN') || false
@@ -92,7 +94,16 @@ const refresh = async(res?: Response) => {
     })
 }
 
+
 const responseChecker = async (response: any) => {
+  const currentTime = (new Date().getTime()) / 1000;
+
+  // auto-refresh token every 5 minutes
+  if(currentTime - LOCAL_TIME >= 300) {
+    await refresh()
+    LOCAL_TIME = (new Date().getTime()) / 1000;
+  }
+
   if(response.code == 401) {
     await refresh()
     throw response
