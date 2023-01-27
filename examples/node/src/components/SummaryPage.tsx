@@ -54,9 +54,10 @@ export const SummaryPage: React.FC = () => {
     fetchData().catch(console.error);
   }, [])
 
+  const toNumber = (num: number | string) => typeof num == 'number' ? num : parseFloat(num)  
+
   const formatNumber = (num: number | string) => { 
-    num = typeof num == 'number' ? num : parseFloat(num)  
-    return num.toFixed(2).replace('.00', '') 
+    return toNumber(num).toFixed(2).replace('.00', '') 
   }
 
   const formatValue = (item: formattedDictatedService) => {
@@ -92,12 +93,13 @@ export const SummaryPage: React.FC = () => {
             <br/>
             <Stack wrap={true} spacing="loose" distribution="fill">
               {group.map((item) => {
+                const val = toNumber(item.value)
                 return item.value !== 0 && (
                   <Card key={item.id} sectioned>
                     <Text variant="bodyMd" as="p">
                       <strong>{item.title}</strong>
                       <br/>
-                      <Badge status={item.value > 0 ? 'success' : 'critical'}>{item.value > 0 ? '↑' : '↓'}</Badge>
+                      <Badge status={val > 0 ? 'success' : 'critical'}>{val > 0 ? '↑' : '↓'}</Badge>
                       &nbsp;
                       <Text variant="bodySm" as="span">{formatNumber(item.percentChange)}%</Text>
                     </Text>
