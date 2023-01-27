@@ -1,3 +1,8 @@
+import { 
+  ServicesIds,
+  BaseSummaryMetric
+} from './SummaryData'
+
 // tabs
 interface Tab {
   id: string;
@@ -230,7 +235,6 @@ export type DatePickerOption = {
     specialPeriod?: 'week' | 'month' | 'quarter' | 'year';
   };
   label: string | JSX.Element;
-  active: boolean;
 };
 
 interface period {
@@ -282,3 +286,12 @@ export type SummaryPageResponse = {
   calculatedStats?: any;
   previousPeriodRawStats?: any;
 };
+
+export interface formattedDictatedService extends BaseSummaryMetric<any> {
+  value: number;
+  percentChange: number;
+}
+
+export type DictatedData = {
+  [key in keyof ServicesIds]: formattedDictatedService[]
+}

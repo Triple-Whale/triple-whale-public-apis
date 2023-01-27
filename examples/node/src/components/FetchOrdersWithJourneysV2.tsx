@@ -229,7 +229,7 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
         <Stack.Item fill>
           <Select
             label="Date range"
-            options={options}
+            options={options as []}
             onChange={handleSelectChange}
             value={selected}
           />

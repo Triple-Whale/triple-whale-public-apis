@@ -8,6 +8,10 @@ import fetch from 'cross-fetch'
 import { LocalStorage } from 'node-localstorage'
 import moment from 'moment'
 
+// @ts-ignore
+import fs from 'fs'
+var summaryData = JSON.parse(fs.readFileSync('summary-data.json', 'utf-8'))
+
 // Types
 import { ParsedQs } from 'qs'
 import { 
@@ -355,39 +359,41 @@ app.post('/post-metrics', (req: Request, res: Response) => {
     })
 })
 
-app.post("/get-summary-page-data", (req: Request, res: Response) => {
-  const url = "https://api.triplewhale.com/api/v2/summary-page/get-summary-page-data"
+app.get("/get-summary-page-data", (req: Request, res: Response) => {
+  // const url = "https://api.triplewhale.com/api/v2/summary-page/get-summary-page-data"
 
-  let data = {
-    shop: SHOP_URL,
-    state: LOCAL_SECRET,
-    periods: [],
-    todayHour: 0,
-    key: "",
-    includeCalculatedStats: true,
-    includeRawStats: true,
-    activeOrderSegment: [],
-  }
+  // let data = {
+  //   shop: SHOP_URL,
+  //   state: LOCAL_SECRET,
+  //   periods: [],
+  //   todayHour: 0,
+  //   key: "",
+  //   includeCalculatedStats: true,
+  //   includeRawStats: true,
+  //   activeOrderSegment: [],
+  // }
 
-  const options = {
-    method: "POST",
-    headers: { 
-      "content-type": "application/json",
-      Authorization: `Bearer ${TOKEN}`
-    },
-    body: JSON.stringify(data)
-  };
+  // const options = {
+  //   method: "POST",
+  //   headers: { 
+  //     "content-type": "application/json",
+  //     Authorization: `Bearer ${TOKEN}`
+  //   },
+  //   body: JSON.stringify(data)
+  // };
 
-  fetch(url, options)
-    .then(response => response.json())
-    .then(async (response) => {
-      await responseChecker(response)
-      res.json(response)
-    })
-    .catch((err) => {
-      console.log(err)
-      res.json(err)
-    })
+  // fetch(url, options)
+  //   .then(response => response.json())
+  //   .then(async (response) => {
+  //     await responseChecker(response)
+  //     res.json(response)
+  //   })
+  //   .catch((err) => {
+  //     console.log(err)
+  //     res.json(err)
+  //   })
+
+  return res.json(summaryData)
 });
 
 // -----------------------
