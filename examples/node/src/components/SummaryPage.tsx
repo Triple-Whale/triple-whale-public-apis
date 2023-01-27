@@ -9,17 +9,18 @@ const groupByKey = (list, key) => list.reduce((hash, obj) => ({...hash, [obj[key
 const dictateData = (data: SummaryPageResponse) => {
   const flatDictatedData = Object.keys(SummaryMetrics).flatMap((metric) => {
     const currentMetric = SummaryMetrics[metric as SummaryMetricIdsTypes];
-    const value = data.comparisons[0][currentMetric.metricId] & (
+    const percentChange = data.comparisons[0][currentMetric.metricId] & (
       data.comparisons[0][currentMetric.metricId].web?.revenue
       || data.comparisons[0][currentMetric.metricId]
     )
-    const percentChange = data.calculatedStats[0][currentMetric.metricId] && (
+    const value = data.calculatedStats[0][currentMetric.metricId] && (
       data.calculatedStats[0][currentMetric.metricId].web?.revenue
       || data.calculatedStats[0][currentMetric.metricId]
     )
 
     return {
       ...currentMetric,
+      source: currentMetric.services[0] || currentMetric.icon,
       value,
       percentChange
     };
@@ -55,13 +56,14 @@ export const SummaryPage: React.FC = () => {
   }, [])
 
   const toNumber = (num: number | string) => typeof num == 'number' ? num : parseFloat(num)  
+  const toCurrency = (num: string) => parseFloat(num).toLocaleString('en-US', { style: 'currency', currency: 'USD' }).replace('.00', '')
 
   const formatNumber = (num: number | string) => { 
     return toNumber(num).toFixed(2).replace('.00', '') 
   }
 
   const formatValue = (item: formattedDictatedService) => {
-    return `${item.type === 'currency' ? '$' : ''}${formatNumber(item.value)}${item.type === 'percent' ? '%' : ''}`
+    return `${item.type === 'currency' ? `${toCurrency(formatNumber(item.value))}` : formatNumber(item.value)}${item.type === 'percent' ? '%' : ''}`
   }
 
   return (
@@ -93,13 +95,16 @@ export const SummaryPage: React.FC = () => {
             <br/>
             <Stack wrap={true} spacing="loose" distribution="fill">
               {group.map((item) => {
-                const val = toNumber(item.value)
-                return item.value !== 0 && (
+                const upDown = toNumber(item.percentChange)
+
+                return item.value !== 0 && item.percentChange && (
                   <Card key={item.id} sectioned>
                     <Text variant="bodyMd" as="p">
                       <strong>{item.title}</strong>
                       <br/>
-                      <Badge status={val > 0 ? 'success' : 'critical'}>{val > 0 ? '↑' : '↓'}</Badge>
+                      <Badge size="small" status={upDown === 0 ? undefined : upDown > 0 ? 'success' : 'critical'}>
+                        {upDown === 0 ? '-' : upDown > 0 ? '↑' : '↓'}
+                      </Badge>
                       &nbsp;
                       <Text variant="bodySm" as="span">{formatNumber(item.percentChange)}%</Text>
                     </Text>
