@@ -288,7 +288,7 @@ export type SummaryPageResponse = {
 };
 
 export interface formattedDictatedService extends BaseSummaryMetric<any> {
-  value: number;
+  value: string | number;
   percentChange: number;
 }
 

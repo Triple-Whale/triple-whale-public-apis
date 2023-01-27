@@ -54,8 +54,14 @@ export const SummaryPage: React.FC = () => {
     fetchData().catch(console.error);
   }, [])
 
-  const formatNumber = (num: number) => num.toFixed(2).replace('.00', '')
-  const formatValue = (item: formattedDictatedService) => `${item.type === 'currency' ? '$' : ''}${formatNumber(item.value)}${item.type === 'percent' ? '%' : ''}`
+  const formatNumber = (num: number | string) => { 
+    num = typeof num == 'number' ? num : parseFloat(num)  
+    return num.toFixed(2).replace('.00', '') 
+  }
+
+  const formatValue = (item: formattedDictatedService) => {
+    return `${item.type === 'currency' ? '$' : ''}${formatNumber(item.value)}${item.type === 'percent' ? '%' : ''}`
+  }
 
   return (
     <Fragment>
