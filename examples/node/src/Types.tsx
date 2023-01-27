@@ -292,6 +292,31 @@ export interface formattedDictatedService extends BaseSummaryMetric<any> {
   percentChange: number;
 }
 
+export const ServiceMap = {
+  amazon: 'Amazon',
+  attentive: 'Attentive',
+  benchmarks: 'Benchmarks',
+  blended: 'Blended',
+  enquirelabs: 'Fairing',
+  facebook: 'Facebook',
+  googleAds: 'Google Ads',
+  googleAnalytics: 'Google Analytics',
+  gorgias: 'Gorgias',
+  influencers: 'Influencers',
+  instagram: 'Instagram',
+  klaviyo: 'Klaviyo',
+  kno: 'Kno',
+  pinterest: 'Pinterest',
+  pixel: 'Pixel',
+  recharge: 'Recharge',
+  shopify: 'Shopify',
+  snapchat: 'Snapchat',
+  tiktok: 'Tiktok',
+  tripleWhale: 'Triple Whale',
+}
+
+export type IServiceMap = keyof typeof ServiceMap
+
 export type DictatedData = {
-  [key in keyof ServicesIds]: formattedDictatedService[]
+  [key in keyof typeof ServiceMap]: formattedDictatedService[]
 }

@@ -2,7 +2,9 @@ import { useState, useEffect, Fragment } from 'react';
 import { Badge, Button, Card, Text, Select, Stack } from '@shopify/polaris';
 import { useSummaryDateRanges } from '../contexts/DateRanges';
 import { SummaryMetrics, SummaryMetricIdsTypes, ServicesIds } from '../SummaryData'
-import { SummaryPageResponse, DictatedData, formattedDictatedService } from '../Types'
+import { SummaryPageResponse, DictatedData, formattedDictatedService, IServiceMap, ServiceMap } from '../Types'
+import SourceIcons from './SourceIcons'
+
 // @ts-ignore
 const groupByKey = (list, key) => list.reduce((hash, obj) => ({...hash, [obj[key]]:( hash[obj[key]] || [] ).concat(obj)}), {})
 
@@ -84,13 +86,13 @@ export const SummaryPage: React.FC = () => {
       <br />
 
       {Object.keys(dictatedData).map((g: string) => {
-        const group = dictatedData[g as keyof ServicesIds] as DictatedData[keyof ServicesIds]
-        const filteredGroup = group.filter((item) => item.value !== 0)
+        const group = dictatedData[g as IServiceMap] as DictatedData[IServiceMap]
+        const filteredGroup = group.filter((item) => item.value !== 0 && item.percentChange)
         
         return filteredGroup.length > 0 && (
           <Card key={g} sectioned>
-            <div className="capitalize">
-              <Text variant="headingXl" as="h3">{g}</Text>
+            <div className="capitalize flex-text">
+              <Text variant="headingXl" as="h3"><SourceIcons source={g as IServiceMap} /> {ServiceMap[g as IServiceMap]}</Text>
             </div>
             <br/>
             <Stack wrap={true} spacing="loose" distribution="fill">
