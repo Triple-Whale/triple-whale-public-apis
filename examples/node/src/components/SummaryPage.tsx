@@ -23,9 +23,15 @@ const dictateData = (data: SummaryPageResponse) => {
       || data.calculatedStats[0][currentMetric.metricId]
     )
 
-    // WIP
+    // -----------------------------------------------
+    // WIP!
     // GUESS which stat corresponds
-    // this logic is not perfect, but it's a start
+    // this logic only covers a few scenarios, but it's a start
+    // -----------------------------------------------
+    // WHY?
+    // There are many reducers/transformers that are leveraged 
+    // in order to format the data for charts
+    // -----------------------------------------------
     let stats: any = []
     const service = currentMetric.services[0]
     if(data.previousPeriodRawStats) {
@@ -177,9 +183,9 @@ export const SummaryPage: React.FC = () => {
                       <Text variant="bodySm" as="span">{formatNumber(item.percentChange)}%</Text>
                     </Text>
                     <Text variant="headingXl" as='h1'>{formatValue(item)}</Text>
-                    {item.stats && item.stats?.length > 0 && (
+                    {/* {item.stats && item.stats?.length > 0 && (
                       <SparkChart accessibilityLabel={plainTextService} data={[{ data: item.stats }]} />
-                    )}
+                    )} */}
                   </Card>
                 )
               })}
