@@ -1,9 +1,11 @@
 import { useState, useEffect, Fragment } from 'react';
-import { Badge, Button, Card, Text, Select, Stack } from '@shopify/polaris';
+import { Badge, Button, Card, Icon, Text, Tooltip, Select, Stack } from '@shopify/polaris';
+import { QuestionMarkInverseMajor } from '@shopify/polaris-icons'
 import { useSummaryDateRanges } from '../contexts/DateRanges';
 import { SummaryMetrics, SummaryMetricIdsTypes, ServicesIds } from '../SummaryData'
 import { SummaryPageResponse, DictatedData, formattedDictatedService, IServiceMap, ServiceMap } from '../Types'
 import SourceIcons from './SourceIcons'
+import { SparkChart } from './Charts';
 
 // @ts-ignore
 const groupByKey = (list, key) => list.reduce((hash, obj) => ({...hash, [obj[key]]:( hash[obj[key]] || [] ).concat(obj)}), {})
@@ -20,13 +22,55 @@ const dictateData = (data: SummaryPageResponse) => {
       || data.calculatedStats[0][currentMetric.metricId]
     )
 
+    // WIP
+    // GUESS which stat corresponds
+    // this logic is not perfect, but it's a start
+    let stats: any = []
+    const service = currentMetric.services[0]
+    if(data.previousPeriodRawStats) {
+    const metric = currentMetric.metricId
+    const newStatsService = data.previousPeriodRawStats.newStats[service]
+      stats = data.previousPeriodRawStats.stats.flatMap((day: any) => {
+        return Object.keys(day.hours).flatMap((hour: any) => {
+          if(!!day.hours[hour][metric]) {
+            return {
+              key: hour,
+              value: day.hours[hour][metric],
+              date: day.end
+            }
+          }
+        })
+      }).filter(Boolean)
+
+      if(newStatsService) { 
+        newStatsService.flatMap((day: any) => {
+          const metricContainsKey = Object.keys(day.hours[0]).find(key => metric.includes(key.replace(service, ''))) ?? []
+          if(metricContainsKey.length > 0) {
+            const currMetric = metricContainsKey[0]
+            stats = Object.keys(day.hours).flatMap((hour: any) => {
+              if(!!day.hours[hour][currMetric]) {
+                return {
+                  key: hour,
+                  value: day.hours[hour][currMetric],
+                  date: day.end
+                }
+              }
+            }).filter(Boolean)
+          }
+        })
+      }
+    }
+
     return {
       ...currentMetric,
       source: currentMetric.services[0] || currentMetric.icon,
+      stats,
       value,
       percentChange
     };
   })
+
+  console.log(groupByKey(flatDictatedData, 'icon'))
 
   return groupByKey(flatDictatedData, 'icon')
 }
@@ -88,11 +132,12 @@ export const SummaryPage: React.FC = () => {
       {Object.keys(dictatedData).map((g: string) => {
         const group = dictatedData[g as IServiceMap] as DictatedData[IServiceMap]
         const filteredGroup = group.filter((item) => item.value !== 0 && item.percentChange)
+        const plainTextService = ServiceMap[g as IServiceMap]
         
         return filteredGroup.length > 0 && (
           <Card key={g} sectioned>
             <div className="capitalize flex-text">
-              <Text variant="headingXl" as="h3"><SourceIcons source={g as IServiceMap} /> {ServiceMap[g as IServiceMap]}</Text>
+              <Text variant="headingXl" as="h3"><SourceIcons source={g as IServiceMap} /> {plainTextService}</Text>
             </div>
             <br/>
             <Stack wrap={true} spacing="loose" distribution="fill">
@@ -102,8 +147,18 @@ export const SummaryPage: React.FC = () => {
                 return item.value !== 0 && item.percentChange && (
                   <Card key={item.id} sectioned>
                     <Text variant="bodyMd" as="p">
-                      <strong>{item.title}</strong>
-                      <br/>
+                      <span className="flex-text">
+                        <strong>
+                          {item.title}
+                          <Tooltip content={item.tip}>
+                            <Icon
+                              source={QuestionMarkInverseMajor}
+                              color="subdued"
+                            />
+                          </Tooltip>
+                          <br />
+                        </strong>
+                      </span>
                       <Badge size="small" status={upDown === 0 ? undefined : upDown > 0 ? 'success' : 'critical'}>
                         {upDown === 0 ? '-' : upDown > 0 ? '↑' : '↓'}
                       </Badge>
@@ -111,6 +166,9 @@ export const SummaryPage: React.FC = () => {
                       <Text variant="bodySm" as="span">{formatNumber(item.percentChange)}%</Text>
                     </Text>
                     <Text variant="headingXl" as='h1'>{formatValue(item)}</Text>
+                    {item.stats && item.stats?.length > 0 && (
+                      <SparkChart accessibilityLabel={plainTextService} data={[{ data: item.stats }]} />
+                    )}
                   </Card>
                 )
               })}

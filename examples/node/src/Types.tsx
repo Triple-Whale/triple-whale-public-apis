@@ -290,6 +290,7 @@ export type SummaryPageResponse = {
 export interface formattedDictatedService extends BaseSummaryMetric<any> {
   value: string | number;
   percentChange: number;
+  stats?: sparkChartDataLineItem[];
 }
 
 export const ServiceMap = {
