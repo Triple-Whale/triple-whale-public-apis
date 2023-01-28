@@ -6,6 +6,7 @@ import { SummaryMetrics, SummaryMetricIdsTypes, ServicesIds } from '../SummaryDa
 import { SummaryPageResponse, DictatedData, formattedDictatedService, IServiceMap, ServiceMap } from '../Types'
 import SourceIcons from './SourceIcons'
 import { SparkChart } from './Charts';
+import { DataExport } from '../DataExport';
 
 // @ts-ignore
 const groupByKey = (list, key) => list.reduce((hash, obj) => ({...hash, [obj[key]]:( hash[obj[key]] || [] ).concat(obj)}), {})
@@ -70,8 +71,6 @@ const dictateData = (data: SummaryPageResponse) => {
     };
   })
 
-  console.log(groupByKey(flatDictatedData, 'icon'))
-
   return groupByKey(flatDictatedData, 'icon')
 }
 
@@ -125,6 +124,18 @@ export const SummaryPage: React.FC = () => {
         </Stack.Item>
         <Stack.Item fill>
           <Button fullWidth onClick={() => console.log('clicked')}>Fetch Summary Page Data</Button>
+        </Stack.Item>
+        <Stack.Item>
+          <Tooltip 
+            content="Download Metrics"
+            preferredPosition="above"
+          >
+            <DataExport
+              data={dictatedData}
+              title="Dictated Summary Page"
+              disabled={Object.keys(dictatedData).length <= 0}
+            />
+          </Tooltip>
         </Stack.Item>
       </Stack>
       <br />
