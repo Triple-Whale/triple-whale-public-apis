@@ -1,6 +1,6 @@
 import  { Toast } from '@shopify/polaris';
 import { createContext, useCallback, useContext, useReducer } from 'react';
-import { childrenProps, toastAction, toastState } from '../Types'
+import { childrenProps, toastAction, toastState } from '../types/Types'
 
 export const ToastContext = createContext<toastState>({} as toastState);
 export const ToastDispatchContext = createContext<((action: toastAction) => void) | null>(null);

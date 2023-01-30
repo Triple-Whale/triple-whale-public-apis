@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from 'react';
-import { authState, childrenProps, authAction } from '../Types'
+import { authState, childrenProps, authAction } from '../types/Types'
 
 const authenticated: authState = {
   authenticated: true,

@@ -6,7 +6,7 @@ import { FetchOrdersWithJourneysV2 } from './FetchOrdersWithJourneysV2'
 import { SummaryPage } from './SummaryPage'
 import { PostMetrics } from './PostMetrics'
 import { useAuthDispatch } from '../contexts/Auth';
-import { TabsType } from '../Types'
+import { TabsType } from '../types/Types'
 
 export const TabbedRequests: React.FC = () => {
   const [selected, setSelected] = useState(0);

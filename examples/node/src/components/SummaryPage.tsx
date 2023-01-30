@@ -3,7 +3,7 @@ import RenderIfVisible from 'react-render-if-visible';
 import { Badge, Button, Card, Icon, Text, Tooltip, Select, Stack } from '@shopify/polaris';
 import { QuestionMarkInverseMajor } from '@shopify/polaris-icons'
 import { useSummaryDateRanges } from '../contexts/DateRanges';
-import { SummaryPageResponse, DictatedData, formattedDictatedService, IServiceMap, ServiceMap } from '../Types'
+import { SummaryPageResponse, DictatedData, formattedDictatedService, IServiceMap, ServiceMap } from '../types/Types'
 import SourceIcons from './SourceIcons'
 import { SparkChart } from './Charts';
 import { DataExport } from '../DataExport';

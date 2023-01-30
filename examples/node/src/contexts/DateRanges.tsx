@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { DatePickerOption } from '../Types';
+import { DatePickerOption } from '../types/Types';
 import moment from 'moment'
 
 // V1 RANGES

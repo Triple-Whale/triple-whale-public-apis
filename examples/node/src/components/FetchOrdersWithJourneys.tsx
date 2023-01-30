@@ -26,7 +26,7 @@ import {
   donutDataKeys,
   donutDataObject,
   donutDataLineItemData
-} from '../Types'
+} from '../types/Types'
 
 const formatOrders = (orders: oldOrders) => {
   return orders.map((order: oldOrder) => ([

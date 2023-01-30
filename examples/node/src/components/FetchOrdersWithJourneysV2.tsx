@@ -25,7 +25,7 @@ import {
   donutDataKeys,
   donutDataObject,
   donutDataLineItemData
-} from '../Types'
+} from '../types/Types'
 import { DataExport } from '../DataExport';
 
 const formatOrders = (orders: newOrders) => {

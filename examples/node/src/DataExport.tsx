@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import { Button, Popover, ActionList } from '@shopify/polaris'
 import { ArrowDownMinor } from '@shopify/polaris-icons'
-import { dataExportProps } from './Types'
+import { dataExportProps } from './types/Types'
 
 // @ts-ignore
 import { Parser } from '@json2csv/plainjs'

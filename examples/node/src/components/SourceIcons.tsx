@@ -1,4 +1,4 @@
-import { IServiceMap } from '../Types'
+import { IServiceMap } from '../types/Types'
 
 import { FaEnvelope, FaTiktok, FaShopify, FaSnapchatGhost, FaAmazon, FaLightbulb } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";

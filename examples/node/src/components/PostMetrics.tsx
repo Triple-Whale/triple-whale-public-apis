@@ -7,7 +7,7 @@ import {
 } from '@shopify/polaris';
 import { useAuthDispatch } from '../contexts/Auth';
 import { useToastDispatch } from '../contexts/Toast';
-import { metricsDynamicData } from '../Types'
+import { metricsDynamicData } from '../types/Types'
 import moment from 'moment'
 
 const baseMetrics: metricsDynamicData = {

@@ -1,7 +1,7 @@
 import { 
   SummaryMetricIdsTypes,
   SummaryMetricsStatsSelectorsNames
-} from './SummaryData'
+} from '../types/SummaryData'
 
 // tabs
 interface Tab {
