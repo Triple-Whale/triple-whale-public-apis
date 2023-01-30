@@ -1,6 +1,6 @@
 import { 
-  ServicesIds,
-  BaseSummaryMetric
+  SummaryMetricIdsTypes,
+  SummaryMetricsStatsSelectorsNames
 } from './SummaryData'
 
 // tabs
@@ -287,10 +287,16 @@ export type SummaryPageResponse = {
   previousPeriodRawStats?: any;
 };
 
-export interface formattedDictatedService extends BaseSummaryMetric<any> {
+export interface formattedDictatedService {
+  id: SummaryMetricIdsTypes;
+  title: string;
+  tip: string;
+  metricId: SummaryMetricsStatsSelectorsNames;
   value: string | number;
   percentChange: number;
-  stats?: sparkChartDataLineItem[];
+  chart: sparkChartDataLineItem[];
+  type: string;
+  positiveComparison: boolean;
 }
 
 export const ServiceMap = {
