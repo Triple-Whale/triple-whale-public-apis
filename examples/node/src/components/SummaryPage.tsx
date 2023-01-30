@@ -1,4 +1,5 @@
 import { useState, useEffect, Fragment } from 'react';
+import RenderIfVisible from 'react-render-if-visible';
 import { Badge, Button, Card, Icon, Text, Tooltip, Select, Stack } from '@shopify/polaris';
 import { QuestionMarkInverseMajor } from '@shopify/polaris-icons'
 import { useSummaryDateRanges } from '../contexts/DateRanges';
@@ -126,7 +127,9 @@ export const SummaryPage: React.FC = () => {
                     </Text>
                     <Text variant="headingXl" as='h1'>{formatValue(item)}</Text>
                     {item.chart && item.chart?.length > 0 && (
-                      <SparkChart accessibilityLabel={plainTextService} data={[{ data: item.chart }]} />
+                      <RenderIfVisible defaultHeight={60} stayRendered={true}>
+                        <SparkChart accessibilityLabel={plainTextService} data={[{ data: item.chart }]} />
+                      </RenderIfVisible>
                     )}
                   </Card>
                 )
