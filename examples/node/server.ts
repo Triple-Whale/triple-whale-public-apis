@@ -360,17 +360,14 @@ app.post('/post-metrics', (req: Request, res: Response) => {
 })
 
 app.get("/get-summary-page-data", (req: Request, res: Response) => {
-  // const url = "https://api.triplewhale.com/api/v2/summary-page/get-summary-page-data"
+  // const url = "https://api.triplewhale.com/api/v2/summary-page/get-data"
 
   // let data = {
-  //   shop: SHOP_URL,
+  //   shopDomain: SHOP_URL,
   //   state: LOCAL_SECRET,
   //   periods: [],
   //   todayHour: 0,
-  //   key: "",
-  //   includeCalculatedStats: true,
-  //   includeRawStats: true,
-  //   activeOrderSegment: [],
+  //   key: ""
   // }
 
   // const options = {

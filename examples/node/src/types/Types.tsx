@@ -293,10 +293,10 @@ export interface formattedDictatedService {
   tip: string;
   metricId: SummaryMetricsStatsSelectorsNames;
   value: string | number;
-  percentChange: number;
+  delta: number;
   chart: sparkChartDataLineItem[];
   type: string;
-  positiveComparison: boolean;
+  positiveComparison: number;
 }
 
 export const ServiceMap = {

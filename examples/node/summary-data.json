@@ -115,7 +115,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": -52,
+            "delta": -52,
             "value": 36140.95
         },
         {
@@ -232,7 +232,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": -48,
+            "delta": -48,
             "value": 24387.26
         },
         {
@@ -349,7 +349,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": -52,
+            "delta": -52,
             "value": 34717.329999999994
         },
         {
@@ -466,7 +466,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": -59,
+            "delta": -59,
             "value": 11753.689999999999
         },
         {
@@ -555,7 +555,7 @@
                 },
                 {
                     "x": 12,
-                    "y": 35.21339999999999,
+                    "y": 35.2134,
                     "start": "2023-01-13T05:00:00.000Z",
                     "startFormatted": "2023-01-13T00:00:00-05:00"
                 },
@@ -567,7 +567,7 @@
                 },
                 {
                     "x": 14,
-                    "y": 31.861949999999997,
+                    "y": 31.86195,
                     "start": "2023-01-15T05:00:00.000Z",
                     "startFormatted": "2023-01-15T00:00:00-05:00"
                 },
@@ -579,7 +579,7 @@
                 },
                 {
                     "x": 16,
-                    "y": 22.179150000000003,
+                    "y": 22.17915,
                     "start": "2023-01-17T05:00:00.000Z",
                     "startFormatted": "2023-01-17T00:00:00-05:00"
                 },
@@ -609,7 +609,7 @@
                 },
                 {
                     "x": 21,
-                    "y": 23.825400000000002,
+                    "y": 23.8254,
                     "start": "2023-01-22T05:00:00.000Z",
                     "startFormatted": "2023-01-22T00:00:00-05:00"
                 },
@@ -642,7 +642,7 @@
                 "shopify"
             ],
             "icon": "tripleWhale",
-            "percentChange": -52,
+            "delta": -52,
             "value": 602.3291499999999
         },
         {
@@ -661,7 +661,7 @@
             "services": [
                 "shopify"
             ],
-            "percentChange": -51,
+            "delta": -51,
             "value": 3199.54
         },
         {
@@ -680,7 +680,7 @@
             "services": [
                 "shopify"
             ],
-            "percentChange": -49,
+            "delta": -49,
             "value": 5838
         },
         {
@@ -700,7 +700,7 @@
             ],
             "metricPopupWidget": true,
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -714,7 +714,7 @@
             ],
             "icon": "shopify",
             "type": "decimal",
-            "percentChange": 0,
+            "delta": 0,
             "value": 405992,
             "chart": []
         },
@@ -729,7 +729,7 @@
             ],
             "icon": "shopify",
             "type": "decimal",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -745,7 +745,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": 0,
+            "delta": 0,
             "value": 1053686.69,
             "chart": []
         },
@@ -761,7 +761,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": 0,
+            "delta": 0,
             "value": 30183765.189999998,
             "chart": []
         },
@@ -880,7 +880,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": -6,
+            "delta": -6,
             "value": 43.33447242206235
         },
         {
@@ -997,7 +997,7 @@
                 "GOOGLE_ANALYTICS"
             ],
             "icon": "tripleWhale",
-            "percentChange": -4,
+            "delta": -4,
             "value": 49.554615384615396
         },
         {
@@ -1114,7 +1114,7 @@
             ],
             "tip": "Ads = ad spend.",
             "icon": "facebook",
-            "percentChange": -53,
+            "delta": -53,
             "value": 15682
         },
         {
@@ -1131,7 +1131,7 @@
             ],
             "tip": "Ads = Google ad spend.",
             "icon": "googleAds",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -1150,7 +1150,7 @@
             "positiveComparison": -1,
             "icon": "googleAds",
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -1165,7 +1165,7 @@
             ],
             "tip": "Bounce Rate = percentage of visitors to the website that leave before any action or visiting other pages.",
             "icon": "googleAnalytics",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -1184,7 +1184,7 @@
             "type": "currency",
             "tip": "Conversion Value = recorded revenue from Google ads.",
             "icon": "googleAds",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -1237,7 +1237,7 @@
             ],
             "tip": "Ads = Snapchat ad spend.",
             "icon": "snapchat",
-            "percentChange": -60,
+            "delta": -60,
             "value": 514.522457
         },
         {
@@ -1291,7 +1291,7 @@
             ],
             "tip": "ROAS = return on ad spend.",
             "icon": "snapchat",
-            "percentChange": -75,
+            "delta": -75,
             "value": 0.09523393844789946
         },
         {
@@ -1343,7 +1343,7 @@
                 "snapchat-ads"
             ],
             "icon": "snapchat",
-            "percentChange": -48,
+            "delta": -48,
             "value": 75852
         },
         {
@@ -1395,7 +1395,7 @@
                 "snapchat-ads"
             ],
             "icon": "snapchat",
-            "percentChange": -55,
+            "delta": -55,
             "value": 1066
         },
         {
@@ -1449,7 +1449,7 @@
             ],
             "positiveComparison": -1,
             "icon": "snapchat",
-            "percentChange": -24,
+            "delta": -24,
             "value": 6.783241799820703
         },
         {
@@ -1503,7 +1503,7 @@
             ],
             "positiveComparison": -1,
             "icon": "snapchat",
-            "percentChange": 215,
+            "delta": 215,
             "value": 514.522457
         },
         {
@@ -1556,7 +1556,7 @@
                 "snapchat-ads"
             ],
             "icon": "snapchat",
-            "percentChange": -90,
+            "delta": -90,
             "value": 49
         },
         {
@@ -1673,7 +1673,7 @@
                 "GOOGLE_ANALYTICS"
             ],
             "icon": "googleAnalytics",
-            "percentChange": 2,
+            "delta": 1,
             "value": 1.2685945495656312
         },
         {
@@ -1788,7 +1788,7 @@
                 "GOOGLE_ANALYTICS"
             ],
             "icon": "googleAnalytics",
-            "percentChange": -50,
+            "delta": -50,
             "value": 42015
         },
         {
@@ -1903,7 +1903,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": -49,
+            "delta": -49,
             "value": 834
         },
         {
@@ -1923,7 +1923,7 @@
             ],
             "icon": "tripleWhale",
             "additionalMarketplaceBadge": true,
-            "percentChange": 47,
+            "delta": 47,
             "value": -6915.211607000007,
             "chart": []
         },
@@ -1939,7 +1939,7 @@
                 "triple-whale"
             ],
             "icon": "tripleWhale",
-            "percentChange": -56,
+            "delta": -55,
             "value": 2122.328392999994,
             "chart": []
         },
@@ -1956,7 +1956,7 @@
             ],
             "icon": "tripleWhale",
             "additionalMarketplaceBadge": true,
-            "percentChange": -11,
+            "delta": -10,
             "value": -19.13400618135384,
             "chart": []
         },
@@ -2082,7 +2082,7 @@
             "tip": "Cost Per Acquisition is Ad spend/Google Analytics Transaction.",
             "positiveComparison": -1,
             "icon": "blended",
-            "percentChange": -8,
+            "delta": -8,
             "value": 19.59415162709832
         },
         {
@@ -2200,7 +2200,7 @@
                     "y": 0
                 }
             ],
-            "percentChange": -4,
+            "delta": -3,
             "value": 0.8601915982387242
         },
         {
@@ -2318,7 +2318,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": -59,
+            "delta": -59,
             "value": 1423.62
         },
         {
@@ -2436,7 +2436,7 @@
             ],
             "tip": "ROAS = return on ad spend.",
             "icon": "facebook",
-            "percentChange": 7,
+            "delta": 8,
             "value": 1.166121030480806
         },
         {
@@ -2454,7 +2454,7 @@
             ],
             "tip": "ROAS = return on ad spend.",
             "icon": "googleAds",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -2471,7 +2471,7 @@
             "tip": "CTR = percentage of people clicking the ad.",
             "icon": "googleAds",
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -2488,7 +2488,7 @@
             "tip": "CPM = cost per 1000 impressions.",
             "icon": "googleAds",
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -2504,7 +2504,7 @@
             ],
             "tip": "CPC = cost per click.",
             "icon": "googleAds",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -2520,7 +2520,7 @@
             ],
             "icon": "googleAds",
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -2535,7 +2535,7 @@
             ],
             "icon": "googleAds",
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -2550,7 +2550,7 @@
             ],
             "icon": "googleAds",
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -2565,7 +2565,7 @@
             ],
             "icon": "googleAds",
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -2580,7 +2580,7 @@
             ],
             "icon": "googleAds",
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -2596,7 +2596,7 @@
             ],
             "icon": "googleAds",
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -2614,7 +2614,7 @@
             "positiveComparison": -1,
             "icon": "googleAds",
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -2733,7 +2733,7 @@
             ],
             "positiveComparison": -1,
             "icon": "facebook",
-            "percentChange": -27,
+            "delta": -27,
             "value": 0.25492554782495613
         },
         {
@@ -2852,7 +2852,7 @@
             ],
             "positiveComparison": -1,
             "icon": "facebook",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -2971,7 +2971,7 @@
             ],
             "positiveComparison": -1,
             "icon": "facebook",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -2989,7 +2989,7 @@
             ],
             "positiveComparison": -1,
             "icon": "facebook",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -3108,7 +3108,7 @@
             ],
             "positiveComparison": -1,
             "icon": "facebook",
-            "percentChange": -19,
+            "delta": -19,
             "value": 15.139330691367917
         },
         {
@@ -3226,7 +3226,7 @@
                 "facebook-ads"
             ],
             "icon": "facebook",
-            "percentChange": 10,
+            "delta": 10,
             "value": 5.938726353846377
         },
         {
@@ -3345,7 +3345,7 @@
             ],
             "positiveComparison": -1,
             "icon": "facebook",
-            "percentChange": -23,
+            "delta": -23,
             "value": 1.102347813861943
         },
         {
@@ -3463,7 +3463,7 @@
                 "facebook-ads"
             ],
             "icon": "facebook",
-            "percentChange": -50,
+            "delta": -50,
             "value": 18287.11
         },
         {
@@ -3581,7 +3581,7 @@
                 "facebook-ads"
             ],
             "icon": "facebook",
-            "percentChange": -40,
+            "delta": -40,
             "value": 10865.05
         },
         {
@@ -3699,7 +3699,7 @@
                 "facebook-ads"
             ],
             "icon": "facebook",
-            "percentChange": -59,
+            "delta": -59,
             "value": 7422.06
         },
         {
@@ -3816,7 +3816,7 @@
                 "facebook-ads"
             ],
             "icon": "facebook",
-            "percentChange": -17,
+            "delta": -17,
             "value": 1.2854709686489527
         },
         {
@@ -3935,7 +3935,7 @@
             ],
             "positiveComparison": -1,
             "icon": "facebook",
-            "percentChange": -13,
+            "delta": -13,
             "value": 38.81683168316832
         },
         {
@@ -4052,7 +4052,7 @@
                 "facebook-ads"
             ],
             "icon": "facebook",
-            "percentChange": -46,
+            "delta": -46,
             "value": 404
         },
         {
@@ -4169,7 +4169,7 @@
             ],
             "tip": "Meta Purchases - Orders made on Meta Shop",
             "icon": "facebook",
-            "percentChange": -55,
+            "delta": -55,
             "value": 163
         },
         {
@@ -4286,7 +4286,7 @@
                 "facebook-ads"
             ],
             "icon": "facebook",
-            "percentChange": -38,
+            "delta": -38,
             "value": 241
         },
         {
@@ -4406,7 +4406,7 @@
             "services": [
                 "blended"
             ],
-            "percentChange": -16,
+            "delta": -16,
             "value": 30.431140515828677
         },
         {
@@ -4422,7 +4422,7 @@
                 "klaviyo"
             ],
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4438,7 +4438,7 @@
                 "klaviyo"
             ],
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4454,7 +4454,7 @@
                 "klaviyo"
             ],
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4469,7 +4469,7 @@
                 "klaviyo"
             ],
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 100,
             "chart": []
         },
@@ -4485,7 +4485,7 @@
             ],
             "positiveComparison": -1,
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4501,7 +4501,7 @@
             ],
             "icon": "klaviyo",
             "metricPopupWidget": true,
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4516,7 +4516,7 @@
                 "klaviyo"
             ],
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4532,7 +4532,7 @@
             ],
             "icon": "klaviyo",
             "metricPopupWidget": true,
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4547,7 +4547,7 @@
                 "klaviyo"
             ],
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4562,7 +4562,7 @@
             ],
             "positiveComparison": -1,
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4577,7 +4577,7 @@
             ],
             "positiveComparison": -1,
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4592,7 +4592,7 @@
             ],
             "positiveComparison": -1,
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4607,7 +4607,7 @@
             ],
             "positiveComparison": -1,
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4724,7 +4724,7 @@
             ],
             "positiveComparison": -1,
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4841,7 +4841,7 @@
             ],
             "positiveComparison": -1,
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4856,7 +4856,7 @@
             ],
             "positiveComparison": -1,
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -4870,7 +4870,7 @@
                 "klaviyo"
             ],
             "icon": "klaviyo",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -4885,7 +4885,7 @@
                 "ATTENTIVE"
             ],
             "icon": "attentive",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -4900,7 +4900,7 @@
                 "ATTENTIVE"
             ],
             "icon": "attentive",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -5017,7 +5017,7 @@
                 "ATTENTIVE"
             ],
             "positiveComparison": -1,
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5133,7 +5133,7 @@
                 "ATTENTIVE"
             ],
             "positiveComparison": -1,
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5249,7 +5249,7 @@
                 "ATTENTIVE"
             ],
             "positiveComparison": -1,
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5366,7 +5366,7 @@
             "services": [
                 "ATTENTIVE"
             ],
-            "percentChange": 0
+            "delta": 0
         },
         {
             "id": "attentivePlacedOrderTotalPriceFlows",
@@ -5481,7 +5481,7 @@
             "services": [
                 "ATTENTIVE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5597,7 +5597,7 @@
             "services": [
                 "ATTENTIVE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5713,7 +5713,7 @@
             "services": [
                 "ATTENTIVE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5829,7 +5829,7 @@
             "services": [
                 "ATTENTIVE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5844,7 +5844,7 @@
                 "tiktok-ads"
             ],
             "icon": "tiktok",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5860,7 +5860,7 @@
                 "tiktok-ads"
             ],
             "icon": "tiktok",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5876,7 +5876,7 @@
                 "tiktok-ads"
             ],
             "icon": "tiktok",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5893,7 +5893,7 @@
             ],
             "positiveComparison": -1,
             "icon": "tiktok",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5910,7 +5910,7 @@
             "positiveComparison": -1,
             "icon": "tiktok",
             "type": "decimal",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5926,7 +5926,7 @@
                 "tiktok-ads"
             ],
             "icon": "tiktok",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5942,7 +5942,7 @@
             ],
             "positiveComparison": -1,
             "icon": "tiktok",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5958,7 +5958,7 @@
                 "tiktok-ads"
             ],
             "icon": "tiktok",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -5973,7 +5973,7 @@
             "type": "currency",
             "tip": "LTV (Lifetime Value) = Sales / Unique Customers",
             "icon": "shopify",
-            "percentChange": -10,
+            "delta": -10,
             "value": 47.11988265971316,
             "chart": []
         },
@@ -5989,7 +5989,7 @@
             "valueToFixed": 2,
             "tip": "Frequency = The average number of times Unique Customers place a purchase.",
             "icon": "tripleWhale",
-            "percentChange": -3,
+            "delta": -3,
             "value": 1.0873533246414602,
             "chart": []
         },
@@ -6005,7 +6005,7 @@
             "valueToFixed": 2,
             "tip": "LTV/CPA = Lifetime Value / Cost Per Acquisition",
             "icon": "tripleWhale",
-            "percentChange": -1,
+            "delta": -1,
             "value": 2.404793203424399,
             "chart": []
         },
@@ -6128,7 +6128,7 @@
                 }
             ],
             "additionalMarketplaceBadge": true,
-            "percentChange": -2,
+            "delta": -2,
             "value": 45.216084405639585
         },
         {
@@ -6245,7 +6245,7 @@
                     "y": 0
                 }
             ],
-            "percentChange": -14,
+            "delta": -14,
             "value": 3.939077417721449
         },
         {
@@ -6361,7 +6361,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": -49,
+            "delta": -49,
             "value": 834
         },
         {
@@ -6478,7 +6478,7 @@
             "valueToFixed": 0,
             "type": "currency",
             "icon": "shopify",
-            "percentChange": -56,
+            "delta": -56,
             "value": 660.81
         },
         {
@@ -6487,103 +6487,103 @@
             "color": "#cfce47",
             "chart": [
                 {
-                    "x": 1,
+                    "x": 365,
                     "y": 1.5118803558361606
                 },
                 {
-                    "x": 2,
+                    "x": 366,
                     "y": 1.2237619608163075
                 },
                 {
-                    "x": 3,
+                    "x": 367,
                     "y": 1.4766686355581808
                 },
                 {
-                    "x": 4,
+                    "x": 368,
                     "y": 1.3776951160708135
                 },
                 {
-                    "x": 5,
+                    "x": 369,
                     "y": 1.5245822313255248
                 },
                 {
-                    "x": 6,
+                    "x": 370,
                     "y": 1.8878772536534716
                 },
                 {
-                    "x": 7,
+                    "x": 371,
                     "y": 1.0395820880006237
                 },
                 {
-                    "x": 8,
+                    "x": 372,
                     "y": 1.5956464047567058
                 },
                 {
-                    "x": 9,
+                    "x": 373,
                     "y": 1.645149160190524
                 },
                 {
-                    "x": 10,
+                    "x": 374,
                     "y": 1.5310877379842898
                 },
                 {
-                    "x": 11,
+                    "x": 375,
                     "y": 1.8702437766026057
                 },
                 {
-                    "x": 12,
+                    "x": 376,
                     "y": 1.5581102070825847
                 },
                 {
-                    "x": 13,
+                    "x": 377,
                     "y": 1.7867465447474906
                 },
                 {
-                    "x": 14,
+                    "x": 378,
                     "y": 1.2738853503184713
                 },
                 {
-                    "x": 15,
+                    "x": 379,
                     "y": 1.6123024234573322
                 },
                 {
-                    "x": 16,
+                    "x": 380,
                     "y": 1.095730304247781
                 },
                 {
-                    "x": 17,
+                    "x": 381,
                     "y": 1.5893759050612792
                 },
                 {
-                    "x": 18,
+                    "x": 382,
                     "y": 2.4216923088565827
                 },
                 {
-                    "x": 19,
+                    "x": 383,
                     "y": 1.3402130938819272
                 },
                 {
-                    "x": 20,
+                    "x": 384,
                     "y": 1.58465387823186
                 },
                 {
-                    "x": 21,
+                    "x": 385,
                     "y": 1.3782331051591858
                 },
                 {
-                    "x": 22,
+                    "x": 386,
                     "y": 1.0759834171967466
                 },
                 {
-                    "x": 23,
+                    "x": 387,
                     "y": 1.5699572971615172
                 },
                 {
-                    "x": 24,
+                    "x": 388,
                     "y": 0
                 },
                 {
-                    "x": 25,
+                    "x": 389,
                     "y": 0
                 }
             ],
@@ -6595,7 +6595,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": 9,
+            "delta": 9,
             "value": 64.38848920863309
         },
         {
@@ -6604,103 +6604,103 @@
             "color": "#3675b5",
             "chart": [
                 {
-                    "x": 1,
+                    "x": 365,
                     "y": 98.48811964416385
                 },
                 {
-                    "x": 2,
+                    "x": 366,
                     "y": 98.7762380391837
                 },
                 {
-                    "x": 3,
+                    "x": 367,
                     "y": 98.52333136444182
                 },
                 {
-                    "x": 4,
+                    "x": 368,
                     "y": 98.62230488392919
                 },
                 {
-                    "x": 5,
+                    "x": 369,
                     "y": 98.47541776867448
                 },
                 {
-                    "x": 6,
+                    "x": 370,
                     "y": 98.11212274634653
                 },
                 {
-                    "x": 7,
+                    "x": 371,
                     "y": 98.96041791199937
                 },
                 {
-                    "x": 8,
+                    "x": 372,
                     "y": 98.4043535952433
                 },
                 {
-                    "x": 9,
+                    "x": 373,
                     "y": 98.35485083980947
                 },
                 {
-                    "x": 10,
+                    "x": 374,
                     "y": 98.4689122620157
                 },
                 {
-                    "x": 11,
+                    "x": 375,
                     "y": 98.1297562233974
                 },
                 {
-                    "x": 12,
+                    "x": 376,
                     "y": 98.44188979291742
                 },
                 {
-                    "x": 13,
+                    "x": 377,
                     "y": 98.21325345525251
                 },
                 {
-                    "x": 14,
+                    "x": 378,
                     "y": 98.72611464968153
                 },
                 {
-                    "x": 15,
+                    "x": 379,
                     "y": 98.38769757654266
                 },
                 {
-                    "x": 16,
+                    "x": 380,
                     "y": 98.90426969575222
                 },
                 {
-                    "x": 17,
+                    "x": 381,
                     "y": 98.41062409493873
                 },
                 {
-                    "x": 18,
+                    "x": 382,
                     "y": 97.57830769114342
                 },
                 {
-                    "x": 19,
+                    "x": 383,
                     "y": 98.65978690611807
                 },
                 {
-                    "x": 20,
+                    "x": 384,
                     "y": 98.41534612176814
                 },
                 {
-                    "x": 21,
+                    "x": 385,
                     "y": 98.62176689484082
                 },
                 {
-                    "x": 22,
+                    "x": 386,
                     "y": 98.92401658280325
                 },
                 {
-                    "x": 23,
+                    "x": 387,
                     "y": 98.43004270283848
                 },
                 {
-                    "x": 24,
+                    "x": 388,
                     "y": 0
                 },
                 {
-                    "x": 25,
+                    "x": 389,
                     "y": 0
                 }
             ],
@@ -6712,7 +6712,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": -13,
+            "delta": -13,
             "value": 35.61151079136691
         },
         {
@@ -6829,7 +6829,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": -44,
+            "delta": -44,
             "value": 537
         },
         {
@@ -6844,7 +6844,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": -47,
+            "delta": -47,
             "value": 767,
             "chart": []
         },
@@ -7021,8 +7021,8 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": -49,
-            "value": 14990.340000000002
+            "delta": -49,
+            "value": 14990.340000000004
         },
         {
             "id": "googleAnalyticsUsers",
@@ -7137,7 +7137,7 @@
                 "GOOGLE_ANALYTICS"
             ],
             "icon": "googleAnalytics",
-            "percentChange": -50,
+            "delta": -50,
             "value": 41319
         },
         {
@@ -7254,7 +7254,7 @@
             ],
             "positiveComparison": -1,
             "icon": "gorgias",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -7370,7 +7370,7 @@
                 "GORGIAS"
             ],
             "icon": "gorgias",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -7487,7 +7487,7 @@
             ],
             "positiveComparison": -1,
             "icon": "gorgias",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -7603,7 +7603,7 @@
             ],
             "icon": "gorgias",
             "type": "decimal",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -7617,7 +7617,7 @@
                 "shopify"
             ],
             "icon": "shopify",
-            "percentChange": -54,
+            "delta": -54,
             "value": 1182,
             "chart": []
         },
@@ -7751,7 +7751,7 @@
             "tip": "Blended Ad Spend = Total Ad Spend. This includes the reported ad spend of each marketing channel connected to Triple Whale, plus any Custom Expenses marked as Ad Spend.",
             "icon": "blended",
             "additionalMarketplaceBadge": true,
-            "percentChange": -53,
+            "delta": -53,
             "value": 16341.522457
         },
         {
@@ -7883,7 +7883,7 @@
             "tip": "Blended ROAS (Return on Ad Spend) = Sales / Blended Ads.",
             "icon": "blended",
             "additionalMarketplaceBadge": true,
-            "percentChange": 2,
+            "delta": 2,
             "value": 2.21
         },
         {
@@ -7905,7 +7905,7 @@
             ],
             "tip": "New Customer ROAS (Return on Ad Spend) = Sales from New Customers / Blended Ad Spend.",
             "icon": "blended",
-            "percentChange": 10,
+            "delta": 11,
             "value": "1.49"
         },
         {
@@ -8028,7 +8028,7 @@
             "tip": "BA ROAS (Blended-Attributed ROAS) = Total Blended Conversion Value (reported by each marketing channel) / Blended Ad Spend",
             "icon": "blended",
             "additionalMarketplaceBadge": true,
-            "percentChange": 6,
+            "delta": 6,
             "value": "1.12"
         },
         {
@@ -8051,7 +8051,7 @@
             "tip": "POAS is Gross-Profit/Total-Ad-spend.",
             "icon": "blended",
             "additionalMarketplaceBadge": true,
-            "percentChange": -8,
+            "delta": -7,
             "value": 0.5768318634205449,
             "chart": []
         },
@@ -8176,7 +8176,7 @@
             "positiveComparison": -1,
             "icon": "blended",
             "additionalMarketplaceBadge": true,
-            "percentChange": -8,
+            "delta": -8,
             "value": 19.59415162709832
         },
         {
@@ -8191,7 +8191,7 @@
                 "pinterest-ads"
             ],
             "icon": "pinterest",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8207,7 +8207,7 @@
                 "pinterest-ads"
             ],
             "icon": "pinterest",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8224,7 +8224,7 @@
             ],
             "positiveComparison": -1,
             "icon": "pinterest",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8241,7 +8241,7 @@
             ],
             "positiveComparison": -1,
             "icon": "pinterest",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8257,7 +8257,7 @@
                 "pinterest-ads"
             ],
             "icon": "pinterest",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8273,7 +8273,7 @@
                 "pinterest-ads"
             ],
             "icon": "pinterest",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8289,7 +8289,7 @@
                 "pinterest-ads"
             ],
             "icon": "pinterest",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8305,7 +8305,7 @@
                 "pinterest-ads"
             ],
             "icon": "pinterest",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8421,7 +8421,7 @@
                 }
             ],
             "icon": "pixel",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8537,7 +8537,7 @@
                 }
             ],
             "icon": "pixel",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8654,7 +8654,7 @@
                 }
             ],
             "icon": "pixel",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8770,7 +8770,7 @@
                 }
             ],
             "icon": "pixel",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8786,7 +8786,7 @@
             ],
             "valueToFixed": 2,
             "icon": "pixel",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -8804,7 +8804,7 @@
             "type": "currency",
             "positiveComparison": -1,
             "icon": "pixel",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -8821,7 +8821,7 @@
             "valueToFixed": 0,
             "type": "currency",
             "icon": "pixel",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -8838,7 +8838,7 @@
             "valueToFixed": 0,
             "type": "currency",
             "icon": "pixel",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -8854,7 +8854,7 @@
                 "facebook-ads"
             ],
             "icon": "pixel",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -8872,7 +8872,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Cost Per 1000 Impressions",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8889,7 +8889,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Cost Per Clicks",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8906,7 +8906,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Click Through Rate",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8924,7 +8924,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average New Customers Blended Return On Ad Spend",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8942,7 +8942,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average New Customers Blended Cost Per Acquisition",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8960,7 +8960,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Blended Return On Ad Spend",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8977,7 +8977,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Spend",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -8994,7 +8994,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Number of New Customers",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9009,7 +9009,7 @@
                 "benchmarks"
             ],
             "positiveComparison": -1,
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9026,7 +9026,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Number of Orders",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9044,7 +9044,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average New Customers Conversion Value",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9062,7 +9062,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Conversion Value in USD",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9079,7 +9079,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Spend",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9095,7 +9095,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Impressions",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9111,7 +9111,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Clicks",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9231,7 +9231,7 @@
                     "y": 0
                 }
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 26798.489999999998
         },
         {
@@ -9249,7 +9249,7 @@
             "specificStat": "revenue",
             "isDynamicMetric": true,
             "statObjectKey": "pos",
-            "percentChange": 0,
+            "delta": 0,
             "value": 26798.489999999998
         },
         {
@@ -9267,7 +9267,7 @@
             "specificStat": "revenue",
             "isDynamicMetric": true,
             "statObjectKey": "shopify_draft_order",
-            "percentChange": 0,
+            "delta": 0,
             "value": 26798.489999999998
         },
         {
@@ -9285,7 +9285,7 @@
             "specificStat": "revenue",
             "isDynamicMetric": true,
             "statObjectKey": "iphone",
-            "percentChange": 0,
+            "delta": 0,
             "value": 26798.489999999998
         },
         {
@@ -9303,7 +9303,7 @@
             "specificStat": "revenue",
             "isDynamicMetric": true,
             "statObjectKey": "android",
-            "percentChange": 0,
+            "delta": 0,
             "value": 26798.489999999998
         },
         {
@@ -9318,7 +9318,7 @@
                 "enquirelabs"
             ],
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9333,7 +9333,7 @@
                 "enquirelabs"
             ],
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9348,7 +9348,7 @@
                 "enquirelabs"
             ],
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9363,7 +9363,7 @@
                 "enquirelabs"
             ],
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9378,7 +9378,7 @@
                 "enquirelabs"
             ],
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9393,7 +9393,7 @@
                 "enquirelabs"
             ],
             "chart": [],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9408,7 +9408,7 @@
             "color": "#e2e572",
             "metricId": "responsesPrecent",
             "tip": "% responses from total orders",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -9481,7 +9481,7 @@
                     "y": 0
                 }
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9553,7 +9553,7 @@
                     "y": 0
                 }
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9625,7 +9625,7 @@
                     "y": 0
                 }
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9697,7 +9697,7 @@
                     "y": 0
                 }
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9769,7 +9769,7 @@
                     "y": 0
                 }
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9841,7 +9841,7 @@
                     "y": 0
                 }
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -9856,7 +9856,7 @@
             "color": "#e2e572",
             "metricId": "responsesPrecentKno",
             "tip": "% responses from total orders",
-            "percentChange": 31,
+            "delta": 31,
             "value": 0.4796163069544364,
             "chart": []
         },
@@ -9972,7 +9972,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -10087,7 +10087,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -10202,7 +10202,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -10317,7 +10317,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -10432,7 +10432,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -10548,7 +10548,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -10663,7 +10663,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -10779,7 +10779,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -10895,7 +10895,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -11011,7 +11011,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -11126,7 +11126,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -11241,7 +11241,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -11358,7 +11358,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "total likes for page and posts.",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -11475,7 +11475,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -11592,7 +11592,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -11709,7 +11709,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -11826,7 +11826,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -11943,7 +11943,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -12060,7 +12060,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -12177,7 +12177,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -12294,7 +12294,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -12411,7 +12411,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -12528,7 +12528,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -12645,7 +12645,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -12762,7 +12762,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -12879,7 +12879,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -12996,7 +12996,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -13113,7 +13113,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -13230,7 +13230,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -13347,7 +13347,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -13464,7 +13464,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -13581,7 +13581,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -13698,7 +13698,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -13815,7 +13815,7 @@
                 "influencers"
             ],
             "icon": "influencers",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -13932,7 +13932,7 @@
                 "influencers"
             ],
             "icon": "influencers",
-            "percentChange": 0,
+            "delta": 0,
             "value": 145
         },
         {
@@ -14049,7 +14049,7 @@
                 "influencers"
             ],
             "icon": "influencers",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -14166,7 +14166,7 @@
                 "influencers"
             ],
             "icon": "influencers",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -14283,7 +14283,7 @@
                 "influencers"
             ],
             "icon": "influencers",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -14400,7 +14400,7 @@
                 "influencers"
             ],
             "icon": "influencers",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -14413,7 +14413,7 @@
             "type": "currency",
             "services": [],
             "icon": "tripleWhale",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -14530,7 +14530,7 @@
             ],
             "icon": "amazon",
             "tip": "Gross sales value. What the customer paid for the order including shipping, taxes, discounts",
-            "percentChange": -23,
+            "delta": -25,
             "value": 1538.9400095492601
         },
         {
@@ -14647,7 +14647,7 @@
             ],
             "icon": "amazon",
             "tip": "Amount customers paid in taxes ",
-            "percentChange": -21,
+            "delta": -22,
             "value": 101.85000000000001
         },
         {
@@ -14764,7 +14764,7 @@
             ],
             "icon": "amazon",
             "tip": "# of orders placed",
-            "percentChange": -24,
+            "delta": -25,
             "value": 40
         },
         {
@@ -14881,7 +14881,7 @@
             ],
             "icon": "amazon",
             "tip": "# of items sold",
-            "percentChange": -22,
+            "delta": -24,
             "value": 44
         },
         {
@@ -14998,7 +14998,7 @@
             ],
             "icon": "amazon",
             "tip": "Estimated fees based on products purchased. This amount is an estimate and is not final until Amazon reports on actual fees",
-            "percentChange": -23,
+            "delta": -25,
             "value": 379.5626481800887
         },
         {
@@ -15115,7 +15115,7 @@
             ],
             "icon": "amazon",
             "tip": "Gross sales value sold in Amazon fulfillment network. What the customer paid for the order including shipping, taxes, discounts",
-            "percentChange": -23,
+            "delta": -25,
             "value": 1538.9400095492601
         },
         {
@@ -15232,7 +15232,7 @@
             ],
             "icon": "amazon",
             "tip": "Amount customers paid in taxes on orders placed in Amazon fulfillment network",
-            "percentChange": -21,
+            "delta": -22,
             "value": 101.85000000000001
         },
         {
@@ -15349,7 +15349,7 @@
             ],
             "icon": "amazon",
             "tip": "# of orders placed in Amazon fulfillment network ",
-            "percentChange": -24,
+            "delta": -25,
             "value": 40
         },
         {
@@ -15466,7 +15466,7 @@
             ],
             "icon": "amazon",
             "tip": "# of items sold in Amazon fulfillment network",
-            "percentChange": -22,
+            "delta": -24,
             "value": 44
         },
         {
@@ -15583,7 +15583,7 @@
             ],
             "icon": "amazon",
             "tip": "Estimated fees based on products purchased in Amazon fulfillment network. This amount is an estimate and is not final until Amazon reports on actual fees",
-            "percentChange": -23,
+            "delta": -25,
             "value": 379.5626481800887
         },
         {
@@ -15700,7 +15700,7 @@
             ],
             "icon": "amazon",
             "tip": "Gross sales value sold in Merchant fulfillment network. What the customer paid for the order including shipping, taxes, discounts",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -15817,7 +15817,7 @@
             ],
             "icon": "amazon",
             "tip": "Amount customers paid in taxes on orders placed in Merchant fulfillment network",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -15934,7 +15934,7 @@
             ],
             "icon": "amazon",
             "tip": "# of orders placed in Merchant fulfillment network ",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -16051,7 +16051,7 @@
             ],
             "icon": "amazon",
             "tip": "# of items sold in Merchant fulfillment network",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -16168,7 +16168,7 @@
             ],
             "icon": "amazon",
             "tip": "Estimated fees based on products purchased in Merchant fulfillment network. This amount is an estimate and is not final until Amazon reports on actual fees",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -16285,7 +16285,7 @@
             ],
             "icon": "amazon",
             "tip": "$ value of canceled orders",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -16401,7 +16401,7 @@
                 "amazon"
             ],
             "icon": "amazon",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -16518,7 +16518,7 @@
             ],
             "icon": "amazon",
             "tip": "# of Canceled orders",
-            "percentChange": -50,
+            "delta": -50,
             "value": 1
         },
         {
@@ -16634,7 +16634,7 @@
                 "amazon"
             ],
             "icon": "amazon",
-            "percentChange": -50,
+            "delta": -50,
             "value": 1
         },
         {
@@ -16750,7 +16750,7 @@
                 "amazon"
             ],
             "icon": "amazon",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -16867,7 +16867,7 @@
             ],
             "icon": "amazon",
             "tip": "$ value of canceled orders from Amazon fulfillment network",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -16983,7 +16983,7 @@
                 "amazon"
             ],
             "icon": "amazon",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -17100,7 +17100,7 @@
             ],
             "icon": "amazon",
             "tip": "# of canceled orders from Amazon fulfillment network",
-            "percentChange": -50,
+            "delta": -50,
             "value": 1
         },
         {
@@ -17216,7 +17216,7 @@
                 "amazon"
             ],
             "icon": "amazon",
-            "percentChange": -50,
+            "delta": -50,
             "value": 1
         },
         {
@@ -17332,7 +17332,7 @@
                 "amazon"
             ],
             "icon": "amazon",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -17449,7 +17449,7 @@
             ],
             "icon": "amazon",
             "tip": "$ value of canceled orders from Merchant fulfillment network",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -17565,7 +17565,7 @@
                 "amazon"
             ],
             "icon": "amazon",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -17682,7 +17682,7 @@
             ],
             "icon": "amazon",
             "tip": "# of canceled orders from Merchant fulfillment network",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -17799,7 +17799,7 @@
             ],
             "icon": "amazon",
             "isMinutes": false,
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -17915,7 +17915,7 @@
                 "amazon"
             ],
             "icon": "amazon",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -18033,7 +18033,7 @@
             "icon": "amazon",
             "isMinutes": false,
             "tip": "Ads = Ad spend",
-            "percentChange": -17,
+            "delta": -17,
             "value": 812.8300000000002
         },
         {
@@ -18151,7 +18151,7 @@
             "icon": "amazon",
             "isMinutes": false,
             "tip": "ROAS = return on ad spend",
-            "percentChange": -17,
+            "delta": -17,
             "value": 1.277634929813122
         },
         {
@@ -18269,7 +18269,7 @@
                 }
             ],
             "tip": "Cost per click (average)",
-            "percentChange": 2,
+            "delta": 2,
             "value": 0.9722846889952155
         },
         {
@@ -18387,7 +18387,7 @@
             "icon": "amazon",
             "isMinutes": false,
             "tip": "Total Number of clicks",
-            "percentChange": -18,
+            "delta": -18,
             "value": 836
         },
         {
@@ -18505,7 +18505,7 @@
             "icon": "amazon",
             "isMinutes": false,
             "tip": "Number of Amazon Orders attributed to Amazon advertising campaigns",
-            "percentChange": -30,
+            "delta": -30,
             "value": 30
         },
         {
@@ -18521,7 +18521,7 @@
             "icon": "amazon",
             "isMinutes": false,
             "tip": "Total advertising cost of sales: (Amazon Advertising Spend / Amazon Total Revenue) x 100",
-            "percentChange": 8,
+            "delta": 10,
             "value": 52.817523422376276,
             "chart": []
         },
@@ -18640,7 +18640,7 @@
             "icon": "amazon",
             "isMinutes": false,
             "tip": "Amazon reported revenue attributed from your ads",
-            "percentChange": -31,
+            "delta": -31,
             "value": 1038.5000000000002
         },
         {
@@ -18758,7 +18758,7 @@
             "icon": "amazon",
             "isMinutes": false,
             "tip": "Gross sales - shipping - taxes + shipping discounts",
-            "percentChange": -23,
+            "delta": -25,
             "value": 1437.0900095492602
         },
         {
@@ -18876,7 +18876,7 @@
             "icon": "amazon",
             "isMinutes": false,
             "tip": "Gross sales - Expenses (COGS, handling fees, amazon estimated fees, Amazon Ad spend)",
-            "percentChange": -40,
+            "delta": -44,
             "value": 244.6973613691714
         },
         {
@@ -18994,7 +18994,7 @@
             "icon": "amazon",
             "isMinutes": false,
             "tip": "% of sales spent on ads",
-            "percentChange": 9,
+            "delta": 11,
             "value": 56.56082740808575
         },
         {
@@ -19112,7 +19112,7 @@
             "icon": "amazon",
             "isMinutes": false,
             "tip": "Average order value: total sales / # of orders > $0",
-            "percentChange": 0,
+            "delta": 1,
             "value": 38.4735002387315
         },
         {
@@ -19230,7 +19230,7 @@
             "icon": "amazon",
             "isMinutes": false,
             "tip": "Ad spend / orders > $0",
-            "percentChange": 9,
+            "delta": 11,
             "value": 20.320750000000004
         },
         {
@@ -19348,7 +19348,7 @@
             "icon": "amazon",
             "isMinutes": false,
             "tip": "Amazon estimated fees + COGs + Handling fees + Ad spend ",
-            "percentChange": -19,
+            "delta": -19,
             "value": 1192.3926481800888
         },
         {
@@ -19466,7 +19466,7 @@
             "icon": "amazon",
             "isMinutes": false,
             "tip": "Shopify sales + Amazon sales",
-            "percentChange": -51,
+            "delta": -51,
             "value": 37679.89000954926
         },
         {
@@ -19483,7 +19483,7 @@
                 "finance"
             ],
             "icon": "finance_total",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -19500,7 +19500,7 @@
                 "finance"
             ],
             "icon": "finance_total",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -19517,7 +19517,7 @@
             ],
             "icon": "",
             "customMetricPopup": "transactions",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -19534,7 +19534,7 @@
             ],
             "icon": "",
             "customMetricPopup": "transactions",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -19550,7 +19550,7 @@
                 "finance"
             ],
             "icon": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -19566,7 +19566,7 @@
                 "finance"
             ],
             "icon": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -19581,7 +19581,7 @@
                 "finance"
             ],
             "icon": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -19597,7 +19597,7 @@
                 "finance"
             ],
             "icon": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 1053686.69,
             "chart": []
         },
@@ -19613,7 +19613,7 @@
                 "finance"
             ],
             "icon": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 30183765.189999998,
             "chart": []
         },
@@ -19630,7 +19630,7 @@
                 "finance"
             ],
             "icon": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -19646,7 +19646,7 @@
                 "finance"
             ],
             "icon": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0
         },
         {
@@ -19662,7 +19662,7 @@
             ],
             "icon": "",
             "metricPopupWidget": true,
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -19679,7 +19679,7 @@
             ],
             "icon": "",
             "metricPopupWidget": true,
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -19696,7 +19696,7 @@
             ],
             "icon": "",
             "metricPopupWidget": true,
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -19713,7 +19713,7 @@
                 "finance"
             ],
             "metricPopupWidget": true,
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -19729,7 +19729,7 @@
                 "finance"
             ],
             "icon": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -19745,7 +19745,7 @@
             ],
             "icon": "",
             "type": "currency",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -19761,7 +19761,7 @@
             ],
             "icon": "",
             "type": "decimal",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -19778,7 +19778,7 @@
             "icon": "",
             "type": "currency",
             "customMetricPopup": "valuation",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         },
@@ -19794,7 +19794,7 @@
             ],
             "icon": "",
             "type": "currency",
-            "percentChange": 649,
+            "delta": 649,
             "value": 1445.638,
             "chart": []
         },
@@ -19810,7 +19810,7 @@
                 "finance"
             ],
             "icon": "",
-            "percentChange": 0,
+            "delta": 0,
             "value": 0,
             "chart": []
         }

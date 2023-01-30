@@ -90,7 +90,7 @@ export const SummaryPage: React.FC = () => {
 
       {Object.keys(dictatedData).map((g: string) => {
         const group = dictatedData[g as IServiceMap] as DictatedData[IServiceMap]
-        const filteredGroup = group.filter((item) => item.value !== 0 && item.percentChange)
+        const filteredGroup = group.filter((item) => item.value !== 0 && item.delta)
         const plainTextService = ServiceMap[g as IServiceMap]
         
         return filteredGroup.length > 0 && (
@@ -99,12 +99,13 @@ export const SummaryPage: React.FC = () => {
               <Text variant="headingXl" as="h3"><SourceIcons source={g as IServiceMap} /> {plainTextService}</Text>
             </div>
             <br/>
-            <Stack wrap={true} spacing="loose" distribution="fill">
+            <Stack wrap={true} spacing="loose" distribution="fillEvenly">
               {group.map((item) => {
-                const upDown = toNumber(item.percentChange)
-                const posComp = !!item.positiveComparison
+                const delta = toNumber(item.delta)
+                const deltaIsPositive = (delta > 0 && (item.positiveComparison > 0 || !item.positiveComparison)) 
+                  || (delta < 0 && item.positiveComparison < 0);
 
-                return item.value !== 0 && item.percentChange && (
+                return item.value !== 0 && item.delta && (
                   <Card key={item.id} sectioned>
                     <Text variant="bodyMd" as="p">
                       <span className="flex-text">
@@ -119,11 +120,11 @@ export const SummaryPage: React.FC = () => {
                           <br />
                         </strong>
                       </span>
-                      <Badge size="small" status={posComp ? 'success' : 'critical'}>
-                        {upDown === 0 ? '-' : upDown > 0 ? '↑' : '↓'}
+                      <Badge size="small" status={deltaIsPositive ? 'success' : 'critical'}>
+                        {delta === 0 ? '-' : delta > 0 ? '↑' : '↓'}
                       </Badge>
                       &nbsp;
-                      <Text variant="bodySm" as="span">{formatNumber(item.percentChange)}%</Text>
+                      <Text variant="bodySm" as="span">{formatNumber(item.delta)}%</Text>
                     </Text>
                     <Text variant="headingXl" as='h1'>{formatValue(item)}</Text>
                     {item.chart && item.chart?.length > 0 && (
