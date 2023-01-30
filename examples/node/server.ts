@@ -21,7 +21,7 @@ import {
   newOrder,
   newOrders,
   ordersWithJourneyNew
-} from './src/Types'
+} from './src/types/Types'
 
 // -----------------------
 // express app
