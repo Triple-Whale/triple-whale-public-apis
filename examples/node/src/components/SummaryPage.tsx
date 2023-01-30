@@ -13,13 +13,14 @@ const groupByKey = (list, key) => list.reduce((hash, obj) => ({...hash, [obj[key
 
 const groupData = (data: any) => {
   data.map((item: any) => {
+    item.service = item.icon || item.services?.length > 0 && item.services[0]
     item.chart = item.chart?.map((chart: any) => ({
       key: chart.x,
       value: chart.y
     }))
   })
 
-  return groupByKey(data, 'icon')
+  return groupByKey(data, 'service')
 }
 
 export const SummaryPage: React.FC = () => {

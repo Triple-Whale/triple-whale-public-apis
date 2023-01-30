@@ -1,6 +1,6 @@
 import { IServiceMap } from '../types/Types'
 
-import { FaEnvelope, FaTiktok, FaShopify, FaSnapchatGhost, FaAmazon, FaLightbulb } from 'react-icons/fa';
+import { FaEnvelope, FaMoneyCheck, FaTiktok, FaShopify, FaSnapchatGhost, FaAmazon, FaLightbulb } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 import { GiBlender, GiWhaleTail } from "react-icons/gi"
 import { DiGoogleAnalytics } from "react-icons/di";
@@ -15,6 +15,8 @@ const iconMap = {
   'blended': <GiBlender color="#1877f2" />,
   'enquirelabs': <FaLightbulb />,
   'facebook': <BsFacebook color="#1778f2" />,
+  'finance': <FaMoneyCheck color="#1877f2" />,
+  'finance_total': <FaMoneyCheck color="#1877f2" />,
   'googleAds': <FcGoogle color="#E37400" />,
   'googleAnalytics': <DiGoogleAnalytics color="#E37400" />,
   'gorgias': <BsFillChatRightTextFill />,

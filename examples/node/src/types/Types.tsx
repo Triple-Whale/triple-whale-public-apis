@@ -306,6 +306,8 @@ export const ServiceMap = {
   blended: 'Blended',
   enquirelabs: 'Fairing',
   facebook: 'Facebook',
+  finance: 'Finance',
+  finance_total: 'Finance Totals',
   googleAds: 'Google Ads',
   googleAnalytics: 'Google Analytics',
   gorgias: 'Gorgias',
