@@ -232,7 +232,7 @@ app.post("/get-orders-with-journeys", (req: Request, res: Response) => {
         .then(response => response.json())
         .then(async (response: ordersWithJourneyOld) => {
           await responseChecker(response)
-          ordersWithJourneys = ordersWithJourneys.concat(response.ordersWithJourneys.filter((order: oldOrder) => order) as oldOrders)
+          ordersWithJourneys = ordersWithJourneys.concat(response.ordersWithJourneys?.filter((order: oldOrder) => order) as oldOrders)
           
           if(response.nextPage) {
             data.page += 1

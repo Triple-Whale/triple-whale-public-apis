@@ -8,7 +8,7 @@
     "dev": "nodemon server.ts",
     "build": "vite build",
     "docker:build": "docker build -t node . ",
-    "docker:compose": "docker compose up",
+    "docker:compose": "docker compose up --remove-orphans",
     "start": "NODE_ENV=production ts-node server.ts"
   },
   "dependencies": {
