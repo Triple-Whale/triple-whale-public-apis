@@ -63,10 +63,6 @@ export const SummaryPage: React.FC = () => {
   }
 
   const formatSparkChartData = (item: formattedDictatedService) => {
-    console.log([
-      { data: item.charts.current },
-      { isComparison: true, data: item.charts.previous }
-    ])
     return [
       { data: item.charts.current },
       { isComparison: true, data: item.charts.previous }
