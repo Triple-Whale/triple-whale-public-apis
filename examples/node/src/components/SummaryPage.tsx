@@ -59,7 +59,7 @@ export const SummaryPage: React.FC = () => {
   }
 
   const formatValue = (item: formattedDictatedService) => {
-    return `${item.type === 'currency' ? `${toCurrency(formatNumber(item.values.current))}` : formatNumber(item.values.current)}${item.type === 'percent' ? '%' : ''}`
+    return `${item.valueType === 'currency' ? `${toCurrency(formatNumber(item.values.current))}` : formatNumber(item.values.current)}${item.valueType === 'percent' ? '%' : ''}`
   }
 
   const formatSparkChartData = (item: formattedDictatedService) => {

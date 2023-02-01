@@ -301,7 +301,7 @@ export interface formattedDictatedService {
     current: sparkChartDataLineItem[]
     previous: sparkChartDataLineItem[]
   };
-  type: string;
+  valueType: string;
   positiveComparison: number;
 }
 
