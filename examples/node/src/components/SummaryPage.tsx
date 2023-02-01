@@ -22,8 +22,6 @@ const groupData = (data: any) => {
     })
   })
 
-  console.log(groupByKey(data, 'service'))
-
   return groupByKey(data, 'service')
 }
 
