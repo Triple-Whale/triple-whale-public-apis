@@ -13,12 +13,16 @@ const groupByKey = (list, key) => list.reduce((hash, obj) => ({...hash, [obj[key
 
 const groupData = (data: any) => {
   data.map((item: any) => {
-    item.service = item.icon || item.services?.length > 0 && item.services[0]
-    item.chart = item.chart?.map((chart: any) => ({
-      key: chart.x,
-      value: chart.y
-    }))
+    item.service = item.icon || item.services?.length > 0 && item.services[0];
+    ['current', 'previous'].map((period: string) => {
+      item.charts[period] = item.charts[period]?.map((metric: any) => ({
+        key: metric.x,
+        value: metric.y
+      }))
+    })
   })
+
+  console.log(groupByKey(data, 'service'))
 
   return groupByKey(data, 'service')
 }
@@ -41,9 +45,9 @@ export const SummaryPage: React.FC = () => {
   // @TODO - fetch data from server
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await fetch('/get-summary-page-data').then(res => res.json())
-      setData(data);
-      setDictatedData(groupData(data))
+      const { metrics } = await fetch('/get-summary-page-data').then(res => res.json())
+      setData(metrics);
+      setDictatedData(groupData(metrics))
     }
   
     fetchData().catch(console.error);
@@ -57,7 +61,18 @@ export const SummaryPage: React.FC = () => {
   }
 
   const formatValue = (item: formattedDictatedService) => {
-    return `${item.type === 'currency' ? `${toCurrency(formatNumber(item.value))}` : formatNumber(item.value)}${item.type === 'percent' ? '%' : ''}`
+    return `${item.type === 'currency' ? `${toCurrency(formatNumber(item.values.current))}` : formatNumber(item.values.current)}${item.type === 'percent' ? '%' : ''}`
+  }
+
+  const formatSparkChartData = (item: formattedDictatedService) => {
+    console.log([
+      { data: item.charts.current },
+      { isComparison: true, data: item.charts.previous }
+    ])
+    return [
+      { data: item.charts.current },
+      { isComparison: true, data: item.charts.previous }
+    ]
   }
 
   return (
@@ -91,7 +106,7 @@ export const SummaryPage: React.FC = () => {
 
       {Object.keys(dictatedData).map((g: string) => {
         const group = dictatedData[g as IServiceMap] as DictatedData[IServiceMap]
-        const filteredGroup = group.filter((item) => item.value !== 0 && item.delta)
+        const filteredGroup = group.filter((item) => item.values?.current !== 0 && item.delta)
         const plainTextService = ServiceMap[g as IServiceMap]
         
         return filteredGroup.length > 0 && (
@@ -106,7 +121,7 @@ export const SummaryPage: React.FC = () => {
                 const deltaIsPositive = (delta > 0 && (item.positiveComparison > 0 || !item.positiveComparison)) 
                   || (delta < 0 && item.positiveComparison < 0);
 
-                return item.value !== 0 && item.delta && (
+                return item.values?.current !== 0 && item.delta && (
                   <Card key={item.id} sectioned>
                     <Text variant="bodyMd" as="p">
                       <span className="flex-text">
@@ -128,9 +143,9 @@ export const SummaryPage: React.FC = () => {
                       <Text variant="bodySm" as="span">{formatNumber(item.delta)}%</Text>
                     </Text>
                     <Text variant="headingXl" as='h1'>{formatValue(item)}</Text>
-                    {item.chart && item.chart?.length > 0 && (
+                    {item.charts?.current?.length > 0 && (
                       <RenderIfVisible defaultHeight={60} stayRendered={true}>
-                        <SparkChart accessibilityLabel={plainTextService} data={[{ data: item.chart }]} />
+                        <SparkChart accessibilityLabel={plainTextService} data={formatSparkChartData(item)} />
                       </RenderIfVisible>
                     )}
                   </Card>

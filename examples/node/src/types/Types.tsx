@@ -290,11 +290,17 @@ export type SummaryPageResponse = {
 export interface formattedDictatedService {
   id: SummaryMetricIdsTypes;
   title: string;
-  tip: string;
+  tip?: string;
   metricId: SummaryMetricsStatsSelectorsNames;
-  value: string | number;
+  values: {
+    current: string | number;
+    previous: string | number;
+  };
   delta: number;
-  chart: sparkChartDataLineItem[];
+  charts: {
+    current: sparkChartDataLineItem[]
+    previous: sparkChartDataLineItem[]
+  };
   type: string;
   positiveComparison: number;
 }
