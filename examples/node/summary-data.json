@@ -1,5 +1,4 @@
 {
-    "key": "2023-01-25T00:00:00-05:002023-01-25T23:59:59-05:00",
     "metrics": [
         {
             "id": "sales",
@@ -905,7 +904,7 @@
             "delta": 11,
             "values": {
                 "current": 602.32915,
-                "previous": 539.5294499999999
+                "previous": 539.52945
             },
             "charts": {
                 "current": [
@@ -1013,7 +1012,7 @@
                     },
                     {
                         "x": 17,
-                        "y": 23.397950000000005,
+                        "y": 23.39795,
                         "start": "2023-01-18T05:00:00.000Z",
                         "startFormatted": "2023-01-18T00:00:00-05:00"
                     },
@@ -1213,7 +1212,7 @@
                     },
                     {
                         "x": 364,
-                        "y": 37.25295,
+                        "y": 37.252950000000006,
                         "start": "2022-12-31T05:00:00.000Z",
                         "startFormatted": "2022-12-31T00:00:00-05:00"
                     },
@@ -1239,14 +1238,216 @@
                 "shopify"
             ],
             "valueType": "currency",
-            "delta": 26,
+            "delta": 24,
             "values": {
-                "current": 3199.54,
-                "previous": 2535.3099999999995
+                "current": 3250.55,
+                "previous": 2614.2400000000002
             },
             "charts": {
-                "current": [],
-                "previous": []
+                "current": [
+                    {
+                        "x": 1,
+                        "y": 125.27
+                    },
+                    {
+                        "x": 2,
+                        "y": 165.7
+                    },
+                    {
+                        "x": 3,
+                        "y": 193.04
+                    },
+                    {
+                        "x": 4,
+                        "y": 173.31
+                    },
+                    {
+                        "x": 5,
+                        "y": 181.18
+                    },
+                    {
+                        "x": 6,
+                        "y": 120.44
+                    },
+                    {
+                        "x": 7,
+                        "y": 259.06
+                    },
+                    {
+                        "x": 8,
+                        "y": 91.31
+                    },
+                    {
+                        "x": 9,
+                        "y": 137.4
+                    },
+                    {
+                        "x": 10,
+                        "y": 143.82
+                    },
+                    {
+                        "x": 11,
+                        "y": 141.81
+                    },
+                    {
+                        "x": 12,
+                        "y": 184.07
+                    },
+                    {
+                        "x": 13,
+                        "y": 155.85999999999999
+                    },
+                    {
+                        "x": 14,
+                        "y": 123.96
+                    },
+                    {
+                        "x": 15,
+                        "y": 157.87
+                    },
+                    {
+                        "x": 16,
+                        "y": 179.1
+                    },
+                    {
+                        "x": 17,
+                        "y": 99.44
+                    },
+                    {
+                        "x": 18,
+                        "y": 151.51
+                    },
+                    {
+                        "x": 19,
+                        "y": 99.05
+                    },
+                    {
+                        "x": 20,
+                        "y": 89.83
+                    },
+                    {
+                        "x": 21,
+                        "y": 64.94
+                    },
+                    {
+                        "x": 22,
+                        "y": 118.82000000000001
+                    },
+                    {
+                        "x": 23,
+                        "y": 93.76
+                    },
+                    {
+                        "x": 24,
+                        "y": 0
+                    },
+                    {
+                        "x": 25,
+                        "y": 0
+                    }
+                ],
+                "previous": [
+                    {
+                        "x": 341,
+                        "y": 129.79
+                    },
+                    {
+                        "x": 342,
+                        "y": 205.25
+                    },
+                    {
+                        "x": 343,
+                        "y": 109.42
+                    },
+                    {
+                        "x": 344,
+                        "y": 95.36
+                    },
+                    {
+                        "x": 345,
+                        "y": 106
+                    },
+                    {
+                        "x": 346,
+                        "y": 78.61
+                    },
+                    {
+                        "x": 347,
+                        "y": 99.07
+                    },
+                    {
+                        "x": 348,
+                        "y": 104.82
+                    },
+                    {
+                        "x": 349,
+                        "y": 114.57
+                    },
+                    {
+                        "x": 350,
+                        "y": 79.62
+                    },
+                    {
+                        "x": 351,
+                        "y": 74.44
+                    },
+                    {
+                        "x": 352,
+                        "y": 52.989999999999995
+                    },
+                    {
+                        "x": 353,
+                        "y": 68.38
+                    },
+                    {
+                        "x": 354,
+                        "y": 123.66
+                    },
+                    {
+                        "x": 355,
+                        "y": 82.64
+                    },
+                    {
+                        "x": 356,
+                        "y": 77
+                    },
+                    {
+                        "x": 357,
+                        "y": 82.49
+                    },
+                    {
+                        "x": 358,
+                        "y": 84.06
+                    },
+                    {
+                        "x": 359,
+                        "y": 66.28
+                    },
+                    {
+                        "x": 360,
+                        "y": 152.19
+                    },
+                    {
+                        "x": 361,
+                        "y": 75.61
+                    },
+                    {
+                        "x": 362,
+                        "y": 88.52
+                    },
+                    {
+                        "x": 363,
+                        "y": 45.42
+                    },
+                    {
+                        "x": 364,
+                        "y": 169.44
+                    },
+                    {
+                        "x": 365,
+                        "y": 248.61
+                    }
+                ]
             }
         },
         {
@@ -1268,8 +1469,210 @@
                 "previous": 4466
             },
             "charts": {
-                "current": [],
-                "previous": []
+                "current": [
+                    {
+                        "x": 1,
+                        "y": 0
+                    },
+                    {
+                        "x": 2,
+                        "y": 0
+                    },
+                    {
+                        "x": 3,
+                        "y": 0
+                    },
+                    {
+                        "x": 4,
+                        "y": 0
+                    },
+                    {
+                        "x": 5,
+                        "y": 0
+                    },
+                    {
+                        "x": 6,
+                        "y": 0
+                    },
+                    {
+                        "x": 7,
+                        "y": 0
+                    },
+                    {
+                        "x": 8,
+                        "y": 0
+                    },
+                    {
+                        "x": 9,
+                        "y": 0
+                    },
+                    {
+                        "x": 10,
+                        "y": 0
+                    },
+                    {
+                        "x": 11,
+                        "y": 0
+                    },
+                    {
+                        "x": 12,
+                        "y": 0
+                    },
+                    {
+                        "x": 13,
+                        "y": 0
+                    },
+                    {
+                        "x": 14,
+                        "y": 0
+                    },
+                    {
+                        "x": 15,
+                        "y": 0
+                    },
+                    {
+                        "x": 16,
+                        "y": 0
+                    },
+                    {
+                        "x": 17,
+                        "y": 0
+                    },
+                    {
+                        "x": 18,
+                        "y": 0
+                    },
+                    {
+                        "x": 19,
+                        "y": 0
+                    },
+                    {
+                        "x": 20,
+                        "y": 0
+                    },
+                    {
+                        "x": 21,
+                        "y": 0
+                    },
+                    {
+                        "x": 22,
+                        "y": 0
+                    },
+                    {
+                        "x": 23,
+                        "y": 0
+                    },
+                    {
+                        "x": 24,
+                        "y": 0
+                    },
+                    {
+                        "x": 25,
+                        "y": 0
+                    }
+                ],
+                "previous": [
+                    {
+                        "x": 341,
+                        "y": 0
+                    },
+                    {
+                        "x": 342,
+                        "y": 0
+                    },
+                    {
+                        "x": 343,
+                        "y": 0
+                    },
+                    {
+                        "x": 344,
+                        "y": 0
+                    },
+                    {
+                        "x": 345,
+                        "y": 0
+                    },
+                    {
+                        "x": 346,
+                        "y": 0
+                    },
+                    {
+                        "x": 347,
+                        "y": 0
+                    },
+                    {
+                        "x": 348,
+                        "y": 0
+                    },
+                    {
+                        "x": 349,
+                        "y": 0
+                    },
+                    {
+                        "x": 350,
+                        "y": 0
+                    },
+                    {
+                        "x": 351,
+                        "y": 0
+                    },
+                    {
+                        "x": 352,
+                        "y": 0
+                    },
+                    {
+                        "x": 353,
+                        "y": 0
+                    },
+                    {
+                        "x": 354,
+                        "y": 0
+                    },
+                    {
+                        "x": 355,
+                        "y": 0
+                    },
+                    {
+                        "x": 356,
+                        "y": 0
+                    },
+                    {
+                        "x": 357,
+                        "y": 0
+                    },
+                    {
+                        "x": 358,
+                        "y": 0
+                    },
+                    {
+                        "x": 359,
+                        "y": 0
+                    },
+                    {
+                        "x": 360,
+                        "y": 0
+                    },
+                    {
+                        "x": 361,
+                        "y": 0
+                    },
+                    {
+                        "x": 362,
+                        "y": 0
+                    },
+                    {
+                        "x": 363,
+                        "y": 0
+                    },
+                    {
+                        "x": 364,
+                        "y": 0
+                    },
+                    {
+                        "x": 365,
+                        "y": 0
+                    }
+                ]
             }
         },
         {
@@ -1286,9 +1689,9 @@
             "metricPopupWidget": true,
             "chart": "totalCustomSpendsChart",
             "valueType": "currency",
-            "delta": 0,
+            "delta": 100,
             "values": {
-                "current": 0,
+                "current": 142.362,
                 "previous": 0
             },
             "charts": {
@@ -1304,12 +1707,9 @@
             "services": [
                 "shopify"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
-            "values": {
-                "current": 405992,
-                "previous": 405992
-            },
+            "values": {},
             "charts": {
                 "current": [],
                 "previous": []
@@ -1323,12 +1723,9 @@
             "services": [
                 "shopify"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
-            "values": {
-                "current": 0,
-                "previous": 0
-            },
+            "values": {},
             "charts": {
                 "current": [],
                 "previous": []
@@ -1344,10 +1741,7 @@
             ],
             "valueType": "currency",
             "delta": 0,
-            "values": {
-                "current": 1037931.6899999998,
-                "previous": 1037931.6899999998
-            },
+            "values": {},
             "charts": {
                 "current": [],
                 "previous": []
@@ -1363,10 +1757,7 @@
             ],
             "valueType": "currency",
             "delta": 0,
-            "values": {
-                "current": 30183765.189999998,
-                "previous": 30183765.189999998
-            },
+            "values": {},
             "charts": {
                 "current": [],
                 "previous": []
@@ -2495,7 +2886,7 @@
                 "GOOGLE_ANALYTICS"
             ],
             "tip": "Bounce Rate = percentage of visitors to the website that leave before any action or visiting other pages.",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -2898,7 +3289,7 @@
                 "snapchat-ads"
             ],
             "tip": "ROAS = return on ad spend.",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": -83,
             "values": {
                 "current": 0.09523393844789946,
@@ -3056,7 +3447,7 @@
             "services": [
                 "snapchat-ads"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 17,
             "values": {
                 "current": 75852,
@@ -3214,7 +3605,7 @@
             "services": [
                 "snapchat-ads"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": -16,
             "values": {
                 "current": 1066,
@@ -3848,7 +4239,7 @@
             "services": [
                 "GOOGLE_ANALYTICS"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 8,
             "values": {
                 "current": 1.2685945495656312,
@@ -4069,7 +4460,7 @@
             "services": [
                 "GOOGLE_ANALYTICS"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 37,
             "values": {
                 "current": 42015,
@@ -4290,7 +4681,7 @@
             "services": [
                 "shopify"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 30,
             "values": {
                 "current": 834,
@@ -4519,8 +4910,8 @@
             "valueType": "currency",
             "delta": -87,
             "values": {
-                "current": -12937.664467000008,
-                "previous": -6906.002224999999
+                "current": -13131.036467000007,
+                "previous": -6984.932225000003
             },
             "charts": {
                 "current": [],
@@ -4536,10 +4927,10 @@
                 "triple-whale"
             ],
             "valueType": "currency",
-            "delta": -4192,
+            "delta": -4341,
             "values": {
-                "current": -3900.1244670000074,
-                "previous": 95.30777500000056
+                "current": -4042.4864670000084,
+                "previous": 95.30777499999692
             },
             "charts": {
                 "current": [],
@@ -4555,11 +4946,11 @@
                 "triple-whale"
             ],
             "additionalMarketplaceBadge": true,
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": -66,
             "values": {
-                "current": -35.79779852770889,
-                "previous": -21.519750815325963
+                "current": -36.332848104435556,
+                "previous": -21.765704100093913
             },
             "charts": {
                 "current": [],
@@ -5252,7 +5643,7 @@
                 "facebook-ads"
             ],
             "tip": "ROAS = return on ad spend.",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 30,
             "values": {
                 "current": 1.16608310786985,
@@ -5476,7 +5867,7 @@
                 "google-ads"
             ],
             "tip": "ROAS = return on ad spend.",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": -26,
             "values": {
                 "current": 1.0506157579964148,
@@ -5699,7 +6090,7 @@
             ],
             "tip": "CTR = percentage of people clicking the ad.",
             "chart": "totalGoogleAdsCtrChart",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": -15,
             "values": {
                 "current": 0.8017325149866025,
@@ -5922,7 +6313,7 @@
             ],
             "tip": "CPM = cost per 1000 impressions.",
             "chart": "totalGoogleAdsCpmChart",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": -13,
             "values": {
                 "current": 5.816852282233028,
@@ -6144,7 +6535,7 @@
                 "google-ads"
             ],
             "tip": "CPC = cost per click.",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 2,
             "values": {
                 "current": 0.7255352843373494,
@@ -6164,7 +6555,7 @@
                 "google-ads"
             ],
             "chart": "googleAdsClicksChart",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 139,
             "values": {
                 "current": 8300,
@@ -6386,7 +6777,7 @@
                 "google-ads"
             ],
             "chart": "totalGoogleAdsImpressionsChart",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 183,
             "values": {
                 "current": 1035258,
@@ -6608,7 +6999,7 @@
                 "google-ads"
             ],
             "chart": "googleAdsAllConversionsChart",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 70,
             "values": {
                 "current": 1400.3372240000003,
@@ -6830,7 +7221,7 @@
                 "google-ads"
             ],
             "chart": "googleAllConversionValueChart",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 77,
             "values": {
                 "current": 7592.877598469998,
@@ -7052,7 +7443,7 @@
                 "google-ads"
             ],
             "chart": "googleAdsConversionsChart",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 92,
             "values": {
                 "current": 134.207688,
@@ -7072,7 +7463,7 @@
                 "google-ads"
             ],
             "chart": "totalAllRoasChart",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": -27,
             "values": {
                 "current": 1.2608684231968945,
@@ -7968,7 +8359,7 @@
                 "facebook-ads"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -8192,7 +8583,7 @@
                 "facebook-ads"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -8437,7 +8828,7 @@
             "services": [
                 "facebook-ads"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 29,
             "values": {
                 "current": 5.938765560816909,
@@ -9998,7 +10389,7 @@
             "services": [
                 "facebook-ads"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 70,
             "values": {
                 "current": 404,
@@ -10220,7 +10611,7 @@
                 "facebook-ads"
             ],
             "tip": "Meta Purchases - Orders made on Meta Shop",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 24,
             "values": {
                 "current": 163,
@@ -10442,7 +10833,7 @@
             "services": [
                 "facebook-ads"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 127,
             "values": {
                 "current": 241,
@@ -10779,7 +11170,7 @@
                 "previous": [
                     {
                         "x": 341,
-                        "y": 55.18753204761904
+                        "y": 57.94690864999999
                     },
                     {
                         "x": 342,
@@ -10795,7 +11186,7 @@
                     },
                     {
                         "x": 345,
-                        "y": 38.081620823529406
+                        "y": 28.147284956521734
                     },
                     {
                         "x": 346,
@@ -10855,7 +11246,7 @@
                     },
                     {
                         "x": 360,
-                        "y": 36.218961
+                        "y": 38.349488117647056
                     },
                     {
                         "x": 361,
@@ -10889,7 +11280,7 @@
             "services": [
                 "klaviyo"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 100,
             "values": {
                 "current": 23.177614312850114,
@@ -11006,7 +11397,7 @@
             "services": [
                 "klaviyo"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 100,
             "values": {
                 "current": 6.635132723406554,
@@ -11123,7 +11514,7 @@
             "services": [
                 "klaviyo"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 100,
             "values": {
                 "current": 16.54248158944356,
@@ -11239,7 +11630,7 @@
             "services": [
                 "klaviyo"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": -60,
             "values": {
                 "current": 39.490544178044175,
@@ -11259,7 +11650,7 @@
                 "klaviyo"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": 3057,
@@ -11492,7 +11883,7 @@
             "services": [
                 "klaviyo"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 100,
             "values": {
                 "current": 6.635132723406554,
@@ -11725,7 +12116,7 @@
             "services": [
                 "klaviyo"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 100,
             "values": {
                 "current": 16.54248158944356,
@@ -11842,7 +12233,7 @@
                 "klaviyo"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": 454,
@@ -11959,7 +12350,7 @@
                 "klaviyo"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": 11285,
@@ -12076,7 +12467,7 @@
                 "klaviyo"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": 1153152,
@@ -12193,7 +12584,7 @@
                 "klaviyo"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -12311,7 +12702,7 @@
                 "klaviyo"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": 0.0007232350982350982,
@@ -12534,7 +12925,7 @@
                 "klaviyo"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": 0.031341011419136415,
@@ -12756,7 +13147,7 @@
                 "klaviyo"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": -2603,
@@ -12907,7 +13298,7 @@
             "services": [
                 "ATTENTIVE"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -12927,7 +13318,7 @@
                 "ATTENTIVE"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -13149,7 +13540,7 @@
                 "ATTENTIVE"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -13371,7 +13762,7 @@
                 "ATTENTIVE"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -13593,7 +13984,7 @@
             "services": [
                 "ATTENTIVE"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -14035,7 +14426,7 @@
             "services": [
                 "ATTENTIVE"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -14477,7 +14868,7 @@
             "services": [
                 "ATTENTIVE"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -14718,7 +15109,7 @@
             "services": [
                 "tiktok-ads"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -14738,7 +15129,7 @@
             "services": [
                 "tiktok-ads"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -14780,7 +15171,7 @@
                 "tiktok-ads"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -14800,7 +15191,7 @@
             "services": [
                 "tiktok-ads"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -14879,7 +15270,7 @@
                 "shopify"
             ],
             "tip": "Frequency = The average number of times Unique Customers place a purchase.",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 1.0873533246414602,
@@ -14898,7 +15289,7 @@
                 "shopify"
             ],
             "tip": "LTV/CPA = Lifetime Value / Cost Per Acquisition",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": -14,
             "values": {
                 "current": 1.7572002106588078,
@@ -14923,7 +15314,7 @@
             "positiveComparison": -1,
             "chart": "merChart",
             "additionalMarketplaceBadge": true,
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 15,
             "values": {
                 "current": 61.87987675199463,
@@ -15145,7 +15536,7 @@
                 "shopify"
             ],
             "chart": "totalReturnsChart",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": -32,
             "values": {
                 "current": 3.939077417721449,
@@ -15367,7 +15758,7 @@
             "services": [
                 "shopify"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 30,
             "values": {
                 "current": 834,
@@ -15811,7 +16202,7 @@
             "services": [
                 "shopify"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 18,
             "values": {
                 "current": 64.38848920863309,
@@ -16033,7 +16424,7 @@
             "services": [
                 "shopify"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": -22,
             "values": {
                 "current": 35.61151079136691,
@@ -16255,7 +16646,7 @@
             "services": [
                 "shopify"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 55,
             "values": {
                 "current": 537,
@@ -16476,7 +16867,7 @@
             "services": [
                 "shopify"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 31,
             "values": {
                 "current": 767,
@@ -16502,7 +16893,7 @@
             "valueType": "currency",
             "delta": 27,
             "values": {
-                "current": 14990.340000000004,
+                "current": 14990.340000000002,
                 "previous": 11757.770000000002
             },
             "charts": {
@@ -16832,7 +17223,7 @@
             "services": [
                 "GOOGLE_ANALYTICS"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 36,
             "values": {
                 "current": 41319,
@@ -17054,7 +17445,7 @@
                 "GORGIAS"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -17275,7 +17666,7 @@
             "services": [
                 "GORGIAS"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -17498,7 +17889,7 @@
                 "GORGIAS"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -17720,7 +18111,7 @@
             "services": [
                 "GORGIAS"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -17941,7 +18332,7 @@
             "services": [
                 "shopify"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 1182,
@@ -18214,7 +18605,7 @@
             ],
             "tip": "Blended ROAS (Return on Ad Spend) = Sales / Blended Ads.",
             "additionalMarketplaceBadge": true,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": -13,
             "values": {
                 "current": 1.62,
@@ -18443,7 +18834,7 @@
             ],
             "tip": "New Customer ROAS (Return on Ad Spend) = Sales from New Customers / Blended Ad Spend.",
             "chart": "chartNewCustomerRoas",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": "1.09",
@@ -18466,7 +18857,7 @@
             ],
             "tip": "BA ROAS (Blended-Attributed ROAS) = Total Blended Conversion Value (reported by each marketing channel) / Blended Ad Spend",
             "additionalMarketplaceBadge": true,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 14,
             "values": {
                 "current": "1.10",
@@ -18695,11 +19086,11 @@
             ],
             "tip": "POAS is Gross-Profit/Total-Ad-spend.",
             "additionalMarketplaceBadge": true,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": -29,
             "values": {
-                "current": 0.42149531630159554,
-                "previous": 0.5972207238660093
+                "current": 0.41921441591260167,
+                "previous": 0.5926172836658061
             },
             "charts": {
                 "current": [],
@@ -18963,7 +19354,7 @@
             "services": [
                 "pinterest-ads"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -18984,7 +19375,7 @@
                 "pinterest-ads"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -19045,7 +19436,7 @@
             "services": [
                 "pinterest-ads"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -19065,7 +19456,7 @@
             "services": [
                 "pinterest-ads"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -19085,7 +19476,7 @@
             "services": [
                 "pinterest-ads"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -19105,7 +19496,7 @@
                 "triple-whale"
             ],
             "chart": "chartPixelUsers",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -19327,7 +19718,7 @@
                 "triple-whale"
             ],
             "chart": "chartPixelOrders",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -19771,7 +20162,7 @@
                 "triple-whale"
             ],
             "chart": "chartPixelAddToCarts",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -19993,7 +20384,7 @@
                 "triple-whale",
                 "facebook-ads"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20074,7 +20465,7 @@
                 "triple-whale",
                 "facebook-ads"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20137,7 +20528,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Click Through Rate",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20159,7 +20550,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average New Customers Blended Return On Ad Spend",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20203,7 +20594,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Blended Return On Ad Spend",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20246,7 +20637,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Number of New Customers",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20266,7 +20657,7 @@
                 "benchmarks"
             ],
             "positiveComparison": -1,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20288,7 +20679,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Number of Orders",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20374,7 +20765,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Impressions",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20395,7 +20786,7 @@
             ],
             "positiveComparison": -1,
             "tip": "Average Facebook Clicks",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20435,7 +20826,7 @@
             "isDynamicMetric": true,
             "statObjectKey": "pos",
             "chart": "sourcesCharts",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {},
             "charts": {}
@@ -20469,7 +20860,7 @@
             "isDynamicMetric": true,
             "statObjectKey": "iphone",
             "chart": "sourcesCharts",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {},
             "charts": {}
@@ -20499,7 +20890,7 @@
                 "enquirelabs"
             ],
             "chart": "totalFacebookEnqChart",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20518,7 +20909,7 @@
                 "enquirelabs"
             ],
             "chart": "totalGoogleEnqChart",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20537,7 +20928,7 @@
                 "enquirelabs"
             ],
             "chart": "totalSnapchatEnqChart",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20556,7 +20947,7 @@
                 "enquirelabs"
             ],
             "chart": "totalTiktokEnqChart",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20575,7 +20966,7 @@
                 "enquirelabs"
             ],
             "chart": "totalPinterestEnqChart",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20594,7 +20985,7 @@
                 "enquirelabs"
             ],
             "chart": "totalInstagramEnqChart",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20613,7 +21004,7 @@
             "title": "% Responses",
             "metricId": "responsesPrecent",
             "tip": "% responses from total orders",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20632,7 +21023,7 @@
                 "kno"
             ],
             "chart": "totalFacebookKnoChart",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20640,10 +21031,6 @@
             },
             "charts": {
                 "current": [
-                    {
-                        "x": 4,
-                        "y": 0
-                    },
                     {
                         "x": 5,
                         "y": 0
@@ -20694,6 +21081,10 @@
                     },
                     {
                         "x": 17,
+                        "y": 0
+                    },
+                    {
+                        "x": 18,
                         "y": 0
                     }
                 ],
@@ -20717,7 +21108,7 @@
                 "kno"
             ],
             "chart": "totalGoogleKnoChart",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20725,10 +21116,6 @@
             },
             "charts": {
                 "current": [
-                    {
-                        "x": 4,
-                        "y": 0
-                    },
                     {
                         "x": 5,
                         "y": 0
@@ -20779,6 +21166,10 @@
                     },
                     {
                         "x": 17,
+                        "y": 0
+                    },
+                    {
+                        "x": 18,
                         "y": 0
                     }
                 ],
@@ -20802,7 +21193,7 @@
                 "kno"
             ],
             "chart": "totalSnapchatKnoChart",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20810,10 +21201,6 @@
             },
             "charts": {
                 "current": [
-                    {
-                        "x": 4,
-                        "y": 0
-                    },
                     {
                         "x": 5,
                         "y": 0
@@ -20864,6 +21251,10 @@
                     },
                     {
                         "x": 17,
+                        "y": 0
+                    },
+                    {
+                        "x": 18,
                         "y": 0
                     }
                 ],
@@ -20887,7 +21278,7 @@
                 "kno"
             ],
             "chart": "totalTiktokKnoChart",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20895,10 +21286,6 @@
             },
             "charts": {
                 "current": [
-                    {
-                        "x": 4,
-                        "y": 0
-                    },
                     {
                         "x": 5,
                         "y": 0
@@ -20949,6 +21336,10 @@
                     },
                     {
                         "x": 17,
+                        "y": 0
+                    },
+                    {
+                        "x": 18,
                         "y": 0
                     }
                 ],
@@ -20972,7 +21363,7 @@
                 "kno"
             ],
             "chart": "totalPinterestKnoChart",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -20980,10 +21371,6 @@
             },
             "charts": {
                 "current": [
-                    {
-                        "x": 4,
-                        "y": 0
-                    },
                     {
                         "x": 5,
                         "y": 0
@@ -21034,6 +21421,10 @@
                     },
                     {
                         "x": 17,
+                        "y": 0
+                    },
+                    {
+                        "x": 18,
                         "y": 0
                     }
                 ],
@@ -21057,7 +21448,7 @@
                 "kno"
             ],
             "chart": "totalInstagramKnoChart",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -21065,10 +21456,6 @@
             },
             "charts": {
                 "current": [
-                    {
-                        "x": 4,
-                        "y": 0
-                    },
                     {
                         "x": 5,
                         "y": 0
@@ -21120,6 +21507,10 @@
                     {
                         "x": 17,
                         "y": 0
+                    },
+                    {
+                        "x": 18,
+                        "y": 0
                     }
                 ],
                 "previous": [
@@ -21142,7 +21533,7 @@
             "title": "% Responses",
             "metricId": "responsesPrecentKno",
             "tip": "% responses from total orders",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 52,
             "values": {
                 "current": 0.4796163069544364,
@@ -21161,7 +21552,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -21382,7 +21773,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -21603,7 +21994,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -21824,7 +22215,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -22045,7 +22436,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -22487,7 +22878,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -22708,7 +23099,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -22929,7 +23320,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -23371,7 +23762,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -23592,7 +23983,7 @@
             "services": [
                 "RECHARGE"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -23814,7 +24205,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "total likes for page and posts.",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -24036,7 +24427,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -24258,7 +24649,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -24480,7 +24871,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -24702,7 +25093,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -24924,7 +25315,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -25146,7 +25537,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -25368,7 +25759,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -25590,7 +25981,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -25812,7 +26203,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -26034,7 +26425,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -26256,7 +26647,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -26478,7 +26869,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -26700,7 +27091,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -26922,7 +27313,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -27144,7 +27535,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -27366,7 +27757,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -27588,7 +27979,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -27810,7 +28201,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -28032,7 +28423,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -28254,7 +28645,7 @@
                 "FACEBOOK_SOCIAL"
             ],
             "tip": "",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -28920,7 +29311,7 @@
             "services": [
                 "influencers"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -29142,7 +29533,7 @@
             "services": [
                 "influencers"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -29364,7 +29755,7 @@
             "services": [
                 "influencers"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -29979,7 +30370,7 @@
                 "amazon"
             ],
             "tip": "# of orders placed",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": 42,
@@ -30056,7 +30447,7 @@
                 "amazon"
             ],
             "tip": "# of items sold",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": 46,
@@ -30364,7 +30755,7 @@
                 "amazon"
             ],
             "tip": "# of orders placed in Amazon fulfillment network ",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": 42,
@@ -30441,7 +30832,7 @@
                 "amazon"
             ],
             "tip": "# of items sold in Amazon fulfillment network",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": 46,
@@ -30749,7 +31140,7 @@
                 "amazon"
             ],
             "tip": "# of orders placed in Merchant fulfillment network ",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -30826,7 +31217,7 @@
                 "amazon"
             ],
             "tip": "# of items sold in Merchant fulfillment network",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -31133,7 +31524,7 @@
                 "amazon"
             ],
             "tip": "# of Canceled orders",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": 1,
@@ -31209,7 +31600,7 @@
             "services": [
                 "amazon"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": 1,
@@ -31515,7 +31906,7 @@
                 "amazon"
             ],
             "tip": "# of canceled orders from Amazon fulfillment network",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": 1,
@@ -31591,7 +31982,7 @@
             "services": [
                 "amazon"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 100,
             "values": {
                 "current": 1,
@@ -31897,7 +32288,7 @@
                 "amazon"
             ],
             "tip": "# of canceled orders from Merchant fulfillment network",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -31974,7 +32365,7 @@
                 "amazon"
             ],
             "isMinutes": false,
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -32206,7 +32597,7 @@
             ],
             "isMinutes": false,
             "tip": "ROAS = return on ad spend",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": null,
@@ -32362,7 +32753,7 @@
             ],
             "isMinutes": false,
             "tip": "Total Number of clicks",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -32440,7 +32831,7 @@
             ],
             "isMinutes": false,
             "tip": "Number of Amazon Orders attributed to Amazon advertising campaigns",
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -32517,7 +32908,7 @@
             ],
             "isMinutes": false,
             "tip": "Total advertising cost of sales: (Amazon Advertising Spend / Amazon Total Revenue) x 100",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -32693,7 +33084,7 @@
                 "amazon"
             ],
             "isMinutes": false,
-            "tip": "Gross sales - Expenses (COGS, handling fees, amazon estimated fees, Amazon Ad spend)",
+            "tip": "Net sales - Expenses (COGS, handling fees, amazon estimated fees, Amazon Ad spend)",
             "valueType": "currency",
             "delta": 100,
             "values": {
@@ -32772,7 +33163,7 @@
             ],
             "isMinutes": false,
             "tip": "% of sales spent on ads",
-            "valueType": "currency",
+            "valueType": "percent",
             "delta": 0,
             "values": {
                 "current": 0,
@@ -33450,10 +33841,7 @@
             ],
             "valueType": "currency",
             "delta": 0,
-            "values": {
-                "current": 1037931.6899999998,
-                "previous": 1037931.6899999998
-            },
+            "values": {},
             "charts": {
                 "current": [],
                 "previous": []
@@ -33469,10 +33857,7 @@
             ],
             "valueType": "currency",
             "delta": 0,
-            "values": {
-                "current": 30183765.189999998,
-                "previous": 30183765.189999998
-            },
+            "values": {},
             "charts": {
                 "current": [],
                 "previous": []
@@ -33644,7 +34029,7 @@
             "services": [
                 "finance"
             ],
-            "valueType": "currency",
+            "valueType": "decimal",
             "delta": 0,
             "values": {
                 "current": null,
