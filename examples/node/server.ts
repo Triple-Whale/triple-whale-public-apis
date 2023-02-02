@@ -102,8 +102,8 @@ setInterval(() => CLIENT_ID && CLIENT_SECRET && REFRESH_TOKEN && refresh(), 6000
 const responseChecker = async (response: any) => {
   const currentTime = (new Date().getTime()) / 1000;
 
-  // auto-refresh token every 5 minutes
-  if(currentTime - LOCAL_TIME >= 300) {
+  // auto-refresh token every 10 minutes
+  if(currentTime - LOCAL_TIME >= 600) {
     await refresh()
     LOCAL_TIME = (new Date().getTime()) / 1000;
   }
