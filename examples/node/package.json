@@ -8,7 +8,7 @@
     "dev": "nodemon server.ts",
     "build": "vite build",
     "docker:build": "docker build -t node . ",
-    "docker:compose": "docker compose up",
+    "docker:compose": "docker compose up --remove-orphans",
     "start": "NODE_ENV=production ts-node server.ts"
   },
   "dependencies": {
@@ -24,6 +24,8 @@
     "node-localstorage": "^2.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
+    "react-render-if-visible": "^2.1.1",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {

@@ -3,5 +3,11 @@ services:
     build: .
     ports:
       - "80:8888"
+    environment:
+      - CLIENT_ID=${CLIENT_ID}
+      - CLIENT_SECRET=${CLIENT_SECRET}
+      - REDIRECT_URI=${REDIRECT_URI}
+      - SHOP_URL=${SHOP_URL}
+      - SCOPE=${SCOPE}
     volumes:
       - .:/code

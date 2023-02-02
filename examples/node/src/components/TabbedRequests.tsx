@@ -3,9 +3,10 @@ import { useEffect, useState, useCallback } from 'react';
 import { FetchMetrics } from './FetchMetrics'
 import { FetchOrdersWithJourneys } from './FetchOrdersWithJourneys'
 import { FetchOrdersWithJourneysV2 } from './FetchOrdersWithJourneysV2'
+import { SummaryPage } from './SummaryPage'
 import { PostMetrics } from './PostMetrics'
 import { useAuthDispatch } from '../contexts/Auth';
-import { TabsType } from '../Types'
+import { TabsType } from '../types/Types'
 
 export const TabbedRequests: React.FC = () => {
   const [selected, setSelected] = useState(0);
@@ -28,6 +29,12 @@ export const TabbedRequests: React.FC = () => {
   }, []);
 
   const tabs : TabsType = [
+    {
+      id: 'summary-page',
+      content: 'Summary Page',
+      info: 'Fetch Summary Page Data',
+      tabContent: <SummaryPage />
+    },
     {
       id: 'fetch-orders-with-journeys',
       content: 'Journeys',

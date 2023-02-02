@@ -20,7 +20,7 @@ import {
   metricKeys, 
   metricsBreakdown,
   sparkChartData
-} from '../Types'
+} from '../types/Types'
 import moment from 'moment'
 import { DataExport } from '../DataExport';
 

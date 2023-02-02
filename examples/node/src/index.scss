@@ -47,3 +47,15 @@ code {
     white-space: pre-wrap;
   } 
 }
+
+.flex-text > * {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+
+  .Polaris-Icon {
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+  }
+}

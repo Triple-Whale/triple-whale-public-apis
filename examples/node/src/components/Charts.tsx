@@ -2,7 +2,7 @@ import { DonutChart, SparkLineChart, LineChart } from '@shopify/polaris-viz';
 import { 
   annotationsData,
   sparkChartData,
-} from '../Types';
+} from '../types/Types';
 
 const numberStyles = {
   fontWeight: 600,

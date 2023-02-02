@@ -17,7 +17,7 @@ import {
   newOrder,
   newOrders,
   ordersWithJourneyNew
-} from './src/Types'
+} from './src/types/Types'
 
 // -----------------------
 // express app
@@ -32,6 +32,8 @@ app.use(express.json())
 // -----------------------
 dotenv.config()
 const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SHOP_URL, SCOPE, NODE_ENV } = process.env
+
+let LOCAL_TIME = (new Date().getTime()) / 1000;
 
 const localStorage = new LocalStorage('./scratch')
 let TOKEN = localStorage.getItem('TOKEN') || false
@@ -92,7 +94,20 @@ const refresh = async(res?: Response) => {
     })
 }
 
+// -----------------------
+// Refresh every 10 min
+// -----------------------
+setInterval(() => CLIENT_ID && CLIENT_SECRET && REFRESH_TOKEN && refresh(), 600000)
+
 const responseChecker = async (response: any) => {
+  const currentTime = (new Date().getTime()) / 1000;
+
+  // auto-refresh token every 5 minutes
+  if(currentTime - LOCAL_TIME >= 300) {
+    await refresh()
+    LOCAL_TIME = (new Date().getTime()) / 1000;
+  }
+
   if(response.code == 401) {
     await refresh()
     throw response
@@ -184,7 +199,7 @@ app.get('/refresh', async (_req: Request, res: Response) => {
 })
 
 // -----------------------
-// Test API requests
+// API endpoints
 // -----------------------
 app.post("/get-orders-with-journeys", (req: Request, res: Response) => {
   const url = "https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys"
@@ -213,7 +228,7 @@ app.post("/get-orders-with-journeys", (req: Request, res: Response) => {
         .then(response => response.json())
         .then(async (response: ordersWithJourneyOld) => {
           await responseChecker(response)
-          ordersWithJourneys = ordersWithJourneys.concat(response.ordersWithJourneys.filter((order: oldOrder) => order) as oldOrders)
+          ordersWithJourneys = ordersWithJourneys.concat(response.ordersWithJourneys?.filter((order: oldOrder) => order) as oldOrders)
           
           if(response.nextPage) {
             data.page += 1
@@ -339,6 +354,40 @@ app.post('/post-metrics', (req: Request, res: Response) => {
       res.json(err)
     })
 })
+
+app.post("/get-summary-page-data", (req: Request, res: Response) => {
+  const url = "https://api.triplewhale.com/api/v2/summary-page/get-data"
+
+  let data = {
+    shopDomain: SHOP_URL,
+    state: LOCAL_SECRET,
+    period: req.body?.period || {
+      start: moment().startOf('day'),
+      end: moment().endOf('day')
+    },
+    todayHour: req.body?.todayHour || 1,
+  }
+
+  const options = {
+    method: "POST",
+    headers: { 
+      "content-type": "application/json",
+      Authorization: `Bearer ${TOKEN}`
+    },
+    body: JSON.stringify(data)
+  };
+
+  fetch(url, options)
+    .then(response => response.json())
+    .then(async (response) => {
+      await responseChecker(response)
+      res.json(response)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.json(err)
+    })
+});
 
 // -----------------------
 // are we logged in? -- for frontend

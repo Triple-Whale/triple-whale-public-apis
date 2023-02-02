@@ -25,7 +25,7 @@ import {
   donutDataKeys,
   donutDataObject,
   donutDataLineItemData
-} from '../Types'
+} from '../types/Types'
 import { DataExport } from '../DataExport';
 
 const formatOrders = (orders: newOrders) => {
@@ -229,7 +229,7 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
         <Stack.Item fill>
           <Select
             label="Date range"
-            options={options}
+            options={options as []}
             onChange={handleSelectChange}
             value={selected}
           />
