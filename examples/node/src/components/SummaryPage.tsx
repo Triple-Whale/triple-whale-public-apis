@@ -16,7 +16,7 @@ const groupByKey = (list, key) => list.reduce((hash, obj) => ({...hash, [obj[key
 
 const groupData = (data: any) => {
   data.map((item: any) => {
-    item.service = item.icon || item.services?.length > 0 && item.services[0];
+    item.service = (item.services?.length > 0 && item.services[0]).toString().toLowerCase();
     ['current', 'previous'].map((period: string) => {
       item.charts[period] = item.charts[period]?.map((metric: any) => ({
         key: metric.x,
@@ -170,12 +170,14 @@ export const SummaryPage: React.FC = () => {
                       <span className="flex-text">
                         <strong>
                           {item.title}
-                          <Tooltip content={item.tip}>
-                            <Icon
-                              source={QuestionMarkInverseMajor}
-                              color="subdued"
-                            />
-                          </Tooltip>
+                          {item.tip && (
+                            <Tooltip content={item.tip}>
+                              <Icon
+                                source={QuestionMarkInverseMajor}
+                                color="subdued"
+                              />
+                            </Tooltip>
+                          )}
                           <br />
                         </strong>
                       </span>

@@ -280,9 +280,14 @@ export const ServiceMap = {
   blended: 'Blended',
   enquirelabs: 'Fairing',
   facebook: 'Facebook',
+  'facebook-ads': 'Facebook Ads',
+  facebook_social: 'Facebook Social',
   finance: 'Finance',
   finance_total: 'Finance Totals',
   googleAds: 'Google Ads',
+  old_google_ads: 'Google Ads (Old)',
+  'google-ads': 'Google Ads',
+  google_analytics: 'Google Analytics',
   googleAnalytics: 'Google Analytics',
   gorgias: 'Gorgias',
   influencers: 'Influencers',
@@ -294,8 +299,10 @@ export const ServiceMap = {
   recharge: 'Recharge',
   shopify: 'Shopify',
   snapchat: 'Snapchat',
+  snapchat_ads: 'Snapchat Ads',
   tiktok: 'Tiktok',
   tripleWhale: 'Triple Whale',
+  'triple-whale': 'Triple Whale',
 }
 
 export type IServiceMap = keyof typeof ServiceMap

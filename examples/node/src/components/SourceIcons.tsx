@@ -15,8 +15,13 @@ const iconMap = {
   'blended': <GiBlender color="#1877f2" />,
   'enquirelabs': <FaLightbulb />,
   'facebook': <BsFacebook color="#1778f2" />,
+  'facebook-ads': <BsFacebook color="#1778f2" />,
+  'facebook_social': <BsFacebook color="#1778f2" />,
   'finance': <FaMoneyCheck color="#1877f2" />,
   'finance_total': <FaMoneyCheck color="#1877f2" />,
+  'old_google_ads': <FcGoogle color="#E37400" />,
+  'google-ads': <FcGoogle color="#E37400" />,
+  'google_analytics': <DiGoogleAnalytics color="#E37400" />,
   'googleAds': <FcGoogle color="#E37400" />,
   'googleAnalytics': <DiGoogleAnalytics color="#E37400" />,
   'gorgias': <BsFillChatRightTextFill />,
@@ -29,8 +34,10 @@ const iconMap = {
   'recharge': <BsLightningCharge color="#24CE78" />,
   'shopify': <FaShopify color="#96bf48" />,
   'snapchat': <FaSnapchatGhost color="#FFFC00" />,
+  'snapchat_ads': <FaSnapchatGhost color="#FFFC00" />,
   'tiktok': <FaTiktok color="#ff0050" />,
   'tripleWhale': <GiWhaleTail color="#1877f2" />,
+  'triple-whale': <GiWhaleTail color="#1877f2" />,
 }
 
 type IProps = {
