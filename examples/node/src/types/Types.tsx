@@ -237,7 +237,7 @@ export type DatePickerOption = {
   label: string | JSX.Element;
 };
 
-interface period {
+interface Period {
  start: moment.Moment;
  end: moment.Moment;
 }
@@ -249,43 +249,11 @@ export enum ShopifySegmentType {
   ORDER_TAGS = 'order_tags',
 }
 
-interface orderSegment {
-  id: string;
-  type: ShopifySegmentType;
-}
-
 export interface SummaryPageRequest {
   shopDomain: string;
-  periods: {
-    start: string;
-    end: string;
-  }[];
+  periods: Period[];
   todayHour: number;
-  key: moment.Moment | string;
-  includeCalculatedStats?: boolean;
-  includeRawStats?: boolean;
-  activeOrderSegment: {
-    id: string;
-    type: string;
-  }[];
 }
-
-export interface compareStats {
-  shopDomain: string;
-  periods: period[];
-  todayHour: number;
-  key: moment.Moment | string;
-  includeCalculatedStats: boolean;
-  includeRawStats: boolean;
-  activeOrderSegment: orderSegment[];
-}
-
-export type SummaryPageResponse = {
-  key: string;
-  comparisons: any[];
-  calculatedStats?: any;
-  previousPeriodRawStats?: any;
-};
 
 export interface formattedDictatedService {
   id: SummaryMetricIdsTypes;
@@ -335,3 +303,36 @@ export type IServiceMap = keyof typeof ServiceMap
 export type DictatedData = {
   [key in keyof typeof ServiceMap]: formattedDictatedService[]
 }
+
+export type valueFormats = 'decimal' | 'percent' | 'currency' | 'string';
+
+type MetricValues = {
+  current: number;
+  previous: number;
+}
+
+type ChartCoordinate = {
+  x: number;
+  y: number;
+}
+
+type ChartsValues = {
+  current: ChartCoordinate[];
+  previous: ChartCoordinate[];
+}
+
+export interface GetSummaryDTO {
+  id: SummaryMetricIdsTypes;
+  title: string;
+  charts: ChartsValues
+  metricId: string;
+  tip?: string;
+  services: (IServiceMap | string)[];
+  delta: number;
+  valueType: valueFormats;
+  values: MetricValues;
+}
+
+export type SummaryPageResponse = {
+  metrics: any[];
+};

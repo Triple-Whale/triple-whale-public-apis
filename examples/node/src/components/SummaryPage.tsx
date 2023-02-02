@@ -1,12 +1,15 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useRef, Fragment } from 'react';
 import RenderIfVisible from 'react-render-if-visible';
 import { Badge, Button, Card, Icon, Text, Tooltip, Select, Stack } from '@shopify/polaris';
 import { QuestionMarkInverseMajor } from '@shopify/polaris-icons'
 import { useSummaryDateRanges } from '../contexts/DateRanges';
+import { useAuthDispatch } from '../contexts/Auth';
+import { useToastDispatch } from '../contexts/Toast';
 import { SummaryPageResponse, DictatedData, formattedDictatedService, IServiceMap, ServiceMap } from '../types/Types'
 import SourceIcons from './SourceIcons'
 import { SparkChart } from './Charts';
 import { DataExport } from '../DataExport';
+import moment from 'moment';
 
 // @ts-ignore
 const groupByKey = (list, key) => list.reduce((hash, obj) => ({...hash, [obj[key]]:( hash[obj[key]] || [] ).concat(obj)}), {})
@@ -26,8 +29,12 @@ const groupData = (data: any) => {
 }
 
 export const SummaryPage: React.FC = () => {
+  const [loading, setLoading] = useState(false)
   const [data, setData] = useState({} as SummaryPageResponse);
   const [dictatedData, setDictatedData] = useState({} as DictatedData)
+
+  const authDispatch = useAuthDispatch()
+  const toastDispatch = useToastDispatch()
 
   const rawDateRanges = useSummaryDateRanges()
   const dateRanges = rawDateRanges.map(option => ({
@@ -38,18 +45,56 @@ export const SummaryPage: React.FC = () => {
   const [options] = useState(dateRanges)
   const handleSelectChange = (val: string) => {
     setSelected(val)
+    setData({} as SummaryPageResponse)
+    setDictatedData({} as DictatedData)
   }
 
-  // @TODO - fetch data from server
-  useEffect(() => {
-    const fetchData = async () => {
-      const { metrics } = await fetch('/get-summary-page-data').then(res => res.json())
-      setData(metrics);
-      setDictatedData(groupData(metrics))
+  const fetchSummaryPage = async () => {
+    setLoading(true)
+    const selectedRange = rawDateRanges.find(range => range.value.id == selected)
+
+    if(selectedRange) {
+      const bodyData = {
+        period: {
+          start: selectedRange.value.start,
+          end: selectedRange.value.end,
+        },
+        todayHour: 0
+      }
+      if(selected === 'today') bodyData.todayHour = moment().hour()
+
+      const data = await fetch('/get-summary-page-data', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(bodyData)
+      }).then(res => res.json()).catch(() => setLoading(false))
+
+      if(data.error) {
+        authDispatch!({ type: 'error', message: data.error })
+        toastDispatch!({ type: 'error', message: data.error })
+      } else if(
+        data.code
+        && data.code !== 200
+      ) {
+        authDispatch!({ type: 'expired', message: data.message })
+        toastDispatch!({ type: 'error', message: data.message })
+      } else {
+        authDispatch!({ type: 'success' })
+        setData(data.metrics);
+        setDictatedData(groupData(data.metrics))
+      }
     }
-  
-    fetchData().catch(console.error);
-  }, [])
+
+    setLoading(false)
+  }
+
+  const initialized = useRef(false);
+  if (!initialized.current) {
+    fetchSummaryPage()
+    initialized.current = true;
+  }
 
   const toNumber = (num: number | string) => typeof num == 'number' ? num : parseFloat(num)  
   const toCurrency = (num: string) => parseFloat(num).toLocaleString('en-US', { style: 'currency', currency: 'USD' }).replace('.00', '')
@@ -81,7 +126,11 @@ export const SummaryPage: React.FC = () => {
           />
         </Stack.Item>
         <Stack.Item fill>
-          <Button fullWidth onClick={() => console.log('clicked')}>Fetch Summary Page Data</Button>
+          <Button 
+            fullWidth 
+            onClick={() => fetchSummaryPage()}
+            loading={loading}
+          >Fetch Summary Page Data</Button>
         </Stack.Item>
         <Stack.Item>
           <Tooltip 

@@ -8,10 +8,6 @@ import fetch from 'cross-fetch'
 import { LocalStorage } from 'node-localstorage'
 import moment from 'moment'
 
-// @ts-ignore
-import fs from 'fs'
-var summaryData = JSON.parse(fs.readFileSync('summary-data.json', 'utf-8'))
-
 // Types
 import { ParsedQs } from 'qs'
 import { 
@@ -359,38 +355,38 @@ app.post('/post-metrics', (req: Request, res: Response) => {
     })
 })
 
-app.get("/get-summary-page-data", (req: Request, res: Response) => {
-  // const url = "https://api.triplewhale.com/api/v2/summary-page/get-data"
+app.post("/get-summary-page-data", (req: Request, res: Response) => {
+  const url = "https://api.triplewhale.com/api/v2/summary-page/get-data"
 
-  // let data = {
-  //   shopDomain: SHOP_URL,
-  //   state: LOCAL_SECRET,
-  //   periods: [],
-  //   todayHour: 0,
-  //   key: ""
-  // }
+  let data = {
+    shopDomain: SHOP_URL,
+    state: LOCAL_SECRET,
+    period: req.body?.period || {
+      start: moment().startOf('day'),
+      end: moment().endOf('day')
+    },
+    todayHour: req.body?.todayHour || 1,
+  }
 
-  // const options = {
-  //   method: "POST",
-  //   headers: { 
-  //     "content-type": "application/json",
-  //     Authorization: `Bearer ${TOKEN}`
-  //   },
-  //   body: JSON.stringify(data)
-  // };
+  const options = {
+    method: "POST",
+    headers: { 
+      "content-type": "application/json",
+      Authorization: `Bearer ${TOKEN}`
+    },
+    body: JSON.stringify(data)
+  };
 
-  // fetch(url, options)
-  //   .then(response => response.json())
-  //   .then(async (response) => {
-  //     await responseChecker(response)
-  //     res.json(response)
-  //   })
-  //   .catch((err) => {
-  //     console.log(err)
-  //     res.json(err)
-  //   })
-
-  return res.json(summaryData)
+  fetch(url, options)
+    .then(response => response.json())
+    .then(async (response) => {
+      await responseChecker(response)
+      res.json(response)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.json(err)
+    })
 });
 
 // -----------------------
