@@ -66,3 +66,9 @@ This repository's purpose is to demonstrate the process of authorizing your app 
 ### "I don't like how you did ___ in this example"
 
 - We're always looking to improve; submit a pull request and we'll gladly review it!
+
+### "Docker isn't working for me"
+
+- Ensure you have Docker installed on your machine
+
+- @TODO: Add more troubleshooting steps; not yet complete
