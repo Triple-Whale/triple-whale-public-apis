@@ -6,7 +6,7 @@ With the Triple Whale API, you can easily integrate our powerful analytics and a
 
 ## Available Endpoints
 
-- **Summary Endpoint**: [[`/summary-page`](https://developers.triplewhale.com/swagger/index.html#/summary-page/summary-page-get-data-post}] - This endpoint allows you to extract all of your metrics from the summary page for a given timeframe.
+- **Summary Endpoint**: [[`/summary-page`](https://developers.triplewhale.com/swagger/index.html#/summary-page/summary-page-get-data-post)] - This endpoint allows you to extract all of your metrics from the summary page for a given timeframe.
   - Supported Methods:
     - POST
 
