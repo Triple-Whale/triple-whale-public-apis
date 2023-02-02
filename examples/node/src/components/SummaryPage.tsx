@@ -139,7 +139,7 @@ export const SummaryPage: React.FC = () => {
           >
             <DataExport
               data={dictatedData}
-              title="Dictated Summary Page"
+              title="Summary Page"
               disabled={Object.keys(dictatedData).length <= 0}
             />
           </Tooltip>
