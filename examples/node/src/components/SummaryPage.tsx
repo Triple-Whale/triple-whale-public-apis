@@ -117,6 +117,9 @@ export const SummaryPage: React.FC = () => {
   return (
     <Fragment>
       <Stack wrap={true} alignment="trailing">
+        <Text variant="bodyMd" as="p">
+          Below will make a <code>POST</code> request to the API endpoint <code>https://api.triplewhale.com/api/v2/summary-page/get-data</code>
+        </Text>
         <Stack.Item fill>
           <Select
             label="Date range"
