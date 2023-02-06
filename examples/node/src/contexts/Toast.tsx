@@ -1,33 +1,36 @@
-import  { Toast } from '@shopify/polaris';
-import { createContext, useCallback, useContext, useReducer } from 'react';
+import { Toast } from '@shopify/polaris'
+import { createContext, useCallback, useContext, useReducer } from 'react'
 import { childrenProps, toastAction, toastState } from '../types/Types'
 
-export const ToastContext = createContext<toastState>({} as toastState);
-export const ToastDispatchContext = createContext<((action: toastAction) => void) | null>(null);
+export const ToastContext = createContext<toastState>({} as toastState)
+export const ToastDispatchContext =
+  createContext<React.Dispatch<toastAction> | null>(null)
 
 const defaultMessage: toastState = {
   type: 'success',
   active: false,
-  message: 'Something happened!'
+  message: 'Something happened!',
 }
 
 const emptyMessage: toastState = {
   type: '',
   active: false,
-  message: ''
+  message: '',
 }
 
 export function ToastProvider({ children }: childrenProps) {
-  const [message, dispatch] = useReducer(
-    toastReducer,
-    defaultMessage
-  );
+  const [message, dispatch] = useReducer(toastReducer, defaultMessage)
 
-  const toggleActive = useCallback(() => dispatch(emptyMessage), []);
+  const toggleActive = useCallback(() => dispatch(emptyMessage), [])
 
-  const toastMarkup = message.active && message.message ? (
-    <Toast content={message.message} onDismiss={toggleActive} duration={4500} />
-  ) : null;
+  const toastMarkup =
+    message.active && message.message ? (
+      <Toast
+        content={message.message}
+        onDismiss={toggleActive}
+        duration={4500}
+      />
+    ) : null
 
   return (
     <ToastContext.Provider value={message}>
@@ -36,23 +39,23 @@ export function ToastProvider({ children }: childrenProps) {
         {toastMarkup}
       </ToastDispatchContext.Provider>
     </ToastContext.Provider>
-  );
+  )
 }
 
-function toastReducer<S>(_state: S, action: toastAction):toastState {
+function toastReducer<S>(_state: S, action: toastAction): toastState {
   switch (action?.type) {
     case 'success': {
       return {
         ...defaultMessage,
         message: action.message ?? defaultMessage.message,
-        active: true
+        active: true,
       }
     }
     case 'error': {
       return {
         message: action.message ?? 'Something went wrong..',
         type: 'error',
-        active: true
+        active: true,
       }
     }
     default: {
@@ -62,9 +65,9 @@ function toastReducer<S>(_state: S, action: toastAction):toastState {
 }
 
 export function useToast() {
-  return useContext(ToastContext);
+  return useContext(ToastContext)
 }
 
 export function useToastDispatch() {
-  return useContext(ToastDispatchContext);
+  return useContext(ToastDispatchContext)
 }

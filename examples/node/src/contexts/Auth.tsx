@@ -1,49 +1,48 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useReducer } from 'react'
 import { authState, childrenProps, authAction } from '../types/Types'
 
 const authenticated: authState = {
   authenticated: true,
   error: false,
   message: 'Authenticated',
-  loading: false
+  loading: false,
 }
 
 const unauthenticated: authState = {
   authenticated: false,
   error: true,
   message: 'Unauthenticated',
-  loading: false
+  loading: false,
 }
 
 const error: authState = {
   authenticated: true,
   error: true,
   message: 'Error',
-  loading: false
+  loading: false,
 }
 
 const success: authState = {
   authenticated: true,
   error: false,
   message: 'Success',
-  loading: false
+  loading: false,
 }
 
 const loading: authState = {
   authenticated: true,
   error: false,
   message: 'Loading..',
-  loading: true
+  loading: true,
 }
 
-export const AuthContext = createContext<authState>(authenticated);
-const AuthDispatchContext = createContext<((action: authAction) => void) | null>(null);
+export const AuthContext = createContext<authState>(authenticated)
+const AuthDispatchContext = createContext<React.Dispatch<authAction> | null>(
+  null
+)
 
 export function AuthProvider({ children }: childrenProps) {
-  const [auth, dispatch] = useReducer(
-    authReducer,
-    authenticated
-  );
+  const [auth, dispatch] = useReducer(authReducer, authenticated)
 
   return (
     <AuthContext.Provider value={auth}>
@@ -51,10 +50,10 @@ export function AuthProvider({ children }: childrenProps) {
         {children}
       </AuthDispatchContext.Provider>
     </AuthContext.Provider>
-  );
+  )
 }
 
-function authReducer<S>(_state: S, action: authAction):authState {
+function authReducer<S>(_state: S, action: authAction): authState {
   switch (action.type) {
     case 'authenticated': {
       return authenticated
@@ -62,13 +61,13 @@ function authReducer<S>(_state: S, action: authAction):authState {
     case 'expired': {
       return {
         ...unauthenticated,
-        message: action.message ?? unauthenticated.message
+        message: action.message ?? unauthenticated.message,
       }
     }
     case 'error': {
       return {
         ...error,
-        message: action.message ?? error.message
+        message: action.message ?? error.message,
       }
     }
     case 'success': {
@@ -78,15 +77,15 @@ function authReducer<S>(_state: S, action: authAction):authState {
       return loading
     }
     default: {
-      throw Error('Unknown action: ' + action.type);
+      throw Error('Unknown action: ' + action.type)
     }
   }
 }
 
 export function useAuth() {
-  return useContext(AuthContext);
+  return useContext(AuthContext)
 }
 
 export function useAuthDispatch() {
-  return useContext(AuthDispatchContext);
+  return useContext(AuthDispatchContext)
 }

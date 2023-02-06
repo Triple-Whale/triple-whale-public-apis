@@ -1,16 +1,10 @@
 import { useState } from 'react'
-import { 
-  Banner,
-  Button,
-  Layout,
-  Text, 
-  Stack
-} from '@shopify/polaris';
+import { Banner, Button, Layout, Text, Stack } from '@shopify/polaris'
 import { useAuth } from '../contexts/Auth'
 
 export const LoggedInCard: React.FC = () => {
   const { authenticated, error, message, loading } = useAuth()
-  const [ refreshing, setRefreshing ] = useState(false)
+  const [refreshing, setRefreshing] = useState(false)
 
   const refreshToken = async () => {
     setRefreshing(true)
@@ -24,26 +18,56 @@ export const LoggedInCard: React.FC = () => {
       <Banner status={authenticated ? 'success' : 'critical'}>
         {authenticated ? (
           <Stack vertical>
-            <Text variant="headingLg" as="h2">You are authenticated!</Text>
+            <Text variant="headingLg" as="h2">
+              You are authenticated!
+            </Text>
             <Text variant="bodyMd" as="p">
-              For documentation on available endpoints and request structure, visit <a href="https://developers.triplewhale.com/swagger/index.html" target="_blank">https://developers.triplewhale.com/swagger/index.html</a>
+              For documentation on available endpoints and request structure,
+              visit{' '}
+              <a
+                href="https://developers.triplewhale.com/swagger/index.html"
+                target="_blank"
+              >
+                https://developers.triplewhale.com/swagger/index.html
+              </a>
             </Text>
           </Stack>
         ) : (
           <Stack vertical>
-            <Text variant="headingLg" as="h2">{message || 'Your JWT Expired'}</Text>
-            <Text variant="bodyMd" as="p">We're going to try and refresh your token. If it doesn't work, please try to refresh it yourself using the button below.</Text>
-            <Text variant="bodyMd" as="p"> If that doesn't work, restart your server, or try again later! 😅</Text>
-            {!loading && (<Button loading={refreshing} onClick={refreshToken}>Refresh Token</Button>)}
+            <Text variant="headingLg" as="h2">
+              {message || 'Your JWT Expired'}
+            </Text>
+            <Text variant="bodyMd" as="p">
+              We're going to try and refresh your token. If it doesn't work,
+              please try to refresh it yourself using the button below.
+            </Text>
+            <Text variant="bodyMd" as="p">
+              {' '}
+              If that doesn't work, restart your server, or try again later! 😅
+            </Text>
+            {!loading && (
+              <Button loading={refreshing} onClick={refreshToken}>
+                Refresh Token
+              </Button>
+            )}
           </Stack>
         )}
       </Banner>
       {authenticated && error && (
         <Banner status="critical">
           <Stack vertical>
-            <Text variant="headingLg" as="h2">API Error: {message}</Text>
-            <Text variant="bodyMd" as="p">View your network tab for more information, or try to refresh your token.</Text>
-            {!loading && (<Button loading={refreshing} onClick={refreshToken}>Refresh Token</Button>)}
+            <Text variant="headingLg" as="h2">
+              API Error: {message}
+            </Text>
+            <Text variant="bodyMd" as="p">
+              View your network tab for more information, or try to refresh your
+              token.
+            </Text>
+            {!loading && (
+              <Button loading={refreshing} onClick={refreshToken}>
+                Refresh Token
+              </Button>
+            )}
           </Stack>
         </Banner>
       )}

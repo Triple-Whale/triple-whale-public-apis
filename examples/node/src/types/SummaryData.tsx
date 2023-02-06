@@ -1,4 +1,3 @@
-
 export const SummaryMetricIds = [
   'sales',
   'newCustomerSales',
@@ -134,7 +133,7 @@ export const SummaryMetricIds = [
   'pixelConversionValueFacebook',
   'pixelOrdersFacebook',
   'blendedSales',
-  
+
   // sources
   'web',
   'pos',
@@ -273,7 +272,7 @@ export const SummaryMetricIds = [
   'amazonPurchases',
   'amazonTACos',
   'amazonAdsConversionValue',
-  
+
   // amazon-ads
   'amazonNetSales',
   'amazonNetProfit',
@@ -283,8 +282,7 @@ export const SummaryMetricIds = [
   'amazonCPA',
   'amazonExpenses',
   // ...FinanceMetricIds,
-] as const;
-
+] as const
 
 export const SummaryMetricsStatsSelectors = [
   'totalSales',
@@ -569,8 +567,7 @@ export const SummaryMetricsStatsSelectors = [
   'amazonCPA',
   'amazonExpenses',
   // ...FinanceMetricsStatsSelectors,
-] as const;
-
+] as const
 
 export const SummaryMetricsChartsSelectors = [
   'chartSales',
@@ -821,8 +818,10 @@ export const SummaryMetricsChartsSelectors = [
   'totalPinterestEnqChart',
   'totalInstagramEnqChart',
   // ...FinanceMetricsChartsSelectors,
-] as const;
+] as const
 
-export type SummaryMetricsStatsSelectorsNames = typeof SummaryMetricsStatsSelectors[number];
-export type SummaryMetricIdsTypes = typeof SummaryMetricIds[number];
-export type SummaryMetricsChartsSelectorsNames = typeof SummaryMetricsChartsSelectors[number];
+export type SummaryMetricsStatsSelectorsNames =
+  (typeof SummaryMetricsStatsSelectors)[number]
+export type SummaryMetricIdsTypes = (typeof SummaryMetricIds)[number]
+export type SummaryMetricsChartsSelectorsNames =
+  (typeof SummaryMetricsChartsSelectors)[number]

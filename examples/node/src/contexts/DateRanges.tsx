@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { DatePickerOption } from '../types/Types';
+import { DatePickerOption } from '../types/Types'
 import moment from 'moment'
 
 // V1 RANGES
@@ -8,46 +8,46 @@ const dateRanges: DatePickerOption[] = [
     value: {
       start: moment().startOf('day'),
       end: moment().endOf('day'),
-      id: 'today'
+      id: 'today',
     },
-    label: 'Today'
+    label: 'Today',
   },
   {
     value: {
       start: moment().subtract(1, 'day').startOf('day'),
       end: moment().subtract(1, 'day').startOf('day'), //.endOf('day') // bug with endOf day
-      id: 'yesterday'
+      id: 'yesterday',
     },
-    label: 'Yesterday'
+    label: 'Yesterday',
   },
   {
     value: {
       start: moment().subtract(7, 'days').startOf('day'),
       end: moment().subtract(1, 'day').endOf('day'),
-      id: 'last7Days'
+      id: 'last7Days',
     },
-    label: 'Last 7 days'
+    label: 'Last 7 days',
   },
   {
     value: {
       start: moment().subtract(30, 'days').startOf('day'),
       end: moment().subtract(1, 'day').endOf('day'),
-      id: 'last30Days'
+      id: 'last30Days',
     },
-    label: 'Last 30 days'
+    label: 'Last 30 days',
   },
   {
     value: {
       start: moment().subtract(90, 'days').startOf('day'),
       end: moment().subtract(1, 'day').endOf('day'),
-      id: 'last90Days'
+      id: 'last90Days',
     },
-    label: 'Last 90 days'
-  }
+    label: 'Last 90 days',
+  },
 ]
 
 export function useDateRanges() {
-  return useContext(createContext(dateRanges));
+  return useContext(createContext(dateRanges))
 }
 
 // V2 RANGES
@@ -56,46 +56,46 @@ const dateRangesV2: DatePickerOption[] = [
     value: {
       start: moment().startOf('day'),
       end: moment().endOf('day'),
-      id: 'today'
+      id: 'today',
     },
-    label: 'Today'
+    label: 'Today',
   },
   {
     value: {
       start: moment().subtract(1, 'day').startOf('day'),
       end: moment().subtract(1, 'day').endOf('day'),
-      id: 'yesterday'
+      id: 'yesterday',
     },
-    label: 'Yesterday'
+    label: 'Yesterday',
   },
   {
     value: {
       start: moment().subtract(7, 'days').startOf('day'),
       end: moment().subtract(1, 'day').endOf('day'),
-      id: 'last7Days'
+      id: 'last7Days',
     },
-    label: 'Last 7 days'
+    label: 'Last 7 days',
   },
   {
     value: {
       start: moment().subtract(30, 'days').startOf('day'),
       end: moment().subtract(1, 'day').endOf('day'),
-      id: 'last30Days'
+      id: 'last30Days',
     },
-    label: 'Last 30 days'
+    label: 'Last 30 days',
   },
   {
     value: {
       start: moment().subtract(90, 'days').startOf('day'),
       end: moment().subtract(1, 'day').endOf('day'),
-      id: 'last90Days'
+      id: 'last90Days',
     },
-    label: 'Last 90 days'
-  }
+    label: 'Last 90 days',
+  },
 ]
 
 export function useDateRangesV2() {
-  return useContext(createContext(dateRangesV2));
+  return useContext(createContext(dateRangesV2))
 }
 
 // METRICS DATES
@@ -104,38 +104,38 @@ const metricsDateRanges = [
     value: {
       start: moment().subtract(7, 'days').startOf('day'),
       end: moment().endOf('day'),
-      id: 'thisweek'
+      id: 'thisweek',
     },
-    label: 'This Week'
+    label: 'This Week',
   },
   {
     value: {
       start: moment().startOf('year'),
       end: moment().endOf('day'),
-      id: 'thisyear'
+      id: 'thisyear',
     },
-    label: 'This Year'
+    label: 'This Year',
   },
   {
     value: {
       start: moment().subtract(730, 'day'),
       end: moment().subtract(365, 'day'),
-      id: 'lastyear'
+      id: 'lastyear',
     },
-    label: 'Last Year'
+    label: 'Last Year',
   },
   {
     value: {
-      start: moment("2020-01-01").endOf('day'),
+      start: moment('2020-01-01').endOf('day'),
       end: moment().endOf('day'),
-      id: 'alltime'
+      id: 'alltime',
     },
-    label: 'All Time'
-  }
+    label: 'All Time',
+  },
 ]
 
 export function useMetricsDateRanges() {
-  return useContext(createContext(metricsDateRanges));
+  return useContext(createContext(metricsDateRanges))
 }
 
 // SUMMARY DATES
@@ -146,7 +146,7 @@ const SummaryDateRanges: DatePickerOption[] = [
       end: moment().endOf('day'),
       id: 'today',
     },
-    label: 'Today'
+    label: 'Today',
   },
   {
     value: {
@@ -154,7 +154,7 @@ const SummaryDateRanges: DatePickerOption[] = [
       end: moment().subtract(1, 'day').startOf('day'), //.endOf('day') // bug with endOf day
       id: 'yesterday',
     },
-    label: 'Yesterday'
+    label: 'Yesterday',
   },
   {
     value: {
@@ -162,7 +162,7 @@ const SummaryDateRanges: DatePickerOption[] = [
       end: moment().subtract(1, 'day').endOf('day'),
       id: 'last7Days',
     },
-    label: 'Last 7 days'
+    label: 'Last 7 days',
   },
   {
     value: {
@@ -170,7 +170,7 @@ const SummaryDateRanges: DatePickerOption[] = [
       end: moment().subtract(1, 'day').endOf('day'),
       id: 'last30Days',
     },
-    label: 'Last 30 days'
+    label: 'Last 30 days',
   },
   {
     value: {
@@ -178,10 +178,10 @@ const SummaryDateRanges: DatePickerOption[] = [
       end: moment().subtract(1, 'day').endOf('day'),
       id: 'last90Days',
     },
-    label: 'Last 90 days'
+    label: 'Last 90 days',
   },
-];
+]
 
 export function useSummaryDateRanges() {
-  return useContext(createContext(SummaryDateRanges));
+  return useContext(createContext(SummaryDateRanges))
 }

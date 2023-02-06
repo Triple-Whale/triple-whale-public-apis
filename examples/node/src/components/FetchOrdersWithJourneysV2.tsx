@@ -1,59 +1,73 @@
 import { useCallback, useRef, useState } from 'react'
-import { 
-  Button, 
+import {
+  Button,
   Card,
-  DataTable, 
+  DataTable,
   Pagination,
-  Select, 
-  Spinner, 
+  Select,
+  Spinner,
   Stack,
-  Text, 
-  Tooltip
-} from '@shopify/polaris';
-import { useAuthDispatch } from '../contexts/Auth';
-import { useToastDispatch } from '../contexts/Toast';
-import { useDateRangesV2 } from '../contexts/DateRanges';
+  Text,
+  Tooltip,
+} from '@shopify/polaris'
+import { useAuthDispatch } from '../contexts/Auth'
+import { useToastDispatch } from '../contexts/Toast'
+import { useDateRangesV2 } from '../contexts/DateRanges'
 import { DonutPieChart, ALineChart } from './Charts'
-import { 
+import {
   attributionNew,
   formattedOrder,
-  formattedNewOrders, 
-  newOrder, 
-  newOrders, 
+  formattedNewOrders,
+  newOrder,
+  newOrders,
   platformClick,
   sparkChartData,
   donutDataKeys,
   donutDataObject,
-  donutDataLineItemData
+  donutDataLineItemData,
 } from '../types/Types'
-import { DataExport } from '../DataExport';
+import { DataExport } from '../DataExport'
 
 const formatOrders = (orders: newOrders) => {
-  return orders.map((order: newOrder) => ([
-    order.order_id, 
-    order.journey?.length || 0, 
-    order.attribution?.firstClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, '\n'),
-    order.attribution?.lastClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, '\n'),
-    order.attribution?.lastPlatformClick?.map((click: platformClick) => click.source ?? '').flat().toString().replace(/,/g, '\n')
-  ]))
+  return orders.map((order: newOrder) => [
+    order.order_id,
+    order.journey?.length || 0,
+    order.attribution?.firstClick
+      ?.map((click: platformClick) => click.source ?? '')
+      .flat()
+      .toString()
+      .replace(/,/g, '\n'),
+    order.attribution?.lastClick
+      ?.map((click: platformClick) => click.source ?? '')
+      .flat()
+      .toString()
+      .replace(/,/g, '\n'),
+    order.attribution?.lastPlatformClick
+      ?.map((click: platformClick) => click.source ?? '')
+      .flat()
+      .toString()
+      .replace(/,/g, '\n'),
+  ])
 }
 
 const formatChartData = (orders: newOrders) => {
   return [
     {
-      data: orders.map(((order: newOrder, i: number) => ({
+      data: orders.map((order: newOrder) => ({
         key: order.order_id,
-        value: order.journey?.length
-      }))),
-      name: "Journey Length"
+        value: order.journey?.length,
+      })),
+      name: 'Journey Length',
     },
   ]
 }
 
 const formatAverageJourney = (orders: newOrders) => {
-  return Math.round(orders.reduce((a, c) => {
-    return a + c?.journey?.length
-  }, 0) / orders.length)
+  return Math.round(
+    orders.reduce((a, c) => {
+      return a + c?.journey?.length
+    }, 0) / orders.length
+  )
 }
 
 const formatSourceString = (string: string) => {
@@ -68,8 +82,8 @@ const formatSourceString = (string: string) => {
 
 const formatDonutData = (orders: newOrders) => {
   const rawData: donutDataObject = {
-    firstClick: { name: "First Click", data: [] },
-    lastClick: { name: "Last Click", data: [] },
+    firstClick: { name: 'First Click', data: [] },
+    lastClick: { name: 'Last Click', data: [] },
     // lastPlatformClick: { name: "Last Platform Click", data: [] }
   }
 
@@ -78,41 +92,38 @@ const formatDonutData = (orders: newOrders) => {
       let source = order?.attribution[key as keyof attributionNew]
       let sourceString = ''
 
-      if(
-        source 
-        && Array.isArray(source)
-        && source[0]?.source
-      ) {
+      if (source && Array.isArray(source) && source[0]?.source) {
         sourceString = formatSourceString(source[0].source)
       }
 
-      const currentVal = rawData[key as donutDataKeys]?.data.find((o: donutDataLineItemData) => {
-        return o.name === sourceString
-      })
+      const currentVal = rawData[key as donutDataKeys]?.data.find(
+        (o: donutDataLineItemData) => {
+          return o.name === sourceString
+        }
+      )
 
-      if(sourceString !== '') {
+      if (sourceString !== '') {
         let k = rawData[key as donutDataKeys]?.name
 
-        if(!currentVal && k) {
+        if (!currentVal && k) {
           rawData[key as donutDataKeys]?.data.push({
             data: [
               {
                 key: k,
-                value: 1
-              }
+                value: 1,
+              },
             ],
-            name: sourceString
+            name: sourceString,
           })
-
-        } else if(currentVal) {
+        } else if (currentVal) {
           currentVal.data[0].value += 1
         }
       }
     })
   })
 
-   // sort
-   Object.keys(rawData).map((key: string) => {
+  // sort
+  Object.keys(rawData).map((key: string) => {
     rawData[key as donutDataKeys]?.data.sort((a, b) => {
       return b.data[0].value - a.data[0].value
     })
@@ -134,33 +145,39 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
   const indexOfLastOrder = currentPage * ordersPerPage
   const indexOfFirstOrder = Math.abs(indexOfLastOrder - ordersPerPage)
   const nPages = Math.ceil(sortedOrders.length / ordersPerPage)
-  const currentOrders = sortedOrders 
-    && sortedOrders.length > 100 
-    && sortedOrders.slice(indexOfFirstOrder, indexOfLastOrder) 
-    || sortedOrders
+  const currentOrders =
+    (sortedOrders &&
+      sortedOrders.length > 100 &&
+      sortedOrders.slice(indexOfFirstOrder, indexOfLastOrder)) ||
+    sortedOrders
 
   const authDispatch = useAuthDispatch()
   const toastDispatch = useToastDispatch()
 
   const rawDateRanges = useDateRangesV2()
-  const dateRanges = rawDateRanges.map(option => ({
+  const dateRanges = rawDateRanges.map((option) => ({
     label: option.label,
-    value: option.value.id
+    value: option.value.id,
   }))
-  const [selected, setSelected] = useState(dateRanges[0].value);
+  const [selected, setSelected] = useState(dateRanges[0].value)
   const [options] = useState(dateRanges)
 
-  const sortOrders = (orders: formattedNewOrders, index: number, direction: string) => {
+  const sortOrders = (
+    orders: formattedNewOrders,
+    index: number,
+    direction: string
+  ) => {
     return [...orders].sort((rowA: formattedOrder, rowB: formattedOrder) => {
       const amountA = parseFloat(rowA[index].toString())
       const amountB = parseFloat(rowB[index].toString())
 
-      return direction === 'descending' ? amountB - amountA : amountA - amountB;
+      return direction === 'descending' ? amountB - amountA : amountA - amountB
     })
   }
 
   const handleSort = useCallback(
-    (index: number, direction: string) => setSortedOrders(sortOrders(sortedOrders, index, direction)),
+    (index: number, direction: string) =>
+      setSortedOrders(sortOrders(sortedOrders, index, direction)),
     [sortedOrders]
   )
 
@@ -176,31 +193,27 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
 
   const fetchOrdersWithJourney = async (): Promise<void> => {
     setLoading(true)
-    const selectedRange = rawDateRanges.find(range => range.value.id == selected)
-    if(selectedRange) {
+    const selectedRange = rawDateRanges.find(
+      (range) => range.value.id == selected
+    )
+    if (selectedRange) {
       const orderJourneys = await fetch('/get-orders-with-journeys-v2', {
         method: 'POST',
         headers: {
-        'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           startDate: selectedRange.value.start,
-          endDate: selectedRange.value.end
-        })
-      }).then(res => res.json())
+          endDate: selectedRange.value.end,
+        }),
+      }).then((res) => res.json())
 
-      if(
-        orderJourneys.message?.length > 0
-        && orderJourneys.code !== 401
-      ) {
+      if (orderJourneys.message?.length > 0 && orderJourneys.code !== 401) {
         authDispatch!({ type: 'error', message: orderJourneys.message })
         toastDispatch!({ type: 'error', message: orderJourneys.message })
-      } else if(
-        orderJourneys.code
-        && orderJourneys.code !== 200
-      ) {
-        authDispatch!({ type: 'expired', message: orderJourneys.message})
-        toastDispatch!({ type: 'error', message: orderJourneys.message})
+      } else if (orderJourneys.code && orderJourneys.code !== 200) {
+        authDispatch!({ type: 'expired', message: orderJourneys.message })
+        toastDispatch!({ type: 'error', message: orderJourneys.message })
       } else {
         authDispatch!({ type: 'success' })
         setOrdersWithJourney(orderJourneys)
@@ -214,16 +227,19 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
     setLoading(false)
   }
 
-  const initialized = useRef(false);
+  const initialized = useRef(false)
   if (!initialized.current) {
     fetchOrdersWithJourney()
-    initialized.current = true;
+    initialized.current = true
   }
 
   return (
     <Stack vertical>
       <Text variant="bodyMd" as="p">
-        Below will make a <code>POST</code> request to the API endpoint <code>https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys-v2</code>
+        Below will make a <code>POST</code> request to the API endpoint{' '}
+        <code>
+          https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys-v2
+        </code>
       </Text>
       <Stack wrap={true} alignment="trailing">
         <Stack.Item fill>
@@ -235,14 +251,16 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
           />
         </Stack.Item>
         <Stack.Item fill>
-          <Button 
-            fullWidth 
+          <Button
+            fullWidth
             onClick={() => fetchOrdersWithJourney()}
             loading={loading}
-          >Fetch Orders with Journey</Button>
+          >
+            Fetch Orders with Journey
+          </Button>
         </Stack.Item>
         <Stack.Item>
-          <Tooltip 
+          <Tooltip
             content="Download Orders wih Journeys"
             preferredPosition="above"
           >
@@ -254,34 +272,35 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
           </Tooltip>
         </Stack.Item>
       </Stack>
-      {loading ?? (
-        <Spinner accessibilityLabel="Loading orders" size="large" />
-      )}
+      {loading ?? <Spinner accessibilityLabel="Loading orders" size="large" />}
 
       {ordersWithJourney.length > 0 && (
         <div id="table-wrapper" style={{ opacity: loading ? '0.5' : '1' }}>
           <Stack wrap={true} alignment="trailing">
-            {donutData && Object.keys(donutData).map((key) => (
-              <Stack.Item fill key={key}>
-                <Card title={donutData[key as donutDataKeys]?.name}>
-                  <DonutPieChart data={donutData[key as donutDataKeys]?.data ?? []} />
-                </Card>
-              </Stack.Item>
-            ))}
+            {donutData &&
+              Object.keys(donutData).map((key) => (
+                <Stack.Item fill key={key}>
+                  <Card title={donutData[key as donutDataKeys]?.name}>
+                    <DonutPieChart
+                      data={donutData[key as donutDataKeys]?.data ?? []}
+                    />
+                  </Card>
+                </Stack.Item>
+              ))}
           </Stack>
           <br />
 
           <Stack>
             <Stack.Item fill>
               <Card title="Journey Length" sectioned>
-                <ALineChart 
-                  data={chartData} 
+                <ALineChart
+                  data={chartData}
                   annotations={[
                     {
                       axis: 'y',
                       label: `Average: ${averageJourney}`,
-                      startKey: averageJourney
-                    }
+                      startKey: averageJourney,
+                    },
                   ]}
                 />
               </Card>
@@ -290,21 +309,18 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
           <br />
 
           <Stack distribution="fill">
-            <Text variant="headingSm" as="p">{ordersWithJourney.length} total orders</Text>
+            <Text variant="headingSm" as="p">
+              {ordersWithJourney.length} total orders
+            </Text>
             <Text alignment="end" variant="headingSm" as="p">
-              Page {currentPage}{nPages > 1 && (<span> of {nPages}</span>)}
+              Page {currentPage}
+              {nPages > 1 && <span> of {nPages}</span>}
             </Text>
           </Stack>
           <Stack>
-            <DataTable 
+            <DataTable
               stickyHeader={true}
-              columnContentTypes={[
-                'text',
-                'text',
-                'text',
-                'text',
-                'text',
-              ]}
+              columnContentTypes={['text', 'text', 'text', 'text', 'text']}
               headings={[
                 'Order ID',
                 'Journey Length',
@@ -325,13 +341,17 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
                 previousTooltip={`Page ${currentPage}`}
                 onPrevious={() => {
                   setCurrentPage(currentPage - 1 || 0)
-                  window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
+                  window.scrollTo({
+                    top: document.getElementById('table-wrapper')?.offsetTop,
+                  })
                 }}
                 hasNext={!loading && currentOrders.length >= 100}
                 nextTooltip={`Page ${currentPage + 1}`}
                 onNext={() => {
                   setCurrentPage(currentPage + 1)
-                  window.scrollTo({ top: document.getElementById('table-wrapper')?.offsetTop })
+                  window.scrollTo({
+                    top: document.getElementById('table-wrapper')?.offsetTop,
+                  })
                 }}
               />
             </Stack>

@@ -1,65 +1,65 @@
-import { Card, Layout, Tabs } from '@shopify/polaris';
-import { useEffect, useState, useCallback } from 'react';
+import { Card, Layout, Tabs } from '@shopify/polaris'
+import { useEffect, useState, useCallback } from 'react'
 import { FetchMetrics } from './FetchMetrics'
 import { FetchOrdersWithJourneys } from './FetchOrdersWithJourneys'
 import { FetchOrdersWithJourneysV2 } from './FetchOrdersWithJourneysV2'
 import { SummaryPage } from './SummaryPage'
 import { PostMetrics } from './PostMetrics'
-import { useAuthDispatch } from '../contexts/Auth';
+import { useAuthDispatch } from '../contexts/Auth'
 import { TabsType } from '../types/Types'
 
 export const TabbedRequests: React.FC = () => {
-  const [selected, setSelected] = useState(0);
-  const authDispatch = useAuthDispatch();
+  const [selected, setSelected] = useState(0)
+  const authDispatch = useAuthDispatch()
 
   const handleTabChange = useCallback((selectedTabIndex: number) => {
     setSelected(selectedTabIndex)
     authDispatch!({ type: 'success' })
     const activeTabId = tabs[selectedTabIndex]?.id
-    if(activeTabId) window.location.hash = activeTabId.toString()
-  }, []);
+    if (activeTabId) window.location.hash = activeTabId.toString()
+  }, [])
 
   // quasi-router
   useEffect(() => {
     const windowHash = window.location.hash.replace('#', '')
-    if(windowHash) {
-      const activeTab = tabs?.findIndex(tab => tab.id === windowHash)
-      if(activeTab) setSelected(activeTab)
+    if (windowHash) {
+      const activeTab = tabs?.findIndex((tab) => tab.id === windowHash)
+      if (activeTab) setSelected(activeTab)
     }
-  }, []);
+  }, [])
 
-  const tabs : TabsType = [
+  const tabs: TabsType = [
     {
       id: 'summary-page',
       content: 'Summary Page',
       info: 'Fetch Summary Page Data',
-      tabContent: <SummaryPage />
+      tabContent: <SummaryPage />,
     },
     {
       id: 'fetch-orders-with-journeys',
       content: 'Journeys',
       info: 'Fetch Orders with Journeys',
-      tabContent: <FetchOrdersWithJourneys />
+      tabContent: <FetchOrdersWithJourneys />,
     },
     {
       id: 'fetch-orders-with-journeys-v2',
       content: 'Journeys V2',
       info: 'Fetch Orders with Journeys V2',
-      tabContent: <FetchOrdersWithJourneysV2 />
+      tabContent: <FetchOrdersWithJourneysV2 />,
     },
     {
       id: 'fetch-metrics',
       content: 'Metrics',
       info: 'Fetch Sent Metrics',
-      tabContent: <FetchMetrics />
+      tabContent: <FetchMetrics />,
     },
     {
       id: 'post-metrics',
       content: 'Send Metrics',
       info: 'Send Custom Metrics to Triple Whale',
-      tabContent: <PostMetrics />
-    }
-  ];
+      tabContent: <PostMetrics />,
+    },
+  ]
 
   return (
     <Layout.Section>
@@ -71,5 +71,5 @@ export const TabbedRequests: React.FC = () => {
         </Tabs>
       </Card>
     </Layout.Section>
-  );
+  )
 }
