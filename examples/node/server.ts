@@ -186,13 +186,15 @@ app.get('/callback', (req: Request, res: Response) => {
         TOKEN = token
         REFRESH_TOKEN = refresh
         console.log(chalk.magenta(`[callback] token acquired`))
+
+        res.redirect('/')
       } else {
         console.log(
           chalk.red(`[callback] error acquiring token, ${response.error}`)
         )
-      }
 
-      res.redirect('/')
+        res.json(response)
+      }
     })
     .catch((err) => {
       res.json(err)
