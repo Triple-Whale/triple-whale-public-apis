@@ -100,7 +100,7 @@ export const SummaryPage: React.FC = () => {
       if (data.error) {
         authDispatch!({ type: 'error', message: data.error })
         toastDispatch!({ type: 'error', message: data.error })
-      } else if (data.code && data.code !== 200) {
+      } else if (data.message && data.message !== 200) {
         authDispatch!({ type: 'expired', message: data.message })
         toastDispatch!({ type: 'error', message: data.message })
       } else {
