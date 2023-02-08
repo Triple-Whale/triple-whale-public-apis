@@ -6,10 +6,10 @@
   "main": "server.ts",
   "scripts": {
     "dev": "nodemon server.ts",
-    "build": "vite build",
+    "build": "NODE_ENV=production vite build",
     "docker:build": "docker build -t node . ",
     "docker:compose": "docker compose up --remove-orphans",
-    "start": "NODE_ENV=production vite build && NODE_ENV=production ts-node server.ts"
+    "start": "NODE_ENV=production ts-node server.ts"
   },
   "dependencies": {
     "@json2csv/plainjs": "^6.1.2",
