@@ -269,7 +269,7 @@ export interface formattedDictatedService {
     current: sparkChartDataLineItem[]
     previous: sparkChartDataLineItem[]
   }
-  valueType: string
+  type: string
   positiveComparison: number
 }
 
@@ -336,7 +336,7 @@ export interface GetSummaryDTO {
   tip?: string
   services: (IServiceMap | string)[]
   delta: number
-  valueType: valueFormats
+  type: valueFormats
   values: MetricValues
 }
 
