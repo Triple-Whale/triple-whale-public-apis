@@ -2,6 +2,10 @@
 
 For documentation on available endpoints and request structure, visit https://developers.triplewhale.com/swagger/index.html
 
+## Live Demo
+
+https://tw-api-node.onrender.com/
+
 ## Prerequesites
 
 1. Ensure you have [node](https://nodejs.org/en/download/), [nvm](https://github.com/nvm-sh/nvm), and optionally [yarn](https://yarnpkg.com/getting-started/install) installed on your machine
@@ -38,7 +42,7 @@ yarn start
 
 ## Docker
 
-We have included `Dockerfile` and `docker.compose`, which should enable you 
+We have included `Dockerfile` and `docker.compose`, which should enable you to host this app in a Docker container.
 
 You can build and run the Docker image with the following commands:
 
