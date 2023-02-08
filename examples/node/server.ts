@@ -7,7 +7,6 @@ import chalk from 'chalk'
 import fetch from 'cross-fetch'
 import { LocalStorage } from 'node-localstorage'
 import moment from 'moment'
-import path from 'path'
 
 // Types
 import { ParsedQs } from 'qs'

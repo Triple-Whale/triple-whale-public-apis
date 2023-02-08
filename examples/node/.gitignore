@@ -16,3 +16,4 @@ package-lock.json
 
 # ignore dist
 dist/
+vite.config.ts.timestamp-*
