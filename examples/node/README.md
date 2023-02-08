@@ -2,8 +2,6 @@
 
 For documentation on available endpoints and request structure, visit https://developers.triplewhale.com/swagger/index.html
 
-`nvm use && yarn && yarn dev`
-
 ## Prerequesites
 
 1. Ensure you have [node](https://nodejs.org/en/download/), [nvm](https://github.com/nvm-sh/nvm), and optionally [yarn](https://yarnpkg.com/getting-started/install) installed on your machine
@@ -11,29 +9,58 @@ For documentation on available endpoints and request structure, visit https://de
 1. Install the `package.json` dependencies: `npm i` or `yarn`
 1. Ensure you have a properly formatted `.env` file; an `.env.example` file has been provided
 
+## Quickstart
+
+```bash
+## one-liner
+nvm use && yarn && yarn dev
+```
+
 ## Dev server
 
-You can use npm or yarn to get started, simply
+```bash
+## npm
+npm run dev
 
-`npm run dev`
+## OR
 
-or
-
-`yarn dev`
+## yarn
+yarn dev
+```
 
 ## Production server
 
-`yarn preview`
+```bash
+## build the app
+## then run express + vite in production mode
+yarn start
+```
 
-or
+## Docker
 
-`npm run preview`
+We have included `Dockerfile` and `docker.compose`, which should enable you 
+
+You can build and run the Docker image with the following commands:
+
+```bash
+# Build the image
+yarn docker:build
+
+# Run the image
+yarn docker:compose
+```
+
+
+
+
 
 ## Caveats
 
 This is **not production ready!**
 
 This repository's purpose is to demonstrate the process of authorizing your app with Triple Whale, obtaining a JWT, and requesting data from our API.
+
+Thus we use `node-localstorage` to store JWT data, which you will find under the `/scratch` folder. You should be able to drop in your own DB of choice, but we have not tested this yet.
 
 ## Common Issues
 
@@ -72,3 +99,13 @@ This repository's purpose is to demonstrate the process of authorizing your app 
 - Ensure you have Docker installed on your machine
 
 - @TODO: Add more troubleshooting steps; not yet complete
+
+## Roadmap
+
+- [ ] Multiple stores
+- [ ] Finish & Demo Docker
+- [ ] Full DB support
+- [ ] Add more error handling
+- [ ] Add more documentation
+
+### Feel free to submit a pull request if you have any requests or improvements!

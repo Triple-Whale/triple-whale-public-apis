@@ -12,4 +12,4 @@ ENV NODE_ENV=production
 
 EXPOSE 8888
 
-CMD [ "yarn", "ts-node", "server.ts" ]
+CMD [ "yarn", "start" ]

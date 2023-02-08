@@ -1,7 +1,11 @@
+import * as dotenv from 'dotenv'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import checker from 'vite-plugin-checker'
 import eslint from 'vite-plugin-eslint'
+
+dotenv.config()
+const { NODE_ENV } = process.env
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,8 +16,9 @@ export default defineConfig({
     }),
     eslint({
       include: ['./server.ts', 'src/**/*.{ts,tsx}'],
-      fix: true,
-      lintOnStart: true,
+      exclude: ['vite.config.ts'],
+      fix: NODE_ENV === 'production' ? false : true,
+      lintOnStart: NODE_ENV === 'production' ? false : true,
     }),
   ],
 })

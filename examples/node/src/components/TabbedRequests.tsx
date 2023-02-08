@@ -1,12 +1,50 @@
-import { Card, Layout, Tabs } from '@shopify/polaris'
+import React, { Suspense } from 'react'
+import {
+  Card,
+  Layout,
+  Tabs,
+  SkeletonBodyText,
+  SkeletonDisplayText,
+} from '@shopify/polaris'
 import { useEffect, useState, useCallback } from 'react'
-import { FetchMetrics } from './FetchMetrics'
-import { FetchOrdersWithJourneys } from './FetchOrdersWithJourneys'
-import { FetchOrdersWithJourneysV2 } from './FetchOrdersWithJourneysV2'
-import { SummaryPage } from './SummaryPage'
-import { PostMetrics } from './PostMetrics'
 import { useAuthDispatch } from '../contexts/Auth'
 import { TabsType } from '../types/Types'
+
+// code splitting
+const FetchMetrics = React.lazy(
+  async () =>
+    await import('./FetchMetrics').then((c) => ({ default: c.FetchMetrics }))
+)
+const FetchOrdersWithJourneys = React.lazy(
+  async () =>
+    await import('./FetchOrdersWithJourneys').then((c) => ({
+      default: c.FetchOrdersWithJourneys,
+    }))
+)
+const FetchOrdersWithJourneysV2 = React.lazy(
+  async () =>
+    await import('./FetchOrdersWithJourneysV2').then((c) => ({
+      default: c.FetchOrdersWithJourneysV2,
+    }))
+)
+const SummaryPage = React.lazy(
+  async () =>
+    await import('./SummaryPage').then((c) => ({ default: c.SummaryPage }))
+)
+const PostMetrics = React.lazy(
+  async () =>
+    await import('./PostMetrics').then((c) => ({ default: c.PostMetrics }))
+)
+
+const fallback = (
+  <>
+    <br />
+    <SkeletonBodyText />
+    <SkeletonBodyText lines={1} />
+    <br />
+    <SkeletonDisplayText />
+  </>
+)
 
 export const TabbedRequests: React.FC = () => {
   const [selected, setSelected] = useState(0)
@@ -66,7 +104,9 @@ export const TabbedRequests: React.FC = () => {
       <Card>
         <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange}>
           <Card.Section title={tabs[selected].info}>
-            {tabs[selected]?.tabContent}
+            <Suspense fallback={fallback}>
+              {tabs[selected]?.tabContent}
+            </Suspense>
           </Card.Section>
         </Tabs>
       </Card>

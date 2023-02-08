@@ -7,6 +7,7 @@ import chalk from 'chalk'
 import fetch from 'cross-fetch'
 import { LocalStorage } from 'node-localstorage'
 import moment from 'moment'
+import path from 'path'
 
 // Types
 import { ParsedQs } from 'qs'
@@ -417,7 +418,7 @@ app.get('/logged-in', (req: Request, res: Response) => {
   res.json({ token: TOKEN })
 })
 
-ViteExpress.listen(app, port, () => {
+const loggy = () => {
   console.log(
     appName +
       chalk.green(
@@ -432,4 +433,9 @@ ViteExpress.listen(app, port, () => {
         ? chalk.green(`required data is present 🎉`)
         : chalk.red(`🛑 please provide required .env data`))
   )
-})
+}
+
+NODE_ENV === 'production' ? app.use(express.static('dist')) : null
+NODE_ENV === 'production'
+  ? app.listen('80', loggy)
+  : ViteExpress.listen(app, port, loggy)
