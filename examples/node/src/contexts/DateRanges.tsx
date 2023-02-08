@@ -151,7 +151,7 @@ const SummaryDateRanges: DatePickerOption[] = [
   {
     value: {
       start: moment().subtract(1, 'day').startOf('day'),
-      end: moment().subtract(1, 'day').startOf('day'), //.endOf('day') // bug with endOf day
+      end: moment().subtract(1, 'day').endOf('day'),
       id: 'yesterday',
     },
     label: 'Yesterday',

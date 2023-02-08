@@ -83,7 +83,7 @@ export const SummaryPage: React.FC = () => {
           start: selectedRange.value.start,
           end: selectedRange.value.end,
         },
-        todayHour: 0,
+        todayHour: 1,
       }
       if (selected === 'today') bodyData.todayHour = moment().hour()
 
