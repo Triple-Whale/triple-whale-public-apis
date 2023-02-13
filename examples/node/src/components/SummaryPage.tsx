@@ -23,7 +23,6 @@ import {
 import SourceIcons from './SourceIcons'
 import { SparkChart } from './Charts'
 import { DataExport } from '../DataExport'
-import moment from 'moment'
 
 // @ts-ignore
 const groupByKey = (list, key) =>
@@ -83,9 +82,8 @@ export const SummaryPage: React.FC = () => {
           start: selectedRange.value.start,
           end: selectedRange.value.end,
         },
-        todayHour: 1,
+        todayHour: selectedRange.value.todayHour || 1,
       }
-      if (selected === 'today') bodyData.todayHour = moment().hour()
 
       const data = await fetch('/get-summary-page-data', {
         method: 'POST',

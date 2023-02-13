@@ -232,6 +232,7 @@ export type DatePickerOption = {
     start: moment.Moment
     end: moment.Moment
     id: string
+    todayHour?: number
     specialPeriod?: 'week' | 'month' | 'quarter' | 'year'
   }
   label: string | JSX.Element

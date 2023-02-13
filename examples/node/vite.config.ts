@@ -15,7 +15,7 @@ export default defineConfig({
       typescript: true,
     }),
     eslint({
-      include: ['./server.ts', 'src/**/*.{ts,tsx}'],
+      include: ['./server.ts', '**/*.{ts,tsx}'],
       exclude: ['vite.config.ts'],
       fix: NODE_ENV === 'production' ? false : true,
       lintOnStart: NODE_ENV === 'production' ? false : true,
