@@ -6,6 +6,8 @@ For documentation on available endpoints and request structure, visit https://de
 
 https://tw-api-node.onrender.com/
 
+NOTE: This demo is SLOW, as it is hosted on a free tier Render.com instance. It will most likely spin up when you access it, and require you to login. Be patient, and keep in mind that this is not meant to be used for production purposes, but rather to demonstrate the process of obtaining a JWT, making requests to the API, and obtaining data.
+
 ## Prerequesites
 
 1. Ensure you have [node](https://nodejs.org/en/download/), [nvm](https://github.com/nvm-sh/nvm), and optionally [yarn](https://yarnpkg.com/getting-started/install) installed on your machine
