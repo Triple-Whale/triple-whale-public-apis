@@ -386,7 +386,7 @@ app.post('/get-summary-page-data', (req: Request, res: Response) => {
       start: moment().startOf('day'),
       end: moment().endOf('day'),
     },
-    todayHour: req.body?.todayHour || 1,
+    todayHour: req.body?.todayHour || null,
   }
 
   const options = {
