@@ -144,7 +144,7 @@ const SummaryDateRanges: DatePickerOption[] = [
     value: {
       start: moment().startOf('day'),
       end: moment().endOf('day'),
-      todayHour: 25,
+      todayHour: moment().hour(),
       id: 'today',
     },
     label: 'Today',
