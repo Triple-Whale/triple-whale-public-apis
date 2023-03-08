@@ -82,7 +82,7 @@ export const SummaryPage: React.FC = () => {
           start: selectedRange.value.start,
           end: selectedRange.value.end,
         },
-        todayHour: selectedRange.value.todayHour || 1,
+        todayHour: selectedRange.value.todayHour || null,
       }
 
       const data = await fetch('/get-summary-page-data', {
