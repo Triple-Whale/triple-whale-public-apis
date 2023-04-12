@@ -105,6 +105,9 @@ export interface attributionNew {
 
 export interface newOrder {
   order_id: string
+  customer_id: string
+  currency: string
+  total_price: string
   created_at: string
   journey: journey[]
   attribution: attributionNew
@@ -165,7 +168,7 @@ export interface metricsDynamicData {
 // spark chart
 export interface sparkChartDataLineItem {
   key: number | string
-  value: number
+  value: number | string
   date?: moment.Moment
 }
 

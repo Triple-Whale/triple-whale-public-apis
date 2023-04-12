@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Card, Layout, Text, Stack } from '@shopify/polaris'
+import { Button, LegacyCard, Layout, Text, LegacyStack } from '@shopify/polaris'
 
 export const LoginCard: React.FC = () => {
   const [loggingIn, setLoggingIn] = useState(false)
@@ -22,8 +22,8 @@ export const LoginCard: React.FC = () => {
 
   return (
     <Layout.Section>
-      <Card sectioned>
-        <Stack vertical>
+      <LegacyCard sectioned>
+        <LegacyStack vertical>
           <Text variant="heading3xl" as="h1">
             Login
           </Text>
@@ -33,8 +33,8 @@ export const LoginCard: React.FC = () => {
           <Button fullWidth onClick={logIn} loading={loggingIn}>
             Login
           </Button>
-        </Stack>
-      </Card>
+        </LegacyStack>
+      </LegacyCard>
     </Layout.Section>
   )
 }

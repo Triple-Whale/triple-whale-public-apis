@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import {
-  Card,
+  LegacyCard,
   Layout,
   Tabs,
   SkeletonBodyText,
@@ -101,15 +101,15 @@ export const TabbedRequests: React.FC = () => {
 
   return (
     <Layout.Section>
-      <Card>
+      <LegacyCard>
         <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange}>
-          <Card.Section title={tabs[selected].info}>
+          <LegacyCard.Section title={tabs[selected].info}>
             <Suspense fallback={fallback}>
               {tabs[selected]?.tabContent}
             </Suspense>
-          </Card.Section>
+          </LegacyCard.Section>
         </Tabs>
-      </Card>
+      </LegacyCard>
     </Layout.Section>
   )
 }

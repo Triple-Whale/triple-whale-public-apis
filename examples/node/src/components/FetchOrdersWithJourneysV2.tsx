@@ -1,12 +1,12 @@
 import { useCallback, useRef, useState } from 'react'
 import {
   Button,
-  Card,
+  LegacyCard,
   DataTable,
   Pagination,
   Select,
   Spinner,
-  Stack,
+  LegacyStack,
   Text,
   Tooltip,
 } from '@shopify/polaris'
@@ -31,7 +31,9 @@ import { DataExport } from '../DataExport'
 const formatOrders = (orders: newOrders) => {
   return orders.map((order: newOrder) => [
     order.order_id,
+    order.customer_id,
     order.journey?.length || 0,
+    order.total_price.toString(),
     order.attribution?.firstClick
       ?.map((click: platformClick) => click.source ?? '')
       .flat()
@@ -62,12 +64,34 @@ const formatChartData = (orders: newOrders) => {
   ]
 }
 
+const formatPriceChartData = (orders: newOrders) => {
+  return [
+    {
+      data: orders.map((order: newOrder) => ({
+        key: order.customer_id,
+        value: order.total_price,
+      })),
+      name: 'Order Value',
+    },
+  ]
+}
+
 const formatAverageJourney = (orders: newOrders) => {
   return Math.round(
     orders.reduce((a, c) => {
       return a + c?.journey?.length
     }, 0) / orders.length
   )
+}
+
+const formatAveragePrice = (orders: newOrders) => {
+  var avg = 0
+  orders.map((o) => {
+    avg += parseFloat(o.total_price)
+  })
+  avg = avg / orders.length
+
+  return parseFloat(avg.toFixed(2))
 }
 
 const formatSourceString = (string: string) => {
@@ -116,6 +140,7 @@ const formatDonutData = (orders: newOrders) => {
             name: sourceString,
           })
         } else if (currentVal) {
+          // @ts-ignore
           currentVal.data[0].value += 1
         }
       }
@@ -125,6 +150,7 @@ const formatDonutData = (orders: newOrders) => {
   // sort
   Object.keys(rawData).map((key: string) => {
     rawData[key as donutDataKeys]?.data.sort((a, b) => {
+      // @ts-ignore
       return b.data[0].value - a.data[0].value
     })
   })
@@ -136,9 +162,13 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [ordersWithJourney, setOrdersWithJourney] = useState({} as newOrders)
   const [sortedOrders, setSortedOrders] = useState([] as formattedNewOrders)
+
   const [chartData, setChartData] = useState([] as sparkChartData)
   const [donutData, setDonutData] = useState({} as donutDataObject)
+  const [priceChartData, setPriceChartData] = useState([] as sparkChartData)
+
   const [averageJourney, setAverageJourney] = useState(0)
+  const [averagePrice, setAveragePrice] = useState(0)
 
   const [currentPage, setCurrentPage] = useState(1)
   const ordersPerPage = 100
@@ -186,8 +216,10 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
     setOrdersWithJourney({} as newOrders)
     setSortedOrders([] as formattedNewOrders)
     setChartData([] as sparkChartData)
+    setPriceChartData([] as sparkChartData)
     setDonutData({} as donutDataObject)
     setAverageJourney(0)
+    setAveragePrice(0)
     setCurrentPage(1)
   }
 
@@ -219,7 +251,9 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
         setOrdersWithJourney(orderJourneys)
         setSortedOrders(formatOrders(orderJourneys))
         setAverageJourney(formatAverageJourney(orderJourneys))
+        setAveragePrice(formatAveragePrice(orderJourneys))
         setChartData(formatChartData(orderJourneys))
+        setPriceChartData(formatPriceChartData(orderJourneys))
         setDonutData(formatDonutData(orderJourneys))
         setCurrentPage(1)
       }
@@ -234,23 +268,23 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
   }
 
   return (
-    <Stack vertical>
+    <LegacyStack vertical>
       <Text variant="bodyMd" as="p">
         Below will make a <code>POST</code> request to the API endpoint{' '}
         <code>
           https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys-v2
         </code>
       </Text>
-      <Stack wrap={true} alignment="trailing">
-        <Stack.Item fill>
+      <LegacyStack wrap={true} alignment="trailing">
+        <LegacyStack.Item fill>
           <Select
             label="Date range"
             options={options as []}
             onChange={handleSelectChange}
             value={selected}
           />
-        </Stack.Item>
-        <Stack.Item fill>
+        </LegacyStack.Item>
+        <LegacyStack.Item fill>
           <Button
             fullWidth
             onClick={() => fetchOrdersWithJourney()}
@@ -258,8 +292,8 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
           >
             Fetch Orders with Journey
           </Button>
-        </Stack.Item>
-        <Stack.Item>
+        </LegacyStack.Item>
+        <LegacyStack.Item>
           <Tooltip
             content="Download Orders wih Journeys"
             preferredPosition="above"
@@ -270,29 +304,29 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
               disabled={Object.keys(chartData).length <= 0}
             />
           </Tooltip>
-        </Stack.Item>
-      </Stack>
+        </LegacyStack.Item>
+      </LegacyStack>
       {loading ?? <Spinner accessibilityLabel="Loading orders" size="large" />}
 
       {ordersWithJourney.length > 0 && (
         <div id="table-wrapper" style={{ opacity: loading ? '0.5' : '1' }}>
-          <Stack wrap={true} alignment="trailing">
+          <LegacyStack wrap={true} alignment="trailing">
             {donutData &&
               Object.keys(donutData).map((key) => (
-                <Stack.Item fill key={key}>
-                  <Card title={donutData[key as donutDataKeys]?.name}>
+                <LegacyStack.Item fill key={key}>
+                  <LegacyCard title={donutData[key as donutDataKeys]?.name}>
                     <DonutPieChart
                       data={donutData[key as donutDataKeys]?.data ?? []}
                     />
-                  </Card>
-                </Stack.Item>
+                  </LegacyCard>
+                </LegacyStack.Item>
               ))}
-          </Stack>
+          </LegacyStack>
           <br />
 
-          <Stack>
-            <Stack.Item fill>
-              <Card title="Journey Length" sectioned>
+          <LegacyStack>
+            <LegacyStack.Item fill>
+              <LegacyCard title="Journey Length" sectioned>
                 <ALineChart
                   data={chartData}
                   annotations={[
@@ -303,12 +337,27 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
                     },
                   ]}
                 />
-              </Card>
-            </Stack.Item>
-          </Stack>
+              </LegacyCard>
+            </LegacyStack.Item>
+
+            <LegacyStack.Item fill>
+              <LegacyCard title="Total Price" sectioned>
+                <ALineChart
+                  data={priceChartData}
+                  annotations={[
+                    {
+                      axis: 'y',
+                      label: `Average Price: ${averagePrice}`,
+                      startKey: averagePrice,
+                    },
+                  ]}
+                />
+              </LegacyCard>
+            </LegacyStack.Item>
+          </LegacyStack>
           <br />
 
-          <Stack distribution="fill">
+          <LegacyStack distribution="fill">
             <Text variant="headingSm" as="p">
               {ordersWithJourney.length} total orders
             </Text>
@@ -316,14 +365,25 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
               Page {currentPage}
               {nPages > 1 && <span> of {nPages}</span>}
             </Text>
-          </Stack>
-          <Stack>
+          </LegacyStack>
+          <LegacyStack>
             <DataTable
               stickyHeader={true}
-              columnContentTypes={['text', 'text', 'text', 'text', 'text']}
+              columnContentTypes={[
+                'text',
+                'text',
+                'text',
+                'text',
+                'text',
+                'text',
+                'text',
+                'text',
+              ]}
               headings={[
                 'Order ID',
+                'Customer ID',
                 'Journey Length',
+                'Price',
                 'First Click',
                 'Last Click',
                 'Last Platform Click',
@@ -331,11 +391,11 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
               rows={currentOrders}
               onSort={handleSort}
               hasZebraStripingOnData
-              sortable={[false, true, false, false, false]}
+              sortable={[false, false, true, true, false, false]}
             />
-          </Stack>
+          </LegacyStack>
           {nPages > 1 && (
-            <Stack distribution="center">
+            <LegacyStack distribution="center">
               <Pagination
                 hasPrevious={!!(!loading && currentPage > 1)}
                 previousTooltip={`Page ${currentPage}`}
@@ -354,10 +414,10 @@ export const FetchOrdersWithJourneysV2: React.FC = () => {
                   })
                 }}
               />
-            </Stack>
+            </LegacyStack>
           )}
         </div>
       )}
-    </Stack>
+    </LegacyStack>
   )
 }

@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react'
 import {
   Button,
-  Card,
+  LegacyCard,
   Select,
   Spinner,
-  Stack,
+  LegacyStack,
   Text,
   Tooltip,
 } from '@shopify/polaris'
@@ -121,26 +121,26 @@ export const FetchMetrics: React.FC = () => {
   }
 
   return (
-    <Stack vertical>
+    <LegacyStack vertical>
       <Text variant="bodyMd" as="p">
         Below will make a <code>GET</code> request to the API endpoint{' '}
         <code>https://api.triplewhale.com/api/v2/tw-metrics/metrics-data</code>
       </Text>
-      <Stack wrap={true} alignment="trailing">
-        <Stack.Item fill>
+      <LegacyStack wrap={true} alignment="trailing">
+        <LegacyStack.Item fill>
           <Select
             label="Date range"
             options={options}
             onChange={handleSelectChange}
             value={selected}
           />
-        </Stack.Item>
-        <Stack.Item fill>
+        </LegacyStack.Item>
+        <LegacyStack.Item fill>
           <Button fullWidth onClick={() => fetchMetrics()} loading={loading}>
             Fetch Metrics
           </Button>
-        </Stack.Item>
-        <Stack.Item>
+        </LegacyStack.Item>
+        <LegacyStack.Item>
           <Tooltip content="Download Metrics" preferredPosition="above">
             <DataExport
               data={metrics}
@@ -148,15 +148,15 @@ export const FetchMetrics: React.FC = () => {
               disabled={Object.keys(metrics).length <= 0}
             />
           </Tooltip>
-        </Stack.Item>
-      </Stack>
+        </LegacyStack.Item>
+      </LegacyStack>
       {loading ?? <Spinner accessibilityLabel="Loading metrics" size="large" />}
       {Object.keys(metrics).length > 0 && (
         <>
-          <Stack wrap={true} distribution="fillEvenly">
+          <LegacyStack wrap={true} distribution="fillEvenly">
             {Object.keys(chartsData).map((key) => (
-              <Stack.Item fill key={key}>
-                <Card sectioned>
+              <LegacyStack.Item fill key={key}>
+                <LegacyCard sectioned>
                   <Text variant="bodySm" as="p">
                     {chartsData[key as metricKeys].name}
                   </Text>
@@ -170,13 +170,13 @@ export const FetchMetrics: React.FC = () => {
                     data={chartsData[key as metricKeys].chart}
                     accessibilityLabel={chartsData[key as metricKeys].name}
                   />
-                </Card>
-              </Stack.Item>
+                </LegacyCard>
+              </LegacyStack.Item>
             ))}
-          </Stack>
+          </LegacyStack>
           <br />
 
-          <Card sectioned>
+          <LegacyCard sectioned>
             <Text variant="bodySm" as="p">
               Combined
             </Text>
@@ -202,9 +202,9 @@ export const FetchMetrics: React.FC = () => {
                 })) as sparkChartData
               }
             />
-          </Card>
+          </LegacyCard>
         </>
       )}
-    </Stack>
+    </LegacyStack>
   )
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Text, TextField, Stack } from '@shopify/polaris'
+import { Button, Text, TextField, LegacyStack } from '@shopify/polaris'
 import { useAuthDispatch } from '../contexts/Auth'
 import { useToastDispatch } from '../contexts/Toast'
 import { metricsDynamicData } from '../types/Types'
@@ -85,14 +85,14 @@ export const PostMetrics: React.FC = () => {
   }
 
   return (
-    <Stack vertical>
+    <LegacyStack vertical>
       <Text variant="bodyMd" as="p">
         Below will make a <code>POST</code> request to the API endpoint{' '}
         <code>https://api.triplewhale.com/api/v2/tw-metrics/metrics</code>
       </Text>
 
-      <Stack distribution="fillEvenly" spacing="loose">
-        <Stack vertical>
+      <LegacyStack distribution="fillEvenly" spacing="loose">
+        <LegacyStack vertical>
           <TextField
             label={'Currency metric name'}
             value={metrics.spendName}
@@ -112,8 +112,8 @@ export const PostMetrics: React.FC = () => {
             onChange={(v) => handleChange('spendDescription', v)}
             autoComplete="false"
           />
-        </Stack>
-        <Stack vertical>
+        </LegacyStack>
+        <LegacyStack vertical>
           <TextField
             label={'Clicks name'}
             value={metrics.clicksName}
@@ -133,8 +133,8 @@ export const PostMetrics: React.FC = () => {
             onChange={(v) => handleChange('clicksDescription', v)}
             autoComplete="false"
           />
-        </Stack>
-      </Stack>
+        </LegacyStack>
+      </LegacyStack>
 
       <Button
         fullWidth
@@ -144,6 +144,6 @@ export const PostMetrics: React.FC = () => {
       >
         Post Metrics
       </Button>
-    </Stack>
+    </LegacyStack>
   )
 }

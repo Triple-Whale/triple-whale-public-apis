@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Banner, Button, Layout, Text, Stack } from '@shopify/polaris'
+import { Banner, Button, Layout, Text, LegacyStack } from '@shopify/polaris'
 import { useAuth } from '../contexts/Auth'
 
 export const LoggedInCard: React.FC = () => {
@@ -17,7 +17,7 @@ export const LoggedInCard: React.FC = () => {
     <Layout.Section>
       <Banner status={authenticated ? 'success' : 'critical'}>
         {authenticated ? (
-          <Stack vertical>
+          <LegacyStack vertical>
             <Text variant="headingLg" as="h2">
               You are authenticated!
             </Text>
@@ -31,9 +31,9 @@ export const LoggedInCard: React.FC = () => {
                 https://developers.triplewhale.com/swagger/index.html
               </a>
             </Text>
-          </Stack>
+          </LegacyStack>
         ) : (
-          <Stack vertical>
+          <LegacyStack vertical>
             <Text variant="headingLg" as="h2">
               {message || 'Your JWT Expired'}
             </Text>
@@ -50,12 +50,12 @@ export const LoggedInCard: React.FC = () => {
                 Refresh Token
               </Button>
             )}
-          </Stack>
+          </LegacyStack>
         )}
       </Banner>
       {authenticated && error && (
         <Banner status="critical">
-          <Stack vertical>
+          <LegacyStack vertical>
             <Text variant="headingLg" as="h2">
               API Error: {message}
             </Text>
@@ -68,7 +68,7 @@ export const LoggedInCard: React.FC = () => {
                 Refresh Token
               </Button>
             )}
-          </Stack>
+          </LegacyStack>
         </Banner>
       )}
     </Layout.Section>

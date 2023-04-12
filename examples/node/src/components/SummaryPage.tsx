@@ -3,12 +3,12 @@ import RenderIfVisible from 'react-render-if-visible'
 import {
   Badge,
   Button,
-  Card,
+  LegacyCard,
   Icon,
   Text,
   Tooltip,
   Select,
-  Stack,
+  LegacyStack,
 } from '@shopify/polaris'
 import { QuestionMarkInverseMajor } from '@shopify/polaris-icons'
 import { useSummaryDateRanges } from '../contexts/DateRanges'
@@ -144,20 +144,20 @@ export const SummaryPage: React.FC = () => {
 
   return (
     <Fragment>
-      <Stack wrap={true} alignment="trailing">
+      <LegacyStack wrap={true} alignment="trailing">
         <Text variant="bodyMd" as="p">
           Below will make a <code>POST</code> request to the API endpoint{' '}
           <code>https://api.triplewhale.com/api/v2/summary-page/get-data</code>
         </Text>
-        <Stack.Item fill>
+        <LegacyStack.Item fill>
           <Select
             label="Date range"
             options={options as []}
             onChange={handleSelectChange}
             value={selected}
           />
-        </Stack.Item>
-        <Stack.Item fill>
+        </LegacyStack.Item>
+        <LegacyStack.Item fill>
           <Button
             fullWidth
             onClick={() => fetchSummaryPage()}
@@ -165,8 +165,8 @@ export const SummaryPage: React.FC = () => {
           >
             Fetch Summary Page Data
           </Button>
-        </Stack.Item>
-        <Stack.Item>
+        </LegacyStack.Item>
+        <LegacyStack.Item>
           <Tooltip content="Download Metrics" preferredPosition="above">
             <DataExport
               data={dictatedData}
@@ -174,8 +174,8 @@ export const SummaryPage: React.FC = () => {
               disabled={Object.keys(dictatedData).length <= 0}
             />
           </Tooltip>
-        </Stack.Item>
-      </Stack>
+        </LegacyStack.Item>
+      </LegacyStack>
       <br />
 
       {Object.keys(dictatedData).map((g: string) => {
@@ -189,14 +189,18 @@ export const SummaryPage: React.FC = () => {
 
         return (
           filteredGroup.length > 0 && (
-            <Card key={g} sectioned>
+            <LegacyCard key={g} sectioned>
               <div className="capitalize flex-text">
                 <Text variant="headingXl" as="h3">
                   <SourceIcons source={g as IServiceMap} /> {plainTextService}
                 </Text>
               </div>
               <br />
-              <Stack wrap={true} spacing="loose" distribution="fillEvenly">
+              <LegacyStack
+                wrap={true}
+                spacing="loose"
+                distribution="fillEvenly"
+              >
                 {group.map((item) => {
                   const delta = toNumber(item.delta)
                   const deltaIsPositive =
@@ -208,7 +212,7 @@ export const SummaryPage: React.FC = () => {
                   return (
                     item.values?.current !== 0 &&
                     item.delta && (
-                      <Card key={item.id} sectioned>
+                      <LegacyCard key={item.id} sectioned>
                         <Text variant="bodyMd" as="p">
                           <span className="flex-text">
                             <strong>
@@ -249,12 +253,12 @@ export const SummaryPage: React.FC = () => {
                             />
                           </RenderIfVisible>
                         )}
-                      </Card>
+                      </LegacyCard>
                     )
                   )
                 })}
-              </Stack>
-            </Card>
+              </LegacyStack>
+            </LegacyCard>
           )
         )
       })}
