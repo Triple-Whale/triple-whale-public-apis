@@ -23,7 +23,7 @@ import {
 // express app
 // -----------------------
 const app = express()
-const port = 8888
+const port = 3000
 const appName = chalk.hex('#1877f2')('[triple-whale] ')
 app.use(express.json())
 
