@@ -1,28 +1,30 @@
-# Triple Whale API Node App
+# 🐳 Triple Whale API Node App
 
 For documentation on available endpoints and request structure, visit https://developers.triplewhale.com/swagger/index.html
 
-## Live Demo
+## ⚡ Live Demo
 
 https://tw-api-node.onrender.com/
 
+![Image](public/render-spindown.png)
+
 NOTE: This demo is SLOW, as it is hosted on a free tier Render.com instance. It will most likely spin up when you access it, and require you to login. Be patient, and keep in mind that this is not meant to be used for production purposes, but rather to demonstrate the process of obtaining a JWT, making requests to the API, and obtaining data.
 
-## Prerequesites
+## 🟡 Prerequesites
 
 1. Ensure you have [node](https://nodejs.org/en/download/), [nvm](https://github.com/nvm-sh/nvm), and optionally [yarn](https://yarnpkg.com/getting-started/install) installed on your machine
 1. Ensure you are using Node 18: `nvm use`
 1. Install the `package.json` dependencies: `npm i` or `yarn`
 1. Ensure you have a properly formatted `.env` file; an `.env.example` file has been provided
 
-## Quickstart
+## 🏁 Quickstart
 
 ```bash
 ## one-liner
 nvm use && yarn && yarn dev
 ```
 
-## Dev server
+## 👨‍💻 Dev server
 
 ```bash
 ## npm
@@ -34,7 +36,7 @@ npm run dev
 yarn dev
 ```
 
-## Production server
+## 🟢 Production server
 
 ```bash
 ## build the app
@@ -42,7 +44,7 @@ yarn dev
 yarn start
 ```
 
-## Docker
+## 🐋 Docker
 
 We have included `Dockerfile` and `docker.compose`, which should enable you to host this app in a Docker container.
 
@@ -56,7 +58,7 @@ yarn docker:build
 yarn docker:compose
 ```
 
-## Caveats
+## ⏸️ Caveats
 
 This is **not production ready!**
 
@@ -64,7 +66,7 @@ This repository's purpose is to demonstrate the process of authorizing your app 
 
 Thus we use `node-localstorage` to store JWT data, which you will find under the `/scratch` folder. You should be able to drop in your own DB of choice, but we have not tested this yet.
 
-## Common Issues
+## 😠 Common Issues
 
 ### "I cannot install package.json"
 
@@ -102,7 +104,7 @@ Thus we use `node-localstorage` to store JWT data, which you will find under the
 
 - @TODO: Add more troubleshooting steps; not yet complete
 
-## Roadmap
+## 🛣️ Roadmap
 
 - [ ] Multiple stores
 - [ ] Finish & Demo Docker
