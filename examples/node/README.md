@@ -58,16 +58,13 @@ yarn docker:compose
 
 ## Pulumi (optional)
 
-We have included a `Pulumi.yaml` file, which should enable you to deploy this app to AWS, Azure, or GCP.
+We have included a `/infra` folder, which should enable you to deploy this app to AWS, Azure, or GCP.
 
 You can deploy the app with the following commands:
 
 ```bash
 # Deploy the app
 yarn pulumi:up
-
-# Destroy the app
-yarn pulumi:destroy
 ```
 
 ## Caveats
