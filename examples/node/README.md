@@ -4,11 +4,7 @@ For documentation on available endpoints and request structure, visit https://de
 
 ## ⚡ Live Demo
 
-https://tw-api-node.onrender.com/
-
-![Image](public/render-spindown.png)
-
-NOTE: This demo is SLOW, as it is hosted on a free tier Render.com instance. It will most likely spin up when you access it, and require you to login. Be patient, and keep in mind that this is not meant to be used for production purposes, but rather to demonstrate the process of obtaining a JWT, making requests to the API, and obtaining data.
+https://client-cgrzlhwaka-uk.a.run.app/
 
 ## 🟡 Prerequesites
 
