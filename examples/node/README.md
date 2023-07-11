@@ -58,6 +58,17 @@ yarn docker:build
 yarn docker:compose
 ```
 
+### ☁️ GCP Cloud Run
+
+We have also included a `cloudbuild.yaml` file, which should enable you to host this app on GCP Cloud Run.
+
+You can build and run the Cloud Run image with the following commands:
+
+```bash
+# Build and deploy
+gcloud run deploy
+```
+
 ## ⏸️ Caveats
 
 This is **not production ready!**
