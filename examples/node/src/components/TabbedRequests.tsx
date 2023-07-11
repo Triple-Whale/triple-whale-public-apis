@@ -15,12 +15,6 @@ const FetchMetrics = React.lazy(
   async () =>
     await import('./FetchMetrics').then((c) => ({ default: c.FetchMetrics }))
 )
-const FetchOrdersWithJourneys = React.lazy(
-  async () =>
-    await import('./FetchOrdersWithJourneys').then((c) => ({
-      default: c.FetchOrdersWithJourneys,
-    }))
-)
 const FetchOrdersWithJourneysV2 = React.lazy(
   async () =>
     await import('./FetchOrdersWithJourneysV2').then((c) => ({
@@ -72,12 +66,6 @@ export const TabbedRequests: React.FC = () => {
       content: 'Summary Page',
       info: 'Fetch Summary Page Data',
       tabContent: <SummaryPage />,
-    },
-    {
-      id: 'fetch-orders-with-journeys',
-      content: 'Journeys',
-      info: 'Fetch Orders with Journeys',
-      tabContent: <FetchOrdersWithJourneys />,
     },
     {
       id: 'fetch-orders-with-journeys-v2',

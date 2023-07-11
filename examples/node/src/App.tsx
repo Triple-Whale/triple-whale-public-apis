@@ -15,7 +15,7 @@ function App() {
             <Layout>
               <Layout.Section>
                 <Text variant="heading4xl" as="h1">
-                  🐳🐳🐳 Triple Whale API
+                  Triple Whale API
                 </Text>
               </Layout.Section>
 
