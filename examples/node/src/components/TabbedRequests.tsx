@@ -69,7 +69,7 @@ export const TabbedRequests: React.FC = () => {
     },
     {
       id: 'fetch-orders-with-journeys-v2',
-      content: 'Journeys V2',
+      content: 'Journeys',
       info: 'Fetch Orders with Journeys V2',
       tabContent: <FetchOrdersWithJourneysV2 />,
     },
