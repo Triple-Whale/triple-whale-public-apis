@@ -1,5 +1,5 @@
 {
-    "name": "public-api-example",
+    "name": "infra",
     "main": "index.ts",
     "devDependencies": {
         "@types/node": "^16"
