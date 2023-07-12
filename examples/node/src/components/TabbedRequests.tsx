@@ -40,7 +40,7 @@ const fallback = (
   </>
 )
 
-export const TabbedRequests: React.FC = () => {
+export const TabbedRequests: React.FC<any> = ({ isApiKey }) => {
   const [selected, setSelected] = useState(0)
   const authDispatch = useAuthDispatch()
 
@@ -60,7 +60,9 @@ export const TabbedRequests: React.FC = () => {
     }
   }, [])
 
-  const tabs: TabsType = [
+  console.log(isApiKey)
+
+  const tabs = [
     {
       id: 'summary-page',
       content: 'Summary Page',
@@ -73,19 +75,23 @@ export const TabbedRequests: React.FC = () => {
       info: 'Fetch Orders with Journeys V2',
       tabContent: <FetchOrdersWithJourneysV2 />,
     },
-    {
-      id: 'fetch-metrics',
-      content: 'Metrics',
-      info: 'Fetch Sent Metrics',
-      tabContent: <FetchMetrics />,
-    },
-    {
-      id: 'post-metrics',
-      content: 'Send Metrics',
-      info: 'Send Custom Metrics to Triple Whale',
-      tabContent: <PostMetrics />,
-    },
-  ]
+    ...(isApiKey
+      ? []
+      : [
+          {
+            id: 'fetch-metrics',
+            content: 'Metrics',
+            info: 'Fetch Sent Metrics',
+            tabContent: <FetchMetrics />,
+          },
+          {
+            id: 'post-metrics',
+            content: 'Send Metrics',
+            info: 'Send Custom Metrics to Triple Whale',
+            tabContent: <PostMetrics />,
+          },
+        ]),
+  ] as TabsType
 
   return (
     <Layout.Section>

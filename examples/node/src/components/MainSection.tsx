@@ -31,7 +31,7 @@ export const MainSection: React.FC = () => {
   ) : loggedIn && authenticated ? (
     <LegacyStack vertical>
       <LoggedInCard isApiKey={isApiKey} />
-      <TabbedRequests />
+      <TabbedRequests isApiKey={isApiKey} />
     </LegacyStack>
   ) : (
     <>
