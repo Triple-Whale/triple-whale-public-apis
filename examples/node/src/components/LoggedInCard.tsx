@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Banner, Button, Layout, Text, LegacyStack } from '@shopify/polaris'
 import { useAuth } from '../contexts/Auth'
 
-export const LoggedInCard: React.FC = () => {
+export const LoggedInCard: React.FC<any> = ({ isApiKey }) => {
   const { authenticated, error, message, loading } = useAuth()
   const [refreshing, setRefreshing] = useState(false)
 
@@ -19,7 +19,7 @@ export const LoggedInCard: React.FC = () => {
         {authenticated ? (
           <LegacyStack vertical>
             <Text variant="headingLg" as="h2">
-              You are authenticated!
+              {isApiKey ? 'Your API Key is present!' : 'You are authenticated!'}
             </Text>
             <Text variant="bodyMd" as="p">
               For documentation on available endpoints and request structure,
@@ -30,6 +30,15 @@ export const LoggedInCard: React.FC = () => {
               >
                 https://developers.triplewhale.com/swagger/index.html
               </a>
+            </Text>
+          </LegacyStack>
+        ) : isApiKey ? (
+          <LegacyStack vertical>
+            <Text variant="headingLg" as="h2">
+              {message || 'Your API Key is Invalid'}
+            </Text>
+            <Text variant="bodyMd" as="p">
+              Please check your API Key and try again.
             </Text>
           </LegacyStack>
         ) : (
@@ -45,7 +54,7 @@ export const LoggedInCard: React.FC = () => {
               {' '}
               If that doesn't work, restart your server, or try again later! 😅
             </Text>
-            {!loading && (
+            {!loading && !isApiKey && (
               <Button loading={refreshing} onClick={refreshToken}>
                 Refresh Token
               </Button>

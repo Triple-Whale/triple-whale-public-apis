@@ -8,13 +8,17 @@ import { useAuth } from '../contexts/Auth'
 export const MainSection: React.FC = () => {
   const [loading, setLoading] = useState(true)
   const [loggedIn, setLoggedIn] = useState(false)
+  const [isApiKey, setIsApiKey] = useState(false)
   const { authenticated } = useAuth()
 
   useEffect(() => {
     if (loading)
       fetch('/logged-in')
         .then((res) => res.json())
-        .then((data) => setLoggedIn(!!data?.token))
+        .then((data) => {
+          setLoggedIn(!!data?.token)
+          setIsApiKey(data?.isApiKey)
+        })
         .finally(() => setLoading(false))
   }, [])
 
@@ -26,7 +30,7 @@ export const MainSection: React.FC = () => {
     </Layout.Section>
   ) : loggedIn && authenticated ? (
     <LegacyStack vertical>
-      <LoggedInCard />
+      <LoggedInCard isApiKey={isApiKey} />
       <TabbedRequests />
     </LegacyStack>
   ) : (

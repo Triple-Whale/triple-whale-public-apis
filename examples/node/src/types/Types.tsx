@@ -347,3 +347,9 @@ export interface GetSummaryDTO {
 export type SummaryPageResponse = {
   metrics: any[]
 }
+
+export type GlobalHeaders = {
+  'content-type': string
+  'x-api-key'?: string
+  Authorization?: string
+}

@@ -17,6 +17,7 @@ import {
   newOrder,
   newOrders,
   ordersWithJourneyNew,
+  GlobalHeaders,
 } from './src/types/Types'
 
 // -----------------------
@@ -31,8 +32,15 @@ app.use(express.json())
 // data
 // -----------------------
 dotenv.config()
-const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SHOP_URL, SCOPE, NODE_ENV } =
-  process.env
+const {
+  CLIENT_ID,
+  CLIENT_SECRET,
+  REDIRECT_URI,
+  SHOP_URL,
+  SCOPE,
+  NODE_ENV,
+  API_KEY,
+} = process.env
 
 let LOCAL_TIME = new Date().getTime() / 1000
 
@@ -96,25 +104,37 @@ const refresh = async (res?: Response) => {
     })
 }
 
+const globalHeaders: GlobalHeaders = !API_KEY
+  ? {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${TOKEN}`,
+    }
+  : {
+      'content-type': 'application/json',
+      'x-api-key': API_KEY,
+    }
+
 // -----------------------
 // Refresh every 10 min
 // -----------------------
-setInterval(
-  () => CLIENT_ID && CLIENT_SECRET && REFRESH_TOKEN && refresh(),
-  600000
-)
+if (!API_KEY) {
+  setInterval(
+    () => CLIENT_ID && CLIENT_SECRET && REFRESH_TOKEN && refresh(),
+    600000
+  )
+}
 
 const responseChecker = async (response: any) => {
   const currentTime = new Date().getTime() / 1000
 
   // auto-refresh token every 10 minutes
-  if (currentTime - LOCAL_TIME >= 600) {
+  if (!API_KEY && currentTime - LOCAL_TIME >= 600) {
     await refresh()
     LOCAL_TIME = new Date().getTime() / 1000
   }
 
   if (response.code == 401) {
-    await refresh()
+    if (!API_KEY) await refresh()
     throw response
   }
 }
@@ -227,10 +247,7 @@ app.post('/get-orders-with-journeys', (req: Request, res: Response) => {
   async function fetchOrdersWithJourneys() {
     const options = {
       method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        Authorization: `Bearer ${TOKEN}`,
-      },
+      headers: globalHeaders,
       body: JSON.stringify(data),
     }
 
@@ -276,10 +293,7 @@ app.post('/get-orders-with-journeys-v2', (req: Request, res: Response) => {
   async function fetchOrdersWithJourneys() {
     const options = {
       method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        Authorization: `Bearer ${TOKEN}`,
-      },
+      headers: globalHeaders,
       body: JSON.stringify(data),
     }
 
@@ -318,10 +332,7 @@ app.get('/get-metrics', (req: Request, res: Response) => {
   const url = `https://api.triplewhale.com/api/v2/tw-metrics/metrics-data?service_id=${CLIENT_ID}&account_id=${SHOP_URL}&start=${start}&end=${end}`
 
   fetch(url, {
-    headers: {
-      'content-type': 'application/json',
-      Authorization: `Bearer ${TOKEN}`,
-    },
+    headers: globalHeaders,
   })
     .then((response) => response.json())
     .then(async (response) => {
@@ -357,10 +368,7 @@ app.post('/post-metrics', (req: Request, res: Response) => {
 
   const options = {
     method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      Authorization: `Bearer ${TOKEN}`,
-    },
+    headers: globalHeaders,
     body: JSON.stringify(data),
   }
 
@@ -391,10 +399,7 @@ app.post('/get-summary-page-data', (req: Request, res: Response) => {
 
   const options = {
     method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      Authorization: `Bearer ${TOKEN}`,
-    },
+    headers: globalHeaders,
     body: JSON.stringify(data),
   }
 
@@ -414,22 +419,29 @@ app.post('/get-summary-page-data', (req: Request, res: Response) => {
 // are we logged in? -- for frontend
 // -----------------------
 app.get('/logged-in', (req: Request, res: Response) => {
-  res.json({ token: TOKEN })
+  res.json({ token: API_KEY ?? TOKEN, isApiKey: !!API_KEY })
 })
 
 const loggy = () => {
   console.log(
     appName +
       chalk.green(
-        `🐳🐳🐳 listening http://localhost:${
+        `🐳 listening http://localhost:${
           NODE_ENV === 'production' ? '80' : port
         }`
       )
   )
+
+  if (API_KEY) {
+    console.log(
+      appName + chalk.yellow(`🔑 API key present; using instead of OAuth flow`)
+    )
+  }
+
   console.log(
     appName +
       (!!CLIENT_ID && !!CLIENT_SECRET && !!REDIRECT_URI && !!SCOPE
-        ? chalk.green(`required data is present 🎉`)
+        ? chalk.green(`🎉 all required data is present`)
         : chalk.red(`🛑 please provide required .env data`))
   )
 }
