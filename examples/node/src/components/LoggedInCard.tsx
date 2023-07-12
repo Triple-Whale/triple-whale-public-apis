@@ -24,7 +24,9 @@ export const LoggedInCard: React.FC<any> = ({ isApiKey }) => {
         {authenticated ? (
           <LegacyStack vertical>
             <Text variant="headingLg" as="h2">
-              {isApiKey ? 'Your API Key is present!' : 'You are authenticated!'}
+              {isApiKey
+                ? 'Your API Key is present!'
+                : 'You are authenticated via OAuth!'}
             </Text>
             <Text variant="bodyMd" as="p">
               For documentation on available endpoints and request structure,
