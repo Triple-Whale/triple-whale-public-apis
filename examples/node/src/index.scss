@@ -59,3 +59,9 @@ code {
     height: 15px;
   }
 }
+
+// https://github.com/Shopify/polaris/issues/9337#issuecomment-1571345289
+.Polaris-AlphaTabs__Outer,
+.Polaris-Tabs__Outer {
+  height: auto;
+}
