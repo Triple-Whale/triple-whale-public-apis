@@ -2,9 +2,13 @@
 
 For documentation on available endpoints and request structure, visit https://developers.triplewhale.com/swagger/index.html
 
-## ⚡ Live Demo
+## ⚡ Live demos
 
-https://client-cgrzlhwaka-uk.a.run.app/
+We have two live demos, both hosted on GCP. The first uses the OAuth flow, and the second uses an API key.
+
+[OAuth Flow Example](https://client-cgrzlhwaka-uk.a.run.app/)
+
+[API Key Example](https://node-api-key-cgrzlhwaka-uk.a.run.app)
 
 ## 🟡 Prerequesites
 
@@ -12,6 +16,38 @@ https://client-cgrzlhwaka-uk.a.run.app/
 1. Ensure you are using Node 18: `nvm use`
 1. Install the `package.json` dependencies: `npm i` or `yarn`
 1. Ensure you have a properly formatted `.env` file; an `.env.example` file has been provided
+
+## 🧙‍♂️ Choose your own adventure
+
+You can choose to use either the OAuth or API Key example, but not both.
+
+### 🅰️ OAuth
+
+You can obtain your OAuth credentials by visiting [https://developers.triplewhale.com/](https://developers.triplewhale.com/) and creating a new app.
+
+Your `.env` file should contain the following:
+
+```bash
+# OAuth
+CLIENT_ID=
+CLIENT_SECRET=
+REDIRECT_URL=
+SHOP_URL=
+SCOPE=
+```
+
+### 🔑 API Key
+
+Your `.env` file should contain the following:
+
+```bash
+# API Key
+SHOP_URL=
+SCOPE=
+API_KEY=
+```
+
+NOTE: the presence of API_KEY in your `.env` file negates the OAuth flow, and will be used instead of the bearer token.
 
 ## 🏁 Quickstart
 
@@ -69,11 +105,11 @@ gcloud run deploy
 
 This is **not production ready!**
 
-This repository's purpose is to demonstrate the process of authorizing your app with Triple Whale, obtaining a JWT, and requesting data from our API.
+This repository's purpose is to demonstrate interfacing with our API, and is not intended to be used in production.
 
 Thus we use `node-localstorage` to store JWT data, which you will find under the `/scratch` folder. You should be able to drop in your own DB of choice, but we have not tested this yet.
 
-## 😠 Common Issues
+## 😠 Common issues
 
 ### "I cannot install package.json"
 
@@ -108,15 +144,5 @@ Thus we use `node-localstorage` to store JWT data, which you will find under the
 ### "Docker isn't working for me"
 
 - Ensure you have Docker installed on your machine
-
-- @TODO: Add more troubleshooting steps; not yet complete
-
-## 🛣️ Roadmap
-
-- [ ] Multiple stores
-- [ ] Finish & Demo Docker
-- [ ] Full DB support
-- [ ] Add more error handling
-- [ ] Add more documentation
 
 ### Feel free to submit a pull request if you have any requests or improvements!

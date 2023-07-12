@@ -440,9 +440,11 @@ const loggy = () => {
 
   console.log(
     appName +
-      (!!CLIENT_ID && !!CLIENT_SECRET && !!REDIRECT_URI && !!SCOPE
-        ? chalk.green(`🎉 all required data is present`)
-        : chalk.red(`🛑 please provide required .env data`))
+      ((API_KEY && !!CLIENT_ID && !!SCOPE) ||
+        !API_KEY ||
+        (!!CLIENT_ID && !!CLIENT_SECRET && !!REDIRECT_URI && !!SCOPE))
+      ? chalk.green(`🎉 all required data is present`)
+      : chalk.red(`🛑 please provide required .env data`)
   )
 }
 
