@@ -60,8 +60,6 @@ export const TabbedRequests: React.FC<any> = ({ isApiKey }) => {
     }
   }, [])
 
-  console.log(isApiKey)
-
   const tabs = [
     {
       id: 'summary-page',
