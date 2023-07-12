@@ -36,7 +36,7 @@ export const MainSection: React.FC = () => {
   ) : (
     <>
       {loggedIn && <LoggedInCard />}
-      <LoginCard />
+      {!isApiKey && <LoginCard />}
     </>
   )
 }
