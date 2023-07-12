@@ -19,7 +19,7 @@ We have two live demos, both hosted on GCP. The first uses the OAuth flow, and t
 
 ## 🧙‍♂️ Choose your own adventure
 
-You can choose to use either the OAuth or API Key example, but not both.
+You can choose to use either the OAuth or API Key example, but not both. When in doubt, listen to the CLI 🤖
 
 ### 🅰️ OAuth
 
@@ -129,6 +129,14 @@ Thus we use `node-localstorage` to store JWT data, which you will find under the
 
 - Ensure your, Client ID, and Client Secret are correct
 
+### "My API key isn't working"
+
+- Ensure your API key is correct
+
+- Ensure your shop URL is correct
+
+- Ensure you have the correct scope (scopes are wip, so this may not be the issue)
+
 ### "I cannot make any requests to the backend"
 
 - Ensure your bearer token has been acquired, is accurate, and is present within your `/scratch` folder (or DB of choice)
@@ -145,4 +153,4 @@ Thus we use `node-localstorage` to store JWT data, which you will find under the
 
 - Ensure you have Docker installed on your machine
 
-### Feel free to submit a pull request if you have any requests or improvements!
+## 🏋️ Feel free to submit a pull request if you have any requests, or improvements!
