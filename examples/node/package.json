@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@json2csv/plainjs": "^6.1.2",
-    "@shopify/polaris": "^10.43.0",
-    "@shopify/polaris-icons": "^6.12.0",
-    "@shopify/polaris-viz": "^9.1.0",
+    "@shopify/polaris": "^11.5.3",
+    "@shopify/polaris-icons": "^7.3.0",
+    "@shopify/polaris-viz": "^9.6.2",
     "chalk": "^5.2.0",
     "cross-fetch": "^3.1.5",
     "dotenv": "^16.0.3",
