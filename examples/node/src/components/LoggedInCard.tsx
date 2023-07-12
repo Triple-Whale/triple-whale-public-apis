@@ -13,6 +13,11 @@ export const LoggedInCard: React.FC<any> = ({ isApiKey }) => {
     // setRefreshing(false)
   }
 
+  const refreshPage = () => {
+    setRefreshing(true)
+    location.reload()
+  }
+
   return (
     <Layout.Section>
       <Banner status={authenticated ? 'success' : 'critical'}>
@@ -38,8 +43,13 @@ export const LoggedInCard: React.FC<any> = ({ isApiKey }) => {
               {message || 'Your API Key is Invalid'}
             </Text>
             <Text variant="bodyMd" as="p">
-              Please check your API Key and try again.
+              Please check your API Key and try again. You can also try refreshing the page
             </Text>
+            {!loading && (
+              <Button loading={refreshing} onClick={refreshPage}>
+                Refresh page
+              </Button>
+            )}
           </LegacyStack>
         ) : (
           <LegacyStack vertical>
@@ -54,7 +64,7 @@ export const LoggedInCard: React.FC<any> = ({ isApiKey }) => {
               {' '}
               If that doesn't work, restart your server, or try again later! 😅
             </Text>
-            {!loading && !isApiKey && (
+            {!loading && (
               <Button loading={refreshing} onClick={refreshToken}>
                 Refresh Token
               </Button>
@@ -69,10 +79,10 @@ export const LoggedInCard: React.FC<any> = ({ isApiKey }) => {
               API Error: {message}
             </Text>
             <Text variant="bodyMd" as="p">
-              View your network tab for more information, or try to refresh your
-              token.
+              View your network tab for more information, or try to
+              {!isApiKey ? ' refresh your token.' : ' refresh your API Key.'}
             </Text>
-            {!loading && (
+            {!loading && !isApiKey && (
               <Button loading={refreshing} onClick={refreshToken}>
                 Refresh Token
               </Button>
