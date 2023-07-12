@@ -43,7 +43,8 @@ export const LoggedInCard: React.FC<any> = ({ isApiKey }) => {
               {message || 'Your API Key is Invalid'}
             </Text>
             <Text variant="bodyMd" as="p">
-              Please check your API Key and try again. You can also try refreshing the page
+              Please check your API Key and try again. You can also try
+              refreshing the page
             </Text>
             {!loading && (
               <Button loading={refreshing} onClick={refreshPage}>

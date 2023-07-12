@@ -104,15 +104,16 @@ const refresh = async (res?: Response) => {
     })
 }
 
-const globalHeaders: GlobalHeaders = !API_KEY
-  ? {
-      'content-type': 'application/json',
-      Authorization: `Bearer ${TOKEN}`,
-    }
-  : {
-      'content-type': 'application/json',
-      'x-api-key': API_KEY,
-    }
+const globalHeaders = (): GlobalHeaders =>
+  !API_KEY
+    ? {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${TOKEN}`,
+      }
+    : {
+        'content-type': 'application/json',
+        'x-api-key': API_KEY,
+      }
 
 // -----------------------
 // Refresh every 10 min
@@ -247,7 +248,7 @@ app.post('/get-orders-with-journeys', (req: Request, res: Response) => {
   async function fetchOrdersWithJourneys() {
     const options = {
       method: 'POST',
-      headers: globalHeaders,
+      headers: globalHeaders(),
       body: JSON.stringify(data),
     }
 
@@ -293,7 +294,7 @@ app.post('/get-orders-with-journeys-v2', (req: Request, res: Response) => {
   async function fetchOrdersWithJourneys() {
     const options = {
       method: 'POST',
-      headers: globalHeaders,
+      headers: globalHeaders(),
       body: JSON.stringify(data),
     }
 
@@ -332,7 +333,7 @@ app.get('/get-metrics', (req: Request, res: Response) => {
   const url = `https://api.triplewhale.com/api/v2/tw-metrics/metrics-data?service_id=${CLIENT_ID}&account_id=${SHOP_URL}&start=${start}&end=${end}`
 
   fetch(url, {
-    headers: globalHeaders,
+    headers: globalHeaders(),
   })
     .then((response) => response.json())
     .then(async (response) => {
@@ -368,7 +369,7 @@ app.post('/post-metrics', (req: Request, res: Response) => {
 
   const options = {
     method: 'POST',
-    headers: globalHeaders,
+    headers: globalHeaders(),
     body: JSON.stringify(data),
   }
 
@@ -399,7 +400,7 @@ app.post('/get-summary-page-data', (req: Request, res: Response) => {
 
   const options = {
     method: 'POST',
-    headers: globalHeaders,
+    headers: globalHeaders(),
     body: JSON.stringify(data),
   }
 
