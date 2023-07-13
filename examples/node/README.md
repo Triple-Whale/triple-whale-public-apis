@@ -47,7 +47,8 @@ SCOPE=
 With OAuth, you get access to all the endpoints within the Swagger docs:
 
 - Summary page data - `/api/v2/summary-page/get-data`
-- Pixel Attribution - `/api/v2/attribution/get-orders-with-journeys-v2`
+- Pixel Attribution V1 (deprecated) - `/api/v2/attribution/get-orders-with-journeys`
+- Pixel Attribution V2 - `/api/v2/attribution/get-orders-with-journeys-v2`
 - Send custom metrics to TW to display within the summary page - `/api/v2/tw-metrics/metrics-data`
 - Recieve custom metrics back from TW - `/api/v2/tw-metrics/metrics`
 
@@ -65,7 +66,8 @@ API_KEY=
 With an API key, you get access to only a limited set of endpoints:
 
 - Summary page data - `/api/v2/summary-page/get-data`
-- Pixel Attribution - `/api/v2/attribution/get-orders-with-journeys-v2`
+- Pixel Attribution V1 (deprecated) - `/api/v2/attribution/get-orders-with-journeys`
+- Pixel Attribution V2 - `/api/v2/attribution/get-orders-with-journeys-v2`
 
 **NOTE: the presence of `API_KEY` in your `.env` file negates the OAuth flow, and will be used instead of the OAuth bearer token.**
 
