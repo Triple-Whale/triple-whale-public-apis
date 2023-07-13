@@ -68,6 +68,7 @@ With an API key, you get access to only a limited set of endpoints:
 - Summary page data - `/api/v2/summary-page/get-data`
 - Pixel Attribution V1 (deprecated) - `/api/v2/attribution/get-orders-with-journeys`
 - Pixel Attribution V2 - `/api/v2/attribution/get-orders-with-journeys-v2`
+- API Key WhoAmI - `/api/v2/users/api-keys/me`
 
 **NOTE: the presence of `API_KEY` in your `.env` file negates the OAuth flow, and will be used instead of the OAuth bearer token.**
 
