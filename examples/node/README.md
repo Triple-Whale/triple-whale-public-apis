@@ -21,6 +21,14 @@ We have two live demos, both hosted on GCP. The first uses the OAuth flow, and t
 
 You can choose to use either the OAuth or API Key example, but not both. When in doubt, listen to the CLI 🤖
 
+Your needs should determine which example you use:
+
+1. If you are building a public app, and wish to push and display your own data within Triple Whale, you should use OAuth.
+
+2. If you simply want to pull data from Triple Whale, you should use an API Key.
+
+**NOTE: To be clear, you cannot push or pull your own data from Triple Whale unless you are using OAuth.**
+
 ### 🅰️ OAuth
 
 You can obtain your OAuth credentials by visiting [https://developers.triplewhale.com/](https://developers.triplewhale.com/) and creating a new app.
