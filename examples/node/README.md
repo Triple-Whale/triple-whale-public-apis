@@ -1,6 +1,6 @@
 # 🐳 Triple Whale API Node App
 
-For documentation on available endpoints and request structure, visit https://developers.triplewhale.com/swagger/index.html
+For documentation on available endpoints and request structure, visit [https://developers.triplewhale.com/swagger/index.html](https://developers.triplewhale.com/swagger/index.html)
 
 ## ⚡ Live demos
 
@@ -44,6 +44,13 @@ SHOP_URL=
 SCOPE=
 ```
 
+With OAuth, you get access to all the endpoints within the Swagger docs:
+
+- Summary page data - `/api/v2/summary-page/get-data`
+- Pixel Attribution - `/api/v2/attribution/get-orders-with-journeys-v2`
+- Send custom metrics to TW to display within the summary page - `/api/v2/tw-metrics/metrics-data`
+- Recieve custom metrics back from TW - `/api/v2/tw-metrics/metrics`
+
 ### 🔑 API Key
 
 Your `.env` file should contain the following:
@@ -55,7 +62,12 @@ SCOPE=
 API_KEY=
 ```
 
-NOTE: the presence of API_KEY in your `.env` file negates the OAuth flow, and will be used instead of the bearer token.
+With an API key, you get access to only a limited set of endpoints:
+
+- Summary page data - `/api/v2/summary-page/get-data`
+- Pixel Attribution - `/api/v2/attribution/get-orders-with-journeys-v2`
+
+**NOTE: the presence of `API_KEY` in your `.env` file negates the OAuth flow, and will be used instead of the OAuth bearer token.**
 
 ## 🏁 Quickstart
 
@@ -149,7 +161,9 @@ Thus we use `node-localstorage` to store JWT data, which you will find under the
 
 - Ensure your bearer token has been acquired, is accurate, and is present within your `/scratch` folder (or DB of choice)
 
-### "My app isn't approved yet, but I want to ___"
+- Check steps above
+
+### "My OAuth app isn't approved yet, but I want to ___"
 
 - You cannot interface with the TW API until your app is approved
 
