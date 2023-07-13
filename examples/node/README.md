@@ -54,6 +54,8 @@ With OAuth, you get access to all the endpoints within the Swagger docs:
 
 ### 🔑 API Key
 
+You can obtain your API key by visiting [https://app.triplewhale.com/api-keys](https://developers.triplewhale.com/api-keys) and creating a new key.
+
 Your `.env` file should contain the following:
 
 ```bash
