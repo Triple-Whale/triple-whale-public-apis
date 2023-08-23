@@ -24,18 +24,32 @@ To learn more about the specifics of each endpoint, and to explore the full rang
 
 ## Authentication
 
-The Triple Whale API uses OAuth2 for authentication. In order to access the API, you must first [register your app with the Triple Whale OAuth server via the Triple Whale website](https://developers.triplewhale.com/register-new-app). 
+The Triple Whale API offers 2 forms of authentication:
+
+### OAuth2
+Triple Whale offers Oauth2 as an authentication method for third-parties looking to integrate with Triple Whale. In order to build an OAuth authenticated integration, you must first [register your app with the Triple Whale OAuth server via the Triple Whale website](https://developers.triplewhale.com/register-new-app). 
 
 Make sure to include proper app and redirect URIs in your application, or your requests will be rejected by the OAuth server.
 
+### Personal API Keys
+For customers with access to a Triple Whale subscription, a personal API key can be generated from within the Triple Whale UI. In order to create a key, visit [the API Keys page in the app](https://app.triplewhale.com/api-keys) and click "Create Key". Be sure to select the correct scopes for the endpoints you intend to use and save your key somewhere safe once it is generated.
+
 ## Getting Started
 
-To get started with the Triple Whale API, just follow these basic steps:
+For Oauth2 apps:
 
 1. Register your app with Triple Whale
 2. Receive your OAuth credentials from Triple Whale
 3. Execute the OAuth flow and grant access to your shop
 4. Retrieve the OAuth token and make authenticated requests to the API  
+
+For customer using API Keys:
+Visit [the API Keys page in the app](https://app.triplewhale.com/api-keys) and create a new key. You can test your key by making a curl request and passing in the x-api-key parameter in the header of your request.
+
+```
+curl https://api.triplewhale.com/api/v2/users/api-keys/me -H "x-api-key:
+  <PUT_API_KEY_HERE>"
+```
 
 ### Examples  
 
