@@ -44,6 +44,7 @@ For Oauth2 apps:
 4. Retrieve the OAuth token and make authenticated requests to the API  
 
 For customer using API Keys:
+
 Visit [the API Keys page in the app](https://app.triplewhale.com/api-keys) and create a new key. You can test your key by making a curl request and passing in the x-api-key parameter in the header of your request.
 
 ```
