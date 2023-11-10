@@ -71,5 +71,6 @@ def get_paginated_results():
     print(df)
     return df
 
-#execute the function
-df = get_paginated_results()
+if __name__ == "__main__":
+    #execute the function
+    df = get_paginated_results()
