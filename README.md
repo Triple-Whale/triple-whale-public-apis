@@ -51,6 +51,12 @@ Visit [the API Keys page in the app](https://app.triplewhale.com/api-keys) and c
 curl https://api.triplewhale.com/api/v2/users/api-keys/me -H "x-api-key:
   <PUT_API_KEY_HERE>"
 ```
+Note - With an API key, you get access to only a limited set of endpoints:
+
+- Summary page data - `/api/v2/summary-page/get-data`
+- Pixel Attribution V1 (deprecated) - `/api/v2/attribution/get-orders-with-journeys`
+- Pixel Attribution V2 - `/api/v2/attribution/get-orders-with-journeys-v2`
+- API Key WhoAmI - `/api/v2/users/api-keys/me`
 
 ### Examples  
 
