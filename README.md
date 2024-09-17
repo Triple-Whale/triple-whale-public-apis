@@ -18,7 +18,7 @@ With the Triple Whale API, you can easily integrate our powerful analytics and a
 - **Attribution Endpoint**: [[`/attribution/get-orders-with-journeys-v2`](https://developers.triplewhale.com/swagger/index.html#/attribution/attribution-get-orders-with-journeys-v2-post)] - With this endpoint, you can export full customer journey data for all customers who placed an order.
   - Supported Methods: 
     - POST
-  - Please note, **v1 of this endpoint will soon be deprecated**.
+  - Please note, **v1 of this endpoint is deprecated**.
 
 To learn more about the specifics of each endpoint, and to explore the full range of available options, be sure to check out the [Swagger Docs](https://developers.triplewhale.com/swagger/index.html).
 
